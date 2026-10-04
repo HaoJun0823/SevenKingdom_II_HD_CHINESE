@@ -127,7 +127,30 @@ residx 索引项只有「9 字节名 + 4 字节偏移」，无序号字段，引
 只有 #16 / #66 两条有问题，已随 `fix_names.py` 一起修好（現 DESC 与 TECH 一致）。
 **无需再单独确认这张表是否被引擎读取**：它的内容和 TECH 一致，翻错会一起错。
 
-## 五、接手步骤
+## 五、工程目录整理（2026-10-05）
+
+一次性 / 孤立 / 可重建的东西全部挪进 `archives/`（**移动，不是删除，原样可搬回**，明细见
+`archives/README.md` 与 `archives/00_MANIFEST.txt`）：
+
+| archives 子目录 | 内容 | 会不会影响工作流 |
+|---|---|---|
+| `01_build_artifacts/` | `.vs/`(92MB 缓存)、`build/`(obj+asi) | 否，`tools/build.py` 可重建 |
+| `02_ui_probe_assets/` | `tools/_shots/_nav/_crop/_render` 46MB 探索截图 | 否 |
+| `03_backups/` | `res_backup/`、旧的 `update_res_staged.bak_before_fix/` | 否，新流程用 `*.bin.bak_*` + `/tmp` |
+| `04_reports/` | 4 个盘点报告（已入库，随时 `git show` 取回） | 否 |
+| `05_oneoff_scripts/` | 32 个一次性探针脚本（UI 探索 / 反汇编摸底 / STD.SET 翻修过程） | 否，共用模块仍留 `tools/` |
+
+**仍在用的**（别动）：`unpack_data_chs/`（简体真源）、`unpack_data_original/`（英文锚点）、
+`unpack_data_cht/`（繁体源 + git 里有 615 文件历史）、`update_res_staged/`（deploy.cmd 与
+`tools/fontlib.py` 的部署暂存）、`tools/` 现有 20 个脚本、`tools_packer/`、`scripts/`、
+`SavenKingdom_II_HD_CHINESE/`（C++ 源码）。
+
+顺带修掉一个历史坑：繁体目录此前被莫名改名为
+`unpack_data_cht_from_original_cht_game_may_be`，导致 git 里 615 个文件显示成"已删除"、
+`tools/diff_unpack.py` 的路径也失效。已改回 `unpack_data_cht`，git 识别为 rename、零丢失，
+`diff_unpack.py` 恢复可用。
+
+## 七、接手步骤
 
 ```bash
 cd /g/Projects/SavenKingdom_II_HD_CHINESE
@@ -174,7 +197,7 @@ print('长度',len(a)==len(b),'记录数',ca==cb,
 - 回退：部署前备份在 `/tmp/STD.SET.bak_before_unit`，原记录备份在
   `records/007_UNIT.bin.bak_before_unit`
 
-## 六、仓库约定（务必遵守）
+## 八、仓库约定（务必遵守）
 
 - **助手禁止主动启动/唤起游戏**（用户明确要求），测试由用户手动进行并回报
 - 提交消息用文件方式（`-F`），避免引号破坏 shell 解析
