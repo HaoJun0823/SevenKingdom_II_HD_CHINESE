@@ -746,7 +746,15 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
             if (e && e[1] > 0 && !isSpaceOrTab && drawThis && buf && bmpBase) {
                 int32_t off = 0;
                 memcpy(&off, e + 3, 4);
-                PutBmp(buf, dx, cy + (int)(int8_t)e[0], (void*)(bmpBase + off));
+                const uint8_t* bm = bmpBase + off;      // 字形位图：+0=W +2=H
+                const int gw = bm[0], gh = bm[2];
+                const int gy2 = cy + (int)(int8_t)e[0];
+                // ★ 与中文自绘同样加画布兜底：引擎的 put_bitmap 不做裁剪，
+                //   一旦 dx/gy 越过画布就会踩坏堆（实测堆坏后表现为后续
+                //   精灵 RLE 解码读到非法指针而崩溃）。
+                if (gw > 0 && gh > 0 && dx >= 0 && gy2 >= 0
+                    && dx + gw <= ScreenW() && gy2 + gh <= ScreenH())
+                    PutBmp(buf, dx, gy2, (void*)bm);
             }
             dx += adv + inter;
             q += nb;
