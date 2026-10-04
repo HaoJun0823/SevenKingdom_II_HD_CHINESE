@@ -1,11 +1,14 @@
-# 当前状态标记（2026-10-05 04:30）
+# 当前状态标记（2026-10-05 04:30 / 04:55 更新：UNIT 表补译完成并部署）
 
 > 本文件用于跨会话接手。**状态不明 = 未经用户实测验证的改动。**
 
 ## 一、待用户验证（状态不明）
 
 ### 1. 全部本轮改动 —— 状态不明
-- `update\Resource\STD.SET` 1322443B（04:29 部署）
+- `update\Resource\STD.SET` 1322443B（04:52 部署，含 107 处人名/科技修复 + UNIT 表 74 条）
+  - UNIT 表 74 条兵种名/神名（新增，见 4.2）：大天使 / 雷神 / 麒麟 / 天照 / 騰格里 /
+    雅典娜 / 戰神 / 巴爾哈蒙 等，以及 12 族平民/步兵/骑兵/僧侶/忍者/戰車/戰象
+  - 上次 04:29 那版（04:44 覆盖前）仍然可回退
   - FIRM/FIRM2 建筑名 20 处（`Inn`→`酒館`、4 处残留英文、2 处重复、2 处坏字、1 处错译）
   - MONSTER/TECHCLAS/RACE 坏字节 44 处（`Fryhtan`→`異族` 等）
   - TECHCLAS 残留英文 4 处
@@ -95,29 +98,29 @@ residx 索引项只有「9 字节名 + 4 字节偏移」，无序号字段，引
 已由 `tools/fix_names.py` 修掉 109 处（104 + 3，另 2 处覆盖同表不同记录），
 四项结构校验通过，复扫归零。译法沿用各族已有音译惯例，未新造用字。
 
-### 4.2 UNIT 表 74 条**整表未翻译**（界面一直显示英文）
-上轮只统计到「31 条会显示」，实测 `UNIT` 表 74 条**一条没翻**（与原版逐字节相同），
-`NAME` 宽 30 字节、`RACE`/`CLASS` 是内部 ID（该保持英文）。
-界面可见的是「建造菜单兵种名 / 单位信息框 / 军事情报列表」。
-- 可见的：Wagon / Caravan / Catapult / Ballista / Spitfire / Cannon /
-  Porcupine / Unicorn / Mega Cannon / Mega Unicon / Mega Saw / Nemezez / Cobrez /
-  Peltez / **Archangel / Thor / Dagodevas / Mars / Athena / Baal-Hammon / Chi Lin /
-  Amaterasu / Tengri / Isis / Mithra / Hanuman** / Bheema / Tarmes / Jaguara /
-  Goril / Rhinokeros，以及各国兵种 Civilian / Infantry / Cavalry / Monk / Ninja 等
-- 另计 `NAME1`/`NAME2` 共 14 个随机人名未翻译（Robert/Lincoln/Peter…）
-- 阻塞点：**神名译法需用户确认风格**（`Archangel` = 大天使 / 天使長？
-  `Thor` = 雷神 / 索爾？），避免与 `t_unit.res` 现有中文打架
-- 字段宽度：UNIT NAME=30 字节、NAME1/2 FIRSTNAME/LASTNAME=12 字节，可等长替换
-- 备注：`RACE`/`CLASS` 字段是内部 ID（`NO_CIV`/`CATAPULT`），**不该翻**，
-  只翻 `NAME`（以及可选的 `FIRSTNAME`/`LASTNAME`）
-  Porcupine / Unicorn / Mega Cannon / Mega Unicon / Mega Saw / Nemezez / Cobrez /
-  Peltez / **Archangel / Thor / Dagodevas / Mars / Athena / Baal-Hammon / Chi Lin /
-  Amaterasu / Tengri / Isis / Mithra / Hanuman** / Bheema / Tarmes / Jaguara /
-  Goril / Rhinokeros
-- 另有 `NAME1`/`NAME2` 共 14 个随机人名未翻译（Robert/Lincoln/Peter…）
-- 阻塞点：**神名译法需用户确认风格**（`Archangel` = 大天使 / 天使長？
-  `Thor` = 雷神 / 索爾？），避免与 `t_unit.res` 现有中文打架
-- 字段宽度：UNIT NAME=30 字节、NAME1/2 FIRSTNAME/LASTNAME=12 字节，可等长替换
+### 4.2 ~~UNIT 表 74 条整表未翻译~~ —— **已全部翻译（本轮）**
+实测 `UNIT` 表 74 条**一条没翻**（与原版逐字节相同），界面一直显示英文：
+建造菜单兵种名 / 单位信息框 / 军事情报列表。现由 `tools/fix_unit.py` 全部补译。
+
+- 用户 2026-10-05 定调：**意译为主**，无通行译法的专名才走音译
+- 族名前缀沿用 `RACE` 表已译名（諾爾曼/維京/凱爾特/羅馬/希臘/迦太基/中國/
+  日本/蒙古/埃及/波斯/印度），不新造；神名意译：`Archangel`→大天使、
+  `Thor`→雷神（与 `TECH #51 OFF_BLD4=雷神塔` 一致）、`Mars`→戰神、
+  `Athena`→雅典娜、`Baal-Hammon`→巴爾哈蒙、`Chi Lin`→麒麟、`Amaterasu`→天照、
+  `Tengri`→騰格里、`Isis`→伊西斯、`Mithra`→密特拉、`Hanuman`→哈奴曼；
+  `Dagodevas`/`Kharshuf`/`Nemezez`/`Cobrez`/`Peltez`/`Kerassos`/`Grokken`/
+  `Ezpinez`/`Exovum` 等无通行译法 → 音译
+- 其余与 `TECH`/`TECH_DUP` 既有术语对齐：`Cannon`→火砲、`Mega Cannon`→超級火砲
+  （TECH M_CANNON=超級火砲）、`Spitfire`→噴火器（TECH FLAMETHR=噴火器）、
+  `Ballista`→弩砲、`Goril`→大猩猩 / `Rhinokeros`→犀牛（TECH GORILLA/RHINOCER），
+  `Egyptian Chriot`→埃及戰車（TECH 毒蛇戰車 / 飛鷹戰車 / 猛獅戰車），
+  `Celt Deruvid`→凱爾特德魯伊；`Bregma`→蟲族（与 MONSTER 表里 #1=蟲族一致）
+- **只翻 `NAME`**（`off=1, width=30`）。`RACE`/`CLASS`/各 `*_ICONNAME`/
+  `TRANSUNIT`/`DIE_EFFECT` 全是内部 ID（`NO_CIV`/`CATAPULT`…），翻了会断
+- 防错行：脚本用原版 74 行英文做锚点，逐行比对，对不上直接退出；
+  另做四项结构校验（文件长度/记录数/字段名/记录长度）+ 打包回解比对，全部通过
+- 残留：`NAME1`/`NAME2` 共 14 个随机人名（Robert/Lincoln/Peter…）仍未翻，
+  仅在「指派英雄/记者」这类弹窗出现，优先级低
 
 ### 4.3 `TECH_DUP` —— 是 `TECH` 的副本，本轮已同步
 上轮说「69 条 DESC 全英文」是按整记录比对得出的假象：实际逐条比对后
