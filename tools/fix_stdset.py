@@ -340,6 +340,26 @@ def main():
         print('!! 危险字重映射失败：%s' % e)
         print('!! 生成结果不可直接使用，请先跑 tools/fix_risky.py --apply')
 
+    # ★★ 二进制数值字段还原（不可省略）
+    # remap_verified 是**整文件**扫描，它不认识 STD.SET 的段结构。
+    # SFRAME / FBITMAP / FBITMAP2 里是「名字 + u32 偏移」的紧凑表，
+    # u32 的低两字节恰好长成大五码危险对时会被当成汉字改写：
+    #     "NO-A5-7 " | a8 7c 00 00 | " NO_CIV"  偏移 31912
+    #       → 91 6f 00 00                       偏移 28561
+    # 引擎按错偏移读精灵/位图 → RLE 解码器越过缓冲区读飞
+    # → 崩溃在 7K2+0x2750。实测这三段共 52 处，必须原样还原。
+    try:
+        import fix_stdset_binary as _fsb
+        _cnt, _idx = _fsb.segments(orig)
+        _bounds = [(_idx[i][0], _idx[i][1], _idx[i + 1][1]) for i in range(_cnt)]
+        _hits = _fsb.scan(orig, out, _bounds)
+        for _p, _name, _o, _n2 in _hits:
+            out[_p] = _o[0]
+            out[_p + 1] = _o[1]
+        print('binary-field restore: %d 处 (避免精灵偏移被当汉字改写)' % len(_hits))
+    except Exception as e:
+        print('!! 二进制字段还原失败：%s' % e)
+
     if not dry:
         open(OUT, 'wb').write(bytes(out))
         print('written %s' % OUT)
