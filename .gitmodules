@@ -1,0 +1,6 @@
+[submodule "7k2_src"]
+	path = 7k2_src
+	url = https://github.com/7k2/7k2
+[submodule "SavenKingdom_II_HD_BUG_FIX"]
+	path = SavenKingdom_II_HD_BUG_FIX
+	url = https://github.com/HaoJun0823/SavenKingdom_II_HD_BUG_FIX
