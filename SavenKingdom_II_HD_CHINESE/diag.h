@@ -41,4 +41,7 @@ void DiagStartFlusher();
 // 立即输出缺字形汇总表
 void DiagDumpMissing();
 
+// 把 cp950(引擎内部 Big5 变体) 字节流转成 UTF-8 追加到 d，供日志直接读中文。
+void AppendCp950Utf8(char* d, int cap, int* used, const unsigned char* s, int len);
+
 }

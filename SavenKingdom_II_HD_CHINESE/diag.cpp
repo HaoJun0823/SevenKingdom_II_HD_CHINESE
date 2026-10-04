@@ -122,7 +122,7 @@ static int ScrW() {
 }
 
 // ── 把 cp950 字节流转成 UTF-8 写入（逐单元，保证任何字节流都有可读输出）──
-static void AppendCp950Utf8(char* d, int cap, int* used, const unsigned char* s, int len) {
+void AppendCp950Utf8(char* d, int cap, int* used, const unsigned char* s, int len) {
     if (!ReadableC(s, len)) { *used += AS(d + *used, cap - *used, "(不可读)"); return; }
     int i = 0;
     while (i < len && *used < cap - 12) {

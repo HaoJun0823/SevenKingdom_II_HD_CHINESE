@@ -206,9 +206,17 @@ int FontPx(int* f) { return GlyphPx(f); }
 // 思路：扫描该 Font 自带 ASCII 字形的像素直方图 —— 出现最多的调色板索引
 // 就是正文色，次多且达到阈值的是阴影色。这样自动适配各 UI 元素的配色。
 #define COLOR_CACHE_MAX 128
-struct ColorCache { int* f; unsigned char body; signed char shadow; };
+struct ColorCache {
+    int* f;
+    unsigned char body;
+    signed char shadow;
+    char sample[24];        // 首次取色时正在绘制的串（便于日志里认出是哪个 UI）
+};
 ColorCache g_cc[COLOR_CACHE_MAX];
 int g_ccN = 0;
+
+// 当前正在绘制的串（Hook 入口设置，供 FontColors 记样本）。渲染是单线程，无需加锁。
+const char* g_fontSample = nullptr;
 
 // render.ini: color=N —— 强制所有中文字形用调色板索引 N 作正文色。
 // 缺省 -1 = 自动（按字形直方图取众数）。用于过场文字过暗等个例。
@@ -314,9 +322,25 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
     int fov = FontColorFor(f);
     if (fov >= 0) b = (unsigned char)fov;            // render.ini: fontcolor=RVA:N 定向覆盖
 
-    if (g_ccN < COLOR_CACHE_MAX) g_cc[g_ccN++] = { f, (unsigned char)b, (signed char)s };
-    // 前 8 个字体都记；过场诗句专用字体 (RVA 0x28774C) 无条件记 —— 便于定位配色
-    if (g_ccN <= 8 || (uint32_t)((const uint8_t*)f - Base()) == 0x28774C) {
+    // 记下「首次取色时正在画什么」，日志里就能直接认出这是哪块 UI，
+    // 不必再靠 RVA 反推。
+    char smp[24] = {};
+    if (g_fontSample) {
+        int n = 0;
+        while (n < (int)sizeof(smp) - 1 && g_fontSample[n]) { smp[n] = g_fontSample[n]; ++n; }
+    }
+    if (g_ccN < COLOR_CACHE_MAX) {
+        ColorCache& e = g_cc[g_ccN++];
+        e.f = f; e.body = (unsigned char)b; e.shadow = (signed char)s;
+        memcpy(e.sample, smp, sizeof(e.sample));
+    }
+    // 前 24 个字体都记；被 fontcolor 定向覆盖的字体无条件记 —— 便于核对配色是否生效
+    if (g_ccN <= 24 || FontColorFor(f) >= 0) {
+        char smpU8[96] = {};
+        int su = 0;
+        if (smp[0])
+            AppendCp950Utf8(smpU8, sizeof(smpU8), &su,
+                            (const unsigned char*)smp, (int)strlen(smp));
         // 前 4 名按出现次数排序（此前写法有 bug，会把第 1 名重复打印 4 次）
         int top[4] = { -1, -1, -1, -1 };
         for (int c = 0; c < 256; ++c) {
@@ -329,13 +353,15 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
                 }
             }
         }
-        Log("[i] Font %08X 档位=%dpx 颜色: 正文=%d 阴影=%d 核心峰=%d(%d) | "
-            "直方图前四 %d(%d) %d(%d) %d(%d) %d(%d)\r\n",
-            (uint32_t)(uintptr_t)f, FontPx(f), b, s, bc, core[bc],
+        Log("[i] Font %08X RVA=%06X 档位=%dpx 颜色: 正文=%d 阴影=%d 核心峰=%d(%d) | "
+            "直方图前四 %d(%d) %d(%d) %d(%d) %d(%d) | 样本=%s\r\n",
+            (uint32_t)(uintptr_t)f, (uint32_t)((const uint8_t*)f - Base()),
+            FontPx(f), b, s, bc, core[bc],
             top[0], top[0] < 0 ? 0 : hist[top[0]],
             top[1], top[1] < 0 ? 0 : hist[top[1]],
             top[2], top[2] < 0 ? 0 : hist[top[2]],
-            top[3], top[3] < 0 ? 0 : hist[top[3]]);
+            top[3], top[3] < 0 ? 0 : hist[top[3]],
+            smpU8[0] ? smpU8 : "(无)");
     }
     *body = (unsigned char)b;
     *shadow = (signed char)s;
@@ -535,6 +561,7 @@ static void Snip(const char* s, char* out, int cap) {
 static int __fastcall Hook_put(int* f, void* edx, int x, int y,
                                const char* str, char clearBack, int x2, int cap) {
     (void)edx;
+    g_fontSample = str;
     InterlockedIncrement(&g_putCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
 
@@ -685,6 +712,7 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
                                      const char* str, int spacing, int startLine, char draw)
 {
     (void)edx;
+    g_fontSample = str;
     InterlockedIncrement(&g_paraCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
     {
@@ -1063,6 +1091,7 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
 static int __fastcall Hook_put_ascii(int* f, void* edx, int surf, int stride,
                                      int x, int y, const char* s) {
     (void)edx;
+    g_fontSample = s;
     InterlockedIncrement(&g_putAsciiCount);
     if (!f || !s || !g_putAsciiOrig) return (x - 1);
     if (!HasDBCS(s) || !g_putAsciiEnabled || !g_drawEnabled)
@@ -1081,6 +1110,7 @@ static int __fastcall Hook_put_ascii(int* f, void* edx, int surf, int stride,
 static int __fastcall Hook_put_ascii2(int* f, void* edx, int surf, int stride,
                                       int x, int y, const char* s) {
     (void)edx;
+    g_fontSample = s;
     if (!f || !s || !g_putAscii2Orig) return (x - 1);
     if (!HasDBCS(s) || !g_putAsciiEnabled || !g_drawEnabled)
         return g_putAscii2Orig(f, nullptr, surf, stride, x, y, s);
@@ -1143,6 +1173,7 @@ static int WrapCharW(int* f, const char* p, int n) {
 static int __fastcall Hook_putwrap(int* f, void* edx, int x1, int y1, int x2, int y2,
                                    const char* str, int lead, int draw, int size) {
     (void)edx;
+    g_fontSample = str;
     InterlockedIncrement(&g_wrapCount);
     if (!f || !str || !g_wrapOrig) return 0;
     // 崩溃二分：wrap=0 / draw=0 → 完全不接管，交给引擎原逻辑
