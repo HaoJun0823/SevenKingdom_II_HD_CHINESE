@@ -157,7 +157,12 @@ def main():
                 if bo is None or bc is None:
                     continue
                 if bo == bc:
-                    miss.append((k, io, no))
+                    # ★ 只有「非空、且确实含文本」的记录才算漏翻。
+                    #   空记录（size=0）原版就是空的，纯二进制数据表（SPRITE/UNIT 等）
+                    #   本来就没有可翻译文本 —— 早期版本把它们全算成漏翻，
+                    #   62 条里绝大部分都是这种假阳性。
+                    if len(bo) > 0 and is_texty(bo):
+                        miss.append((k, io, no))
                 else:
                     trans.append((k, io, no))
                     if is_texty(bo) and is_texty(bc):
@@ -172,7 +177,8 @@ def main():
             if is_texty(bo):
                 text_files.append(k)
             if bo == bc:
-                miss.append((k, -1, b''))
+                if len(bo) > 0 and is_texty(bo):
+                    miss.append((k, -1, b''))
             else:
                 trans.append((k, -1, b''))
                 if is_texty(bo) and is_texty(bc):

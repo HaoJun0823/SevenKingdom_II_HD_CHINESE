@@ -1,0 +1,2180 @@
+{
+  "source": "A_WAVE2.RES",
+  "size": 14650972,
+  "sha256": "37db9940510e8adecc4903db11bbf161ae523435f260e96f611ff96d0fce285c",
+  "type": "residx",
+  "count": 309,
+  "records": [
+    {
+      "index": 0,
+      "name": "ALCHEMY",
+      "name_raw": "414c4348454d590000",
+      "file": "000_ALCHEMY.bin",
+      "size": 86776
+    },
+    {
+      "index": 1,
+      "name": "ANIMAL",
+      "name_raw": "414e494d414c000000",
+      "file": "001_ANIMAL.bin",
+      "size": 79352
+    },
+    {
+      "index": 2,
+      "name": "ARM-ALRT",
+      "name_raw": "41524d2d414c525400",
+      "file": "002_ARM-ALRT.bin",
+      "size": 3538
+    },
+    {
+      "index": 3,
+      "name": "BASE_SEL",
+      "name_raw": "424153455f53454c00",
+      "file": "003_BASE_SEL.bin",
+      "size": 93060
+    },
+    {
+      "index": 4,
+      "name": "BEE",
+      "name_raw": "424545000000000000",
+      "file": "004_BEE.bin",
+      "size": 35416
+    },
+    {
+      "index": 5,
+      "name": "BIG_EXPL",
+      "name_raw": "4249475f4558504c00",
+      "file": "005_BIG_EXPL.bin",
+      "size": 112040
+    },
+    {
+      "index": 6,
+      "name": "BIRDS01",
+      "name_raw": "424952445330310000",
+      "file": "006_BIRDS01.bin",
+      "size": 37132
+    },
+    {
+      "index": 7,
+      "name": "BIRDS02",
+      "name_raw": "424952445330320000",
+      "file": "007_BIRDS02.bin",
+      "size": 42124
+    },
+    {
+      "index": 8,
+      "name": "BIRDS03",
+      "name_raw": "424952445330330000",
+      "file": "008_BIRDS03.bin",
+      "size": 35814
+    },
+    {
+      "index": 9,
+      "name": "BIRDS04",
+      "name_raw": "424952445330340000",
+      "file": "009_BIRDS04.bin",
+      "size": 56438
+    },
+    {
+      "index": 10,
+      "name": "BIRDS05",
+      "name_raw": "424952445330350000",
+      "file": "010_BIRDS05.bin",
+      "size": 25520
+    },
+    {
+      "index": 11,
+      "name": "BIRDS06",
+      "name_raw": "424952445330360000",
+      "file": "011_BIRDS06.bin",
+      "size": 23230
+    },
+    {
+      "index": 12,
+      "name": "BIRDS07",
+      "name_raw": "424952445330370000",
+      "file": "012_BIRDS07.bin",
+      "size": 45158
+    },
+    {
+      "index": 13,
+      "name": "BIRDS08",
+      "name_raw": "424952445330380000",
+      "file": "013_BIRDS08.bin",
+      "size": 23718
+    },
+    {
+      "index": 14,
+      "name": "BIRDS09",
+      "name_raw": "424952445330390000",
+      "file": "014_BIRDS09.bin",
+      "size": 20562
+    },
+    {
+      "index": 15,
+      "name": "BIRDS10",
+      "name_raw": "424952445331300000",
+      "file": "015_BIRDS10.bin",
+      "size": 9312
+    },
+    {
+      "index": 16,
+      "name": "BIRDS11",
+      "name_raw": "424952445331310000",
+      "file": "016_BIRDS11.bin",
+      "size": 9698
+    },
+    {
+      "index": 17,
+      "name": "BIRDS12",
+      "name_raw": "424952445331320000",
+      "file": "017_BIRDS12.bin",
+      "size": 23960
+    },
+    {
+      "index": 18,
+      "name": "BIRDS13",
+      "name_raw": "424952445331330000",
+      "file": "018_BIRDS13.bin",
+      "size": 13762
+    },
+    {
+      "index": 19,
+      "name": "BIRDS14",
+      "name_raw": "424952445331340000",
+      "file": "019_BIRDS14.bin",
+      "size": 21098
+    },
+    {
+      "index": 20,
+      "name": "BIRDS15",
+      "name_raw": "424952445331350000",
+      "file": "020_BIRDS15.bin",
+      "size": 31496
+    },
+    {
+      "index": 21,
+      "name": "BIRDS16",
+      "name_raw": "424952445331360000",
+      "file": "021_BIRDS16.bin",
+      "size": 8240
+    },
+    {
+      "index": 22,
+      "name": "BIRDS17",
+      "name_raw": "424952445331370000",
+      "file": "022_BIRDS17.bin",
+      "size": 11800
+    },
+    {
+      "index": 23,
+      "name": "BLD_ATK",
+      "name_raw": "424c445f41544b0000",
+      "file": "023_BLD_ATK.bin",
+      "size": 37894
+    },
+    {
+      "index": 24,
+      "name": "BR-WHAT1",
+      "name_raw": "42522d574841543100",
+      "file": "024_BR-WHAT1.bin",
+      "size": 6298
+    },
+    {
+      "index": 25,
+      "name": "BRYESSIR",
+      "name_raw": "425259455353495200",
+      "file": "025_BRYESSIR.bin",
+      "size": 11174
+    },
+    {
+      "index": 26,
+      "name": "BUILD",
+      "name_raw": "4255494c4400000000",
+      "file": "026_BUILD.bin",
+      "size": 84982
+    },
+    {
+      "index": 27,
+      "name": "BUILDUP",
+      "name_raw": "4255494c4455500000",
+      "file": "027_BUILDUP.bin",
+      "size": 32670
+    },
+    {
+      "index": 28,
+      "name": "BUILT",
+      "name_raw": "4255494c5400000000",
+      "file": "028_BUILT.bin",
+      "size": 27440
+    },
+    {
+      "index": 29,
+      "name": "BUY-SCIE",
+      "name_raw": "4255592d5343494500",
+      "file": "029_BUY-SCIE.bin",
+      "size": 21574
+    },
+    {
+      "index": 30,
+      "name": "CAMP",
+      "name_raw": "43414d500000000000",
+      "file": "030_CAMP.bin",
+      "size": 154070
+    },
+    {
+      "index": 31,
+      "name": "CAMP_SEL",
+      "name_raw": "43414d505f53454c00",
+      "file": "031_CAMP_SEL.bin",
+      "size": 49526
+    },
+    {
+      "index": 32,
+      "name": "CE-ACK1",
+      "name_raw": "43452d41434b310000",
+      "file": "032_CE-ACK1.bin",
+      "size": 59548
+    },
+    {
+      "index": 33,
+      "name": "CE-ACK2",
+      "name_raw": "43452d41434b320000",
+      "file": "033_CE-ACK2.bin",
+      "size": 55354
+    },
+    {
+      "index": 34,
+      "name": "CE-ATK1",
+      "name_raw": "43452d41544b310000",
+      "file": "034_CE-ATK1.bin",
+      "size": 89314
+    },
+    {
+      "index": 35,
+      "name": "CE-ATK2",
+      "name_raw": "43452d41544b320000",
+      "file": "035_CE-ATK2.bin",
+      "size": 73992
+    },
+    {
+      "index": 36,
+      "name": "CE-DIE",
+      "name_raw": "43452d444945000000",
+      "file": "036_CE-DIE.bin",
+      "size": 14168
+    },
+    {
+      "index": 37,
+      "name": "CE-SEL1",
+      "name_raw": "43452d53454c310000",
+      "file": "037_CE-SEL1.bin",
+      "size": 26214
+    },
+    {
+      "index": 38,
+      "name": "CE-SEL2",
+      "name_raw": "43452d53454c320000",
+      "file": "038_CE-SEL2.bin",
+      "size": 52994
+    },
+    {
+      "index": 39,
+      "name": "CE_GODA",
+      "name_raw": "43455f474f44410000",
+      "file": "039_CE_GODA.bin",
+      "size": 33398
+    },
+    {
+      "index": 40,
+      "name": "CE_GODC",
+      "name_raw": "43455f474f44430000",
+      "file": "040_CE_GODC.bin",
+      "size": 46390
+    },
+    {
+      "index": 41,
+      "name": "CE_GODD",
+      "name_raw": "43455f474f44440000",
+      "file": "041_CE_GODD.bin",
+      "size": 49206
+    },
+    {
+      "index": 42,
+      "name": "CE_GODK",
+      "name_raw": "43455f474f444b0000",
+      "file": "042_CE_GODK.bin",
+      "size": 42102
+    },
+    {
+      "index": 43,
+      "name": "CE_GODS",
+      "name_raw": "43455f474f44530000",
+      "file": "043_CE_GODS.bin",
+      "size": 12248
+    },
+    {
+      "index": 44,
+      "name": "CH-ACK1",
+      "name_raw": "43482d41434b310000",
+      "file": "044_CH-ACK1.bin",
+      "size": 19938
+    },
+    {
+      "index": 45,
+      "name": "CH-ACK2",
+      "name_raw": "43482d41434b320000",
+      "file": "045_CH-ACK2.bin",
+      "size": 23906
+    },
+    {
+      "index": 46,
+      "name": "CH-ATK1",
+      "name_raw": "43482d41544b310000",
+      "file": "046_CH-ATK1.bin",
+      "size": 12690
+    },
+    {
+      "index": 47,
+      "name": "CH-ATK2",
+      "name_raw": "43482d41544b320000",
+      "file": "047_CH-ATK2.bin",
+      "size": 12846
+    },
+    {
+      "index": 48,
+      "name": "CH-DIE",
+      "name_raw": "43482d444945000000",
+      "file": "048_CH-DIE.bin",
+      "size": 13540
+    },
+    {
+      "index": 49,
+      "name": "CH-SEL1",
+      "name_raw": "43482d53454c310000",
+      "file": "049_CH-SEL1.bin",
+      "size": 10618
+    },
+    {
+      "index": 50,
+      "name": "CH-SEL2",
+      "name_raw": "43482d53454c320000",
+      "file": "050_CH-SEL2.bin",
+      "size": 9422
+    },
+    {
+      "index": 51,
+      "name": "CH_GODA",
+      "name_raw": "43485f474f44410000",
+      "file": "051_CH_GODA.bin",
+      "size": 99320
+    },
+    {
+      "index": 52,
+      "name": "CH_GODC",
+      "name_raw": "43485f474f44430000",
+      "file": "052_CH_GODC.bin",
+      "size": 122488
+    },
+    {
+      "index": 53,
+      "name": "CH_GODD",
+      "name_raw": "43485f474f44440000",
+      "file": "053_CH_GODD.bin",
+      "size": 94712
+    },
+    {
+      "index": 54,
+      "name": "CH_GODK",
+      "name_raw": "43485f474f444b0000",
+      "file": "054_CH_GODK.bin",
+      "size": 89208
+    },
+    {
+      "index": 55,
+      "name": "CH_GODS",
+      "name_raw": "43485f474f44530000",
+      "file": "055_CH_GODS.bin",
+      "size": 46008
+    },
+    {
+      "index": 56,
+      "name": "CH_V1",
+      "name_raw": "43485f563100000000",
+      "file": "056_CH_V1.bin",
+      "size": 46302
+    },
+    {
+      "index": 57,
+      "name": "CH_V2",
+      "name_raw": "43485f563200000000",
+      "file": "057_CH_V2.bin",
+      "size": 14554
+    },
+    {
+      "index": 58,
+      "name": "CH_V3",
+      "name_raw": "43485f563300000000",
+      "file": "058_CH_V3.bin",
+      "size": 39860
+    },
+    {
+      "index": 59,
+      "name": "CH_V4",
+      "name_raw": "43485f563400000000",
+      "file": "059_CH_V4.bin",
+      "size": 15480
+    },
+    {
+      "index": 60,
+      "name": "CH_V5",
+      "name_raw": "43485f563500000000",
+      "file": "060_CH_V5.bin",
+      "size": 43576
+    },
+    {
+      "index": 61,
+      "name": "CM_DIE",
+      "name_raw": "434d5f444945000000",
+      "file": "061_CM_DIE.bin",
+      "size": 62326
+    },
+    {
+      "index": 62,
+      "name": "CM_SEL",
+      "name_raw": "434d5f53454c000000",
+      "file": "062_CM_SEL.bin",
+      "size": 25590
+    },
+    {
+      "index": 63,
+      "name": "CONSTR",
+      "name_raw": "434f4e535452000000",
+      "file": "063_CONSTR.bin",
+      "size": 7604
+    },
+    {
+      "index": 64,
+      "name": "CT-ACK1",
+      "name_raw": "43542d41434b310000",
+      "file": "064_CT-ACK1.bin",
+      "size": 12572
+    },
+    {
+      "index": 65,
+      "name": "CT-ACK2",
+      "name_raw": "43542d41434b320000",
+      "file": "065_CT-ACK2.bin",
+      "size": 13866
+    },
+    {
+      "index": 66,
+      "name": "CT-ATK1",
+      "name_raw": "43542d41544b310000",
+      "file": "066_CT-ATK1.bin",
+      "size": 17030
+    },
+    {
+      "index": 67,
+      "name": "CT-ATK2",
+      "name_raw": "43542d41544b320000",
+      "file": "067_CT-ATK2.bin",
+      "size": 13258
+    },
+    {
+      "index": 68,
+      "name": "CT-DIE",
+      "name_raw": "43542d444945000000",
+      "file": "068_CT-DIE.bin",
+      "size": 18926
+    },
+    {
+      "index": 69,
+      "name": "CT-SEL1",
+      "name_raw": "43542d53454c310000",
+      "file": "069_CT-SEL1.bin",
+      "size": 28342
+    },
+    {
+      "index": 70,
+      "name": "CT-SEL2",
+      "name_raw": "43542d53454c320000",
+      "file": "070_CT-SEL2.bin",
+      "size": 16300
+    },
+    {
+      "index": 71,
+      "name": "CT_GODA",
+      "name_raw": "43545f474f44410000",
+      "file": "071_CT_GODA.bin",
+      "size": 107436
+    },
+    {
+      "index": 72,
+      "name": "CT_GODC",
+      "name_raw": "43545f474f44430000",
+      "file": "072_CT_GODC.bin",
+      "size": 99446
+    },
+    {
+      "index": 73,
+      "name": "CT_GODD",
+      "name_raw": "43545f474f44440000",
+      "file": "073_CT_GODD.bin",
+      "size": 107640
+    },
+    {
+      "index": 74,
+      "name": "CT_GODK",
+      "name_raw": "43545f474f444b0000",
+      "file": "074_CT_GODK.bin",
+      "size": 104824
+    },
+    {
+      "index": 75,
+      "name": "CT_GODS",
+      "name_raw": "43545f474f44530000",
+      "file": "075_CT_GODS.bin",
+      "size": 107384
+    },
+    {
+      "index": 76,
+      "name": "CV-M3-5",
+      "name_raw": "43562d4d332d350000",
+      "file": "076_CV-M3-5.bin",
+      "size": 64246
+    },
+    {
+      "index": 77,
+      "name": "DECL_WAR",
+      "name_raw": "4445434c5f57415200",
+      "file": "077_DECL_WAR.bin",
+      "size": 54048
+    },
+    {
+      "index": 78,
+      "name": "DEMOTE",
+      "name_raw": "44454d4f5445000000",
+      "file": "078_DEMOTE.bin",
+      "size": 7564
+    },
+    {
+      "index": 79,
+      "name": "DR_DIE",
+      "name_raw": "44525f444945000000",
+      "file": "079_DR_DIE.bin",
+      "size": 55542
+    },
+    {
+      "index": 80,
+      "name": "EG-ACK1",
+      "name_raw": "45472d41434b310000",
+      "file": "080_EG-ACK1.bin",
+      "size": 23206
+    },
+    {
+      "index": 81,
+      "name": "EG-ACK2",
+      "name_raw": "45472d41434b320000",
+      "file": "081_EG-ACK2.bin",
+      "size": 24076
+    },
+    {
+      "index": 82,
+      "name": "EG-ATK1",
+      "name_raw": "45472d41544b310000",
+      "file": "082_EG-ATK1.bin",
+      "size": 25754
+    },
+    {
+      "index": 83,
+      "name": "EG-ATK2",
+      "name_raw": "45472d41544b320000",
+      "file": "083_EG-ATK2.bin",
+      "size": 24632
+    },
+    {
+      "index": 84,
+      "name": "EG-DIE",
+      "name_raw": "45472d444945000000",
+      "file": "084_EG-DIE.bin",
+      "size": 12428
+    },
+    {
+      "index": 85,
+      "name": "EG-SEL1",
+      "name_raw": "45472d53454c310000",
+      "file": "085_EG-SEL1.bin",
+      "size": 17126
+    },
+    {
+      "index": 86,
+      "name": "EG-SEL2",
+      "name_raw": "45472d53454c320000",
+      "file": "086_EG-SEL2.bin",
+      "size": 8528
+    },
+    {
+      "index": 87,
+      "name": "EG_GODA",
+      "name_raw": "45475f474f44410000",
+      "file": "087_EG_GODA.bin",
+      "size": 75872
+    },
+    {
+      "index": 88,
+      "name": "EG_GODC",
+      "name_raw": "45475f474f44430000",
+      "file": "088_EG_GODC.bin",
+      "size": 96758
+    },
+    {
+      "index": 89,
+      "name": "EG_GODD",
+      "name_raw": "45475f474f44440000",
+      "file": "089_EG_GODD.bin",
+      "size": 74102
+    },
+    {
+      "index": 90,
+      "name": "EG_GODK",
+      "name_raw": "45475f474f444b0000",
+      "file": "090_EG_GODK.bin",
+      "size": 82038
+    },
+    {
+      "index": 91,
+      "name": "EG_GODS",
+      "name_raw": "45475f474f44530000",
+      "file": "091_EG_GODS.bin",
+      "size": 79992
+    },
+    {
+      "index": 92,
+      "name": "EXPLODE",
+      "name_raw": "4558504c4f44450000",
+      "file": "092_EXPLODE.bin",
+      "size": 94472
+    },
+    {
+      "index": 93,
+      "name": "EZ-WHAT1",
+      "name_raw": "455a2d574841543100",
+      "file": "093_EZ-WHAT1.bin",
+      "size": 5368
+    },
+    {
+      "index": 94,
+      "name": "EZYESSIR",
+      "name_raw": "455a59455353495200",
+      "file": "094_EZYESSIR.bin",
+      "size": 4260
+    },
+    {
+      "index": 95,
+      "name": "FACTORY",
+      "name_raw": "464143544f52590000",
+      "file": "095_FACTORY.bin",
+      "size": 82168
+    },
+    {
+      "index": 96,
+      "name": "FACT_SEL",
+      "name_raw": "464143545f53454c00",
+      "file": "096_FACT_SEL.bin",
+      "size": 89078
+    },
+    {
+      "index": 97,
+      "name": "FIRMDIEL",
+      "name_raw": "4649524d4449454c00",
+      "file": "097_FIRMDIEL.bin",
+      "size": 239224
+    },
+    {
+      "index": 98,
+      "name": "FIRM_DIE",
+      "name_raw": "4649524d5f44494500",
+      "file": "098_FIRM_DIE.bin",
+      "size": 104310
+    },
+    {
+      "index": 99,
+      "name": "FORT",
+      "name_raw": "464f52540000000000",
+      "file": "099_FORT.bin",
+      "size": 106616
+    },
+    {
+      "index": 100,
+      "name": "FORTRESS",
+      "name_raw": "464f52545245535300",
+      "file": "100_FORTRESS.bin",
+      "size": 81422
+    },
+    {
+      "index": 101,
+      "name": "GC_DIE",
+      "name_raw": "47435f444945000000",
+      "file": "101_GC_DIE.bin",
+      "size": 46136
+    },
+    {
+      "index": 102,
+      "name": "GET_TOWN",
+      "name_raw": "4745545f544f574e00",
+      "file": "102_GET_TOWN.bin",
+      "size": 57976
+    },
+    {
+      "index": 103,
+      "name": "GG_DIE",
+      "name_raw": "47475f444945000000",
+      "file": "103_GG_DIE.bin",
+      "size": 58488
+    },
+    {
+      "index": 104,
+      "name": "GJ_CAST",
+      "name_raw": "474a5f434153540000",
+      "file": "104_GJ_CAST.bin",
+      "size": 67070
+    },
+    {
+      "index": 105,
+      "name": "GJ_DIE",
+      "name_raw": "474a5f444945000000",
+      "file": "105_GJ_DIE.bin",
+      "size": 44534
+    },
+    {
+      "index": 106,
+      "name": "GK-ACK1",
+      "name_raw": "474b2d41434b310000",
+      "file": "106_GK-ACK1.bin",
+      "size": 19782
+    },
+    {
+      "index": 107,
+      "name": "GK-ACK2",
+      "name_raw": "474b2d41434b320000",
+      "file": "107_GK-ACK2.bin",
+      "size": 17238
+    },
+    {
+      "index": 108,
+      "name": "GK-ATK1",
+      "name_raw": "474b2d41544b310000",
+      "file": "108_GK-ATK1.bin",
+      "size": 20104
+    },
+    {
+      "index": 109,
+      "name": "GK-ATK2",
+      "name_raw": "474b2d41544b320000",
+      "file": "109_GK-ATK2.bin",
+      "size": 20612
+    },
+    {
+      "index": 110,
+      "name": "GK-DIE",
+      "name_raw": "474b2d444945000000",
+      "file": "110_GK-DIE.bin",
+      "size": 24692
+    },
+    {
+      "index": 111,
+      "name": "GK-SEL1",
+      "name_raw": "474b2d53454c310000",
+      "file": "111_GK-SEL1.bin",
+      "size": 10282
+    },
+    {
+      "index": 112,
+      "name": "GK-SEL2",
+      "name_raw": "474b2d53454c320000",
+      "file": "112_GK-SEL2.bin",
+      "size": 19574
+    },
+    {
+      "index": 113,
+      "name": "GK-WHAT1",
+      "name_raw": "474b2d574841543100",
+      "file": "113_GK-WHAT1.bin",
+      "size": 5828
+    },
+    {
+      "index": 114,
+      "name": "GM_CAST",
+      "name_raw": "474d5f434153540000",
+      "file": "114_GM_CAST.bin",
+      "size": 72238
+    },
+    {
+      "index": 115,
+      "name": "GM_DIE",
+      "name_raw": "474d5f444945000000",
+      "file": "115_GM_DIE.bin",
+      "size": 44534
+    },
+    {
+      "index": 116,
+      "name": "GONG",
+      "name_raw": "474f4e470000000000",
+      "file": "116_GONG.bin",
+      "size": 27756
+    },
+    {
+      "index": 117,
+      "name": "GP_CAST",
+      "name_raw": "47505f434153540000",
+      "file": "117_GP_CAST.bin",
+      "size": 63682
+    },
+    {
+      "index": 118,
+      "name": "GP_DIE",
+      "name_raw": "47505f444945000000",
+      "file": "118_GP_DIE.bin",
+      "size": 55542
+    },
+    {
+      "index": 119,
+      "name": "GR-ACK1",
+      "name_raw": "47522d41434b310000",
+      "file": "119_GR-ACK1.bin",
+      "size": 19782
+    },
+    {
+      "index": 120,
+      "name": "GR-ACK2",
+      "name_raw": "47522d41434b320000",
+      "file": "120_GR-ACK2.bin",
+      "size": 17238
+    },
+    {
+      "index": 121,
+      "name": "GR-ATK1",
+      "name_raw": "47522d41544b310000",
+      "file": "121_GR-ATK1.bin",
+      "size": 20104
+    },
+    {
+      "index": 122,
+      "name": "GR-ATK2",
+      "name_raw": "47522d41544b320000",
+      "file": "122_GR-ATK2.bin",
+      "size": 20612
+    },
+    {
+      "index": 123,
+      "name": "GR-DIE",
+      "name_raw": "47522d444945000000",
+      "file": "123_GR-DIE.bin",
+      "size": 24692
+    },
+    {
+      "index": 124,
+      "name": "GR-SEL1",
+      "name_raw": "47522d53454c310000",
+      "file": "124_GR-SEL1.bin",
+      "size": 10282
+    },
+    {
+      "index": 125,
+      "name": "GR-SEL2",
+      "name_raw": "47522d53454c320000",
+      "file": "125_GR-SEL2.bin",
+      "size": 19574
+    },
+    {
+      "index": 126,
+      "name": "GR-WHAT1",
+      "name_raw": "47522d574841543100",
+      "file": "126_GR-WHAT1.bin",
+      "size": 5828
+    },
+    {
+      "index": 127,
+      "name": "GRYESSIR",
+      "name_raw": "475259455353495200",
+      "file": "127_GRYESSIR.bin",
+      "size": 23108
+    },
+    {
+      "index": 128,
+      "name": "GR_GODA",
+      "name_raw": "47525f474f44410000",
+      "file": "128_GR_GODA.bin",
+      "size": 89720
+    },
+    {
+      "index": 129,
+      "name": "GR_GODC",
+      "name_raw": "47525f474f44430000",
+      "file": "129_GR_GODC.bin",
+      "size": 92624
+    },
+    {
+      "index": 130,
+      "name": "GR_GODD",
+      "name_raw": "47525f474f44440000",
+      "file": "130_GR_GODD.bin",
+      "size": 83960
+    },
+    {
+      "index": 131,
+      "name": "GR_GODK",
+      "name_raw": "47525f474f444b0000",
+      "file": "131_GR_GODK.bin",
+      "size": 87800
+    },
+    {
+      "index": 132,
+      "name": "GR_GODS",
+      "name_raw": "47525f474f44530000",
+      "file": "132_GR_GODS.bin",
+      "size": 87544
+    },
+    {
+      "index": 133,
+      "name": "GR_V1",
+      "name_raw": "47525f563100000000",
+      "file": "133_GR_V1.bin",
+      "size": 18264
+    },
+    {
+      "index": 134,
+      "name": "GR_V2",
+      "name_raw": "47525f563200000000",
+      "file": "134_GR_V2.bin",
+      "size": 5514
+    },
+    {
+      "index": 135,
+      "name": "GR_V3",
+      "name_raw": "47525f563300000000",
+      "file": "135_GR_V3.bin",
+      "size": 15836
+    },
+    {
+      "index": 136,
+      "name": "GV_CAST",
+      "name_raw": "47565f434153540000",
+      "file": "136_GV_CAST.bin",
+      "size": 81066
+    },
+    {
+      "index": 137,
+      "name": "GV_DIE",
+      "name_raw": "47565f444945000000",
+      "file": "137_GV_DIE.bin",
+      "size": 63840
+    },
+    {
+      "index": 138,
+      "name": "HARB_FIN",
+      "name_raw": "484152425f46494e00",
+      "file": "138_HARB_FIN.bin",
+      "size": 85366
+    },
+    {
+      "index": 139,
+      "name": "HARB_SEL",
+      "name_raw": "484152425f53454c00",
+      "file": "139_HARB_SEL.bin",
+      "size": 85366
+    },
+    {
+      "index": 140,
+      "name": "IN-ACK1",
+      "name_raw": "494e2d41434b310000",
+      "file": "140_IN-ACK1.bin",
+      "size": 29390
+    },
+    {
+      "index": 141,
+      "name": "IN-ACK2",
+      "name_raw": "494e2d41434b320000",
+      "file": "141_IN-ACK2.bin",
+      "size": 21604
+    },
+    {
+      "index": 142,
+      "name": "IN-ATK1",
+      "name_raw": "494e2d41544b310000",
+      "file": "142_IN-ATK1.bin",
+      "size": 23626
+    },
+    {
+      "index": 143,
+      "name": "IN-ATK2",
+      "name_raw": "494e2d41544b320000",
+      "file": "143_IN-ATK2.bin",
+      "size": 23550
+    },
+    {
+      "index": 144,
+      "name": "IN-DIE",
+      "name_raw": "494e2d444945000000",
+      "file": "144_IN-DIE.bin",
+      "size": 34298
+    },
+    {
+      "index": 145,
+      "name": "IN-SEL1",
+      "name_raw": "494e2d53454c310000",
+      "file": "145_IN-SEL1.bin",
+      "size": 9822
+    },
+    {
+      "index": 146,
+      "name": "IN-SEL2",
+      "name_raw": "494e2d53454c320000",
+      "file": "146_IN-SEL2.bin",
+      "size": 15668
+    },
+    {
+      "index": 147,
+      "name": "INCUBAT",
+      "name_raw": "494e43554241540000",
+      "file": "147_INCUBAT.bin",
+      "size": 89590
+    },
+    {
+      "index": 148,
+      "name": "INN",
+      "name_raw": "494e4e000000000000",
+      "file": "148_INN.bin",
+      "size": 94328
+    },
+    {
+      "index": 149,
+      "name": "INN__SEL",
+      "name_raw": "494e4e5f5f53454c00",
+      "file": "149_INN__SEL.bin",
+      "size": 68728
+    },
+    {
+      "index": 150,
+      "name": "IN_GODA",
+      "name_raw": "494e5f474f44410000",
+      "file": "150_IN_GODA.bin",
+      "size": 95992
+    },
+    {
+      "index": 151,
+      "name": "IN_GODC",
+      "name_raw": "494e5f474f44430000",
+      "file": "151_IN_GODC.bin",
+      "size": 82168
+    },
+    {
+      "index": 152,
+      "name": "IN_GODD",
+      "name_raw": "494e5f474f44440000",
+      "file": "152_IN_GODD.bin",
+      "size": 104824
+    },
+    {
+      "index": 153,
+      "name": "IN_GODK",
+      "name_raw": "494e5f474f444b0000",
+      "file": "153_IN_GODK.bin",
+      "size": 86392
+    },
+    {
+      "index": 154,
+      "name": "IN_GODS",
+      "name_raw": "494e5f474f44530000",
+      "file": "154_IN_GODS.bin",
+      "size": 50874
+    },
+    {
+      "index": 155,
+      "name": "JA-ACK1",
+      "name_raw": "4a412d41434b310000",
+      "file": "155_JA-ACK1.bin",
+      "size": 6810
+    },
+    {
+      "index": 156,
+      "name": "JA-ACK2",
+      "name_raw": "4a412d41434b320000",
+      "file": "156_JA-ACK2.bin",
+      "size": 6834
+    },
+    {
+      "index": 157,
+      "name": "JA-ATK1",
+      "name_raw": "4a412d41544b310000",
+      "file": "157_JA-ATK1.bin",
+      "size": 21862
+    },
+    {
+      "index": 158,
+      "name": "JA-ATK2",
+      "name_raw": "4a412d41544b320000",
+      "file": "158_JA-ATK2.bin",
+      "size": 19684
+    },
+    {
+      "index": 159,
+      "name": "JA-DIE",
+      "name_raw": "4a412d444945000000",
+      "file": "159_JA-DIE.bin",
+      "size": 33708
+    },
+    {
+      "index": 160,
+      "name": "JA-SEL1",
+      "name_raw": "4a412d53454c310000",
+      "file": "160_JA-SEL1.bin",
+      "size": 30704
+    },
+    {
+      "index": 161,
+      "name": "JA-SEL2",
+      "name_raw": "4a412d53454c320000",
+      "file": "161_JA-SEL2.bin",
+      "size": 22592
+    },
+    {
+      "index": 162,
+      "name": "JA_GODA",
+      "name_raw": "4a415f474f44410000",
+      "file": "162_JA_GODA.bin",
+      "size": 100982
+    },
+    {
+      "index": 163,
+      "name": "JA_GODC",
+      "name_raw": "4a415f474f44430000",
+      "file": "163_JA_GODC.bin",
+      "size": 102006
+    },
+    {
+      "index": 164,
+      "name": "JA_GODD",
+      "name_raw": "4a415f474f44440000",
+      "file": "164_JA_GODD.bin",
+      "size": 181368
+    },
+    {
+      "index": 165,
+      "name": "JA_GODK",
+      "name_raw": "4a415f474f444b0000",
+      "file": "165_JA_GODK.bin",
+      "size": 80248
+    },
+    {
+      "index": 166,
+      "name": "JA_GODS",
+      "name_raw": "4a415f474f44530000",
+      "file": "166_JA_GODS.bin",
+      "size": 52984
+    },
+    {
+      "index": 167,
+      "name": "JA_V1",
+      "name_raw": "4a415f563100000000",
+      "file": "167_JA_V1.bin",
+      "size": 20354
+    },
+    {
+      "index": 168,
+      "name": "JA_V2",
+      "name_raw": "4a415f563200000000",
+      "file": "168_JA_V2.bin",
+      "size": 5560
+    },
+    {
+      "index": 169,
+      "name": "JA_V3",
+      "name_raw": "4a415f563300000000",
+      "file": "169_JA_V3.bin",
+      "size": 20466
+    },
+    {
+      "index": 170,
+      "name": "JA_V4",
+      "name_raw": "4a415f563400000000",
+      "file": "170_JA_V4.bin",
+      "size": 17612
+    },
+    {
+      "index": 171,
+      "name": "JA_V5",
+      "name_raw": "4a415f563500000000",
+      "file": "171_JA_V5.bin",
+      "size": 29198
+    },
+    {
+      "index": 172,
+      "name": "KH-WHAT1",
+      "name_raw": "4b482d574841543100",
+      "file": "172_KH-WHAT1.bin",
+      "size": 10776
+    },
+    {
+      "index": 173,
+      "name": "KHYESSIR",
+      "name_raw": "4b4859455353495200",
+      "file": "173_KHYESSIR.bin",
+      "size": 17248
+    },
+    {
+      "index": 174,
+      "name": "KS-WHAT1",
+      "name_raw": "4b532d574841543100",
+      "file": "174_KS-WHAT1.bin",
+      "size": 11496
+    },
+    {
+      "index": 175,
+      "name": "KSYESSIR",
+      "name_raw": "4b5359455353495200",
+      "file": "175_KSYESSIR.bin",
+      "size": 18622
+    },
+    {
+      "index": 176,
+      "name": "LAIR_B",
+      "name_raw": "4c4149525f42000000",
+      "file": "176_LAIR_B.bin",
+      "size": 48632
+    },
+    {
+      "index": 177,
+      "name": "LAIR_C",
+      "name_raw": "4c4149525f43000000",
+      "file": "177_LAIR_C.bin",
+      "size": 36152
+    },
+    {
+      "index": 178,
+      "name": "LAIR_D",
+      "name_raw": "4c4149525f44000000",
+      "file": "178_LAIR_D.bin",
+      "size": 48504
+    },
+    {
+      "index": 179,
+      "name": "LAIR_M",
+      "name_raw": "4c4149525f4d000000",
+      "file": "179_LAIR_M.bin",
+      "size": 72312
+    },
+    {
+      "index": 180,
+      "name": "LAIR_P",
+      "name_raw": "4c4149525f50000000",
+      "file": "180_LAIR_P.bin",
+      "size": 38840
+    },
+    {
+      "index": 181,
+      "name": "LAIR_R",
+      "name_raw": "4c4149525f52000000",
+      "file": "181_LAIR_R.bin",
+      "size": 53112
+    },
+    {
+      "index": 182,
+      "name": "LAIR_S",
+      "name_raw": "4c4149525f53000000",
+      "file": "182_LAIR_S.bin",
+      "size": 50806
+    },
+    {
+      "index": 183,
+      "name": "LAIR_SEL",
+      "name_raw": "4c4149525f53454c00",
+      "file": "183_LAIR_SEL.bin",
+      "size": 36036
+    },
+    {
+      "index": 184,
+      "name": "LISHORR",
+      "name_raw": "4c4953484f52520000",
+      "file": "184_LISHORR.bin",
+      "size": 54712
+    },
+    {
+      "index": 185,
+      "name": "MAGIC",
+      "name_raw": "4d4147494300000000",
+      "file": "185_MAGIC.bin",
+      "size": 43498
+    },
+    {
+      "index": 186,
+      "name": "MARKET",
+      "name_raw": "4d41524b4554000000",
+      "file": "186_MARKET.bin",
+      "size": 101878
+    },
+    {
+      "index": 187,
+      "name": "MARK_SEL",
+      "name_raw": "4d41524b5f53454c00",
+      "file": "187_MARK_SEL.bin",
+      "size": 70902
+    },
+    {
+      "index": 188,
+      "name": "MA_V1",
+      "name_raw": "4d415f563100000000",
+      "file": "188_MA_V1.bin",
+      "size": 6032
+    },
+    {
+      "index": 189,
+      "name": "MA_V2",
+      "name_raw": "4d415f563200000000",
+      "file": "189_MA_V2.bin",
+      "size": 10892
+    },
+    {
+      "index": 190,
+      "name": "MA_V3",
+      "name_raw": "4d415f563300000000",
+      "file": "190_MA_V3.bin",
+      "size": 10236
+    },
+    {
+      "index": 191,
+      "name": "MA_V4",
+      "name_raw": "4d415f563400000000",
+      "file": "191_MA_V4.bin",
+      "size": 45560
+    },
+    {
+      "index": 192,
+      "name": "MA_V5",
+      "name_raw": "4d415f563500000000",
+      "file": "192_MA_V5.bin",
+      "size": 12426
+    },
+    {
+      "index": 193,
+      "name": "MI-WHAT1",
+      "name_raw": "4d492d574841543100",
+      "file": "193_MI-WHAT1.bin",
+      "size": 7500
+    },
+    {
+      "index": 194,
+      "name": "MINE",
+      "name_raw": "4d494e450000000000",
+      "file": "194_MINE.bin",
+      "size": 86776
+    },
+    {
+      "index": 195,
+      "name": "MINE_SEL",
+      "name_raw": "4d494e455f53454c00",
+      "file": "195_MINE_SEL.bin",
+      "size": 77558
+    },
+    {
+      "index": 196,
+      "name": "MIYESSIR",
+      "name_raw": "4d4959455353495200",
+      "file": "196_MIYESSIR.bin",
+      "size": 12798
+    },
+    {
+      "index": 197,
+      "name": "MO-ACK1",
+      "name_raw": "4d4f2d41434b310000",
+      "file": "197_MO-ACK1.bin",
+      "size": 10968
+    },
+    {
+      "index": 198,
+      "name": "MO-ACK2",
+      "name_raw": "4d4f2d41434b320000",
+      "file": "198_MO-ACK2.bin",
+      "size": 16078
+    },
+    {
+      "index": 199,
+      "name": "MO-ATK1",
+      "name_raw": "4d4f2d41544b310000",
+      "file": "199_MO-ATK1.bin",
+      "size": 11764
+    },
+    {
+      "index": 200,
+      "name": "MO-ATK2",
+      "name_raw": "4d4f2d41544b320000",
+      "file": "200_MO-ATK2.bin",
+      "size": 13676
+    },
+    {
+      "index": 201,
+      "name": "MO-DIE",
+      "name_raw": "4d4f2d444945000000",
+      "file": "201_MO-DIE.bin",
+      "size": 18062
+    },
+    {
+      "index": 202,
+      "name": "MO-SEL1",
+      "name_raw": "4d4f2d53454c310000",
+      "file": "202_MO-SEL1.bin",
+      "size": 11686
+    },
+    {
+      "index": 203,
+      "name": "MO-SEL2",
+      "name_raw": "4d4f2d53454c320000",
+      "file": "203_MO-SEL2.bin",
+      "size": 11686
+    },
+    {
+      "index": 204,
+      "name": "MO_GODA",
+      "name_raw": "4d4f5f474f44410000",
+      "file": "204_MO_GODA.bin",
+      "size": 166520
+    },
+    {
+      "index": 205,
+      "name": "MO_GODC",
+      "name_raw": "4d4f5f474f44430000",
+      "file": "205_MO_GODC.bin",
+      "size": 122488
+    },
+    {
+      "index": 206,
+      "name": "MO_GODD",
+      "name_raw": "4d4f5f474f44440000",
+      "file": "206_MO_GODD.bin",
+      "size": 122872
+    },
+    {
+      "index": 207,
+      "name": "MO_GODK",
+      "name_raw": "4d4f5f474f444b0000",
+      "file": "207_MO_GODK.bin",
+      "size": 109560
+    },
+    {
+      "index": 208,
+      "name": "MO_GODS",
+      "name_raw": "4d4f5f474f44530000",
+      "file": "208_MO_GODS.bin",
+      "size": 122232
+    },
+    {
+      "index": 209,
+      "name": "NEWSHIP",
+      "name_raw": "4e4557534849500000",
+      "file": "209_NEWSHIP.bin",
+      "size": 40520
+    },
+    {
+      "index": 210,
+      "name": "NO-ACK1",
+      "name_raw": "4e4f2d41434b310000",
+      "file": "210_NO-ACK1.bin",
+      "size": 30148
+    },
+    {
+      "index": 211,
+      "name": "NO-ACK2",
+      "name_raw": "4e4f2d41434b320000",
+      "file": "211_NO-ACK2.bin",
+      "size": 35948
+    },
+    {
+      "index": 212,
+      "name": "NO-ATK1",
+      "name_raw": "4e4f2d41544b310000",
+      "file": "212_NO-ATK1.bin",
+      "size": 18850
+    },
+    {
+      "index": 213,
+      "name": "NO-ATK2",
+      "name_raw": "4e4f2d41544b320000",
+      "file": "213_NO-ATK2.bin",
+      "size": 18924
+    },
+    {
+      "index": 214,
+      "name": "NO-DIE",
+      "name_raw": "4e4f2d444945000000",
+      "file": "214_NO-DIE.bin",
+      "size": 10972
+    },
+    {
+      "index": 215,
+      "name": "NO-SEL1",
+      "name_raw": "4e4f2d53454c310000",
+      "file": "215_NO-SEL1.bin",
+      "size": 23438
+    },
+    {
+      "index": 216,
+      "name": "NO-SEL2",
+      "name_raw": "4e4f2d53454c320000",
+      "file": "216_NO-SEL2.bin",
+      "size": 30552
+    },
+    {
+      "index": 217,
+      "name": "NO_GODA",
+      "name_raw": "4e4f5f474f44410000",
+      "file": "217_NO_GODA.bin",
+      "size": 87350
+    },
+    {
+      "index": 218,
+      "name": "NO_GODC",
+      "name_raw": "4e4f5f474f44430000",
+      "file": "218_NO_GODC.bin",
+      "size": 92852
+    },
+    {
+      "index": 219,
+      "name": "NO_GODD",
+      "name_raw": "4e4f5f474f44440000",
+      "file": "219_NO_GODD.bin",
+      "size": 87928
+    },
+    {
+      "index": 220,
+      "name": "NO_GODK",
+      "name_raw": "4e4f5f474f444b0000",
+      "file": "220_NO_GODK.bin",
+      "size": 83448
+    },
+    {
+      "index": 221,
+      "name": "NO_GODS",
+      "name_raw": "4e4f5f474f44530000",
+      "file": "221_NO_GODS.bin",
+      "size": 84918
+    },
+    {
+      "index": 222,
+      "name": "NO_V1",
+      "name_raw": "4e4f5f563100000000",
+      "file": "222_NO_V1.bin",
+      "size": 20566
+    },
+    {
+      "index": 223,
+      "name": "NO_V2",
+      "name_raw": "4e4f5f563200000000",
+      "file": "223_NO_V2.bin",
+      "size": 46724
+    },
+    {
+      "index": 224,
+      "name": "NO_V3",
+      "name_raw": "4e4f5f563300000000",
+      "file": "224_NO_V3.bin",
+      "size": 56102
+    },
+    {
+      "index": 225,
+      "name": "OFF-1",
+      "name_raw": "4f46462d3100000000",
+      "file": "225_OFF-1.bin",
+      "size": 9912
+    },
+    {
+      "index": 226,
+      "name": "OFF-2",
+      "name_raw": "4f46462d3200000000",
+      "file": "226_OFF-2.bin",
+      "size": 18956
+    },
+    {
+      "index": 227,
+      "name": "OFF-4",
+      "name_raw": "4f46462d3400000000",
+      "file": "227_OFF-4.bin",
+      "size": 8232
+    },
+    {
+      "index": 228,
+      "name": "PE-ACK1",
+      "name_raw": "50452d41434b310000",
+      "file": "228_PE-ACK1.bin",
+      "size": 14270
+    },
+    {
+      "index": 229,
+      "name": "PE-ACK2",
+      "name_raw": "50452d41434b320000",
+      "file": "229_PE-ACK2.bin",
+      "size": 21296
+    },
+    {
+      "index": 230,
+      "name": "PE-ATK1",
+      "name_raw": "50452d41544b310000",
+      "file": "230_PE-ATK1.bin",
+      "size": 21030
+    },
+    {
+      "index": 231,
+      "name": "PE-ATK2",
+      "name_raw": "50452d41544b320000",
+      "file": "231_PE-ATK2.bin",
+      "size": 20570
+    },
+    {
+      "index": 232,
+      "name": "PE-DIE",
+      "name_raw": "50452d444945000000",
+      "file": "232_PE-DIE.bin",
+      "size": 43660
+    },
+    {
+      "index": 233,
+      "name": "PE-SEL1",
+      "name_raw": "50452d53454c310000",
+      "file": "233_PE-SEL1.bin",
+      "size": 10406
+    },
+    {
+      "index": 234,
+      "name": "PE-SEL2",
+      "name_raw": "50452d53454c320000",
+      "file": "234_PE-SEL2.bin",
+      "size": 10164
+    },
+    {
+      "index": 235,
+      "name": "PE_GODA",
+      "name_raw": "50455f474f44410000",
+      "file": "235_PE_GODA.bin",
+      "size": 74360
+    },
+    {
+      "index": 236,
+      "name": "PE_GODC",
+      "name_raw": "50455f474f44430000",
+      "file": "236_PE_GODC.bin",
+      "size": 83192
+    },
+    {
+      "index": 237,
+      "name": "PE_GODD",
+      "name_raw": "50455f474f44440000",
+      "file": "237_PE_GODD.bin",
+      "size": 82040
+    },
+    {
+      "index": 238,
+      "name": "PE_GODK",
+      "name_raw": "50455f474f444b0000",
+      "file": "238_PE_GODK.bin",
+      "size": 82936
+    },
+    {
+      "index": 239,
+      "name": "PE_GODS",
+      "name_raw": "50455f474f44530000",
+      "file": "239_PE_GODS.bin",
+      "size": 44344
+    },
+    {
+      "index": 240,
+      "name": "PE_V1",
+      "name_raw": "50455f563100000000",
+      "file": "240_PE_V1.bin",
+      "size": 7372
+    },
+    {
+      "index": 241,
+      "name": "PE_V2",
+      "name_raw": "50455f563200000000",
+      "file": "241_PE_V2.bin",
+      "size": 9400
+    },
+    {
+      "index": 242,
+      "name": "PE_V3",
+      "name_raw": "50455f563300000000",
+      "file": "242_PE_V3.bin",
+      "size": 11770
+    },
+    {
+      "index": 243,
+      "name": "PE_V4",
+      "name_raw": "50455f563400000000",
+      "file": "243_PE_V4.bin",
+      "size": 11584
+    },
+    {
+      "index": 244,
+      "name": "PROMOTE",
+      "name_raw": "50524f4d4f54450000",
+      "file": "244_PROMOTE.bin",
+      "size": 21036
+    },
+    {
+      "index": 245,
+      "name": "READY",
+      "name_raw": "524541445900000000",
+      "file": "245_READY.bin",
+      "size": 10880
+    },
+    {
+      "index": 246,
+      "name": "REPAIR",
+      "name_raw": "524550414952000000",
+      "file": "246_REPAIR.bin",
+      "size": 25032
+    },
+    {
+      "index": 247,
+      "name": "RESEARCH",
+      "name_raw": "524553454152434800",
+      "file": "247_RESEARCH.bin",
+      "size": 95992
+    },
+    {
+      "index": 248,
+      "name": "RESE_COM",
+      "name_raw": "524553455f434f4d00",
+      "file": "248_RESE_COM.bin",
+      "size": 30314
+    },
+    {
+      "index": 249,
+      "name": "RESE_FIN",
+      "name_raw": "524553455f46494e00",
+      "file": "249_RESE_FIN.bin",
+      "size": 43346
+    },
+    {
+      "index": 250,
+      "name": "RESE_SEL",
+      "name_raw": "524553455f53454c00",
+      "file": "250_RESE_SEL.bin",
+      "size": 65654
+    },
+    {
+      "index": 251,
+      "name": "RETURN",
+      "name_raw": "52455455524e000000",
+      "file": "251_RETURN.bin",
+      "size": 30654
+    },
+    {
+      "index": 252,
+      "name": "RO-ACK1",
+      "name_raw": "524f2d41434b310000",
+      "file": "252_RO-ACK1.bin",
+      "size": 23626
+    },
+    {
+      "index": 253,
+      "name": "RO-ACK2",
+      "name_raw": "524f2d41434b320000",
+      "file": "253_RO-ACK2.bin",
+      "size": 24930
+    },
+    {
+      "index": 254,
+      "name": "RO-ATK1",
+      "name_raw": "524f2d41544b310000",
+      "file": "254_RO-ATK1.bin",
+      "size": 18706
+    },
+    {
+      "index": 255,
+      "name": "RO-ATK2",
+      "name_raw": "524f2d41544b320000",
+      "file": "255_RO-ATK2.bin",
+      "size": 15812
+    },
+    {
+      "index": 256,
+      "name": "RO-DIE",
+      "name_raw": "524f2d444945000000",
+      "file": "256_RO-DIE.bin",
+      "size": 4818
+    },
+    {
+      "index": 257,
+      "name": "RO-SEL1",
+      "name_raw": "524f2d53454c310000",
+      "file": "257_RO-SEL1.bin",
+      "size": 7684
+    },
+    {
+      "index": 258,
+      "name": "RO-SEL2",
+      "name_raw": "524f2d53454c320000",
+      "file": "258_RO-SEL2.bin",
+      "size": 18976
+    },
+    {
+      "index": 259,
+      "name": "RO_GODA",
+      "name_raw": "524f5f474f44410000",
+      "file": "259_RO_GODA.bin",
+      "size": 122616
+    },
+    {
+      "index": 260,
+      "name": "RO_GODC",
+      "name_raw": "524f5f474f44430000",
+      "file": "260_RO_GODC.bin",
+      "size": 102074
+    },
+    {
+      "index": 261,
+      "name": "RO_GODD",
+      "name_raw": "524f5f474f44440000",
+      "file": "261_RO_GODD.bin",
+      "size": 92334
+    },
+    {
+      "index": 262,
+      "name": "RO_GODK",
+      "name_raw": "524f5f474f444b0000",
+      "file": "262_RO_GODK.bin",
+      "size": 100216
+    },
+    {
+      "index": 263,
+      "name": "RO_GODS",
+      "name_raw": "524f5f474f44530000",
+      "file": "263_RO_GODS.bin",
+      "size": 91384
+    },
+    {
+      "index": 264,
+      "name": "SEL-SHIP",
+      "name_raw": "53454c2d5348495000",
+      "file": "264_SEL-SHIP.bin",
+      "size": 24180
+    },
+    {
+      "index": 265,
+      "name": "SINK",
+      "name_raw": "53494e4b0000000000",
+      "file": "265_SINK.bin",
+      "size": 80502
+    },
+    {
+      "index": 266,
+      "name": "SORTIE",
+      "name_raw": "534f52544945000000",
+      "file": "266_SORTIE.bin",
+      "size": 22056
+    },
+    {
+      "index": 267,
+      "name": "SPY",
+      "name_raw": "535059000000000000",
+      "file": "267_SPY.bin",
+      "size": 68150
+    },
+    {
+      "index": 268,
+      "name": "SPY_DIE",
+      "name_raw": "5350595f4449450000",
+      "file": "268_SPY_DIE.bin",
+      "size": 27096
+    },
+    {
+      "index": 269,
+      "name": "STAB_CE",
+      "name_raw": "535441425f43450000",
+      "file": "269_STAB_CE.bin",
+      "size": 45712
+    },
+    {
+      "index": 270,
+      "name": "STAB_CH",
+      "name_raw": "535441425f43480000",
+      "file": "270_STAB_CH.bin",
+      "size": 87146
+    },
+    {
+      "index": 271,
+      "name": "STAB_CT",
+      "name_raw": "535441425f43540000",
+      "file": "271_STAB_CT.bin",
+      "size": 63414
+    },
+    {
+      "index": 272,
+      "name": "STAB_EG",
+      "name_raw": "535441425f45470000",
+      "file": "272_STAB_EG.bin",
+      "size": 80632
+    },
+    {
+      "index": 273,
+      "name": "STAB_GR",
+      "name_raw": "535441425f47520000",
+      "file": "273_STAB_GR.bin",
+      "size": 76152
+    },
+    {
+      "index": 274,
+      "name": "STAB_IN",
+      "name_raw": "535441425f494e0000",
+      "file": "274_STAB_IN.bin",
+      "size": 86390
+    },
+    {
+      "index": 275,
+      "name": "STAB_JA",
+      "name_raw": "535441425f4a410000",
+      "file": "275_STAB_JA.bin",
+      "size": 92930
+    },
+    {
+      "index": 276,
+      "name": "STAB_MO",
+      "name_raw": "535441425f4d4f0000",
+      "file": "276_STAB_MO.bin",
+      "size": 116102
+    },
+    {
+      "index": 277,
+      "name": "STAB_NO",
+      "name_raw": "535441425f4e4f0000",
+      "file": "277_STAB_NO.bin",
+      "size": 72694
+    },
+    {
+      "index": 278,
+      "name": "STAB_PE",
+      "name_raw": "535441425f50450000",
+      "file": "278_STAB_PE.bin",
+      "size": 88440
+    },
+    {
+      "index": 279,
+      "name": "STAB_RO",
+      "name_raw": "535441425f524f0000",
+      "file": "279_STAB_RO.bin",
+      "size": 102392
+    },
+    {
+      "index": 280,
+      "name": "STAB_VI",
+      "name_raw": "535441425f56490000",
+      "file": "280_STAB_VI.bin",
+      "size": 57772
+    },
+    {
+      "index": 281,
+      "name": "TAXGRANT",
+      "name_raw": "5441584752414e5400",
+      "file": "281_TAXGRANT.bin",
+      "size": 8114
+    },
+    {
+      "index": 282,
+      "name": "TERMITE",
+      "name_raw": "5445524d4954450000",
+      "file": "282_TERMITE.bin",
+      "size": 20498
+    },
+    {
+      "index": 283,
+      "name": "TOWN_ATK",
+      "name_raw": "544f574e5f41544b00",
+      "file": "283_TOWN_ATK.bin",
+      "size": 40898
+    },
+    {
+      "index": 284,
+      "name": "UNCONF",
+      "name_raw": "554e434f4e46000000",
+      "file": "284_UNCONF.bin",
+      "size": 44864
+    },
+    {
+      "index": 285,
+      "name": "UNCONH",
+      "name_raw": "554e434f4e48000000",
+      "file": "285_UNCONH.bin",
+      "size": 46808
+    },
+    {
+      "index": 286,
+      "name": "VI-ACK1",
+      "name_raw": "56492d41434b310000",
+      "file": "286_VI-ACK1.bin",
+      "size": 11524
+    },
+    {
+      "index": 287,
+      "name": "VI-ACK2",
+      "name_raw": "56492d41434b320000",
+      "file": "287_VI-ACK2.bin",
+      "size": 13068
+    },
+    {
+      "index": 288,
+      "name": "VI-ATK1",
+      "name_raw": "56492d41544b310000",
+      "file": "288_VI-ATK1.bin",
+      "size": 15512
+    },
+    {
+      "index": 289,
+      "name": "VI-ATK2",
+      "name_raw": "56492d41544b320000",
+      "file": "289_VI-ATK2.bin",
+      "size": 26188
+    },
+    {
+      "index": 290,
+      "name": "VI-DIE",
+      "name_raw": "56492d444945000000",
+      "file": "290_VI-DIE.bin",
+      "size": 12428
+    },
+    {
+      "index": 291,
+      "name": "VI-SEL1",
+      "name_raw": "56492d53454c310000",
+      "file": "291_VI-SEL1.bin",
+      "size": 9328
+    },
+    {
+      "index": 292,
+      "name": "VI-SEL2",
+      "name_raw": "56492d53454c320000",
+      "file": "292_VI-SEL2.bin",
+      "size": 9970
+    },
+    {
+      "index": 293,
+      "name": "VILLAGE",
+      "name_raw": "56494c4c4147450000",
+      "file": "293_VILLAGE.bin",
+      "size": 68788
+    },
+    {
+      "index": 294,
+      "name": "VI_GODA",
+      "name_raw": "56495f474f44410000",
+      "file": "294_VI_GODA.bin",
+      "size": 297320
+    },
+    {
+      "index": 295,
+      "name": "VI_GODC",
+      "name_raw": "56495f474f44430000",
+      "file": "295_VI_GODC.bin",
+      "size": 86648
+    },
+    {
+      "index": 296,
+      "name": "VI_GODD",
+      "name_raw": "56495f474f44440000",
+      "file": "296_VI_GODD.bin",
+      "size": 68920
+    },
+    {
+      "index": 297,
+      "name": "VI_GODK",
+      "name_raw": "56495f474f444b0000",
+      "file": "297_VI_GODK.bin",
+      "size": 69496
+    },
+    {
+      "index": 298,
+      "name": "VI_GODS",
+      "name_raw": "56495f474f44530000",
+      "file": "298_VI_GODS.bin",
+      "size": 55736
+    },
+    {
+      "index": 299,
+      "name": "VI_V1",
+      "name_raw": "56495f563100000000",
+      "file": "299_VI_V1.bin",
+      "size": 18746
+    },
+    {
+      "index": 300,
+      "name": "VI_V2",
+      "name_raw": "56495f563200000000",
+      "file": "300_VI_V2.bin",
+      "size": 35370
+    },
+    {
+      "index": 301,
+      "name": "WAR",
+      "name_raw": "574152000000000000",
+      "file": "301_WAR.bin",
+      "size": 99190
+    },
+    {
+      "index": 302,
+      "name": "WARF_FIN",
+      "name_raw": "574152465f46494e00",
+      "file": "302_WARF_FIN.bin",
+      "size": 89078
+    },
+    {
+      "index": 303,
+      "name": "WARF_SEL",
+      "name_raw": "574152465f53454c00",
+      "file": "303_WARF_SEL.bin",
+      "size": 65748
+    },
+    {
+      "index": 304,
+      "name": "WF_A1",
+      "name_raw": "57465f413100000000",
+      "file": "304_WF_A1.bin",
+      "size": 47446
+    },
+    {
+      "index": 305,
+      "name": "WLISHORR",
+      "name_raw": "574c4953484f525200",
+      "file": "305_WLISHORR.bin",
+      "size": 35448
+    },
+    {
+      "index": 306,
+      "name": "W__DIE",
+      "name_raw": "575f5f444945000000",
+      "file": "306_W__DIE.bin",
+      "size": 67830
+    },
+    {
+      "index": 307,
+      "name": "XO-WHAT1",
+      "name_raw": "584f2d574841543100",
+      "file": "307_XO-WHAT1.bin",
+      "size": 10916
+    },
+    {
+      "index": 308,
+      "name": "XOYESSIR",
+      "name_raw": "584f59455353495200",
+      "file": "308_XOYESSIR.bin",
+      "size": 19930
+    },
+    {
+      "index": 309,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

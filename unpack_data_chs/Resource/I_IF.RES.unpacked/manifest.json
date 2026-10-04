@@ -1,0 +1,129 @@
+{
+  "source": "I_IF.RES",
+  "size": 2501517,
+  "sha256": "2f4484fa6237bbe93042eda53510aea99b1a23c34a76eb0330c6c0aed8e467e9",
+  "type": "residx",
+  "count": 16,
+  "records": [
+    {
+      "index": 0,
+      "name": "MAINSCR",
+      "name_raw": "4d41494e5343520000",
+      "file": "000_MAINSCR.bin",
+      "size": 480004
+    },
+    {
+      "index": 1,
+      "name": "HUMANS",
+      "name_raw": "48554d414e53000000",
+      "file": "001_HUMANS.bin",
+      "size": 43894
+    },
+    {
+      "index": 2,
+      "name": "FRYHTANS",
+      "name_raw": "4652594854414e5300",
+      "file": "002_FRYHTANS.bin",
+      "size": 43894
+    },
+    {
+      "index": 3,
+      "name": "P-6",
+      "name_raw": "502d36000000000000",
+      "file": "003_P-6.bin",
+      "size": 23962
+    },
+    {
+      "index": 4,
+      "name": "P-3",
+      "name_raw": "502d33000000000000",
+      "file": "004_P-3.bin",
+      "size": 23962
+    },
+    {
+      "index": 5,
+      "name": "P-4",
+      "name_raw": "502d34000000000000",
+      "file": "005_P-4.bin",
+      "size": 23962
+    },
+    {
+      "index": 6,
+      "name": "SLIDBALL",
+      "name_raw": "534c494442414c4c00",
+      "file": "006_SLIDBALL.bin",
+      "size": 556
+    },
+    {
+      "index": 7,
+      "name": "P-2",
+      "name_raw": "502d32000000000000",
+      "file": "007_P-2.bin",
+      "size": 23962
+    },
+    {
+      "index": 8,
+      "name": "SCENARIO",
+      "name_raw": "5343454e4152494f00",
+      "file": "008_SCENARIO.bin",
+      "size": 480004
+    },
+    {
+      "index": 9,
+      "name": "TUTORIAL",
+      "name_raw": "5455544f5249414c00",
+      "file": "009_TUTORIAL.bin",
+      "size": 480004
+    },
+    {
+      "index": 10,
+      "name": "MSCR1024",
+      "name_raw": "4d5343523130323400",
+      "file": "010_MSCR1024.bin",
+      "size": 786436
+    },
+    {
+      "index": 11,
+      "name": "P-7",
+      "name_raw": "502d37000000000000",
+      "file": "011_P-7.bin",
+      "size": 23962
+    },
+    {
+      "index": 12,
+      "name": "800-HUM",
+      "name_raw": "3830302d48554d0000",
+      "file": "012_800-HUM.bin",
+      "size": 11596
+    },
+    {
+      "index": 13,
+      "name": "P-5",
+      "name_raw": "502d35000000000000",
+      "file": "013_P-5.bin",
+      "size": 23962
+    },
+    {
+      "index": 14,
+      "name": "1024-HUM",
+      "name_raw": "313032342d48554d00",
+      "file": "014_1024-HUM.bin",
+      "size": 7172
+    },
+    {
+      "index": 15,
+      "name": "P-1",
+      "name_raw": "502d31000000000000",
+      "file": "015_P-1.bin",
+      "size": 23962
+    },
+    {
+      "index": 16,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

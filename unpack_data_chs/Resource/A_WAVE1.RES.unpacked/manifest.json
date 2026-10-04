@@ -1,0 +1,1179 @@
+{
+  "source": "A_WAVE1.RES",
+  "size": 4844969,
+  "sha256": "b0d773c2fa917bf5f65792783a89ffb1491829df032d35fd921e4317c73198c9",
+  "type": "residx",
+  "count": 166,
+  "records": [
+    {
+      "index": 0,
+      "name": "ARR_HIT",
+      "name_raw": "4152525f4849540000",
+      "file": "000_ARR_HIT.bin",
+      "size": 19338
+    },
+    {
+      "index": 1,
+      "name": "BE-A1-10",
+      "name_raw": "42452d41312d313000",
+      "file": "001_BE-A1-10.bin",
+      "size": 29496
+    },
+    {
+      "index": 2,
+      "name": "BR-A2-3",
+      "name_raw": "42522d41322d330000",
+      "file": "002_BR-A2-3.bin",
+      "size": 30360
+    },
+    {
+      "index": 3,
+      "name": "BR-ATTK1",
+      "name_raw": "42522d4154544b3100",
+      "file": "003_BR-ATTK1.bin",
+      "size": 19538
+    },
+    {
+      "index": 4,
+      "name": "BR-ATTK2",
+      "name_raw": "42522d4154544b3200",
+      "file": "004_BR-ATTK2.bin",
+      "size": 16054
+    },
+    {
+      "index": 5,
+      "name": "BR-B3-7",
+      "name_raw": "42522d42332d370000",
+      "file": "005_BR-B3-7.bin",
+      "size": 86264
+    },
+    {
+      "index": 6,
+      "name": "BR-DIE",
+      "name_raw": "42522d444945000000",
+      "file": "006_BR-DIE.bin",
+      "size": 17512
+    },
+    {
+      "index": 7,
+      "name": "CANBALL",
+      "name_raw": "43414e42414c4c0000",
+      "file": "007_CANBALL.bin",
+      "size": 36664
+    },
+    {
+      "index": 8,
+      "name": "CANNON",
+      "name_raw": "43414e4e4f4e000000",
+      "file": "008_CANNON.bin",
+      "size": 39252
+    },
+    {
+      "index": 9,
+      "name": "CATSTONE",
+      "name_raw": "43415453544f4e4500",
+      "file": "009_CATSTONE.bin",
+      "size": 35704
+    },
+    {
+      "index": 10,
+      "name": "CE-A1-2",
+      "name_raw": "43452d41312d320000",
+      "file": "010_CE-A1-2.bin",
+      "size": 23704
+    },
+    {
+      "index": 11,
+      "name": "CE-A3-7",
+      "name_raw": "43452d41332d370000",
+      "file": "011_CE-A3-7.bin",
+      "size": 10410
+    },
+    {
+      "index": 12,
+      "name": "CE-A4-5",
+      "name_raw": "43452d41342d350000",
+      "file": "012_CE-A4-5.bin",
+      "size": 11850
+    },
+    {
+      "index": 13,
+      "name": "CE-B1-5",
+      "name_raw": "43452d42312d350000",
+      "file": "013_CE-B1-5.bin",
+      "size": 97466
+    },
+    {
+      "index": 14,
+      "name": "CE-B2-7",
+      "name_raw": "43452d42322d370000",
+      "file": "014_CE-B2-7.bin",
+      "size": 40570
+    },
+    {
+      "index": 15,
+      "name": "CH-A2-2",
+      "name_raw": "43482d41322d320000",
+      "file": "015_CH-A2-2.bin",
+      "size": 17704
+    },
+    {
+      "index": 16,
+      "name": "CH-A3-2",
+      "name_raw": "43482d41332d320000",
+      "file": "016_CH-A3-2.bin",
+      "size": 12982
+    },
+    {
+      "index": 17,
+      "name": "CH-A3-6",
+      "name_raw": "43482d41332d360000",
+      "file": "017_CH-A3-6.bin",
+      "size": 27288
+    },
+    {
+      "index": 18,
+      "name": "CH-ARROW",
+      "name_raw": "43482d4152524f5700",
+      "file": "018_CH-ARROW.bin",
+      "size": 25994
+    },
+    {
+      "index": 19,
+      "name": "CH-B1-7",
+      "name_raw": "43482d42312d370000",
+      "file": "019_CH-B1-7.bin",
+      "size": 32632
+    },
+    {
+      "index": 20,
+      "name": "CH-B3-5",
+      "name_raw": "43482d42332d350000",
+      "file": "020_CH-B3-5.bin",
+      "size": 15542
+    },
+    {
+      "index": 21,
+      "name": "CO-A2-6",
+      "name_raw": "434f2d41322d360000",
+      "file": "021_CO-A2-6.bin",
+      "size": 47286
+    },
+    {
+      "index": 22,
+      "name": "CT-A1-3",
+      "name_raw": "43542d41312d330000",
+      "file": "022_CT-A1-3.bin",
+      "size": 7816
+    },
+    {
+      "index": 23,
+      "name": "CT-A2-4",
+      "name_raw": "43542d41322d340000",
+      "file": "023_CT-A2-4.bin",
+      "size": 11464
+    },
+    {
+      "index": 24,
+      "name": "CT-A3-4",
+      "name_raw": "43542d41332d340000",
+      "file": "024_CT-A3-4.bin",
+      "size": 13544
+    },
+    {
+      "index": 25,
+      "name": "CT-ARROW",
+      "name_raw": "43542d4152524f5700",
+      "file": "025_CT-ARROW.bin",
+      "size": 7976
+    },
+    {
+      "index": 26,
+      "name": "CT-B2-7",
+      "name_raw": "43542d42322d370000",
+      "file": "026_CT-B2-7.bin",
+      "size": 102392
+    },
+    {
+      "index": 27,
+      "name": "CT-B2-8",
+      "name_raw": "43542d42322d380000",
+      "file": "027_CT-B2-8.bin",
+      "size": 13686
+    },
+    {
+      "index": 28,
+      "name": "CT-B3-5",
+      "name_raw": "43542d42332d350000",
+      "file": "028_CT-B3-5.bin",
+      "size": 5344
+    },
+    {
+      "index": 29,
+      "name": "DE-A2-3",
+      "name_raw": "44452d41322d330000",
+      "file": "029_DE-A2-3.bin",
+      "size": 10848
+    },
+    {
+      "index": 30,
+      "name": "DE-C3-6",
+      "name_raw": "44452d43332d360000",
+      "file": "030_DE-C3-6.bin",
+      "size": 45288
+    },
+    {
+      "index": 31,
+      "name": "DEATH1",
+      "name_raw": "444541544831000000",
+      "file": "031_DEATH1.bin",
+      "size": 55542
+    },
+    {
+      "index": 32,
+      "name": "DEATH2",
+      "name_raw": "444541544832000000",
+      "file": "032_DEATH2.bin",
+      "size": 46582
+    },
+    {
+      "index": 33,
+      "name": "DEATH_M1",
+      "name_raw": "44454154485f4d3100",
+      "file": "033_DEATH_M1.bin",
+      "size": 60532
+    },
+    {
+      "index": 34,
+      "name": "DEATH_M2",
+      "name_raw": "44454154485f4d3200",
+      "file": "034_DEATH_M2.bin",
+      "size": 56310
+    },
+    {
+      "index": 35,
+      "name": "E-A1-3",
+      "name_raw": "452d41312d33000000",
+      "file": "035_E-A1-3.bin",
+      "size": 14664
+    },
+    {
+      "index": 36,
+      "name": "E-B1-6",
+      "name_raw": "452d42312d36000000",
+      "file": "036_E-B1-6.bin",
+      "size": 28704
+    },
+    {
+      "index": 37,
+      "name": "E-C1-5",
+      "name_raw": "452d43312d35000000",
+      "file": "037_E-C1-5.bin",
+      "size": 43384
+    },
+    {
+      "index": 38,
+      "name": "EG-A1-5",
+      "name_raw": "45472d41312d350000",
+      "file": "038_EG-A1-5.bin",
+      "size": 14824
+    },
+    {
+      "index": 39,
+      "name": "EG-A2-5",
+      "name_raw": "45472d41322d350000",
+      "file": "039_EG-A2-5.bin",
+      "size": 16728
+    },
+    {
+      "index": 40,
+      "name": "EG-A3-6",
+      "name_raw": "45472d41332d360000",
+      "file": "040_EG-A3-6.bin",
+      "size": 41208
+    },
+    {
+      "index": 41,
+      "name": "EG-ARROW",
+      "name_raw": "45472d4152524f5700",
+      "file": "041_EG-ARROW.bin",
+      "size": 19288
+    },
+    {
+      "index": 42,
+      "name": "EG-B3-6",
+      "name_raw": "45472d42332d360000",
+      "file": "042_EG-B3-6.bin",
+      "size": 10966
+    },
+    {
+      "index": 43,
+      "name": "EG-JAVEL",
+      "name_raw": "45472d4a4156454c00",
+      "file": "043_EG-JAVEL.bin",
+      "size": 31672
+    },
+    {
+      "index": 44,
+      "name": "EX-D-3",
+      "name_raw": "45582d442d33000000",
+      "file": "044_EX-D-3.bin",
+      "size": 75128
+    },
+    {
+      "index": 45,
+      "name": "EZ-ATTK1",
+      "name_raw": "455a2d4154544b3100",
+      "file": "045_EZ-ATTK1.bin",
+      "size": 11332
+    },
+    {
+      "index": 46,
+      "name": "EZ-ATTK2",
+      "name_raw": "455a2d4154544b3200",
+      "file": "046_EZ-ATTK2.bin",
+      "size": 15598
+    },
+    {
+      "index": 47,
+      "name": "EZ-DIE",
+      "name_raw": "455a2d444945000000",
+      "file": "047_EZ-DIE.bin",
+      "size": 34286
+    },
+    {
+      "index": 48,
+      "name": "F-BAL-I",
+      "name_raw": "462d42414c2d490000",
+      "file": "048_F-BAL-I.bin",
+      "size": 38840
+    },
+    {
+      "index": 49,
+      "name": "F-BAL-S",
+      "name_raw": "462d42414c2d530000",
+      "file": "049_F-BAL-S.bin",
+      "size": 27768
+    },
+    {
+      "index": 50,
+      "name": "F-CAN-I",
+      "name_raw": "462d43414e2d490000",
+      "file": "050_F-CAN-I.bin",
+      "size": 76664
+    },
+    {
+      "index": 51,
+      "name": "F-CAN-S",
+      "name_raw": "462d43414e2d530000",
+      "file": "051_F-CAN-S.bin",
+      "size": 45176
+    },
+    {
+      "index": 52,
+      "name": "F-CAT-I",
+      "name_raw": "462d4341542d490000",
+      "file": "052_F-CAT-I.bin",
+      "size": 48246
+    },
+    {
+      "index": 53,
+      "name": "F-CAT-S",
+      "name_raw": "462d4341542d530000",
+      "file": "053_F-CAT-S.bin",
+      "size": 46648
+    },
+    {
+      "index": 54,
+      "name": "FB-A2-5",
+      "name_raw": "46422d41322d350000",
+      "file": "054_FB-A2-5.bin",
+      "size": 36728
+    },
+    {
+      "index": 55,
+      "name": "FB-ARROW",
+      "name_raw": "46422d4152524f5700",
+      "file": "055_FB-ARROW.bin",
+      "size": 26072
+    },
+    {
+      "index": 56,
+      "name": "FIRMDIES",
+      "name_raw": "4649524d4449455300",
+      "file": "056_FIRMDIES.bin",
+      "size": 66550
+    },
+    {
+      "index": 57,
+      "name": "FL-A1-6",
+      "name_raw": "464c2d41312d360000",
+      "file": "057_FL-A1-6.bin",
+      "size": 55734
+    },
+    {
+      "index": 58,
+      "name": "GK-A1-2",
+      "name_raw": "474b2d41312d320000",
+      "file": "058_GK-A1-2.bin",
+      "size": 10270
+    },
+    {
+      "index": 59,
+      "name": "GK-A1-3",
+      "name_raw": "474b2d41312d330000",
+      "file": "059_GK-A1-3.bin",
+      "size": 17242
+    },
+    {
+      "index": 60,
+      "name": "GK-A3-6",
+      "name_raw": "474b2d41332d360000",
+      "file": "060_GK-A3-6.bin",
+      "size": 34458
+    },
+    {
+      "index": 61,
+      "name": "GK-ATTK1",
+      "name_raw": "474b2d4154544b3100",
+      "file": "061_GK-ATTK1.bin",
+      "size": 10076
+    },
+    {
+      "index": 62,
+      "name": "GK-ATTK2",
+      "name_raw": "474b2d4154544b3200",
+      "file": "062_GK-ATTK2.bin",
+      "size": 18896
+    },
+    {
+      "index": 63,
+      "name": "GK-B3-5",
+      "name_raw": "474b2d42332d350000",
+      "file": "063_GK-B3-5.bin",
+      "size": 18298
+    },
+    {
+      "index": 64,
+      "name": "GK-DIE",
+      "name_raw": "474b2d444945000000",
+      "file": "064_GK-DIE.bin",
+      "size": 24692
+    },
+    {
+      "index": 65,
+      "name": "GO-A3-6",
+      "name_raw": "474f2d41332d360000",
+      "file": "065_GO-A3-6.bin",
+      "size": 71450
+    },
+    {
+      "index": 66,
+      "name": "GO-B7-5",
+      "name_raw": "474f2d42372d350000",
+      "file": "066_GO-B7-5.bin",
+      "size": 16824
+    },
+    {
+      "index": 67,
+      "name": "GR-A1-2",
+      "name_raw": "47522d41312d320000",
+      "file": "067_GR-A1-2.bin",
+      "size": 10270
+    },
+    {
+      "index": 68,
+      "name": "GR-A1-3",
+      "name_raw": "47522d41312d330000",
+      "file": "068_GR-A1-3.bin",
+      "size": 17242
+    },
+    {
+      "index": 69,
+      "name": "GR-A3-6",
+      "name_raw": "47522d41332d360000",
+      "file": "069_GR-A3-6.bin",
+      "size": 34458
+    },
+    {
+      "index": 70,
+      "name": "GR-ATTK1",
+      "name_raw": "47522d4154544b3100",
+      "file": "070_GR-ATTK1.bin",
+      "size": 10076
+    },
+    {
+      "index": 71,
+      "name": "GR-ATTK2",
+      "name_raw": "47522d4154544b3200",
+      "file": "071_GR-ATTK2.bin",
+      "size": 18896
+    },
+    {
+      "index": 72,
+      "name": "GR-B3-5",
+      "name_raw": "47522d42332d350000",
+      "file": "072_GR-B3-5.bin",
+      "size": 18298
+    },
+    {
+      "index": 73,
+      "name": "GR-DIE",
+      "name_raw": "47522d444945000000",
+      "file": "073_GR-DIE.bin",
+      "size": 24692
+    },
+    {
+      "index": 74,
+      "name": "IN-A2-1",
+      "name_raw": "494e2d41322d310000",
+      "file": "074_IN-A2-1.bin",
+      "size": 27448
+    },
+    {
+      "index": 75,
+      "name": "IN-A2-6",
+      "name_raw": "494e2d41322d360000",
+      "file": "075_IN-A2-6.bin",
+      "size": 65080
+    },
+    {
+      "index": 76,
+      "name": "IN-A3-5",
+      "name_raw": "494e2d41332d350000",
+      "file": "076_IN-A3-5.bin",
+      "size": 16698
+    },
+    {
+      "index": 77,
+      "name": "IN-A3-6",
+      "name_raw": "494e2d41332d360000",
+      "file": "077_IN-A3-6.bin",
+      "size": 11852
+    },
+    {
+      "index": 78,
+      "name": "IN-ARROW",
+      "name_raw": "494e2d4152524f5700",
+      "file": "078_IN-ARROW.bin",
+      "size": 20984
+    },
+    {
+      "index": 79,
+      "name": "IN-B2-4",
+      "name_raw": "494e2d42322d340000",
+      "file": "079_IN-B2-4.bin",
+      "size": 33932
+    },
+    {
+      "index": 80,
+      "name": "IN-C3-7",
+      "name_raw": "494e2d43332d370000",
+      "file": "080_IN-C3-7.bin",
+      "size": 10040
+    },
+    {
+      "index": 81,
+      "name": "IN-JAVE2",
+      "name_raw": "494e2d4a4156453200",
+      "file": "081_IN-JAVE2.bin",
+      "size": 26924
+    },
+    {
+      "index": 82,
+      "name": "IN-JAVEL",
+      "name_raw": "494e2d4a4156454c00",
+      "file": "082_IN-JAVEL.bin",
+      "size": 20216
+    },
+    {
+      "index": 83,
+      "name": "JA-A1-2",
+      "name_raw": "4a412d41312d320000",
+      "file": "083_JA-A1-2.bin",
+      "size": 11476
+    },
+    {
+      "index": 84,
+      "name": "JA-A1-3",
+      "name_raw": "4a412d41312d330000",
+      "file": "084_JA-A1-3.bin",
+      "size": 21814
+    },
+    {
+      "index": 85,
+      "name": "JA-A1-4",
+      "name_raw": "4a412d41312d340000",
+      "file": "085_JA-A1-4.bin",
+      "size": 20822
+    },
+    {
+      "index": 86,
+      "name": "JA-ARROW",
+      "name_raw": "4a412d4152524f5700",
+      "file": "086_JA-ARROW.bin",
+      "size": 8686
+    },
+    {
+      "index": 87,
+      "name": "JA-B1-7",
+      "name_raw": "4a412d42312d370000",
+      "file": "087_JA-B1-7.bin",
+      "size": 38008
+    },
+    {
+      "index": 88,
+      "name": "JA-B2-6",
+      "name_raw": "4a412d42322d360000",
+      "file": "088_JA-B2-6.bin",
+      "size": 24504
+    },
+    {
+      "index": 89,
+      "name": "JA-C2-3",
+      "name_raw": "4a412d43322d330000",
+      "file": "089_JA-C2-3.bin",
+      "size": 81656
+    },
+    {
+      "index": 90,
+      "name": "KH-ATTK1",
+      "name_raw": "4b482d4154544b3100",
+      "file": "090_KH-ATTK1.bin",
+      "size": 9454
+    },
+    {
+      "index": 91,
+      "name": "KH-ATTK2",
+      "name_raw": "4b482d4154544b3200",
+      "file": "091_KH-ATTK2.bin",
+      "size": 4936
+    },
+    {
+      "index": 92,
+      "name": "KH-DIE",
+      "name_raw": "4b482d444945000000",
+      "file": "092_KH-DIE.bin",
+      "size": 10866
+    },
+    {
+      "index": 93,
+      "name": "KS-ATTK1",
+      "name_raw": "4b532d4154544b3100",
+      "file": "093_KS-ATTK1.bin",
+      "size": 13314
+    },
+    {
+      "index": 94,
+      "name": "KS-ATTK2",
+      "name_raw": "4b532d4154544b3200",
+      "file": "094_KS-ATTK2.bin",
+      "size": 21456
+    },
+    {
+      "index": 95,
+      "name": "KS-DIE",
+      "name_raw": "4b532d444945000000",
+      "file": "095_KS-DIE.bin",
+      "size": 20848
+    },
+    {
+      "index": 96,
+      "name": "LI-A1-6",
+      "name_raw": "4c492d41312d360000",
+      "file": "096_LI-A1-6.bin",
+      "size": 17448
+    },
+    {
+      "index": 97,
+      "name": "LI-B1-7",
+      "name_raw": "4c492d42312d370000",
+      "file": "097_LI-B1-7.bin",
+      "size": 60920
+    },
+    {
+      "index": 98,
+      "name": "MATCH",
+      "name_raw": "4d4154434800000000",
+      "file": "098_MATCH.bin",
+      "size": 33036
+    },
+    {
+      "index": 99,
+      "name": "MA_ARROW",
+      "name_raw": "4d415f4152524f5700",
+      "file": "099_MA_ARROW.bin",
+      "size": 77750
+    },
+    {
+      "index": 100,
+      "name": "MI-ATTK1",
+      "name_raw": "4d492d4154544b3100",
+      "file": "100_MI-ATTK1.bin",
+      "size": 9384
+    },
+    {
+      "index": 101,
+      "name": "MI-ATTK2",
+      "name_raw": "4d492d4154544b3200",
+      "file": "101_MI-ATTK2.bin",
+      "size": 17648
+    },
+    {
+      "index": 102,
+      "name": "MI-DIE",
+      "name_raw": "4d492d444945000000",
+      "file": "102_MI-DIE.bin",
+      "size": 26730
+    },
+    {
+      "index": 103,
+      "name": "MN-A3-2",
+      "name_raw": "4d4e2d41332d320000",
+      "file": "103_MN-A3-2.bin",
+      "size": 22648
+    },
+    {
+      "index": 104,
+      "name": "MO-A1-2",
+      "name_raw": "4d4f2d41312d320000",
+      "file": "104_MO-A1-2.bin",
+      "size": 24620
+    },
+    {
+      "index": 105,
+      "name": "MO-A1-4",
+      "name_raw": "4d4f2d41312d340000",
+      "file": "105_MO-A1-4.bin",
+      "size": 31046
+    },
+    {
+      "index": 106,
+      "name": "MO-A1-7",
+      "name_raw": "4d4f2d41312d370000",
+      "file": "106_MO-A1-7.bin",
+      "size": 15738
+    },
+    {
+      "index": 107,
+      "name": "MO-A3-3",
+      "name_raw": "4d4f2d41332d330000",
+      "file": "107_MO-A3-3.bin",
+      "size": 16298
+    },
+    {
+      "index": 108,
+      "name": "MO-ARROW",
+      "name_raw": "4d4f2d4152524f5700",
+      "file": "108_MO-ARROW.bin",
+      "size": 19770
+    },
+    {
+      "index": 109,
+      "name": "MO-B2-4",
+      "name_raw": "4d4f2d42322d340000",
+      "file": "109_MO-B2-4.bin",
+      "size": 43962
+    },
+    {
+      "index": 110,
+      "name": "MO-B3-10",
+      "name_raw": "4d4f2d42332d313000",
+      "file": "110_MO-B3-10.bin",
+      "size": 48570
+    },
+    {
+      "index": 111,
+      "name": "MO-C1-5",
+      "name_raw": "4d4f2d43312d350000",
+      "file": "111_MO-C1-5.bin",
+      "size": 91896
+    },
+    {
+      "index": 112,
+      "name": "M_CANBAL",
+      "name_raw": "4d5f43414e42414c00",
+      "file": "112_M_CANBAL.bin",
+      "size": 46162
+    },
+    {
+      "index": 113,
+      "name": "M_CANNON",
+      "name_raw": "4d5f43414e4e4f4e00",
+      "file": "113_M_CANNON.bin",
+      "size": 74986
+    },
+    {
+      "index": 114,
+      "name": "NO-A1-3",
+      "name_raw": "4e4f2d41312d330000",
+      "file": "114_NO-A1-3.bin",
+      "size": 20504
+    },
+    {
+      "index": 115,
+      "name": "NO-A1-4",
+      "name_raw": "4e4f2d41312d340000",
+      "file": "115_NO-A1-4.bin",
+      "size": 19896
+    },
+    {
+      "index": 116,
+      "name": "NO-A3-7",
+      "name_raw": "4e4f2d41332d370000",
+      "file": "116_NO-A3-7.bin",
+      "size": 10872
+    },
+    {
+      "index": 117,
+      "name": "NO-ARROW",
+      "name_raw": "4e4f2d4152524f5700",
+      "file": "117_NO-ARROW.bin",
+      "size": 12472
+    },
+    {
+      "index": 118,
+      "name": "NO-B1-4",
+      "name_raw": "4e4f2d42312d340000",
+      "file": "118_NO-B1-4.bin",
+      "size": 48184
+    },
+    {
+      "index": 119,
+      "name": "NO-B6-5",
+      "name_raw": "4e4f2d42362d350000",
+      "file": "119_NO-B6-5.bin",
+      "size": 29336
+    },
+    {
+      "index": 120,
+      "name": "PE-A1-3",
+      "name_raw": "50452d41312d330000",
+      "file": "120_PE-A1-3.bin",
+      "size": 20320
+    },
+    {
+      "index": 121,
+      "name": "PE-A2-6",
+      "name_raw": "50452d41322d360000",
+      "file": "121_PE-A2-6.bin",
+      "size": 14632
+    },
+    {
+      "index": 122,
+      "name": "PE-ARROW",
+      "name_raw": "50452d4152524f5700",
+      "file": "122_PE-ARROW.bin",
+      "size": 22968
+    },
+    {
+      "index": 123,
+      "name": "PE-B2-6",
+      "name_raw": "50452d42322d360000",
+      "file": "123_PE-B2-6.bin",
+      "size": 21080
+    },
+    {
+      "index": 124,
+      "name": "PE-C2-5",
+      "name_raw": "50452d43322d350000",
+      "file": "124_PE-C2-5.bin",
+      "size": 45752
+    },
+    {
+      "index": 125,
+      "name": "PE-POWAR",
+      "name_raw": "50452d504f57415200",
+      "file": "125_PE-POWAR.bin",
+      "size": 24120
+    },
+    {
+      "index": 126,
+      "name": "PL-A1-4",
+      "name_raw": "504c2d41312d340000",
+      "file": "126_PL-A1-4.bin",
+      "size": 65528
+    },
+    {
+      "index": 127,
+      "name": "PL-B3-3",
+      "name_raw": "504c2d42332d330000",
+      "file": "127_PL-B3-3.bin",
+      "size": 18294
+    },
+    {
+      "index": 128,
+      "name": "PL_ARROW",
+      "name_raw": "504c5f4152524f5700",
+      "file": "128_PL_ARROW.bin",
+      "size": 39096
+    },
+    {
+      "index": 129,
+      "name": "PULL_MAN",
+      "name_raw": "50554c4c5f4d414e00",
+      "file": "129_PULL_MAN.bin",
+      "size": 1324
+    },
+    {
+      "index": 130,
+      "name": "RK-ARRO2",
+      "name_raw": "524b2d4152524f3200",
+      "file": "130_RK-ARRO2.bin",
+      "size": 107000
+    },
+    {
+      "index": 131,
+      "name": "RK-ARROW",
+      "name_raw": "524b2d4152524f5700",
+      "file": "131_RK-ARROW.bin",
+      "size": 81144
+    },
+    {
+      "index": 132,
+      "name": "RK-B1-5",
+      "name_raw": "524b2d42312d350000",
+      "file": "132_RK-B1-5.bin",
+      "size": 7862
+    },
+    {
+      "index": 133,
+      "name": "RK-C1-6",
+      "name_raw": "524b2d43312d360000",
+      "file": "133_RK-C1-6.bin",
+      "size": 9954
+    },
+    {
+      "index": 134,
+      "name": "RO-A1-2",
+      "name_raw": "524f2d41312d320000",
+      "file": "134_RO-A1-2.bin",
+      "size": 6288
+    },
+    {
+      "index": 135,
+      "name": "RO-A1-6",
+      "name_raw": "524f2d41312d360000",
+      "file": "135_RO-A1-6.bin",
+      "size": 11194
+    },
+    {
+      "index": 136,
+      "name": "RO-A3-3",
+      "name_raw": "524f2d41332d330000",
+      "file": "136_RO-A3-3.bin",
+      "size": 15180
+    },
+    {
+      "index": 137,
+      "name": "RO-B1-3",
+      "name_raw": "524f2d42312d330000",
+      "file": "137_RO-B1-3.bin",
+      "size": 11048
+    },
+    {
+      "index": 138,
+      "name": "RO-C2-5",
+      "name_raw": "524f2d43322d350000",
+      "file": "138_RO-C2-5.bin",
+      "size": 10360
+    },
+    {
+      "index": 139,
+      "name": "RO-JAVEL",
+      "name_raw": "524f2d4a4156454c00",
+      "file": "139_RO-JAVEL.bin",
+      "size": 8888
+    },
+    {
+      "index": 140,
+      "name": "SH_EXPL",
+      "name_raw": "53485f4558504c0000",
+      "file": "140_SH_EXPL.bin",
+      "size": 33486
+    },
+    {
+      "index": 141,
+      "name": "SK-A2-4",
+      "name_raw": "534b2d41322d340000",
+      "file": "141_SK-A2-4.bin",
+      "size": 16136
+    },
+    {
+      "index": 142,
+      "name": "SK-B2-4",
+      "name_raw": "534b2d42322d340000",
+      "file": "142_SK-B2-4.bin",
+      "size": 38390
+    },
+    {
+      "index": 143,
+      "name": "TC_ARROW",
+      "name_raw": "54435f4152524f5700",
+      "file": "143_TC_ARROW.bin",
+      "size": 35830
+    },
+    {
+      "index": 144,
+      "name": "TE-A3-8",
+      "name_raw": "54452d41332d380000",
+      "file": "144_TE-A3-8.bin",
+      "size": 8320
+    },
+    {
+      "index": 145,
+      "name": "TURN_OFF",
+      "name_raw": "5455524e5f4f464600",
+      "file": "145_TURN_OFF.bin",
+      "size": 2898
+    },
+    {
+      "index": 146,
+      "name": "TURN_ON",
+      "name_raw": "5455524e5f4f4e0000",
+      "file": "146_TURN_ON.bin",
+      "size": 2898
+    },
+    {
+      "index": 147,
+      "name": "VI-A1-2",
+      "name_raw": "56492d41312d320000",
+      "file": "147_VI-A1-2.bin",
+      "size": 13976
+    },
+    {
+      "index": 148,
+      "name": "VI-A3-7",
+      "name_raw": "56492d41332d370000",
+      "file": "148_VI-A3-7.bin",
+      "size": 16264
+    },
+    {
+      "index": 149,
+      "name": "VI-B1-4",
+      "name_raw": "56492d42312d340000",
+      "file": "149_VI-B1-4.bin",
+      "size": 13640
+    },
+    {
+      "index": 150,
+      "name": "VS-A1-3",
+      "name_raw": "56532d41312d330000",
+      "file": "150_VS-A1-3.bin",
+      "size": 18978
+    },
+    {
+      "index": 151,
+      "name": "VS-ARROW",
+      "name_raw": "56532d4152524f5700",
+      "file": "151_VS-ARROW.bin",
+      "size": 8704
+    },
+    {
+      "index": 152,
+      "name": "VS-B2-4",
+      "name_raw": "56532d42322d340000",
+      "file": "152_VS-B2-4.bin",
+      "size": 9832
+    },
+    {
+      "index": 153,
+      "name": "VS-C2-5",
+      "name_raw": "56532d43322d350000",
+      "file": "153_VS-C2-5.bin",
+      "size": 36856
+    },
+    {
+      "index": 154,
+      "name": "WAGON-M",
+      "name_raw": "5741474f4e2d4d0000",
+      "file": "154_WAGON-M.bin",
+      "size": 21624
+    },
+    {
+      "index": 155,
+      "name": "WAGON-S",
+      "name_raw": "5741474f4e2d530000",
+      "file": "155_WAGON-S.bin",
+      "size": 5890
+    },
+    {
+      "index": 156,
+      "name": "WB-A3-4",
+      "name_raw": "57422d41332d340000",
+      "file": "156_WB-A3-4.bin",
+      "size": 57144
+    },
+    {
+      "index": 157,
+      "name": "WB_A1",
+      "name_raw": "57425f413100000000",
+      "file": "157_WB_A1.bin",
+      "size": 38506
+    },
+    {
+      "index": 158,
+      "name": "WP-A2-6",
+      "name_raw": "57502d41322d360000",
+      "file": "158_WP-A2-6.bin",
+      "size": 23032
+    },
+    {
+      "index": 159,
+      "name": "WPL_ARRW",
+      "name_raw": "57504c5f4152525700",
+      "file": "159_WPL_ARRW.bin",
+      "size": 48630
+    },
+    {
+      "index": 160,
+      "name": "WP_A1",
+      "name_raw": "57505f413100000000",
+      "file": "160_WP_A1.bin",
+      "size": 38506
+    },
+    {
+      "index": 161,
+      "name": "WP_A_DIE",
+      "name_raw": "57505f415f44494500",
+      "file": "161_WP_A_DIE.bin",
+      "size": 33526
+    },
+    {
+      "index": 162,
+      "name": "WP_B_DIE",
+      "name_raw": "57505f425f44494500",
+      "file": "162_WP_B_DIE.bin",
+      "size": 42556
+    },
+    {
+      "index": 163,
+      "name": "XO-ATTK1",
+      "name_raw": "584f2d4154544b3100",
+      "file": "163_XO-ATTK1.bin",
+      "size": 22500
+    },
+    {
+      "index": 164,
+      "name": "XO-ATTK2",
+      "name_raw": "584f2d4154544b3200",
+      "file": "164_XO-ATTK2.bin",
+      "size": 15352
+    },
+    {
+      "index": 165,
+      "name": "XO-DIE",
+      "name_raw": "584f2d444945000000",
+      "file": "165_XO-DIE.bin",
+      "size": 43120
+    },
+    {
+      "index": 166,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}
