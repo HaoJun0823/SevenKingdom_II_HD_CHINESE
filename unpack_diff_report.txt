@@ -1,4 +1,4 @@
-原版解包 223 个 | 汉化解包 40 个 | 共有 38 个
+原版解包 223 个 | 汉化解包 42 个 | 共有 38 个
 
 ==============================================================================
 一、覆盖情况
@@ -189,62 +189,16 @@
     - tutorial/hlc6l.tut
     - tutorial/hlc6s.tut
     - tutorial/standard.tut
-汉化多出（汉化有、原版无）: 2 个
+汉化多出（汉化有、原版无）: 4 个
+    + campaign/east.evt.bak
+    + campaign/east.plt.bak
     + render.ini
     + sk2_zh.log
 
 ==============================================================================
 二、结构损坏（记录数 / 记录名与原版不一致）
 ==============================================================================
-  [!!] campaign/east.evt  第 1 条名不同 b'12A\x00\x00\x00\x00\x00\x00' -> b'11B\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 2 条名不同 b'12B\x00\x00\x00\x00\x00\x00' -> b'12A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 3 条名不同 b'13A\x00\x00\x00\x00\x00\x00' -> b'12B\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 4 条名不同 b'13B\x00\x00\x00\x00\x00\x00' -> b'13A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 5 条名不同 b'14A\x00\x00\x00\x00\x00\x00' -> b'13B\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 6 条名不同 b'14B\x00\x00\x00\x00\x00\x00' -> b'14A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 7 条名不同 b'14C\x00\x00\x00\x00\x00\x00' -> b'14B\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 8 条名不同 b'14D1\x00\x00\x00\x00\x00' -> b'14C\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 9 条名不同 b'14D2\x00\x00\x00\x00\x00' -> b'14D1\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 10 条名不同 b'14E\x00\x00\x00\x00\x00\x00' -> b'14D2\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 11 条名不同 b'1A\x00\x00\x00\x00\x00\x00\x00' -> b'14E\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 12 条名不同 b'3A\x00\x00\x00\x00\x00\x00\x00' -> b'15A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 13 条名不同 b'3B\x00\x00\x00\x00\x00\x00\x00' -> b'16A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 14 条名不同 b'3C\x00\x00\x00\x00\x00\x00\x00' -> b'16B\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 15 条名不同 b'3D\x00\x00\x00\x00\x00\x00\x00' -> b'16C\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 16 条名不同 b'5A\x00\x00\x00\x00\x00\x00\x00' -> b'17A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 17 条名不同 b'7A\x00\x00\x00\x00\x00\x00\x00' -> b'18A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 18 条名不同 b'8A\x00\x00\x00\x00\x00\x00\x00' -> b'18B\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 19 条名不同 b'8B\x00\x00\x00\x00\x00\x00\x00' -> b'18C\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 20 条名不同 b'9A\x00\x00\x00\x00\x00\x00\x00' -> b'18D\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 21 条名不同 b'9C1\x00\x00\x00\x00\x00\x00' -> b'19A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 22 条名不同 b'9C2\x00\x00\x00\x00\x00\x00' -> b'1A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 23 条名不同 b'9D1\x00\x00\x00\x00\x00\x00' -> b'1A1\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 24 条名不同 b'9D2\x00\x00\x00\x00\x00\x00' -> b'1B\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 25 条名不同 b'1B\x00\x00\x00\x00\x00\x00\x00' -> b'1B1\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 26 条名不同 b'4A\x00\x00\x00\x00\x00\x00\x00' -> b'20A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 27 条名不同 b'1A1\x00\x00\x00\x00\x00\x00' -> b'21A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 28 条名不同 b'1B1\x00\x00\x00\x00\x00\x00' -> b'22A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 29 条名不同 b'17A\x00\x00\x00\x00\x00\x00' -> b'23A\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 30 条名不同 b'16A\x00\x00\x00\x00\x00\x00' -> b'3A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 31 条名不同 b'16B\x00\x00\x00\x00\x00\x00' -> b'3B\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 32 条名不同 b'16C\x00\x00\x00\x00\x00\x00' -> b'3C\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 33 条名不同 b'18A\x00\x00\x00\x00\x00\x00' -> b'3D\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 34 条名不同 b'18B\x00\x00\x00\x00\x00\x00' -> b'4A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 35 条名不同 b'18C\x00\x00\x00\x00\x00\x00' -> b'5A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 36 条名不同 b'18D\x00\x00\x00\x00\x00\x00' -> b'7A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 37 条名不同 b'19A\x00\x00\x00\x00\x00\x00' -> b'8A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 38 条名不同 b'20A\x00\x00\x00\x00\x00\x00' -> b'8B\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 39 条名不同 b'21A\x00\x00\x00\x00\x00\x00' -> b'9A\x00\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 40 条名不同 b'22A\x00\x00\x00\x00\x00\x00' -> b'9C1\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 41 条名不同 b'15A\x00\x00\x00\x00\x00\x00' -> b'9C2\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 42 条名不同 b'23A\x00\x00\x00\x00\x00\x00' -> b'9D1\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.evt  第 43 条名不同 b'11B\x00\x00\x00\x00\x00\x00' -> b'9D2\x00\x00\x00\x00\x00\x00'
-  [!!] campaign/east.plt  第 10 条名不同 b'PLOTD1\x00\x00\x00' -> b'PLOTC4\x00\x00\x00'
-  [!!] campaign/east.plt  第 11 条名不同 b'PLOTD2\x00\x00\x00' -> b'PLOTD1\x00\x00\x00'
-  [!!] campaign/east.plt  第 12 条名不同 b'PLOTD3\x00\x00\x00' -> b'PLOTD2\x00\x00\x00'
-  [!!] campaign/east.plt  第 13 条名不同 b'PLOTD4\x00\x00\x00' -> b'PLOTD3\x00\x00\x00'
-  [!!] campaign/east.plt  第 14 条名不同 b'PLOTD5\x00\x00\x00' -> b'PLOTD4\x00\x00\x00'
-  [!!] campaign/east.plt  第 15 条名不同 b'PLOTC4\x00\x00\x00' -> b'PLOTD5\x00\x00\x00'
+  无 —— 所有共有文件的记录数、记录名与原版一致 ✓
 
 ==============================================================================
 三、格式骨架损坏（占位符 / 控制符数量与原版不符）
@@ -262,7 +216,7 @@
 ==============================================================================
   已翻译记录: 400 条
   未翻译记录: 1 条
-  结构损坏  : 49 处
+  结构损坏  : 0 处
   骨架损坏  : 0 处
   文本类非容器文件: 23 个
     - resource/help.res
