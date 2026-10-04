@@ -15,6 +15,7 @@ long PutCallCount();      // put 被调用次数
 long ParagraphCallCount();// put_paragraph 被调用次数
 long PutCharCallCount();  // put_char 被调用次数
 long CjkGlyphCount();     // 实际绘制过的中文字形数
+long VqCount();           // VirtualQuery 实际调用次数（提交页探测，按画布缓存后应远小于字形数）
 int  MeasureText(int* font, const char* s);   // 用引擎语义测量串宽
 
 // 字形索引：Big5/自定义双字节 -> 字形池下标，<0 表示这个字没有形状。

@@ -133,8 +133,10 @@ static void CallMonitorProc() {
         LONG n = TextWidthCallCount();
         LONG p = PutCallCount();
         LONG z = CjkGlyphCount();
-        Log("[i] 监控 %2d 次 (每5秒): text_width=%ld  put=%ld  段落=%ld  单字=%ld  中文字形=%ld\r\n",
-            i, n, p, ParagraphCallCount(), PutCharCallCount(), z);
+        LONG v = VqCount();
+        Log("[i] 监控 %2d 次 (每5秒): text_width=%ld  put=%ld  段落=%ld  单字=%ld  "
+            "中文字形=%ld  VirtualQuery=%ld\r\n",
+            i, n, p, ParagraphCallCount(), PutCharCallCount(), z, v);
         if (n > 0 && i >= 3) {
             Log("[O] hook 确认生效（已被游戏调用）\r\n");
             break;

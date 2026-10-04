@@ -98,6 +98,9 @@ static int AppendStr(char* dst, int cap, const char* s) {
 static void ProbeRecord(const char* str, int width, int dbcsCount, int charCount) {
     if (!str) return;
     if (g_inSelfTest) return;      // 自测期间不写探针，避免污染日志
+    // 先查上限再扫描：text_width 每秒被调用上万次，若每次都先扫 64 字节
+    // 再发现「早就不记了」，纯属白烧 CPU。
+    if (g_probeCount >= kProbeMax) return;
     // 只关注含高位字节（>=0x80）的串，即可能是 CJK 的输入
     bool hasHigh = false;
     for (const unsigned char* q = (const unsigned char*)str; *q && q - (const unsigned char*)str < 64; ++q)

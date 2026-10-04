@@ -155,16 +155,59 @@ inline int VgaPitch(const void* vb) {
 //   所以任何一次坐标算错都会写穿画布、踩坏堆 —— 而堆被踩坏的表现正是
 //   后续任意位置拿到野指针（实测：精灵 RLE 解码器读飞 ~1MB 撞到未提交页）。
 //   这里用 VirtualQuery 问 OS 要该页的真实提交范围，宁可不画也绝不写穿。
-static bool RectCommitted(const uint8_t* base, int stride, int x0, int y0, int x1, int y1) {
+// ── 提交页探测（防写穿堆）──────────────────────────────────
+// VirtualQuery 是内核调用（要查 VAD 并加锁），逐字调用会让按钮点击明显卡顿
+// ——「培养」按一次卡一次就是它：一次运行几万个字 = 几万次内核调用。
+// 改为按画布缓存：同一块 (画布指针, 行距) 只查一次首/尾两点，之后纯算术比较。
+// 画布一旦被重新分配，指针或行距变化 → key 不命中 → 自动重查。
+struct RegCache {
+    const uint8_t* base;
+    int            stride;
+    const uint8_t* lo[2];
+    const uint8_t* hi[2];
+    int            n;
+};
+static RegCache g_reg = { nullptr, 0, { nullptr, nullptr }, { nullptr, nullptr }, 0 };
+
+volatile LONG g_vqCount = 0;   // VirtualQuery 实际调用次数（缓存生效后应远小于字形绘制数）
+
+static bool QueryRegion(const uint8_t* p, const uint8_t** lo, const uint8_t** hi) {
+    InterlockedIncrement(&g_vqCount);
+    MEMORY_BASIC_INFORMATION mi = {};
+    if (!VirtualQuery((void*)p, &mi, sizeof(mi))) return false;
+    if (!(mi.State & MEM_COMMIT)) return false;
+    *lo = (const uint8_t*)mi.BaseAddress;
+    *hi = *lo + mi.RegionSize;
+    return true;
+}
+
+// 查询并缓存画布的提交区间。失败时保持 n=0，下次仍会重试（不会永久关掉探测）。
+static bool CanvasRegions(const uint8_t* base, int stride, int w, int h) {
+    if (base && stride > 0 && g_reg.base == base && g_reg.stride == stride && g_reg.n > 0)
+        return true;
+    g_reg.base = base; g_reg.stride = stride; g_reg.n = 0;
+    if (!base || stride <= 0 || w <= 0 || h <= 0) return false;
+    const uint8_t* head = base;
+    const uint8_t* tail = base + 2 * (size_t)(w - 1) + (size_t)(h - 1) * stride;
+    const uint8_t* lo = nullptr, *hi = nullptr;
+    if (QueryRegion(head, &lo, &hi)) { g_reg.lo[g_reg.n] = lo; g_reg.hi[g_reg.n] = hi; ++g_reg.n; }
+    if (tail >= head && QueryRegion(tail, &lo, &hi)) {
+        bool dup = false;
+        for (int i = 0; i < g_reg.n; ++i) if (g_reg.lo[i] == lo) dup = true;
+        if (!dup && g_reg.n < 2) { g_reg.lo[g_reg.n] = lo; g_reg.hi[g_reg.n] = hi; ++g_reg.n; }
+    }
+    return g_reg.n > 0;
+}
+
+static bool RectCommitted(const uint8_t* base, int stride, int w, int h,
+                          int x0, int y0, int x1, int y1) {
     if (!base || stride <= 0 || x0 < 0 || y0 < 0 || x1 < x0 || y1 < y0) return false;
+    if (!CanvasRegions(base, stride, w, h)) return false;
     const uint8_t* p0 = base + 2 * (size_t)x0 + (size_t)y0 * stride;
     const uint8_t* p1 = base + 2 * (size_t)x1 + (size_t)y1 * stride;
-    MEMORY_BASIC_INFORMATION mi = {};
-    if (!VirtualQuery((void*)p0, &mi, sizeof(mi))) return false;
-    if (!(mi.State & MEM_COMMIT)) return false;
-    const uint8_t* lo = (const uint8_t*)mi.BaseAddress;
-    const uint8_t* hi = lo + mi.RegionSize;
-    return p0 >= lo && p1 < hi;
+    for (int i = 0; i < g_reg.n; ++i)
+        if (p0 >= g_reg.lo[i] && p1 < g_reg.hi[i]) return true;
+    return false;
 }
 // 逻辑画布尺寸（引擎在窗口模式下会把 UI 居中，所以坐标已是最终空间）
 inline int ScreenW() {
@@ -501,7 +544,8 @@ int DrawGlyph(int* f, int x, int y, unsigned char lead, unsigned char trail) {
             if (sw != ScreenW() && InterlockedIncrement(&pw) <= 5)
                 Log("[i] VgaBuf 画布: pitch=%d -> 宽 %d px（全局屏宽 %d），已按画布夹取\r\n",
                     pitch, sw, ScreenW());
-            committed = RectCommitted(VgaPixels(buf), pitch, x, py, x + W - 1, py + H - 1);
+            committed = RectCommitted(VgaPixels(buf), pitch, cw, ScreenH(),
+                                      x, py, x + W - 1, py + H - 1);
         }
     }
 
@@ -1055,7 +1099,7 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
                 //   只要首尾字节都落在同一个已提交区间内就放行，否则宁可不画。
                 // 行距不可信时不做提交页探测（退回纯逻辑判定，避免误杀整屏中文）
                 const bool committed = !g_strideClamp || stride < 64 || stride > 65536
-                    || RectCommitted((const uint8_t*)(uintptr_t)surf, stride,
+                    || RectCommitted((const uint8_t*)(uintptr_t)surf, stride, cw, ScreenH(),
                                      gx, gy, gx + W - 1, gy + H - 1);
                 if (committed && gx >= 0 && gy >= 0 && W > 0 && H > 0
                     && gx + W <= cw && gy + H <= ScreenH()
@@ -1221,6 +1265,7 @@ namespace sk2 {
 
 long PutCallCount()  { return (long)g_putCount; }
 long CjkGlyphCount() { return (long)g_zhCount; }
+long VqCount()       { return (long)g_vqCount; }
 
 // 读取 <exe目录>\update\<name> 的内容（纯文本，最多 256 字节）
 static bool ReadCfg(const char* name, char* out, int cap) {
