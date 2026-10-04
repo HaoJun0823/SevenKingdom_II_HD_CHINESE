@@ -286,3 +286,12 @@ update_res_staged.bak_before_fix/
 
 # 资源修复前的原始备份（参考用，不入库）
 res_backup/
+
+# 原版资产解包产物（94MB / 223 目录，可由 tools_packer 一键重建，不入库）
+#   重建：cd tools_packer && python unpack.py --dir "<游戏目录>\Resource" ..\unpack_data_original\Resource
+#   README 是说明文档，例外保留
+unpack_data_original/*
+!unpack_data_original/README.md
+
+# 解包往返验证用的临时重建目录
+_rebuild_check/
