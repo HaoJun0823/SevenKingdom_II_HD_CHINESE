@@ -397,6 +397,8 @@ void DiagDumpMissing() {
 // 日志是 append 且每次 WriteFile 直接落盘，所以进程被杀也不丢已写内容。
 // 这里周期性输出增量，方便按时间线判断「什么时候开始出现缺字」。
 static DWORD WINAPI FlusherProc(LPVOID) {
+    // 最低优先级：诊断永远不与游戏抢 CPU
+    SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_LOWEST);
     for (int i = 1; i <= 200; ++i) {
         Sleep(15000);
         EnterCriticalSection(&g_cs);

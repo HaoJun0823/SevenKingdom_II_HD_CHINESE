@@ -46,4 +46,25 @@ double         PerfMs(int id);               // 累计毫秒
 void           PerfReport(char* out, int cap);   // 生成一段多行报告
 extern int     g_perfEnabled;
 
+// ── 熔断保护（避免 asi 把游戏甚至整个系统拖死）────────────────
+// 事故模型：游戏一旦卡死（引擎自旋 / 驱动挂起），我们的 hook 会被**高频重复
+// 调用**，把 CPU 和磁盘 IO 全部吃掉，于是「一个游戏卡死」升级成「整个操作
+// 系统无响应」。本模块的作用就是：一旦发现异常，**我们自己先退场**。
+//
+// 三条熔断判据（任一命中即熔断）：
+//   ① 速率：1 秒内 hook 调用（put/字形/段落/多行/逐字节）超过 RATE_MAX；
+//   ② 超时：某次 hook 进入后 >500ms 还没返回（说明卡在我们代码里）；
+//   ③ 日志：累计写盘超上限或速率超限（由 core.cpp 的闸门单独处理）。
+//
+// 熔断动作：所有自绘开关置 0 → 每条 hook 直接转交引擎原函数（等价原版），
+//          日志静音，后台线程停写。**只退不追**：不会自动恢复，
+//          避免「熔断→恢复→再熔断」的抖动。
+extern volatile LONG g_tripped;          // 1 = 已熔断
+void WatchdogStart();                    // Stage 3 就绪后启动
+int  WatchdogTripped();                  // 是否已熔断
+long WatchdogPeakRate();                 // 观测到的最高每秒调用数（诊断用）
+const char* WatchdogReason();            // 熔断原因（未熔断返回 ""）
+void WatchdogEnter();                    // hook 入口调用（计数 + 深度）
+void WatchdogLeave();                    // hook 出口调用
+
 }  // namespace sk2

@@ -23,6 +23,55 @@ struct LogGuard {
 long LogWriteCount() { return g_logWrites; }
 long long LogByteCount() { return g_logBytes; }
 
+// ══════════════════════════════════════════════════════════════
+// 日志限流 / 熔断 —— 防止 asi 把整个系统拖死
+// ══════════════════════════════════════════════════════════════
+// 事故模型（用户实测）：游戏一旦卡死，日志是同步 WriteFile 直写磁盘。
+// 如果此时我们的 hook 被高频调用（死循环重绘），日志就会以「每秒上千行」
+// 的速度砸向磁盘 —— 磁盘 IO 打满，整个操作系统随即无响应。
+// 所以日志必须有两道闸：
+//   ① 速率闸：每秒最多 MAX_PER_SEC 行，超出的直接丢弃（只计数）；
+//   ② 总量闸：累计超过 MAX_BYTES 就彻底静音。日志是诊断工具，
+//      绝不允许它成为系统宕机的放大器。
+#define LOG_MAX_BYTES   (8LL * 1024 * 1024)
+#define LOG_MAX_PER_SEC 200
+
+static volatile LONG g_logMuted = 0;     // 1 = 永久静音（已达总量上限）
+static LONG          g_logRateWin = 0;   // 本秒已写行数
+static DWORD         g_logRateTick = 0;
+static long          g_logDropped = 0;
+volatile LONG        g_logMutedFlag = 0; // 供外部（看门狗）查询
+long LogDroppedCount() { return g_logDropped; }
+int  LogIsMuted() { return g_logMuted; }
+
+static bool LogGate(int len) {
+    if (g_logMuted) return false;
+    if (g_logBytes + len > LOG_MAX_BYTES) {
+        g_logMuted = 1;
+        g_logMutedFlag = 1;
+        ++g_logDropped;
+        return false;
+    }
+    const DWORD now = GetTickCount();
+    if (now - g_logRateTick >= 1000) { g_logRateTick = now; g_logRateWin = 0; }
+    if (++g_logRateWin > LOG_MAX_PER_SEC) { ++g_logDropped; return false; }
+    return true;
+}
+
+// 熔断后的收尾：写一条「已静音」说明（绕过闸门，只此一次），然后关门。
+void LogEmergencyStop(const char* why) {
+    if (g_log) {
+        char b[256];
+        int n = _snprintf_s(b, sizeof(b), _TRUNCATE,
+                            "\r\n[!] 日志已熔断（%s）：累计 %lld KB / 丢弃 %ld 行。"
+                            "后续不再写盘，游戏逻辑不受影响。\r\n",
+                            why ? why : "?", g_logBytes / 1024, g_logDropped);
+        if (n > 0) { DWORD w = 0; WriteFile(g_log, b, (DWORD)n, &w, nullptr); g_logBytes += w; }
+    }
+    g_logMuted = 1;
+    g_logMutedFlag = 1;
+}
+
 void InitLog() {
     if (g_log) return;
     char dir[MAX_PATH] = {};
@@ -61,6 +110,7 @@ const char* LogPath() { return g_logPath; }
 
 void LogRaw(const char* buf, int len) {
     if (!g_log || len <= 0) return;
+    if (!LogGate(len)) return;
     LogGuard lg;
     DWORD written = 0;
     WriteFile(g_log, buf, (DWORD)len, &written, nullptr);
@@ -69,12 +119,14 @@ void LogRaw(const char* buf, int len) {
 
 void Log(const char* fmt, ...) {
     if (!g_log) return;
+    if (g_logMuted) return;              // 静音后连格式化都省掉
     char buf[2048];
     va_list ap;
     va_start(ap, fmt);
     int n = _vsnprintf_s(buf, sizeof(buf), _TRUNCATE, fmt, ap);
     va_end(ap);
     if (n <= 0) return;
+    if (!LogGate(n)) return;
     LogGuard lg;
     DWORD written = 0;
     WriteFile(g_log, buf, (DWORD)n, &written, nullptr);

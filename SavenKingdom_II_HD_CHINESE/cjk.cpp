@@ -421,6 +421,13 @@ struct PerfGuard {
     ~PerfGuard() { PerfEnd(id); }
 };
 
+// 看门狗计数守卫：只在外层 hook 用（嵌套的内层不重复计数）。
+// 它是「熔断看门狗」的数据来源 —— 速率超限或单次超时都会被熔断。
+struct HookGuard {
+    HookGuard() { WatchdogEnter(); }
+    ~HookGuard() { WatchdogLeave(); }
+};
+
 // ── 字形位图构建 ────────────────────────────────────────────
 // 输出格式与引擎位图一致：{u8 w; u8 0; u8 h; u8 0; u8 pixels[w*h]}
 // 像素值 255 = 透明。
@@ -621,7 +628,10 @@ static void Snip(const char* s, char* out, int cap) {
 static int __fastcall Hook_put(int* f, void* edx, int x, int y,
                                const char* str, char clearBack, int x2, int cap) {
     (void)edx;
+    // ★ 熔断后最优先：立刻原样转发，本插件彻底退出渲染路径。
+    if (g_tripped) return CallOrigPut(f, x, y, str, clearBack, x2, cap);
     PerfGuard pg(PERF_PUT);
+    HookGuard hg;
     g_fontSample = str;
     InterlockedIncrement(&g_putCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
@@ -666,6 +676,7 @@ static int __fastcall Hook_put(int* f, void* edx, int x, int y,
     const char* s = str;
 
     while (*s) {
+        if (g_tripped) break;                    // 熔断：立刻收手，剩余交回引擎
         unsigned char b = (unsigned char)*s;
         if (!IsPairU(b, (unsigned char)s[1])) {
             // 累积一段 ASCII 并交给原函数
@@ -773,7 +784,10 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
                                      const char* str, int spacing, int startLine, char draw)
 {
     (void)edx;
+    if (g_tripped)
+        return ((FN_PARA)g_paraOrig)(th, nullptr, x1, y1, x2, y2, str, spacing, startLine, draw);
     PerfGuard pg(PERF_PARA);
+    HookGuard hg;
     g_fontSample = str;
     InterlockedIncrement(&g_paraCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
@@ -817,6 +831,7 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
     int guard = 0;
 
     while (*s && *s != (char)P_END && ++guard < 8192) {
+        if (g_tripped) break;                    // 熔断：立刻收手，剩余交回引擎
         // ── 第一遍：本行能放下到哪里 ──────────────────────────
         const char* p = s;
         int w = 0;
@@ -989,7 +1004,9 @@ void PatchDbcsWidths(int* f) {
 
 static int __fastcall Hook_put_char(int* th, void* edx, int x, int y, unsigned short ch) {
     (void)edx;
+    if (g_tripped) return ((FN_PUTCHAR)g_putCharOrig)(th, nullptr, x, y, ch);
     PerfGuard pg(PERF_PUTC);
+    HookGuard hg;
     InterlockedIncrement(&g_putCharCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
     if (ch > 0x80) {
@@ -1092,6 +1109,7 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
 
     const char* s = str;
     while (*s) {
+        if (g_tripped) break;                    // 熔断：立刻收手
         const unsigned char b = (unsigned char)*s;
         if (IsPairU(b, (unsigned char)s[1])) {
             int px = 0;
@@ -1155,6 +1173,8 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
 static int __fastcall Hook_put_ascii(int* f, void* edx, int surf, int stride,
                                      int x, int y, const char* s) {
     (void)edx;
+    if (g_tripped) return g_putAsciiOrig ? g_putAsciiOrig(f, nullptr, surf, stride, x, y, s) : (x - 1);
+    HookGuard hg;
     g_fontSample = s;
     InterlockedIncrement(&g_putAsciiCount);
     if (!f || !s || !g_putAsciiOrig) return (x - 1);
@@ -1174,6 +1194,8 @@ static int __fastcall Hook_put_ascii(int* f, void* edx, int surf, int stride,
 static int __fastcall Hook_put_ascii2(int* f, void* edx, int surf, int stride,
                                       int x, int y, const char* s) {
     (void)edx;
+    if (g_tripped) return g_putAscii2Orig ? g_putAscii2Orig(f, nullptr, surf, stride, x, y, s) : (x - 1);
+    HookGuard hg;
     g_fontSample = s;
     if (!f || !s || !g_putAscii2Orig) return (x - 1);
     if (!HasDBCS(s) || !g_putAsciiEnabled || !g_drawEnabled)
@@ -1237,7 +1259,10 @@ static int WrapCharW(int* f, const char* p, int n) {
 static int __fastcall Hook_putwrap(int* f, void* edx, int x1, int y1, int x2, int y2,
                                    const char* str, int lead, int draw, int size) {
     (void)edx;
+    if (g_tripped)
+        return g_wrapOrig(f, nullptr, x1, y1, x2, y2, str, lead, draw, size);
     PerfGuard pg(PERF_WRAP);
+    HookGuard hg;
     g_fontSample = str;
     InterlockedIncrement(&g_wrapCount);
     if (!f || !str || !g_wrapOrig) return 0;
@@ -1255,6 +1280,7 @@ static int __fastcall Hook_putwrap(int* f, void* edx, int x1, int y1, int x2, in
     int lineW = 0;
     const char* p = str;
     while (*p && n < (int)sizeof(buf) - 8) {
+        if (g_tripped) break;                    // 熔断：不再重排，直接交回原函数
         unsigned char b = (unsigned char)*p;
         if (b == 32) { buf[n++] = ' '; lineW += spaceW; ++p; continue; }
         int len = IsPairU(b, (unsigned char)p[1]) ? 2 : 1;
@@ -1332,6 +1358,100 @@ void PerfReport(char* out, int cap) {
                          kPerfName[i], c, ms, c ? (ms * 1000.0 / (double)c) : 0.0);
     }
     if (n == 0) n += _snprintf_s(out + n, cap - n, _TRUNCATE, "    （无数据）\r\n");
+}
+
+// ══════════════════════════════════════════════════════════════
+// 熔断看门狗（防止 asi 把游戏 / 整个系统拖死）
+// ══════════════════════════════════════════════════════════════
+// 设计原则：**宁可中文不显示，也绝不让系统失去响应。**
+// 熔断后所有 hook 变成纯转发（等价原版渲染），且不再写日志。
+//
+// 为什么会「整个操作系统无响应」：
+//   游戏卡死时（引擎自旋/驱动挂起），我们的 hook 每个绘制调用都会被执行，
+//   于是 CPU 单核跑满 + 日志同步写盘把 IO 占满 —— 用户视角就是系统死了。
+//   我们无法修游戏，但可以保证「即使游戏死了，我们也不添乱」。
+volatile LONG g_tripped = 0;
+static volatile LONG g_wdCount = 0;        // 本窗口内 hook 调用数
+static volatile LONG g_wdDepth = 0;        // 当前 hook 嵌套深度
+static volatile DWORD g_wdEnterTick = 0;   // 最外层进入时刻
+static volatile LONG g_wdPeak = 0;         // 观测到的最高每秒调用数
+static char g_wdReason[128] = "";
+
+// 速率阈值：实测正常约 3000~5000 次/秒（put + 逐字节 + 多行 + 单字；
+// 字形与 text_width 不是外层 hook，不计入）。取 4 万 = 正常峰值的 ~8 倍，
+// 避免大地图全屏刷新被误熔断；真正的死循环是每秒几十万次，远超它。
+static const LONG WD_RATE_MAX = 40000;
+// 单次 hook 超过这个毫秒数未返回，就认为卡在我们代码里
+static const DWORD WD_STUCK_MS = 500;
+
+void WatchdogEnter() {
+    if (g_tripped) return;
+    ++g_wdCount;
+    if (++g_wdDepth == 1) g_wdEnterTick = GetTickCount();
+}
+void WatchdogLeave() {
+    if (--g_wdDepth <= 0) { g_wdDepth = 0; g_wdEnterTick = 0; }
+}
+int  WatchdogTripped() { return g_tripped != 0; }
+long WatchdogPeakRate() { return g_wdPeak; }
+const char* WatchdogReason() { return g_wdReason; }
+
+static void WatchdogTrip(const char* why) {
+    if (InterlockedExchange(&g_tripped, 1) != 0) return;    // 只执行一次
+    _snprintf_s(g_wdReason, sizeof(g_wdReason), _TRUNCATE, "%s", why ? why : "?");
+
+    // ① 全部自绘开关置 0 —— hook 随即变成「检查一个 bool 就转发」，
+    //    开销降到与原版一致；游戏画面退回英文（乱码），但不再卡。
+    g_drawEnabled     = false;
+    g_paraEnabled     = false;
+    g_putAsciiEnabled = false;
+    g_wrapEnabled     = false;
+    g_hyperEnabled    = false;
+
+    // ② 诊断也停 —— 它每次 put 都要扫一遍串。
+    DiagInit(0);
+
+    // ③ 日志静音（先写一条说明，此后彻底不落盘，避免 IO 把系统拖死）。
+    LogEmergencyStop(g_wdReason);
+}
+
+static DWORD WINAPI WatchdogProc(LPVOID) {
+    // 最低优先级：即便游戏卡死，也要把 CPU 让给系统其它进程，
+    // 保证鼠标、任务管理器还能动 —— 这是「不再让 OS 无响应」的关键一步。
+    SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_LOWEST);
+    for (;;) {
+        Sleep(1000);
+        const LONG c = g_wdCount;
+        g_wdCount = 0;
+        if (c > g_wdPeak) g_wdPeak = c;
+
+        if (c > WD_RATE_MAX) {
+            char r[128];
+            _snprintf_s(r, sizeof(r), _TRUNCATE,
+                        "hook 调用速率异常：%ld 次/秒", c);
+            WatchdogTrip(r);
+            continue;
+        }
+        // 超时判据：深度仍 > 0 且已过去很久 —— 说明某次调用卡在我们代码里
+        if (g_wdDepth > 0) {
+            const DWORD t = g_wdEnterTick;
+            if (t && GetTickCount() - t > WD_STUCK_MS) {
+                char r[128];
+                _snprintf_s(r, sizeof(r), _TRUNCATE,
+                            "单次 hook 超过 %lu ms 未返回（疑似自绘路径卡死）",
+                            (unsigned long)WD_STUCK_MS);
+                WatchdogTrip(r);
+            }
+        }
+    }
+    return 0;
+}
+
+void WatchdogStart() {
+    HANDLE t = CreateThread(nullptr, 0, WatchdogProc, nullptr, 0, nullptr);
+    if (t) CloseHandle(t);
+    Log("[i] 熔断看门狗已启动（速率闸 %ld 次/秒，单次超时 %lu ms）\r\n",
+        (long)WD_RATE_MAX, (unsigned long)WD_STUCK_MS);
 }
 
 // 读取 <exe目录>\update\<name> 的内容（纯文本，最多 256 字节）
@@ -1531,6 +1651,23 @@ static void LoadRenderCfg() {
                 ++q;
             }
             Log("[i] render.ini: fontcolor 定向配色 %d 条\r\n", g_fcOvN);
+        }
+        // ── 应急开关 safe=1 ──────────────────────────────────
+        // 一键退化为「原版渲染」：所有自绘开关置 0、诊断关闭。
+        // 等价于画面回到英文（会被引擎按单字节画成乱码），但绝不会有本插件的
+        // 额外开销。用于「怀疑汉化导致卡死」时的最快对照实验。
+        // ★ 必须放在最后处理，它会覆盖上面所有 xxx=1 的设置。
+        p = strstr(buf, "safe=");
+        if (p && atoi(p + 5) != 0) {
+            g_drawEnabled = false;
+            g_paraEnabled = false;
+            g_putAsciiEnabled = false;
+            g_wrapEnabled = false;
+            g_hyperEnabled = false;
+            g_perfEnabled = 0;
+            DiagInit(0);
+            Log("[!] render.ini: safe=1 —— 已关闭全部自绘与诊断，"
+                "本插件退化为纯转发（画面回到英文原版）\r\n");
         }
         return;
     }

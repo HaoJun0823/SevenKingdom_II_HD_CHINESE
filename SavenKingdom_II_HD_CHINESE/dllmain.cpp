@@ -131,7 +131,11 @@ static void CallMonitorProc() {
     // 上一次采样的快照 —— 用来算「这 5 秒里新增了多少」，
     // 累计值看不出「点一下按钮到底花了多少」。
     long long prevGlyph = 0, prevPut = 0, prevTw = 0, prevW = 0, prevB = 0;
-    for (int i = 1; i <= 24; ++i) {
+    bool confirmed = false;
+    // ★ 采样窗口从 2 分钟延长到 1 小时（720 次）—— 用户实测卡顿出现在「玩 7 分钟
+    //   左右」，原来的 24 次正好在 2 分钟就停了，把现场整段错过。
+    //   日志有速率闸与总量闸，长跑不会把磁盘写爆。
+    for (int i = 1; i <= 720; ++i) {
         Sleep(5000);
         LONG n = TextWidthCallCount();
         LONG p = PutCallCount();
@@ -139,8 +143,9 @@ static void CallMonitorProc() {
         LONG v = VqCount();
         long long w = LogWriteCount(), b = LogByteCount();
         Log("[i] 监控 %2d 次 (每5秒): text_width=%ld  put=%ld  段落=%ld  单字=%ld  "
-            "中文字形=%ld  VirtualQuery=%ld  日志=%lld次/%lldKB\r\n",
-            i, n, p, ParagraphCallCount(), PutCharCallCount(), z, v, w, b / 1024);
+            "中文字形=%ld  VirtualQuery=%ld  日志=%lld次/%lldKB  峰值速率=%ld/秒%s\r\n",
+            i, n, p, ParagraphCallCount(), PutCharCallCount(), z, v, w, b / 1024,
+            WatchdogPeakRate(), WatchdogTripped() ? "  ★已熔断" : "");
         Log("[i]       └ 本 5 秒新增: 字形=%lld  put=%ld  text_width=%ld  日志=%lld次\r\n",
             (long long)z - prevGlyph, (long)(p - prevPut), (long)(n - prevTw), w - prevW);
         prevGlyph = z; prevPut = p; prevTw = n; prevW = w; prevB = b;
@@ -150,15 +155,26 @@ static void CallMonitorProc() {
             Log("[i] --- 逐路径耗时（自启动累计）---\r\n");
             LogRaw(rep, lstrlenA(rep));
         }
-        if (n > 0 && i >= 3) {
+        if (!confirmed && n > 0 && i >= 3) {
+            confirmed = true;
             Log("[O] hook 确认生效（已被游戏调用）\r\n");
+        }
+        if (WatchdogTripped()) {
+            Log("[!] 看门狗已熔断：%s —— 自绘已全部关闭，画面退回原版英文。\r\n",
+                WatchdogReason());
         }
     }
 }
 
 void StartCallMonitor() {
     HANDLE t = CreateThread(nullptr, 0,
-        [](LPVOID) -> DWORD { CallMonitorProc(); return 0; }, nullptr, 0, nullptr);
+        [](LPVOID) -> DWORD {
+            // 最低优先级：诊断线程永远不与游戏抢 CPU（游戏卡死时尤其重要，
+            // 要保证系统和其它进程还能正常调度）。
+            SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_LOWEST);
+            CallMonitorProc();
+            return 0;
+        }, nullptr, 0, nullptr);
     if (t) CloseHandle(t);
 }
 
@@ -188,6 +204,9 @@ static void Stage3_FontInfo() {
         Log("[!] 多行文本换行未挂钩（超宽中文不会自动折行）\r\n");
     // exe 内置 UI 标签（Change Display Mode / Full Screen Mode 等）运行时本地化
     PatchExeStrings();
+    // ★ 熔断看门狗：一旦发现 hook 被异常高频调用（游戏卡死/自旋）或单次调用
+    //   超时，立即关闭全部自绘与日志 —— 保证「即使游戏死了，系统也不会失去响应」。
+    WatchdogStart();
     Log("[O] 中文渲染已就绪\r\n");
     Log("[!] 纯 ASCII 文本仍走原函数；含中文的串由本插件自绘\r\n");
     Log("[i] 若中文大小不合适，可在 update\\fontsize.txt 写 13 / 16 / 24 覆盖\r\n");
