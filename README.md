@@ -139,8 +139,14 @@ python tools\check_struct.py        :: 结构校验
 
 ---
 
-## 六、免责
+## 六、License
 
-非官方补丁，仅供个人学习与研究使用。
-不修改、不分发游戏本体文件（`dsound.dll` 是游戏自带文件，原样放回即可）。
-如果觉得好玩，请支持正版。
+本仓库（插件源码、工具链、译文数据）采用 **GPL-3.0**，见 [LICENSE](LICENSE)。
+
+第三方：
+
+- `LICENSES/ASILoader.txt` —— Ultimate ASI Loader（ThirteenAG）的 MIT 许可副本
+- 游戏本体 `7K2.exe` 与 `dsound.dll`（MILES 音频引擎）不属于本项目内容，
+  装补丁时是从游戏目录原样引用，不做修改也不随本仓库分发
+
+非官方补丁。如果觉得好玩，请支持正版。
