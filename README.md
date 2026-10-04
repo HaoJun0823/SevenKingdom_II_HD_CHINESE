@@ -184,12 +184,26 @@ python tools\check_struct.py        :: 结构校验
 
 ## 七、License
 
-本仓库（插件源码、工具链、译文数据）采用 **GPL-3.0**，见 [LICENSE](LICENSE)。
+本仓库（插件源码、工具链、译文数据）采用 **GPL-3.0 或更高版本
+（SPDX: GPL-3.0-or-later）**。
 
-第三方：
+根目录 [LICENSE](LICENSE) 是**项目级声明文件**（主许可证、游戏著作权声明、
+子模块归属、附加条款、免责声明都在里面）；
+完整许可证全文按类型归档在 `LICENSES/`：
 
-- `LICENSES/ASILoader.txt` —— Ultimate ASI Loader（ThirteenAG）的 MIT 许可副本
-- 游戏本体 `7K2.exe` 与 `dsound.dll`（MILES 音频引擎）不属于本项目内容，
-  装补丁时是从游戏目录原样引用，不做修改也不随本仓库分发
+| 文件 | 内容 |
+|---|---|
+| `LICENSES/GPLv3.txt` | GNU GPL v3 官方全文（2026-10-05 之前它就是根目录 `LICENSE`） |
+| `LICENSES/7k2.txt` | 子模块 `7k2_src` 游戏源码的 GPL v2 全文（Enlight / 7kfans） |
+| `LICENSES/ASILoader.txt` | Ultimate ASI Loader（ThirteenAG）的 MIT 许可副本 |
+
+游戏本体（版权与商标）：
+
+- `7K2.exe`、`dsound.dll`（MILES 音频引擎）与所有游戏资源（`.idx` / `.set`
+   / 音乐 / 视频 / 贴图 / 字体）**一个字节都不随本仓库分发**，
+  著作权与商标归 Enlight Software Ltd.、7kfans、发行方各自所有
+- 本仓库只给译文文本、译文数据和一个 `sk2_zh.asi`，使用者自己装到
+  **合法取得**的游戏目录上；不得把补丁与游戏打包分发
+- 详见 [LICENSE](LICENSE) 第二、三、四节
 
 非官方补丁。如果觉得好玩，请支持正版。
