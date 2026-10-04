@@ -167,10 +167,43 @@ def collect_missing(ft):
     return need
 
 
+def collect_missing_dir(ft):
+    """扫描 update_res_staged/ 下**我们自己的**资源，收录主表没有字形的字。
+
+    与 collect_missing_std 的区别：那个只盯 STD.SET 的已改字段，
+    这个覆盖 .stg / .evt / .res / .TXR 等容器（教程战役第二批就是靠它）。
+    只收 is_glyph_char 认可的字符，避免把二进制段里的符号当汉字收进来。
+    """
+    import zhconv
+    import glob
+    simp = lambda c: zhconv.convert(c, 'zh-hans')
+    need = {}
+    for p in glob.glob(os.path.join(OURS, '**', '*'), recursive=True):
+        if not os.path.isfile(p):
+            continue
+        if p.upper().endswith('STD.SET'):
+            continue
+        data = open(p, 'rb').read()
+        for pos, kind, pair, raw in iter_pairs(data):
+            if kind != 'std':
+                continue
+            if ft.glyph_of_std(pair) != 0:
+                continue
+            try:
+                ch = bytes(pair).decode('cp950')
+            except Exception:
+                continue
+            if not is_glyph_char(ch):
+                continue
+            need[pair] = simp(ch)
+    return need
+
+
 def main():
     ft = FontTable()
     need = collect_missing(ft)
     need.update(collect_missing_std(ft))
+    need.update(collect_missing_dir(ft))
     codes = sorted(need)
     print('main N_CHARS =', ft.n_chars)
     print('missing glyph chars: %d' % len(codes))

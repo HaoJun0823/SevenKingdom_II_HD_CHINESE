@@ -124,30 +124,71 @@ def write_res_idx(path, recs):
     return len(hdr) + len(blob)
 
 
-def build_container(rel, zmap):
+def build_container(rel, zmap, rawmap=None, submap=None):
+    """重建 ResourceIdx 容器。
+
+    zmap    : {记录名: 简体中文}  —— 走「编码 + 危险尾字节重映射」通道
+    rawmap  : {记录名: east 记录名} —— 英文逐字节相同，直接搬 east 的中文字节
+    submap  : {记录名: [记号...]}  —— 搬 east 字节后，把 %s 按序换成字面记号
+    """
     src = os.path.join(GAME, *rel.split('/'))
     data, recs = read_res_idx(src)
+    rawmap = rawmap or {}
+    submap = submap or {}
+    east = {}
+    if rawmap or submap:
+        ed = open(os.path.join(OURS, *rel.replace('tutorial', 'east').split('/')), 'rb').read()
+        ecnt = struct.unpack('<h', ed[0:2])[0]
+        idx = []
+        for i in range(ecnt + 1):
+            off = 2 + i * 13
+            nm = ed[off:off + 9].rstrip(b'\x00').decode('latin-1')
+            idx.append((nm, struct.unpack('<I', ed[off + 9:off + 13])[0]))
+        for i in range(ecnt):
+            nm, s = idx[i]
+            east[nm] = ed[s:idx[i + 1][1]].split(b'\x00')[0]
     out = []
     changed = 0
+    kept = []
     for name, off, size in recs:
         raw = data[off:off + size]
         text_end = raw.find(b'\x00')
         if text_end < 0:
             text_end = len(raw)
         core, tail = raw[:text_end], raw[text_end:]
+        new = None
         if name in zmap and core.strip(b' \r\n\t'):
             new = enc(zmap[name])
+        elif name in rawmap:
+            new = east[rawmap[name]]
+        elif name in submap:
+            new = east[name]
+            toks = submap[name]
+            n = new.count(b'%s')
+            if n != len(toks):
+                kept.append(name)
+                print('    [!!] %s 记号数不符：中文 %d 个 %%s，英文 %d 个记号，放弃复用'
+                      % (name, n, len(toks)))
+                new = None
+            else:
+                for t in toks:
+                    new = new.replace(b'%s', t.encode('latin-1'), 1)
+        if new is not None:
             out.append((name, new + tail))
             changed += 1
             print('    [%s] %d -> %d 字节 (尾 %d)' % (name, len(core), len(new), len(tail)))
         else:
             out.append((name, raw))
+            if core.strip(b' \r\n\t'):
+                kept.append(name)
     dst = os.path.join(OURS, *rel.split('/'))
     if DRY:
         print('  %-24s 干跑：将替换 %d/%d 条 -> %s' % (rel, changed, len(recs), dst))
     else:
         n = write_res_idx(dst, out)
         print('  %-24s 已写入 %s (%d 字节, 替换 %d 条)' % (rel, dst, n, changed))
+    if kept:
+        print('    ★ 仍为英文（%d 条）: %s' % (len(kept), ' '.join(kept)))
 
 
 # 标签名可能很长（如 [<enemy/friendly/...><unit description>UNRD] 有 44 字符），
@@ -218,6 +259,15 @@ def main():
                 'Campaign/INTROTXT.RES', 'Resource/TUT_INTR.RES']:
         if rel in zh:
             build_container(rel, zh[rel])
+
+    print()
+    print('=' * 72)
+    print('A2. 教程战役（第二批）：新译 + 同源复用')
+    print('=' * 72)
+    from tut_zh import (TUT_STG, TUT_EVT, REUSE_STG, REUSE_EVT_SUB, REUSE_EVT_RAW)
+    build_container('Campaign/tutorial.stg', TUT_STG, rawmap=REUSE_STG)
+    build_container('Campaign/tutorial.evt', TUT_EVT,
+                    rawmap={k: k for k in REUSE_EVT_RAW}, submap=REUSE_EVT_SUB)
 
     print()
     print('=' * 72)

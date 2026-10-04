@@ -770,11 +770,45 @@ a2(EDX) 与 a3 同值、函数体不用；ECX=this，栈上 8 个参数 -> ret 0
 | `Resource/TUT_INTR.RES` | 12 | ✅ |
 | `Resource/INTROTXT.RES` / `CPG_INTR.RES` / `Campaign/INTROTXT.RES` | 1×3 | ✅ |
 | `t_gmenu/t_reps/t_sedit/t_unit` 的 9 个 tag | 9 | ✅ |
-| `Campaign/tutorial.stg` / `tutorial.evt` | 45 + 28 | ⬜ 第二批（约 3.1 万字符） |
+| `Campaign/tutorial.stg` / `tutorial.evt` | 45 + 28 | ✅ 第二批已完成（100% 覆盖） |
 | `Resource/CREDIT.RES` | 4 | ➖ 全是人名，无需翻译 |
 
 工具链：`zh_data.py`（译文源，简体） → `build_gap.py`（编码 + 重映射 + 重建容器）
 → `gen_extra.py`（补字形） → 重新编译 ASI。
+
+### 第二批（教程战役）的两点关键发现
+
+**1. 教程与东方战役同源，能复用就不重译。**
+
+`tutorial.stg` / `tutorial.evt` 与 `EAST.STG` / `EAST.EVT` 出自同一批素材：
+
+| 文件 | 记录数 | 英文与 east 逐字节相同 | 需另写 |
+|---|---|---|---|
+| `tutorial.stg` | 45 | 17 | 28 |
+| `tutorial.evt` | 28 | 7 | 21（其中 16 条只差占位记号） |
+
+- **逐字节相同**的走「同源字节复用」：直接搬 `east.stg`/`east.evt` 已编码好的中文记录，
+  不重新编码，字形与自定义对 100% 一致。
+- 教程版把 `%s` 换成了**字面记号** `(name)` / `(species)` / `(Date)`。
+  复用时按英文里记号的出现顺序逐个替换 `REUSE_EVT_SUB`，
+  脚本会校验「记号数 == 中文 `%s` 数」，对不上就放弃复用并报警。
+- 只有 5 条（12A / 5A / 8B / 9C1 / 9C2）因为英文结构不同，必须另写。
+
+**2. `着` 编不进 cp950。**
+
+简体「着」不在 Big5 里，zhconv 也不会把它转成「著」，
+会被 `enc_zh` 回退成全角空格（游戏里就是一个空洞）。
+第二批译文里统一写成「著」。
+
+### 补字：从「扫 gap_zh.json」改成「扫成品资源」
+
+`gen_extra.py` 原来只从 `gap_zh.json`（简体译文源）收集缺字，
+**漏掉了同源复用搬过来的字节和 TUT_TEXT.RES 里的旧译文**。
+实测已发货的 `TUT_TEXT.RES` 就有 7 个字形是空的（冀 壣 盔 磾 茯 鰨 ヶ）。
+
+新增 `collect_missing_dir()`：直接扫 `update_res_staged/` 下所有成品资源
+（跳过 STD.SET —— 它的二进制段会产生近 2000 条假缺字），
+用 `is_glyph_char()` 过滤掉符号/框线。`EXTRA_N` 因此 15 → 45。
 
 ---
 
