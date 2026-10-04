@@ -270,6 +270,9 @@ int g_colorOverride = -1;
 // 画出来却不见。本开关记录每个「ASCII 段」的 测量宽/右界/原函数返回位置，
 // 用来判断是我们算窄了右界（原函数提前 break）还是别的原因。
 int g_segDiag = 0;
+// 逐字符诊断：排查「数字等单字节字符不显示」——是字库范围外还是字形宽为 0。
+// 默认关闭，开销仅一次 InterlockedIncrement（在 ASCII 分支内）。
+int g_asciiDiag = 0;
 
 // render.ini: fontcolor=RVA:NN[;RVA:NN...] —— 只对**指定字体对象**强制正文色。// RVA = 该 Font 对象相对模块基址的偏移（日志里 "Font %08X" 那个值减 Base()）。
 // 也支持关键字 white / bright：white = 取调色板里最亮的一项（通常是纯白）。
@@ -941,6 +944,29 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
             }
             dx += adv + inter;
             q += nb;
+
+            // ── ASCII 段落诊断（render.ini: seg=2）───────────────
+            // 症状：某些单字节字符（已知是时间标签里的数字 '0'）不显示。
+            // 判据：InfoEntry 返回空 = 该码不在字体 FIRST_CHAR~LAST_CHAR
+            //       范围内，被当成「无字形」跳过；e[1]==0 = 字形宽为 0。
+            // 只记「有对应字形条目但被跳过」和「码在范围外」两种情况。
+            if (g_asciiDiag) {
+                static LONG adN = 0;
+                LONG an = InterlockedIncrement(&adN);
+                const uint8_t* ee = InfoEntry(th, c);
+                if (an <= 40 && c != P_SPACE && c != P_TAB
+                    && c != 0x0D && c != 0x0A) {
+                    int first = F16(th, font_off::FIRST_CHAR);
+                    int last  = F16(th, font_off::LAST_CHAR);
+                    Log("[asc] ch=%02X '%c' 字体RVA=%08X FIRST=%d LAST=%d 条目=%s 宽=%d "
+                        "dx=%d draw=%d buf=%p bmp=%p 画布=%dx%d\r\n",
+                        c, (c >= 0x20 && c < 0x7F) ? c : '?',
+                        (uint32_t)(uintptr_t)th, first, last,
+                        ee ? "有" : "无(越界或无字库)",
+                        ee ? (int)ee[1] : -1, dx, (int)drawThis, buf, bmpBase,
+                        ScreenW(), ScreenH());
+                }
+            }
         }
 
         // ── 行尾处理 ────────────────────────────────────────
@@ -1743,11 +1769,14 @@ static void LoadRenderCfg() {
                 g_perfEnabled ? "(逐路径耗时统计已开，见监控行)" : "(已关闭)");
         }
         // seg=1 打开混合串分段诊断（查「数字画不出来」用）
+        // seg=2 打开逐字符诊断（查「数字为何画不出来」：字体范围 / 字形宽 / 画布）
         p = strstr(buf, "seg=");
         if (p) {
             g_segDiag = (atoi(p + 4) != 0);
+            g_asciiDiag = (g_segDiag >= 2);
             Log("[i] render.ini: seg=%d  %s\r\n", g_segDiag,
-                g_segDiag ? "(记录 ASCII 段的测量/右界/返回位置)" : "(已关闭)");
+                g_segDiag >= 2 ? "(逐字符：字体范围/字形宽/画布，第2档)"
+                 : g_segDiag   ? "(记录 ASCII 段的测量/右界/返回位置)" : "(已关闭)");
         }
         p = strstr(buf, "color=");
         if (p) {
