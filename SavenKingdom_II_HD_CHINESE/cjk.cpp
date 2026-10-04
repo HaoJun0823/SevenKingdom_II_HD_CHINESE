@@ -356,16 +356,27 @@ int BuildGlyph(int* f, unsigned char lead, unsigned char trail,
 }
 
 // 用纯色矩形填一块区域（替代引擎的 blt_buf，避免依赖额外引擎函数）
+// ★ sub_403080 不裁剪，所以每块必须先确认整块落在画布内：横向分块填时
+//   最后一块天然可能越过 limX 最多 43px，不检查就会写到画布外踩坏堆。
 void FillRect(int x1, int y1, int x2, int y2, uint8_t color) {
     if (x2 < x1 || y2 < y1) return;
     int h = y2 - y1 + 1;
     if (h <= 0 || h > 44) return;
     void* buf = ActiveBuf();
     if (!buf) return;
+    const int cw = ScreenW(), chh = ScreenH();
+    if (x1 < 0 || y1 < 0) return;
+    if (x1 >= cw || y1 >= chh) return;
+    // 高度按画布裁剪（只裁尾，避免整块贴底时越界）
+    if (y1 + h > chh) h = chh - y1;
+    if (h <= 0) return;
     // 位图缓冲只有 44 宽，横向分块填
     for (int x = x1; x <= x2; x += 44) {
         int w = x2 - x + 1;
         if (w > 44) w = 44;
+        if (x >= cw) break;
+        if (x + w > cw) w = cw - x;          // 最后一块按画布右界裁掉
+        if (w <= 0) break;
         memset(g_glyph.px, color, (size_t)w * h);
         g_glyph.head[0] = (uint8_t)w; g_glyph.head[1] = 0;
         g_glyph.head[2] = (uint8_t)h; g_glyph.head[3] = 0;
@@ -922,8 +933,15 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
                 //   早期版本用 gx + W <= limit 判定，导致每行最后一个字因为
                 //   多出的 2px 边被误判越界而**整字丢弃**（日志里的
                 //   "[!] puta 越界跳过: x=56 w=15 lim=70"，56+15=71>70）。
-                //   这里改为允许这 2px 边溢出，与引擎行为一致。
-                if (gx >= 0 && gy >= 0 && W > 0 && H > 0 && gx + px <= limit + 2) {
+                //
+                // ★★ 但放宽必须配一把「画布兜底锁」：
+                //   sub_403080 完全不做裁剪，写到画布外就是踩堆。实测堆被写坏后
+                //   表现为后续任意位置拿到野指针（例如精灵 RLE 解码器读飞
+                //   ~500KB 撞到未提交页 → 0xC0000005）。所以这里额外要求整块
+                //   字格落在画布内 —— 既不会丢末字，也绝不出画布。
+                if (gx >= 0 && gy >= 0 && W > 0 && H > 0
+                    && gx + W <= ScreenW() && gy + H <= ScreenH()
+                    && gx + px <= limit + 2) {
                     g_blit8(surf, stride, gx, gy, &g_glyph, pal);
                     InterlockedIncrement(&g_zhCount);
                 } else {

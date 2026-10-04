@@ -8,7 +8,7 @@
 [RSV8]Reserved
 [RSV9]Reserved
 [RSVa]Reserved
-[<town name>,<number>,<nation name>TRBL]%2d%2p{笰u笰w%1s(%3s)%2p{秈︽|秈︽}玵睹 
+[<town name>,<number>,<nation name>TRBL]%2d%2p{笰チ|笰チ}%1s(%3s)%2p{秈︽|秈︽}玵睹 
 [<fromTownName>,<toTownName>,<nationality>,<number of people>,<worker title>MIGE]%4d%3s%5s%4p{竒|竒}眖马%1s穐綞%2s
 [<fromTownName>,<toTownName>,<nationality>,<number of people>,<worker title>MIGI]%4d%3s%5s%4p{竒|竒}眖%1sㄓ马%2s
 [NEWK]%1s烩旧盪癬穝瓣
@@ -92,7 +92,7 @@
 [<General/Order><name>EVGD]%1s%2sぃ┋痜珿
 [<unit name>EVUD]%1sぃ┋琕痜τ
 [<number><firm>EVHP]%1d%1p{驹|驹}(%2sい)%1p{竒|竒}紼
-[<number><firm>EVFP]%1d%1p{抍|抍}%1p{|}%1p{祇ネ紼|祇ネ紼瑦p%2s
+[<number><firm>EVFP]%1d%1p{抍|抍}%1p{|}%1p{祇ネ紼|祇ネ紼}%2s
 [EVIF]马%1s祇慣竟腳畐
 [EVTP]紼炳%1d%1p{|}(马%2s)
 [EVFD]%1s砆種怶篟反%2d%2p{赤㏑|赤㏑}

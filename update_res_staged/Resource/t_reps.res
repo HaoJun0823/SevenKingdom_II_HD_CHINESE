@@ -13,11 +13,11 @@
 [DIFR]螟单
 [SBON]贱纘
 [CHEA]国
-[DUYD]%1d%1p{恎|恎}%2d%2p{rぱ}
-[DUDD]%1d%1p{rぱ}
+[DUYD]%1d%1p{恎|恎}%2d%2p{ぱ|ぱ}
+[DUDD]%1d%1p{ぱ|ぱ}
 [DUYM]%1d%1p{恎|恎}%2d%2p{る|る}
 [DUMM]%1d%1p{る|る}
-[DUHM]%1z%1q{||}%2d%2p{だ膽uだ膽w
+[DUHM]%1z%1q{||}%2d%2p{だ牧|だ牧}
 [RRS1]Reserved
 [RRS2]Reserved
 [RRS3]Reserved
@@ -80,8 +80,8 @@
 [YEXP]恎や
 [YINC]恎Μ
 [TTWN]%1p{马|马}羆计%1d
-[TCTZ]%1p{キuキw羆计%1d
-[TPEA]%1p{笰u笰w羆计%1d
+[TCTZ]%1p{キチ|キチ}羆计%1d
+[TPEA]%1p{笰チ|笰チ}羆计%1d
 [TOUN]ㄤウ羆计%1d
 [TPOP]羆计%1d
 [TOTL]羆秖
@@ -141,7 +141,7 @@
 [TST2]翴2
 [TST3]翴3
 [GDCR]┮笲更砯
-[TCAR]%1p{坝稅i坝稅j羆计%1d
+[TCAR]%1p{坝钉|坝钉}羆计%1d
 [COMD]揣﹛
 [CMDS]狝驹
 [STAT]篈
@@ -169,7 +169,7 @@
 [SPLO]翴
 [SPSK]м砃
 [SPAC]︽笆
-[TSPY]%1p{丁恳|丁繎P羆计%1d
+[TSPY]%1p{丁恳|丁恳}羆计%1d
 [SLEP]肩ヱ
 [AGIT]捍笆
 [SPYA]Reserved
