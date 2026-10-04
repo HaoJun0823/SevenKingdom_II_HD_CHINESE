@@ -128,18 +128,30 @@ static void CallMonitorProc() {
     static bool started = false;
     if (started) return;
     started = true;
+    // 上一次采样的快照 —— 用来算「这 5 秒里新增了多少」，
+    // 累计值看不出「点一下按钮到底花了多少」。
+    long long prevGlyph = 0, prevPut = 0, prevTw = 0, prevW = 0, prevB = 0;
     for (int i = 1; i <= 24; ++i) {
         Sleep(5000);
         LONG n = TextWidthCallCount();
         LONG p = PutCallCount();
         LONG z = CjkGlyphCount();
         LONG v = VqCount();
+        long long w = LogWriteCount(), b = LogByteCount();
         Log("[i] 监控 %2d 次 (每5秒): text_width=%ld  put=%ld  段落=%ld  单字=%ld  "
-            "中文字形=%ld  VirtualQuery=%ld\r\n",
-            i, n, p, ParagraphCallCount(), PutCharCallCount(), z, v);
+            "中文字形=%ld  VirtualQuery=%ld  日志=%lld次/%lldKB\r\n",
+            i, n, p, ParagraphCallCount(), PutCharCallCount(), z, v, w, b / 1024);
+        Log("[i]       └ 本 5 秒新增: 字形=%lld  put=%ld  text_width=%ld  日志=%lld次\r\n",
+            (long long)z - prevGlyph, (long)(p - prevPut), (long)(n - prevTw), w - prevW);
+        prevGlyph = z; prevPut = p; prevTw = n; prevW = w; prevB = b;
+        {
+            char rep[1400];
+            PerfReport(rep, sizeof(rep));
+            Log("[i] --- 逐路径耗时（自启动累计）---\r\n");
+            LogRaw(rep, lstrlenA(rep));
+        }
         if (n > 0 && i >= 3) {
             Log("[O] hook 确认生效（已被游戏调用）\r\n");
-            break;
         }
     }
 }

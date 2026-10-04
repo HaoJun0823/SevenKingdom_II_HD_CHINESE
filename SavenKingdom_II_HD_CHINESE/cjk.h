@@ -22,4 +22,28 @@ int  MeasureText(int* font, const char* s);   // 用引擎语义测量串宽
 // 诊断模块 diag.cpp 用它来区分「字库缺口」与「字节错位」这两类乱码。
 int  GlyphIndex(int lead, int trail);
 
+// ── 逐路径耗时统计（render.ini: perf=1 开启，缺省开）──────────
+// 目的：把「按按钮卡一下」定性到具体哪条路径，而不是靠猜。
+// 每次 hook 进出各读一次高精度计数器，累加到对应槽位，
+// 监控行（每 5 秒）打印 次数/累计毫秒/单次微秒。
+enum {
+    PERF_TW = 0,    // text_width（测量，引擎最热函数）
+    PERF_PUT,       // Font::put
+    PERF_PARA,      // Font::put_paragraph
+    PERF_PUTC,      // Font::put_char
+    PERF_PUTA,      // 逐字节 ASCII 路径 0x4C2110 / 0x4C1F40
+    PERF_WRAP,      // 居中多行文本
+    PERF_GLYPH,     // 单个中文字形自绘（含 BuildGlyph + put_bitmap）
+    PERF_FILL,      // 尾部背景清除 FillRect
+    PERF_DIAG,      // 乱码诊断 DiagText
+    PERF_LOG,       // 日志写入 Log/LogRaw
+    PERF_N
+};
+void           PerfBegin(int id);            // 与 PerfEnd 配对
+void           PerfEnd(int id);
+long           PerfCount(int id);
+double         PerfMs(int id);               // 累计毫秒
+void           PerfReport(char* out, int cap);   // 生成一段多行报告
+extern int     g_perfEnabled;
+
 }  // namespace sk2

@@ -176,6 +176,8 @@ void LogBytes(const char* tag, const void* p, int n);
 void CloseLog();
 const char* LogPath();
 void LogRaw(const char* buf, int len);   // 原样写入（探针高频路径用，免格式化和 1KB 截断）
+long LogWriteCount();                    // 日志 WriteFile 次数（IO 压力指标）
+long long LogByteCount();                // 日志累计写入字节数
 
 // -- 挂钩原语 -------------------------------------------------
 

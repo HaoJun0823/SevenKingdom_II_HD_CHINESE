@@ -22,6 +22,7 @@
 #include "core.h"
 #include "fontwidth.h"
 #include "hooks.h"
+#include "cjk.h"        // 逐路径耗时统计 PerfBegin/PerfEnd
 
 using namespace sk2;
 
@@ -273,12 +274,21 @@ static void TraceFirstCalls(int* font, const char* str, int a3, int a4, int a5, 
         if (k > 0) LogRaw(buf, k);
         return;
     }
-    if ((idx % 1000) == 0) {
-        Log("[i] text_width 累计调用 %ld 次（hook 工作正常）\r\n", idx);
-    }
+    // ★ 这里原来每 1000 次调用就写一行日志。text_width 是引擎**最热**的函数
+    //   （实测 15 秒内 4.4 万次），于是每秒几十次同步 WriteFile 直接压在渲染
+    //   线程上 —— 点按钮时的卡顿有一部分就来自它。
+    //   计数已在监控行（每 5 秒）里给出，这里不再写盘。
 }
 
+// 计时守卫：TextWidthImpl 有多个 return，用 RAII 保证每次都记账。
+// 注意：本函数会被 MeasureText 从 put 路径里调用，嵌套的是不同 id 的槽位，互不覆盖。
+struct TwPerfGuard {
+    TwPerfGuard() { sk2::PerfBegin(sk2::PERF_TW); }
+    ~TwPerfGuard() { sk2::PerfEnd(sk2::PERF_TW); }
+};
+
 static int TextWidthImpl(int* font, const char* str, int a3, int a4, int a5) {
+    TwPerfGuard pg;
     InterlockedIncrement(&g_twCount);
 
     if (!*reinterpret_cast<int8_t*>(font)) return 0;   // 未初始化

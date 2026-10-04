@@ -410,6 +410,17 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
     *shadow = (signed char)s;
 }
 
+// ── RAII 计时守卫 ───────────────────────────────────────────
+// 函数有多个 return 点时用它最省事。PerfBegin/PerfEnd 的声明在 cjk.h，
+// 实现放在本文件后部的「逐路径耗时统计」块里（声明先于使用即可）。
+// ★ 注意：不能在含 __try/__except 的函数里用（MSVC C2712），
+//   那种地方要显式调 PerfBegin/PerfEnd。
+struct PerfGuard {
+    int id;
+    explicit PerfGuard(int i) : id(i) { PerfBegin(id); }
+    ~PerfGuard() { PerfEnd(id); }
+};
+
 // ── 字形位图构建 ────────────────────────────────────────────
 // 输出格式与引擎位图一致：{u8 w; u8 0; u8 h; u8 0; u8 pixels[w*h]}
 // 像素值 255 = 透明。
@@ -457,6 +468,7 @@ int BuildGlyph(int* f, unsigned char lead, unsigned char trail,
 // ★ sub_403080 不裁剪，所以每块必须先确认整块落在画布内：横向分块填时
 //   最后一块天然可能越过 limX 最多 43px，不检查就会写到画布外踩坏堆。
 void FillRect(int x1, int y1, int x2, int y2, uint8_t color) {
+    PerfGuard pg(PERF_FILL);
     if (x2 < x1 || y2 < y1) return;
     int h = y2 - y1 + 1;
     if (h <= 0 || h > 44) return;
@@ -490,6 +502,9 @@ void FillRect(int x1, int y1, int x2, int y2, uint8_t color) {
     }
 }
 
+// ★ perf 的实现见文件末尾的 namespace sk2 块 —— 它必须具**外部链接**，
+//   放在匿名 namespace 里会变成内部链接，core/hooks/diag/dllmain 全都链不到。
+
 // ── 统计 ────────────────────────────────────────────────────
 volatile LONG g_putCount = 0;
 volatile LONG g_zhCount  = 0;
@@ -512,6 +527,7 @@ inline int CallOrigPut(int* f, int x, int y, const char* s, char cb, int x2, int
 // 前若干次绘制详细记录，用于核对「画的宽度 vs 进位宽度」是否自洽：
 // 若 W > px，说明相邻字会叠在一起（重影）；若 W < px 则字间距偏大。
 int DrawGlyph(int* f, int x, int y, unsigned char lead, unsigned char trail) {
+    PerfGuard pg(PERF_GLYPH);
     unsigned char body; signed char shadow;
     FontColors(f, &body, &shadow);
 
@@ -540,8 +556,8 @@ int DrawGlyph(int* f, int x, int y, unsigned char lead, unsigned char trail) {
         if (pitch >= 64 && pitch <= 65536 && (pitch & 1) == 0) {
             const int sw = pitch / 2;
             if (sw < cw) cw = sw;
-            static LONG pw = 0;
-            if (sw != ScreenW() && InterlockedIncrement(&pw) <= 5)
+            static long pw = 0;                       // 渲染单线程，无需原子
+            if (sw != ScreenW() && ++pw <= 5)
                 Log("[i] VgaBuf 画布: pitch=%d -> 宽 %d px（全局屏宽 %d），已按画布夹取\r\n",
                     pitch, sw, ScreenW());
             committed = RectCommitted(VgaPixels(buf), pitch, cw, ScreenH(),
@@ -550,8 +566,8 @@ int DrawGlyph(int* f, int x, int y, unsigned char lead, unsigned char trail) {
     }
 
     if (x < 0 || py < 0 || x + W > cw || py + H > ScreenH() || !committed) {
-        static LONG clampN = 0;
-        if (InterlockedIncrement(&clampN) <= 6)
+        static long clampN = 0;
+        if (++clampN <= 6)
             Log("[!] 绘字越界已跳过: (%d,%d)+%dx%d 画布=%dx%d%s\r\n",
                 x, py, W, H, cw, ScreenH(),
                 committed ? "" : "  ★目标页未提交 —— 已阻止写穿堆");
@@ -560,8 +576,8 @@ int DrawGlyph(int* f, int x, int y, unsigned char lead, unsigned char trail) {
     PutBmp(buf, x, py, &g_glyph);
     InterlockedIncrement(&g_zhCount);
 
-    static LONG traceN = 0;
-    LONG tn = InterlockedIncrement(&traceN);
+    static long traceN = 0;
+    LONG tn = ++traceN;
     if (tn <= 24) {
         int W = g_glyph.head[0], H = g_glyph.head[2];
         // 位图单元格比进位宽是正常的（字身四周留了 1px 边），
@@ -605,6 +621,7 @@ static void Snip(const char* s, char* out, int cap) {
 static int __fastcall Hook_put(int* f, void* edx, int x, int y,
                                const char* str, char clearBack, int x2, int cap) {
     (void)edx;
+    PerfGuard pg(PERF_PUT);
     g_fontSample = str;
     InterlockedIncrement(&g_putCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
@@ -756,6 +773,7 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
                                      const char* str, int spacing, int startLine, char draw)
 {
     (void)edx;
+    PerfGuard pg(PERF_PARA);
     g_fontSample = str;
     InterlockedIncrement(&g_paraCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
@@ -971,6 +989,7 @@ void PatchDbcsWidths(int* f) {
 
 static int __fastcall Hook_put_char(int* th, void* edx, int x, int y, unsigned short ch) {
     (void)edx;
+    PerfGuard pg(PERF_PUTC);
     InterlockedIncrement(&g_putCharCount);
     g_retAddr = (uint32_t)(uintptr_t)_ReturnAddress();
     if (ch > 0x80) {
@@ -1043,6 +1062,7 @@ volatile LONG   g_putAsciiCount = 0;
 // 共用实现：limit = x 轴上界（0x4C2110 用 stride/2，0x4C1F40 用 stride）
 static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* str,
                         int limit, FN_PUT_ASCII_CH putc) {
+    PerfGuard pg(PERF_PUTA);
     const int inter  = F16(f, font_off::INTER_SPACE);
     const int spaceW = F16(f, font_off::SPACE_WIDTH);
     const int last   = F16(f, font_off::LAST_CHAR);
@@ -1217,6 +1237,7 @@ static int WrapCharW(int* f, const char* p, int n) {
 static int __fastcall Hook_putwrap(int* f, void* edx, int x1, int y1, int x2, int y2,
                                    const char* str, int lead, int draw, int size) {
     (void)edx;
+    PerfGuard pg(PERF_WRAP);
     g_fontSample = str;
     InterlockedIncrement(&g_wrapCount);
     if (!f || !str || !g_wrapOrig) return 0;
@@ -1266,6 +1287,52 @@ namespace sk2 {
 long PutCallCount()  { return (long)g_putCount; }
 long CjkGlyphCount() { return (long)g_zhCount; }
 long VqCount()       { return (long)g_vqCount; }
+
+// ══════════════════════════════════════════════════════════════
+// 逐路径耗时统计（实现）
+// ══════════════════════════════════════════════════════════════
+// 渲染是单线程，计数用普通加法即可（原子加本身也是开销，会污染测量）。
+// 用 QueryPerformanceCounter（用户态，约 20-30ns/次），hook 进出各读一次。
+// ★ 必须放在 namespace sk2 且具外部链接：core/hooks/diag/dllmain 都要用。
+int      g_perfEnabled = 1;
+static LARGE_INTEGER g_freq = {};
+static long long     g_perfT[PERF_N] = {};
+static long          g_perfN[PERF_N] = {};
+static LARGE_INTEGER g_perfS[PERF_N] = {};     // 每次 hook 的进入时刻
+
+void PerfBegin(int id) {
+    if (!g_perfEnabled || id < 0 || id >= PERF_N) return;
+    QueryPerformanceCounter(&g_perfS[id]);
+}
+void PerfEnd(int id) {
+    if (!g_perfEnabled || id < 0 || id >= PERF_N) return;
+    LARGE_INTEGER now;
+    QueryPerformanceCounter(&now);
+    g_perfT[id] += now.QuadPart - g_perfS[id].QuadPart;
+    ++g_perfN[id];
+}
+long PerfCount(int id) { return (id >= 0 && id < PERF_N) ? g_perfN[id] : 0; }
+double PerfMs(int id) {
+    if (id < 0 || id >= PERF_N) return 0.0;
+    if (!g_freq.QuadPart) QueryPerformanceFrequency(&g_freq);
+    if (!g_freq.QuadPart) return 0.0;
+    return (double)g_perfT[id] * 1000.0 / (double)g_freq.QuadPart;
+}
+static const char* kPerfName[PERF_N] = {
+    "text_width", "put", "段落", "put_char", "逐字节", "多行", "字形", "清屏", "诊断", "日志"
+};
+void PerfReport(char* out, int cap) {
+    int n = 0;
+    for (int i = 0; i < PERF_N && n < cap - 44; ++i) {
+        long c = g_perfN[i];
+        double ms = PerfMs(i);
+        if (c == 0 && ms < 0.05) continue;
+        n += _snprintf_s(out + n, cap - n, _TRUNCATE,
+                         "    %-10s 次数=%-8ld 累计=%8.1f ms 单次=%6.2f us\r\n",
+                         kPerfName[i], c, ms, c ? (ms * 1000.0 / (double)c) : 0.0);
+    }
+    if (n == 0) n += _snprintf_s(out + n, cap - n, _TRUNCATE, "    （无数据）\r\n");
+}
 
 // 读取 <exe目录>\update\<name> 的内容（纯文本，最多 256 字节）
 static bool ReadCfg(const char* name, char* out, int cap) {
@@ -1410,6 +1477,13 @@ static void LoadRenderCfg() {
                 : v == 1 ? "(只详记可疑串)"
                 : v == 2 ? "(详记所有含中文的串)"
                          : "(连纯 ASCII 也记，日志会很大)");
+        }
+        // perf=0 关掉逐路径计时（正常情况下留着，开销约每次 hook 60ns）
+        p = strstr(buf, "perf=");
+        if (p) {
+            g_perfEnabled = (atoi(p + 5) != 0);
+            Log("[i] render.ini: perf=%d  %s\r\n", g_perfEnabled,
+                g_perfEnabled ? "(逐路径耗时统计已开，见监控行)" : "(已关闭)");
         }
         p = strstr(buf, "color=");
         if (p) {

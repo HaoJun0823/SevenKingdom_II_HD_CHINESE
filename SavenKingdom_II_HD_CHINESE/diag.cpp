@@ -338,12 +338,18 @@ void DiagText(const char* kind, const void* fontObj, const char* str,
 {
     if (DiagLevel() == 0) return;        // 默认关闭：不进 SEH，零开销
     static LONG errCount = 0;
+    // 诊断跑在渲染热路径上（每次 put/para 都会进），必须计时 ——
+    // 它内部有 VirtualQuery + 全串扫描，是最容易被忽略的卡顿源。
+    // ★ 这里只能显式配对，不能上 RAII：MSVC 不允许在需要对象展开的函数里用 __try
+    //   （C2712）。PerfEnd 在 __except 之后无条件调用，保证计数不漏。
+    sk2::PerfBegin(sk2::PERF_DIAG);
     __try {
         DiagTextBody(kind, fontObj, str, x, y, x2, endX, retAddr, frame);
     } __except (EXCEPTION_EXECUTE_HANDLER) {
         if (InterlockedIncrement(&errCount) <= 5)
             Log("[!] DiagText 内部异常已忽略 str=%p kind=%s\r\n", str, kind ? kind : "?");
     }
+    sk2::PerfEnd(sk2::PERF_DIAG);
 }
 
 // ── 缺字形汇总 ──────────────────────────────────────────────

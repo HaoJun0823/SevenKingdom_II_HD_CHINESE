@@ -9,6 +9,20 @@ namespace sk2 {
 static HANDLE g_log = nullptr;
 static char   g_logPath[MAX_PATH] = {};
 
+// 日志写入也要计时：WriteFile 是同步 IO，落在渲染线程上就是「点一下卡一下」。
+// 声明放在此处而不是 include cjk.h，避免 core 依赖渲染模块的头。
+void PerfBegin(int id);
+void PerfEnd(int id);
+static const int PERF_LOG = 9;      // 与 cjk.h 的 PERF_LOG 保持一致
+static long g_logWrites = 0;
+static long long g_logBytes = 0;
+struct LogGuard {
+    LogGuard() { PerfBegin(PERF_LOG); }
+    ~LogGuard() { PerfEnd(PERF_LOG); }
+};
+long LogWriteCount() { return g_logWrites; }
+long long LogByteCount() { return g_logBytes; }
+
 void InitLog() {
     if (g_log) return;
     char dir[MAX_PATH] = {};
@@ -47,8 +61,10 @@ const char* LogPath() { return g_logPath; }
 
 void LogRaw(const char* buf, int len) {
     if (!g_log || len <= 0) return;
+    LogGuard lg;
     DWORD written = 0;
     WriteFile(g_log, buf, (DWORD)len, &written, nullptr);
+    ++g_logWrites; g_logBytes += written;
 }
 
 void Log(const char* fmt, ...) {
@@ -59,8 +75,10 @@ void Log(const char* fmt, ...) {
     int n = _vsnprintf_s(buf, sizeof(buf), _TRUNCATE, fmt, ap);
     va_end(ap);
     if (n <= 0) return;
+    LogGuard lg;
     DWORD written = 0;
     WriteFile(g_log, buf, (DWORD)n, &written, nullptr);
+    ++g_logWrites; g_logBytes += written;
 }
 
 void CloseLog() {
