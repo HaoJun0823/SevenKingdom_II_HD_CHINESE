@@ -92,7 +92,50 @@ python tools\build.py
 
 ---
 
-## 四、改译文的标准流程
+## 四、子模块（submodule）怎么用
+
+这仓库挂了 **2 个子模块**，它们是**别处的独立仓库**，不是本仓库的文件。
+git 对子模块只记一条「commit 指针」（叫 gitlink），**不存代码本身**。
+所以子模块的改动要**在子模块里单独 commit 并 push**，父仓库只更新指针。
+
+| 子模块 | 指向 | 内容 | 指针 |
+|---|---|---|---|
+| `7k2_src` | `github.com/7k2/7k2` | 游戏本身的自带源码（autotools 工程，926 文件） | `9663a21` |
+| `SavenKingdom_II_HD_BUG_FIX` | `github.com/HaoJun0823/SavenKingdom_II_HD_BUG_FIX` | BugFix 补丁工程（`dllmain.cpp` 等 9 文件） | `827e9e3` |
+
+> 注意它跟 `SavenKingdom_II_HD_CHINESE/`（主插件源码，**在主仓库里**）是
+> **两套独立工程**，别混淆：`SavenKingdom_II_HD_BUG_FIX` 是子模块，`SavenKingdom_II_HD_CHINESE` 不是。
+
+### 克隆时要带 `--recursive`
+
+普通 `git clone` 下来，两个子模块目录是**空文件夹**（只有个 `.git` 占位），
+因为父仓库里根本没它们的代码。补拉：
+
+```bash
+git clone --recursive <本仓库地址>        # 一步到位
+git submodule update --init --recursive   # 已经 clone 过，补拉子模块
+git submodule status                      # 检查是否就绪：行首没有 - 号就是 OK
+```
+
+### 改了子模块内容之后
+
+父仓库只会显示「指针变了」，必须**两头都推**，否则别人 `pull` 会失败：
+
+```bash
+git -C 7k2_src push                        # 先推子模块自己的远程
+git -C SavenKingdom_II_HD_BUG_FIX push
+git push --recurse-submodules=on-demand    # 或者直接推父仓库，自动带推子模块
+```
+
+最省事的写法，推本仓库时自动把子模块一起推：
+
+```bash
+git config push.recurseSubmodules on-demand
+```
+
+---
+
+## 五、改译文的标准流程
 
 改动必须**等长替换**（字段宽度固定，多一个字节就会把后面的记录顶歪），
 所以每次改完都要做四项结构校验：文件长度 / 记录数 / 记录名 / 每条记录长度。
@@ -121,7 +164,7 @@ python tools\check_struct.py        :: 结构校验
 
 ---
 
-## 五、当前进度 / 已知问题
+## 六、当前进度 / 已知问题
 
 已汉化并完成结构校验：
 
@@ -139,7 +182,7 @@ python tools\check_struct.py        :: 结构校验
 
 ---
 
-## 六、License
+## 七、License
 
 本仓库（插件源码、工具链、译文数据）采用 **GPL-3.0**，见 [LICENSE](LICENSE)。
 
