@@ -179,10 +179,25 @@ static void Stage3_FontInfo() {
     Log("[i] 若中文大小不合适，可在 update\\fontsize.txt 写 13 / 16 / 24 覆盖\r\n");
 }
 
-// 读阶段：优先环境变量，其次 update\stage.txt（play.cmd 写这个）
-// 环境变量对 start 启动的子进程不可靠，故以文件为准。
+// 读阶段：优先环境变量，其次 modules\stage.txt / scripts\stage.txt，再其次 update\stage.txt
+// ★ 关键：阶段标记**绝不能放在 update\ 里**。实测把 update\ 改名成 update2\（想临时停用资源）
+//   会连 stage.txt 一起带走 → 阶段退回 1 → 所有 hook 都不装 → 那次运行变成了「伪原版」，
+//   据此得出的「原版也崩 / 汉化才崩」结论全是错的（7K2.exe.37060.dmp 就是这个坑）。
+// ★ 缺省 = 3（完整汉化）：加载了本插件却什么都不做，是最大的误导源。
+//   想退出到「只定位不挂钩」，显式写 stage.txt = 1。
 static DWORD ReadStage() {
-    DWORD stage = 1;
+    static const char* kFiles[] = {
+        "modules\\stage.txt",   // modloader 标准约定
+        "scripts\\stage.txt",   // 我们自己的位置
+        "update\\stage.txt",    // 旧位置，保留兼容
+    };
+    char path[MAX_PATH] = {};
+    GetModuleFileNameA(nullptr, path, MAX_PATH);
+    char* slash = strrchr(path, '\\');
+    if (slash) slash[1] = 0;
+    const size_t dirlen = strlen(path);
+    DWORD stage = 3;              // ★ 缺省 = 完整汉化（放最前面，避免分支里遗漏）
+
     // 1) 环境变量
     char buf[32] = {};
     DWORD n = GetEnvironmentVariableA("SK2_STAGE", buf, sizeof(buf));
@@ -191,27 +206,24 @@ static DWORD ReadStage() {
         Log("[i] stage 来自环境变量 = %lu\r\n", stage);
         return stage;
     }
-    // 2) update\stage.txt
-    char path[MAX_PATH] = {};
-    GetModuleFileNameA(nullptr, path, MAX_PATH);
-    char* slash = strrchr(path, '\\');
-    if (slash) slash[1] = 0;
-    lstrcatA(path, "update\\stage.txt");
-    HANDLE f = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE,
-                           nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
-    if (f != INVALID_HANDLE_VALUE) {
+    // 2) 依次找 stage.txt
+    for (const char* rel : kFiles) {
+        lstrcpyA(path + dirlen, rel);
+        HANDLE f = CreateFileA(path, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE,
+                               nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
+        if (f == INVALID_HANDLE_VALUE) continue;
         char b[32] = {};
         DWORD r = 0;
         ReadFile(f, b, sizeof(b) - 1, &r, nullptr);
         CloseHandle(f);
         if (r > 0) {
             stage = (DWORD)strtoul(b, nullptr, 10);
-            Log("[i] stage 来自 update\\stage.txt = %lu\r\n", stage);
+            Log("[i] stage 来自 %s = %lu\r\n", rel, stage);
             return stage;
         }
     }
-    Log("[i] stage 默认 = 1 (未找到环境变量与 stage.txt)\r\n");
-    return 1;
+    Log("[i] 未找到 stage.txt（已查 modules/scripts/update），stage 缺省 = 3（完整汉化）\r\n");
+    return stage;
 }
 
 static void Worker() {

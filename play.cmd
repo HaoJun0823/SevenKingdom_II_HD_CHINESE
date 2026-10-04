@@ -6,8 +6,11 @@ REM  用法：
 REM    play.cmd          Stage 1  只定位自检（默认，不打补丁，画面无变化）
 REM    play.cmd 2        Stage 2  挂钩 text_width（含离线自测）
 REM
-REM  阶段通过 update\stage.txt 传给插件（比环境变量可靠，
+REM  阶段通过 scripts\stage.txt 传给插件（比环境变量可靠，
 REM  start 启动的子进程不一定继承环境变量）
+REM
+REM  ★ 不要写到 update\ ：把 update\ 改名（临时停用资源）会连 stage 一起藏起来，
+REM    插件随即退化成 stage 1（什么补丁都不打），那次运行的任何结论都是无效的。
 REM
 REM  日志： update\sk2_zh.log
 REM ============================================================
@@ -33,13 +36,13 @@ if not exist "%GAME%\scripts\sk2_zh.asi" (
 
 if not exist "%GAME%\update" mkdir "%GAME%\update"
 
-REM 写阶段文件
-echo %STAGE%> "%GAME%\update\stage.txt"
+REM 写阶段文件（scripts\ 而不是 update\，理由见文件头注释）
+echo %STAGE%> "%GAME%\scripts\stage.txt"
 
 REM 清掉旧日志，便于只看本次
 if exist "%GAME%\update\sk2_zh.log" del "%GAME%\update\sk2_zh.log"
 
-echo [i] 阶段已写入 update\stage.txt = %STAGE%
+echo [i] 阶段已写入 scripts\stage.txt = %STAGE%
 echo.
 if "%STAGE%"=="1" (
   echo     Stage 1：只定位自检，不打补丁。
