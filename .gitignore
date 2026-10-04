@@ -668,3 +668,24 @@ archives/01_build_artifacts/
 archives/02_ui_probe_assets/
 # 03 旧备份快照
 archives/03_backups/
+
+# ---------------- GitHub 瘦身：解包数据与本地私有物不入库 ----------------
+# 英文原版解包（本地可重解，仓库只需源码）
+unpack_data_original/
+# 繁体补丁解包（外部产物，本地保留即可）
+unpack_data_cht/
+# 简体工作区：只留译文真源 STD.SET.unpacked，其余 90MB 不入库
+unpack_data_chs/*
+!unpack_data_chs/Resource/
+unpack_data_chs/Resource/*
+!unpack_data_chs/Resource/STD.SET.unpacked/
+unpack_data_chs/Resource/STD.SET.unpacked/*
+!unpack_data_chs/Resource/STD.SET.unpacked/manifest.json
+!unpack_data_chs/Resource/STD.SET.unpacked/records/
+# 插件编译中间产物（build.cmd / tools/build.py 可重建）
+SavenKingdom_II_HD_CHINESE/objs/
+SavenKingdom_II_HD_CHINESE/obj_test/
+# 本地私有物：硬编码本机路径的调试脚本 / 会话内状态记账
+archives/06_internals/
+
+dist/

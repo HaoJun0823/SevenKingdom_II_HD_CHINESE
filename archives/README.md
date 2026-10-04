@@ -30,7 +30,17 @@
 
 `pending_list.txt`、`racename_fix.txt`、`unpack_diff_report.txt/.json`
 ：10-05 那轮「167→107 处可见界面翻译」的盘点产物。
-结论已经落到 `STATUS.md` 第 4 节和 `tools/scan_pending.py` 里。
+结论已落到 `README.md` 与 `tools/scan_pending.py` 的判定口径里。
+
+## 06_internals —— 本地私有物（**不入 git**，还原只需搬回工程根）
+
+| 原名 | 为什么归档 |
+|---|---|
+| `play.cmd` | 早期按 Stage 1/2 启动游戏的调试脚本，硬编码本机路径 `I:\LocalGames\Seven Kingdoms II HD`。对外没价值，且换台电脑就是错的 |
+| `STATUS.md` | 会话内跨轮接手记账，满篇「状态不明 / 待用户实测」，属于跟人协作的临时标记，不是工程文档 |
+| `update_README.txt` | 原 `update/README.txt`，写于「Stage 3 未实现、中文资源不敢投放」的时期；现已直接部署，说明已过时（新说明在根 `README.md`） |
+
+这三项都**刻意不入库**：GitHub 上看不到，本地照样能搬回来用。
 
 ## 05_oneoff_scripts —— 一次性探针脚本（**已入库 git**）
 
