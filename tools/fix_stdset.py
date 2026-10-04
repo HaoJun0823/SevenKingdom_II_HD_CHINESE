@@ -320,6 +320,26 @@ def main():
     nf = apply_race_fixes(out, orig)
     print('race name fixes: %d' % nf)
 
+    # ★ 危险字重映射（必须放在最后，且不可省略）
+    # 尾字节为 ~(0x7E) { | } [ ] 的常用字，必须改写成自定义安全对（lead 0x90-0xA0）：
+    # HD 引擎把 0x7E 当超链接/分页标记、0x5F 当下划线开关，命中时会**把半个汉字
+    # 当控制符** → 字符串被腰斩、后半段字节错位 → 乱码。旧包 docs 问题档案 #10。
+    # 曾经因为「--raw 直出标准 Big5」把这层保护撤掉，导致魔/迦/迪/會 等字乱码。
+    # 这里做成流水线的固定末步，杜绝再次回归。
+    try:
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+        import fix_risky
+        import render_text as _rt
+        _ft = _rt.Font()
+        _rk = fix_risky.load_risky_map(_ft)
+        out2, _n, _unc = fix_risky.remap_verified(_ft, _rk, bytes(out))
+        assert len(out2) == len(out)
+        out = bytearray(out2)
+        print('risky -> custom remap: %d 处' % _n)
+    except Exception as e:
+        print('!! 危险字重映射失败：%s' % e)
+        print('!! 生成结果不可直接使用，请先跑 tools/fix_risky.py --apply')
+
     if not dry:
         open(OUT, 'wb').write(bytes(out))
         print('written %s' % OUT)

@@ -916,14 +916,21 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
                 const int fh = F16(f, font_off::FONT_HEIGHT);
                 const int gx = x, gy = y + (fh - px) / 2;
                 const int W = g_glyph.head[0], H = g_glyph.head[2];
-                // sub_403080 不裁剪 —— 必须自己保证整块落在 x 上界内
-                if (gx >= 0 && gy >= 0 && W > 0 && H > 0 && gx + W <= limit) {
+                // ★ 判定基准必须用「进位」(px)，不是「字格宽」(W)。
+                //   BuildGlyph 出来的点在格子里左右各留了 1px 边（W = px + 2），
+                //   而引擎（以及上面的排版逻辑）都是按 px 进位。
+                //   早期版本用 gx + W <= limit 判定，导致每行最后一个字因为
+                //   多出的 2px 边被误判越界而**整字丢弃**（日志里的
+                //   "[!] puta 越界跳过: x=56 w=15 lim=70"，56+15=71>70）。
+                //   这里改为允许这 2px 边溢出，与引擎行为一致。
+                if (gx >= 0 && gy >= 0 && W > 0 && H > 0 && gx + px <= limit + 2) {
                     g_blit8(surf, stride, gx, gy, &g_glyph, pal);
                     InterlockedIncrement(&g_zhCount);
                 } else {
                     static LONG oc = 0;
                     if (InterlockedIncrement(&oc) <= 6)
-                        Log("[!] puta 越界跳过: x=%d w=%d lim=%d y=%d\r\n", gx, W, limit, gy);
+                        Log("[!] puta 越界跳过: x=%d 进位=%d 字格=%d lim=%d y=%d\r\n",
+                            gx, px, W, limit, gy);
                 }
             }
             if (w <= 0) w = spaceW;             // 缺字 → 按空格推进

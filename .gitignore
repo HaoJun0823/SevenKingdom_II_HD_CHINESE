@@ -283,3 +283,6 @@ tools/_click_state.txt
 
 # 历史备份
 update_res_staged.bak_before_fix/
+
+# 资源修复前的原始备份（参考用，不入库）
+res_backup/
