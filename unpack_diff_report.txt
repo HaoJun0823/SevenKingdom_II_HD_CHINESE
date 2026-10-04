@@ -1,0 +1,294 @@
+原版解包 223 个 | 汉化解包 40 个 | 共有 38 个
+
+==============================================================================
+一、覆盖情况
+==============================================================================
+汉化未覆盖（原版有、汉化无）: 185 个
+    - campaign/sound/poem1.wav
+    - campaign/sound/poem2.wav
+    - campaign/sound/poem3.wav
+    - campaign/sound/pre-01.wav
+    - campaign/sound/pre-02.wav
+    - campaign/sound/pre-03.wav
+    - campaign/sound/pre-04.wav
+    - campaign/sound/pre-05.wav
+    - campaign/sound/pre-06.wav
+    - campaign/sound/pre-07.wav
+    - campaign/sound/pre-08.wav
+    - campaign/sound/pre-09.wav
+    - campaign/sound/pre-10.wav
+    - campaign/sound/pre-11.wav
+    - campaign/sound/pre-12.wav
+    - campaign/sound/pre-13.wav
+    - campaign/sound/pre-14.wav
+    - campaign/sound/pre-15.wav
+    - campaign/sound/pre-16.wav
+    - campaign/sound/pre-17.wav
+    - campaign/sound/pre-18.wav
+    - campaign/sound/pre-19.wav
+    - campaign/sound/pre-20.wav
+    - campaign/sound/pre-21.wav
+    - campaign/sound/pre-22.wav
+    - campaign/sound/pre-23.wav
+    - campaign/sound/pre-24.wav
+    - campaign/sound/pre-25.wav
+    - campaign/sound/pre-26.wav
+    - campaign/sound/pre-27.wav
+    - campaign/sound/pre-28.wav
+    - resource/a_wave1.res
+    - resource/a_wave2.res
+    - resource/credit.res
+    - resource/cursor.res
+    - resource/explmask.res
+    - resource/expremap.res
+    - resource/fnt_bblk.res
+    - resource/fnt_bld.res
+    - resource/fnt_blu2.res
+    - resource/fnt_blue.res
+    - resource/fnt_boot.res
+    - resource/fnt_bred.res
+    - resource/fnt_cara.res
+    - resource/fnt_casa.res
+    - resource/fnt_cmpa.res
+    - resource/fnt_cmpf.res
+    - resource/fnt_cmph.res
+    - resource/fnt_cmpo.res
+    - resource/fnt_gren.res
+    - resource/fnt_hall.res
+    - resource/fnt_hitp.res
+    - resource/fnt_mid.res
+    - resource/fnt_news.res
+    - resource/fnt_red.res
+    - resource/fnt_san.res
+    - resource/fnt_scre.res
+    - resource/fnt_smal.res
+    - resource/fnt_snds.res
+    - resource/fnt_sop.res
+    - resource/fnt_std.res
+    - resource/fnt_tblk.res
+    - resource/fnt_town.res
+    - resource/fnt_tut.res
+    - resource/fnt_vilb.res
+    - resource/fnt_vill.res
+    - resource/fnt_whbl.res
+    - resource/hill1.res
+    - resource/hill2.res
+    - resource/i_button.res
+    - resource/i_cursor.res
+    - resource/i_f_curr.res
+    - resource/i_firmdi.res
+    - resource/i_gameif.res
+    - resource/i_h_curr.res
+    - resource/i_hill1.res
+    - resource/i_hill2.res
+    - resource/i_icon.res
+    - resource/i_if.res
+    - resource/i_itemb.res
+    - resource/i_itemc.res
+    - resource/i_itemi.res
+    - resource/i_itemu.res
+    - resource/i_menu.res
+    - resource/i_plant1.res
+    - resource/i_plant2.res
+    - resource/i_race.res
+    - resource/i_raw.res
+    - resource/i_rawl.res
+    - resource/i_rawpl.res
+    - resource/i_rawps.res
+    - resource/i_rawri.res
+    - resource/i_rawrl.res
+    - resource/i_rawrs.res
+    - resource/i_raws.res
+    - resource/i_rock1.res
+    - resource/i_rock2.res
+    - resource/i_snow.res
+    - resource/i_spict.res
+    - resource/i_tech.res
+    - resource/i_tera1.res
+    - resource/i_tera2.res
+    - resource/i_tern1.res
+    - resource/i_tern2.res
+    - resource/i_terx1.res
+    - resource/i_terx2.res
+    - resource/i_town.res
+    - resource/i_tpict1.res
+    - resource/i_tpict2.res
+    - resource/i_twall.res
+    - resource/i_unitgi.res
+    - resource/i_unitki.res
+    - resource/i_unitli.res
+    - resource/i_unitsi.res
+    - resource/i_unitti.res
+    - resource/i_unitui.res
+    - resource/i_unitvi.res
+    - resource/pal_enc.res
+    - resource/pal_firm.res
+    - resource/pal_roc1.res
+    - resource/pal_roc2.res
+    - resource/pal_spr.res
+    - resource/pal_std.res
+    - resource/pal_ter1.res
+    - resource/pal_ter2.res
+    - resource/pal_win.res
+    - resource/palfirm2.res
+    - resource/palfirmd.res
+    - resource/plant1.dbf
+    - resource/plant1.res
+    - resource/plant2.res
+    - resource/plantbm1.res
+    - resource/plantbm2.res
+    - resource/rock1.res
+    - resource/rock2.res
+    - resource/rockani1.res
+    - resource/rockblk1.res
+    - resource/rockbmp1.res
+    - resource/rockbmp2.res
+    - resource/tbl_std.res
+    - resource/teranm1.res
+    - resource/teranm2.res
+    - resource/terrain1.res
+    - resource/terrain2.res
+    - resource/tersub.res
+    - resource/tertex1.res
+    - resource/tertex2.res
+    - resource/tut_pict.res
+    - scenario/premade/gallic.scn
+    - scenario/premade/gallic.scp
+    - scenario/premade/hashshas.scn
+    - scenario/premade/hashshas.scp
+    - scenario/premade/isis.scn
+    - scenario/premade/isis.scp
+    - scenario/premade/jaws.scn
+    - scenario/premade/jaws.scp
+    - scenario/premade/lishorrs.scn
+    - scenario/premade/lishorrs.scp
+    - scenario/premade/los_trib.scn
+    - scenario/premade/los_trib.scp
+    - scenario/premade/mong_hor.scn
+    - scenario/premade/mong_hor.scp
+    - scenario/premade/plasma.scn
+    - scenario/premade/plasma.scp
+    - scenario/premade/rome.scn
+    - scenario/premade/rome.scp
+    - scenario/premade/scenario.sys
+    - scenario/scenario.sys
+    - tutorial/flc1l.tut
+    - tutorial/flc1s.tut
+    - tutorial/flc2l.tut
+    - tutorial/flc2s.tut
+    - tutorial/hlc1l.tut
+    - tutorial/hlc1s.tut
+    - tutorial/hlc2l.tut
+    - tutorial/hlc2s.tut
+    - tutorial/hlc3l.tut
+    - tutorial/hlc3s.tut
+    - tutorial/hlc4l.tut
+    - tutorial/hlc4s.tut
+    - tutorial/hlc5l.tut
+    - tutorial/hlc5s.tut
+    - tutorial/hlc6l.tut
+    - tutorial/hlc6s.tut
+    - tutorial/standard.tut
+汉化多出（汉化有、原版无）: 2 个
+    + render.ini
+    + sk2_zh.log
+
+==============================================================================
+二、结构损坏（记录数 / 记录名与原版不一致）
+==============================================================================
+  [!!] campaign/east.evt  第 1 条名不同 b'12A\x00\x00\x00\x00\x00\x00' -> b'11B\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 2 条名不同 b'12B\x00\x00\x00\x00\x00\x00' -> b'12A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 3 条名不同 b'13A\x00\x00\x00\x00\x00\x00' -> b'12B\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 4 条名不同 b'13B\x00\x00\x00\x00\x00\x00' -> b'13A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 5 条名不同 b'14A\x00\x00\x00\x00\x00\x00' -> b'13B\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 6 条名不同 b'14B\x00\x00\x00\x00\x00\x00' -> b'14A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 7 条名不同 b'14C\x00\x00\x00\x00\x00\x00' -> b'14B\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 8 条名不同 b'14D1\x00\x00\x00\x00\x00' -> b'14C\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 9 条名不同 b'14D2\x00\x00\x00\x00\x00' -> b'14D1\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 10 条名不同 b'14E\x00\x00\x00\x00\x00\x00' -> b'14D2\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 11 条名不同 b'1A\x00\x00\x00\x00\x00\x00\x00' -> b'14E\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 12 条名不同 b'3A\x00\x00\x00\x00\x00\x00\x00' -> b'15A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 13 条名不同 b'3B\x00\x00\x00\x00\x00\x00\x00' -> b'16A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 14 条名不同 b'3C\x00\x00\x00\x00\x00\x00\x00' -> b'16B\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 15 条名不同 b'3D\x00\x00\x00\x00\x00\x00\x00' -> b'16C\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 16 条名不同 b'5A\x00\x00\x00\x00\x00\x00\x00' -> b'17A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 17 条名不同 b'7A\x00\x00\x00\x00\x00\x00\x00' -> b'18A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 18 条名不同 b'8A\x00\x00\x00\x00\x00\x00\x00' -> b'18B\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 19 条名不同 b'8B\x00\x00\x00\x00\x00\x00\x00' -> b'18C\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 20 条名不同 b'9A\x00\x00\x00\x00\x00\x00\x00' -> b'18D\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 21 条名不同 b'9C1\x00\x00\x00\x00\x00\x00' -> b'19A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 22 条名不同 b'9C2\x00\x00\x00\x00\x00\x00' -> b'1A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 23 条名不同 b'9D1\x00\x00\x00\x00\x00\x00' -> b'1A1\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 24 条名不同 b'9D2\x00\x00\x00\x00\x00\x00' -> b'1B\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 25 条名不同 b'1B\x00\x00\x00\x00\x00\x00\x00' -> b'1B1\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 26 条名不同 b'4A\x00\x00\x00\x00\x00\x00\x00' -> b'20A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 27 条名不同 b'1A1\x00\x00\x00\x00\x00\x00' -> b'21A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 28 条名不同 b'1B1\x00\x00\x00\x00\x00\x00' -> b'22A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 29 条名不同 b'17A\x00\x00\x00\x00\x00\x00' -> b'23A\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 30 条名不同 b'16A\x00\x00\x00\x00\x00\x00' -> b'3A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 31 条名不同 b'16B\x00\x00\x00\x00\x00\x00' -> b'3B\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 32 条名不同 b'16C\x00\x00\x00\x00\x00\x00' -> b'3C\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 33 条名不同 b'18A\x00\x00\x00\x00\x00\x00' -> b'3D\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 34 条名不同 b'18B\x00\x00\x00\x00\x00\x00' -> b'4A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 35 条名不同 b'18C\x00\x00\x00\x00\x00\x00' -> b'5A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 36 条名不同 b'18D\x00\x00\x00\x00\x00\x00' -> b'7A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 37 条名不同 b'19A\x00\x00\x00\x00\x00\x00' -> b'8A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 38 条名不同 b'20A\x00\x00\x00\x00\x00\x00' -> b'8B\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 39 条名不同 b'21A\x00\x00\x00\x00\x00\x00' -> b'9A\x00\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 40 条名不同 b'22A\x00\x00\x00\x00\x00\x00' -> b'9C1\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 41 条名不同 b'15A\x00\x00\x00\x00\x00\x00' -> b'9C2\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 42 条名不同 b'23A\x00\x00\x00\x00\x00\x00' -> b'9D1\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.evt  第 43 条名不同 b'11B\x00\x00\x00\x00\x00\x00' -> b'9D2\x00\x00\x00\x00\x00\x00'
+  [!!] campaign/east.plt  第 10 条名不同 b'PLOTD1\x00\x00\x00' -> b'PLOTC4\x00\x00\x00'
+  [!!] campaign/east.plt  第 11 条名不同 b'PLOTD2\x00\x00\x00' -> b'PLOTD1\x00\x00\x00'
+  [!!] campaign/east.plt  第 12 条名不同 b'PLOTD3\x00\x00\x00' -> b'PLOTD2\x00\x00\x00'
+  [!!] campaign/east.plt  第 13 条名不同 b'PLOTD4\x00\x00\x00' -> b'PLOTD3\x00\x00\x00'
+  [!!] campaign/east.plt  第 14 条名不同 b'PLOTD5\x00\x00\x00' -> b'PLOTD4\x00\x00\x00'
+  [!!] campaign/east.plt  第 15 条名不同 b'PLOTC4\x00\x00\x00' -> b'PLOTD5\x00\x00\x00'
+
+==============================================================================
+三、格式骨架损坏（占位符 / 控制符数量与原版不符）
+==============================================================================
+  无 —— 占位符与控制符均与原版一致 ✓
+
+==============================================================================
+四、漏翻（内容与原版完全相同）
+==============================================================================
+  合计 62 条未翻译
+    resource/std.set                                     42 条
+    resource/tut_text.res                                12 条
+    resource/tut_intr.res                                8 条
+
+==============================================================================
+五、统计
+==============================================================================
+  已翻译记录: 400 条
+  未翻译记录: 62 条
+  结构损坏  : 49 处
+  骨架损坏  : 0 处
+  文本类非容器文件: 23 个
+    - resource/help.res
+    - resource/t_basic.res
+    - resource/t_camp.res
+    - resource/t_endc.res
+    - resource/t_firm.res
+    - resource/t_gmenu.res
+    - resource/t_item.res
+    - resource/t_news.res
+    - resource/t_reps.res
+    - resource/t_sedit.res
+    - resource/t_talk.res
+    - resource/t_tutor.res
+    - resource/t_unit.res
+    - resource/tips.res
+    - scenario/premade/gallic.sct
+    - scenario/premade/hashshas.sct
+    - scenario/premade/isis.sct
+    - scenario/premade/jaws.sct
+    - scenario/premade/lishorrs.sct
+    - scenario/premade/los_trib.sct
+    - scenario/premade/mong_hor.sct
+    - scenario/premade/plasma.sct
+    - scenario/premade/rome.sct
+
+报告已写入 ../unpack_diff_report.json

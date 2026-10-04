@@ -1,0 +1,157 @@
+{
+  "source": "TUT_INTR.RES",
+  "size": 3081,
+  "sha256": "17bffcfe71caf7caf6b670fd3d97dd2fb73838f8fa71ae199eeccd1b3f4df6f0",
+  "type": "residx",
+  "count": 20,
+  "records": [
+    {
+      "index": 0,
+      "name": "FLC2",
+      "name_raw": "464c43320000000000",
+      "file": "000_FLC2.bin",
+      "size": 0
+    },
+    {
+      "index": 1,
+      "name": "2BAS_ECO",
+      "name_raw": "324241535f45434f00",
+      "file": "001_2BAS_ECO.bin",
+      "size": 306
+    },
+    {
+      "index": 2,
+      "name": "6SEATRAD",
+      "name_raw": "365345415452414400",
+      "file": "002_6SEATRAD.bin",
+      "size": 296
+    },
+    {
+      "index": 3,
+      "name": "8FRYHTAN",
+      "name_raw": "384652594854414e00",
+      "file": "003_8FRYHTAN.bin",
+      "size": 249
+    },
+    {
+      "index": 4,
+      "name": "4WEAPONS",
+      "name_raw": "34574541504f4e5300",
+      "file": "004_4WEAPONS.bin",
+      "size": 316
+    },
+    {
+      "index": 5,
+      "name": "5BAS_NAV",
+      "name_raw": "354241535f4e415600",
+      "file": "005_5BAS_NAV.bin",
+      "size": 286
+    },
+    {
+      "index": 6,
+      "name": "7MERCENA",
+      "name_raw": "374d455243454e4100",
+      "file": "006_7MERCENA.bin",
+      "size": 215
+    },
+    {
+      "index": 7,
+      "name": "9SEATPOW",
+      "name_raw": "3953454154504f5700",
+      "file": "007_9SEATPOW.bin",
+      "size": 275
+    },
+    {
+      "index": 8,
+      "name": "3RESEARC",
+      "name_raw": "335245534541524300",
+      "file": "008_3RESEARC.bin",
+      "size": 134
+    },
+    {
+      "index": 9,
+      "name": "2B_TRADE",
+      "name_raw": "32425f545241444500",
+      "file": "009_2B_TRADE.bin",
+      "size": 159
+    },
+    {
+      "index": 10,
+      "name": "LOYALTY",
+      "name_raw": "4c4f59414c54590000",
+      "file": "010_LOYALTY.bin",
+      "size": 230
+    },
+    {
+      "index": 11,
+      "name": "SPYING",
+      "name_raw": "535059494e47000000",
+      "file": "011_SPYING.bin",
+      "size": 161
+    },
+    {
+      "index": 12,
+      "name": "10CAPTUR",
+      "name_raw": "313043415054555200",
+      "file": "012_10CAPTUR.bin",
+      "size": 179
+    },
+    {
+      "index": 13,
+      "name": "FLC1",
+      "name_raw": "464c43310000000000",
+      "file": "013_FLC1.bin",
+      "size": 0
+    },
+    {
+      "index": 14,
+      "name": "FLC3",
+      "name_raw": "464c43330000000000",
+      "file": "014_FLC3.bin",
+      "size": 0
+    },
+    {
+      "index": 15,
+      "name": "HLC3",
+      "name_raw": "484c43330000000000",
+      "file": "015_HLC3.bin",
+      "size": 0
+    },
+    {
+      "index": 16,
+      "name": "HLC2",
+      "name_raw": "484c43320000000000",
+      "file": "016_HLC2.bin",
+      "size": 0
+    },
+    {
+      "index": 17,
+      "name": "HLC1",
+      "name_raw": "484c43310000000000",
+      "file": "017_HLC1.bin",
+      "size": 0
+    },
+    {
+      "index": 18,
+      "name": "HLC4",
+      "name_raw": "484c43340000000000",
+      "file": "018_HLC4.bin",
+      "size": 0
+    },
+    {
+      "index": 19,
+      "name": "FLC4",
+      "name_raw": "464c43340000000000",
+      "file": "019_FLC4.bin",
+      "size": 0
+    },
+    {
+      "index": 20,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

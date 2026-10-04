@@ -1,0 +1,94 @@
+{
+  "source": "I_TPICT1.RES",
+  "size": 298342,
+  "sha256": "d46b939275b689daa411a104525024799efd7fc5a7a2704ab3cccb00710dd19a",
+  "type": "residx",
+  "count": 11,
+  "records": [
+    {
+      "index": 0,
+      "name": "TERA_R",
+      "name_raw": "544552415f52000000",
+      "file": "000_TERA_R.bin",
+      "size": 4100
+    },
+    {
+      "index": 1,
+      "name": "TERA_DG",
+      "name_raw": "544552415f44470000",
+      "file": "001_TERA_DG.bin",
+      "size": 4100
+    },
+    {
+      "index": 2,
+      "name": "TOWNGD1",
+      "name_raw": "544f574e4744310000",
+      "file": "002_TOWNGD1.bin",
+      "size": 47768
+    },
+    {
+      "index": 3,
+      "name": "TOWNGD2",
+      "name_raw": "544f574e4744320000",
+      "file": "003_TOWNGD2.bin",
+      "size": 45934
+    },
+    {
+      "index": 4,
+      "name": "TOWNGD4",
+      "name_raw": "544f574e4744340000",
+      "file": "004_TOWNGD4.bin",
+      "size": 45934
+    },
+    {
+      "index": 5,
+      "name": "TOWNGD5",
+      "name_raw": "544f574e4744350000",
+      "file": "005_TOWNGD5.bin",
+      "size": 47768
+    },
+    {
+      "index": 6,
+      "name": "TOWNGD6",
+      "name_raw": "544f574e4744360000",
+      "file": "006_TOWNGD6.bin",
+      "size": 45140
+    },
+    {
+      "index": 7,
+      "name": "TOWNGD3",
+      "name_raw": "544f574e4744330000",
+      "file": "007_TOWNGD3.bin",
+      "size": 45140
+    },
+    {
+      "index": 8,
+      "name": "TERA_S",
+      "name_raw": "544552415f53000000",
+      "file": "008_TERA_S.bin",
+      "size": 4100
+    },
+    {
+      "index": 9,
+      "name": "TERA_D",
+      "name_raw": "544552415f44000000",
+      "file": "009_TERA_D.bin",
+      "size": 4100
+    },
+    {
+      "index": 10,
+      "name": "TERA_LG",
+      "name_raw": "544552415f4c470000",
+      "file": "010_TERA_LG.bin",
+      "size": 4100
+    },
+    {
+      "index": 11,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

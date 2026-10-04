@@ -1,0 +1,76 @@
+[CAM1]Occidental Heroes
+[CAM2]reserved campaign
+[CAM3]reserved campaign
+[CAM4]reserved campaign
+[CAM5]reserved campaign
+[CAM6]reserved campaign
+[CAM7]reserved campaign
+[CAM8]reserved campaign
+[CAM9]reserved campaign
+[ITR1]Where once you strode the World assured, you are the Hunters prey
+[ITR2]An Empire lost and Pain and Scorn and Death endured
+[ITR3]Naught but Years of Torment are assured
+[ITR4]Before your Foes can you repay
+[ITR5]Now rouse a host and take the field
+[ITR6]Choose men of whom canst boast
+[ITR7]Did pledge their Liege, their Lives their Ghost
+[ITR8]And forced all else to yield
+[FRF1]Against you stood the Fryhtan Lords and their Evil Hoedes arrayed
+[FRF2]Their Blood it poured and as one they roared
+[FRF3]And screamed in agony dismayed
+[FRF4]It is the End. We are by the very Gods betrayed!
+[VIC1]Regain lands lost is your forefather's day, all this you did avow
+[VIC2]Though men of steel and steeds of gray
+[VIC3]Stood hard and fast and barred your way
+[VIC4]Yet tis you to whom all heads now bow
+[VIC5]Against foes both Beast and Man 
+[VIC6]you stood beneath your Flag Unfurled
+[VIC7]They numbered as the Grains of Stand
+[VIC8]In the Dead Seas and the Desert Land
+[CAMS]Campaign Score To Date : %1d
+[EVEN]Event : %1d (Run count: %2d)
+[STAG]Stage : %1d (Run count: %2d)
+[SCOR]Score
+[DIFR]Difficulty Rating
+[CLCK]Click to continue.
+[BONU]Your bonus, to be added to your campaign score, is %1d
+[BONF]That is %1d, minus the number of years that it took to achieve the goal.
+[CLKM]Click to read message...
+[ROYU]Royal Units
+[RHLP]Check the units that you wish to use in this scenario. You may Click on an Artifact and move it to another unit.
+[RHL2]Reserved
+[DONE]Done
+[REST]Restore
+[RNDS]Random Select
+[DALL]Deselect All
+[DELR]Delete
+[HU_F]Human Only
+[FR_F]Human & Fryhtan
+[ASKF]Choose the type of force that you wish to field in the next mission:
+[MXRF]You cannot bring more than %1d royal units to scenario
+[MXRS]You cannot keep more than %1d royal units, delete some of them
+[D.I?]Drop this item?
+[E.R?]Are you sure?
+[EASE]Eastern Empire
+[WESE]Western Empire
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[CRES]Reserved
+[ATKS]Please select a territory to attack
+[<kingdom>STON]Territory of %1s
+[STIN]Independent Territory
+[CATK]Click to Attack This Territory
+[NATK]Cannot Attack This Territory
+[VIC9]Yet tis you who rules this grateful World

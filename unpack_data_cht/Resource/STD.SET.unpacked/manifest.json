@@ -1,0 +1,381 @@
+{
+  "source": "STD.SET",
+  "size": 1322443,
+  "sha256": "f117e0e52125914d3bf516f96890f347a517a3ecdfd26026f8592cca4feb9de4",
+  "type": "residx",
+  "count": 52,
+  "records": [
+    {
+      "index": 0,
+      "name": "HEADER",
+      "name_raw": "484541444552000000",
+      "file": "000_HEADER.bin",
+      "size": 167
+    },
+    {
+      "index": 1,
+      "name": "TECHCLAS",
+      "name_raw": "54454348434c415300",
+      "file": "001_TECHCLAS.bin",
+      "size": 1047
+    },
+    {
+      "index": 2,
+      "name": "GOD",
+      "name_raw": "474f44000000000000",
+      "file": "002_GOD.bin",
+      "size": 926
+    },
+    {
+      "index": 3,
+      "name": "SPRITE",
+      "name_raw": "535052495445000000",
+      "file": "003_SPRITE.bin",
+      "size": 12077
+    },
+    {
+      "index": 4,
+      "name": "SFRAME",
+      "name_raw": "534652414d45000000",
+      "file": "004_SFRAME.bin",
+      "size": 765619
+    },
+    {
+      "index": 5,
+      "name": "SACTION",
+      "name_raw": "53414354494f4e0000",
+      "file": "005_SACTION.bin",
+      "size": 71434
+    },
+    {
+      "index": 6,
+      "name": "SUB_SPR",
+      "name_raw": "5355425f5350520000",
+      "file": "006_SUB_SPR.bin",
+      "size": 1090
+    },
+    {
+      "index": 7,
+      "name": "UNIT",
+      "name_raw": "554e49540000000000",
+      "file": "007_UNIT.bin",
+      "size": 19108
+    },
+    {
+      "index": 8,
+      "name": "UNITATTK",
+      "name_raw": "554e49544154544b00",
+      "file": "008_UNITATTK.bin",
+      "size": 15834
+    },
+    {
+      "index": 9,
+      "name": "MONSTER",
+      "name_raw": "4d4f4e535445520000",
+      "file": "009_MONSTER.bin",
+      "size": 481
+    },
+    {
+      "index": 10,
+      "name": "RAW",
+      "name_raw": "524157000000000000",
+      "file": "010_RAW.bin",
+      "size": 1198
+    },
+    {
+      "index": 11,
+      "name": "RACE",
+      "name_raw": "524143450000000000",
+      "file": "011_RACE.bin",
+      "size": 734
+    },
+    {
+      "index": 12,
+      "name": "NAME1",
+      "name_raw": "4e414d453100000000",
+      "file": "012_NAME1.bin",
+      "size": 291
+    },
+    {
+      "index": 13,
+      "name": "NAME2",
+      "name_raw": "4e414d453200000000",
+      "file": "013_NAME2.bin",
+      "size": 291
+    },
+    {
+      "index": 14,
+      "name": "TEMP",
+      "name_raw": "54454d500000000000",
+      "file": "014_TEMP.bin",
+      "size": 426
+    },
+    {
+      "index": 15,
+      "name": "FIRM",
+      "name_raw": "4649524d0000000000",
+      "file": "015_FIRM.bin",
+      "size": 3217
+    },
+    {
+      "index": 16,
+      "name": "FBUILD",
+      "name_raw": "464255494c44000000",
+      "file": "016_FBUILD.bin",
+      "size": 11311
+    },
+    {
+      "index": 17,
+      "name": "FFRAME",
+      "name_raw": "464652414d45000000",
+      "file": "017_FFRAME.bin",
+      "size": 12986
+    },
+    {
+      "index": 18,
+      "name": "FBITMAP",
+      "name_raw": "464249544d41500000",
+      "file": "018_FBITMAP.bin",
+      "size": 93158
+    },
+    {
+      "index": 19,
+      "name": "FDFRAME",
+      "name_raw": "46444652414d450000",
+      "file": "019_FDFRAME.bin",
+      "size": 1084
+    },
+    {
+      "index": 20,
+      "name": "FDBUILD2",
+      "name_raw": "46444255494c443200",
+      "file": "020_FDBUILD2.bin",
+      "size": 2185
+    },
+    {
+      "index": 21,
+      "name": "TOWNLAY",
+      "name_raw": "544f574e4c41590000",
+      "file": "021_TOWNLAY.bin",
+      "size": 275
+    },
+    {
+      "index": 22,
+      "name": "TOWNSLOT",
+      "name_raw": "544f574e534c4f5400",
+      "file": "022_TOWNSLOT.bin",
+      "size": 842
+    },
+    {
+      "index": 23,
+      "name": "TOWNBULD",
+      "name_raw": "544f574e42554c4400",
+      "file": "023_TOWNBULD.bin",
+      "size": 2150
+    },
+    {
+      "index": 24,
+      "name": "TOWNBTYP",
+      "name_raw": "544f574e4254595000",
+      "file": "024_TOWNBTYP.bin",
+      "size": 206
+    },
+    {
+      "index": 25,
+      "name": "TOWNNAME",
+      "name_raw": "544f574e4e414d4500",
+      "file": "025_TOWNNAME.bin",
+      "size": 10434
+    },
+    {
+      "index": 26,
+      "name": "SNOWG",
+      "name_raw": "534e4f574700000000",
+      "file": "026_SNOWG.bin",
+      "size": 1183
+    },
+    {
+      "index": 27,
+      "name": "RACENAME",
+      "name_raw": "524143454e414d4500",
+      "file": "027_RACENAME.bin",
+      "size": 56787
+    },
+    {
+      "index": 28,
+      "name": "RELEASE",
+      "name_raw": "52454c454153450000",
+      "file": "028_RELEASE.bin",
+      "size": 77
+    },
+    {
+      "index": 29,
+      "name": "TWALLRAC",
+      "name_raw": "5457414c4c52414300",
+      "file": "029_TWALLRAC.bin",
+      "size": 674
+    },
+    {
+      "index": 30,
+      "name": "TWALL",
+      "name_raw": "5457414c4c00000000",
+      "file": "030_TWALL.bin",
+      "size": 338
+    },
+    {
+      "index": 31,
+      "name": "TWALLBMP",
+      "name_raw": "5457414c4c424d5000",
+      "file": "031_TWALLBMP.bin",
+      "size": 2368
+    },
+    {
+      "index": 32,
+      "name": "TECH",
+      "name_raw": "544543480000000000",
+      "file": "032_TECH.bin",
+      "size": 9712
+    },
+    {
+      "index": 33,
+      "name": "FGROUP",
+      "name_raw": "4647524f5550000000",
+      "file": "033_FGROUP.bin",
+      "size": 4474
+    },
+    {
+      "index": 34,
+      "name": "FDEPEND",
+      "name_raw": "46444550454e440000",
+      "file": "034_FDEPEND.bin",
+      "size": 1410
+    },
+    {
+      "index": 35,
+      "name": "TECH_DUP",
+      "name_raw": "544543485f44555000",
+      "file": "035_TECH_DUP.bin",
+      "size": 9712
+    },
+    {
+      "index": 36,
+      "name": "FDBITMAP",
+      "name_raw": "46444249544d415000",
+      "file": "036_FDBITMAP.bin",
+      "size": 2574
+    },
+    {
+      "index": 37,
+      "name": "FDBITMA2",
+      "name_raw": "46444249544d413200",
+      "file": "037_FDBITMA2.bin",
+      "size": 58422
+    },
+    {
+      "index": 38,
+      "name": "HERO",
+      "name_raw": "4845524f0000000000",
+      "file": "038_HERO.bin",
+      "size": 2129
+    },
+    {
+      "index": 39,
+      "name": "MNAMEB",
+      "name_raw": "4d4e414d4542000000",
+      "file": "039_MNAMEB.bin",
+      "size": 154
+    },
+    {
+      "index": 40,
+      "name": "MNAMEC",
+      "name_raw": "4d4e414d4543000000",
+      "file": "040_MNAMEC.bin",
+      "size": 286
+    },
+    {
+      "index": 41,
+      "name": "MNAMEA",
+      "name_raw": "4d4e414d4541000000",
+      "file": "041_MNAMEA.bin",
+      "size": 322
+    },
+    {
+      "index": 42,
+      "name": "FDBUILD",
+      "name_raw": "46444255494c440000",
+      "file": "042_FDBUILD.bin",
+      "size": 10859
+    },
+    {
+      "index": 43,
+      "name": "FFRAME2",
+      "name_raw": "464652414d45320000",
+      "file": "043_FFRAME2.bin",
+      "size": 12986
+    },
+    {
+      "index": 44,
+      "name": "UNITCLAS",
+      "name_raw": "554e4954434c415300",
+      "file": "044_UNITCLAS.bin",
+      "size": 460
+    },
+    {
+      "index": 45,
+      "name": "FGROUP2",
+      "name_raw": "4647524f5550320000",
+      "file": "045_FGROUP2.bin",
+      "size": 4474
+    },
+    {
+      "index": 46,
+      "name": "FIRM2",
+      "name_raw": "4649524d3200000000",
+      "file": "046_FIRM2.bin",
+      "size": 3217
+    },
+    {
+      "index": 47,
+      "name": "FBUILD2",
+      "name_raw": "464255494c44320000",
+      "file": "047_FBUILD2.bin",
+      "size": 11311
+    },
+    {
+      "index": 48,
+      "name": "FBITMAP2",
+      "name_raw": "464249544d41503200",
+      "file": "048_FBITMAP2.bin",
+      "size": 62062
+    },
+    {
+      "index": 49,
+      "name": "FDEPEND2",
+      "name_raw": "46444550454e443200",
+      "file": "049_FDEPEND2.bin",
+      "size": 1410
+    },
+    {
+      "index": 50,
+      "name": "SOUNDRES",
+      "name_raw": "534f554e4452455300",
+      "file": "050_SOUNDRES.bin",
+      "size": 19946
+    },
+    {
+      "index": 51,
+      "name": "B",
+      "name_raw": "420000000000000000",
+      "file": "051_B.bin",
+      "size": 15834
+    },
+    {
+      "index": 52,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

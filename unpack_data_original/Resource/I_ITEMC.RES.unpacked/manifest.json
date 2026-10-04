@@ -1,0 +1,199 @@
+{
+  "source": "I_ITEMC.RES",
+  "size": 48297,
+  "sha256": "e80c17b03856bb58b50d8125f77832b65b92549ee9b22d74aafa15b27c26271c",
+  "type": "residx",
+  "count": 26,
+  "records": [
+    {
+      "index": 0,
+      "name": "SWORD_1",
+      "name_raw": "53574f52445f310000",
+      "file": "000_SWORD_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 1,
+      "name": "BOOK_1",
+      "name_raw": "424f4f4b5f31000000",
+      "file": "001_BOOK_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 2,
+      "name": "BOOK_2",
+      "name_raw": "424f4f4b5f32000000",
+      "file": "002_BOOK_2.bin",
+      "size": 1844
+    },
+    {
+      "index": 3,
+      "name": "SWORD_2",
+      "name_raw": "53574f52445f320000",
+      "file": "003_SWORD_2.bin",
+      "size": 1844
+    },
+    {
+      "index": 4,
+      "name": "BOW_1",
+      "name_raw": "424f575f3100000000",
+      "file": "004_BOW_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 5,
+      "name": "SWORD_3",
+      "name_raw": "53574f52445f330000",
+      "file": "005_SWORD_3.bin",
+      "size": 1844
+    },
+    {
+      "index": 6,
+      "name": "SHIELD_1",
+      "name_raw": "534849454c445f3100",
+      "file": "006_SHIELD_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 7,
+      "name": "RING_1",
+      "name_raw": "52494e475f31000000",
+      "file": "007_RING_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 8,
+      "name": "BOOT_1",
+      "name_raw": "424f4f545f31000000",
+      "file": "008_BOOT_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 9,
+      "name": "BOOK_3",
+      "name_raw": "424f4f4b5f33000000",
+      "file": "009_BOOK_3.bin",
+      "size": 1844
+    },
+    {
+      "index": 10,
+      "name": "WRIST_1",
+      "name_raw": "57524953545f310000",
+      "file": "010_WRIST_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 11,
+      "name": "STAFF_1",
+      "name_raw": "53544146465f310000",
+      "file": "011_STAFF_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 12,
+      "name": "RING_2",
+      "name_raw": "52494e475f32000000",
+      "file": "012_RING_2.bin",
+      "size": 1844
+    },
+    {
+      "index": 13,
+      "name": "HAT_1",
+      "name_raw": "4841545f3100000000",
+      "file": "013_HAT_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 14,
+      "name": "STAFF_2",
+      "name_raw": "53544146465f320000",
+      "file": "014_STAFF_2.bin",
+      "size": 1844
+    },
+    {
+      "index": 15,
+      "name": "HORN_1",
+      "name_raw": "484f524e5f31000000",
+      "file": "015_HORN_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 16,
+      "name": "AMULET_1",
+      "name_raw": "414d554c45545f3100",
+      "file": "016_AMULET_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 17,
+      "name": "STAFF_3",
+      "name_raw": "53544146465f330000",
+      "file": "017_STAFF_3.bin",
+      "size": 1844
+    },
+    {
+      "index": 18,
+      "name": "STAFF_4",
+      "name_raw": "53544146465f340000",
+      "file": "018_STAFF_4.bin",
+      "size": 1844
+    },
+    {
+      "index": 19,
+      "name": "GLASS_1",
+      "name_raw": "474c4153535f310000",
+      "file": "019_GLASS_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 20,
+      "name": "BELL_1",
+      "name_raw": "42454c4c5f31000000",
+      "file": "020_BELL_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 21,
+      "name": "POTION_1",
+      "name_raw": "504f54494f4e5f3100",
+      "file": "021_POTION_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 22,
+      "name": "POTION_2",
+      "name_raw": "504f54494f4e5f3200",
+      "file": "022_POTION_2.bin",
+      "size": 1844
+    },
+    {
+      "index": 23,
+      "name": "RING_3",
+      "name_raw": "52494e475f33000000",
+      "file": "023_RING_3.bin",
+      "size": 1844
+    },
+    {
+      "index": 24,
+      "name": "ROD_1",
+      "name_raw": "524f445f3100000000",
+      "file": "024_ROD_1.bin",
+      "size": 1844
+    },
+    {
+      "index": 25,
+      "name": "ROD_2",
+      "name_raw": "524f445f3200000000",
+      "file": "025_ROD_2.bin",
+      "size": 1844
+    },
+    {
+      "index": 26,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

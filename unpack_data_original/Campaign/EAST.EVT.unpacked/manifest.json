@@ -1,0 +1,325 @@
+{
+  "source": "EAST.EVT",
+  "size": 24977,
+  "sha256": "8769c431e0d48b752ad88f02320d09a18c80b7a6ff504b5d2e3e5fb99e8ba397",
+  "type": "residx",
+  "count": 44,
+  "records": [
+    {
+      "index": 0,
+      "name": "11A",
+      "name_raw": "313141000000000000",
+      "file": "000_11A.bin",
+      "size": 858
+    },
+    {
+      "index": 1,
+      "name": "12A",
+      "name_raw": "313241000000000000",
+      "file": "001_12A.bin",
+      "size": 708
+    },
+    {
+      "index": 2,
+      "name": "12B",
+      "name_raw": "313242000000000000",
+      "file": "002_12B.bin",
+      "size": 1352
+    },
+    {
+      "index": 3,
+      "name": "13A",
+      "name_raw": "313341000000000000",
+      "file": "003_13A.bin",
+      "size": 874
+    },
+    {
+      "index": 4,
+      "name": "13B",
+      "name_raw": "313342000000000000",
+      "file": "004_13B.bin",
+      "size": 642
+    },
+    {
+      "index": 5,
+      "name": "14A",
+      "name_raw": "313441000000000000",
+      "file": "005_14A.bin",
+      "size": 516
+    },
+    {
+      "index": 6,
+      "name": "14B",
+      "name_raw": "313442000000000000",
+      "file": "006_14B.bin",
+      "size": 528
+    },
+    {
+      "index": 7,
+      "name": "14C",
+      "name_raw": "313443000000000000",
+      "file": "007_14C.bin",
+      "size": 651
+    },
+    {
+      "index": 8,
+      "name": "14D1",
+      "name_raw": "313444310000000000",
+      "file": "008_14D1.bin",
+      "size": 624
+    },
+    {
+      "index": 9,
+      "name": "14D2",
+      "name_raw": "313444320000000000",
+      "file": "009_14D2.bin",
+      "size": 573
+    },
+    {
+      "index": 10,
+      "name": "14E",
+      "name_raw": "313445000000000000",
+      "file": "010_14E.bin",
+      "size": 740
+    },
+    {
+      "index": 11,
+      "name": "1A",
+      "name_raw": "314100000000000000",
+      "file": "011_1A.bin",
+      "size": 244
+    },
+    {
+      "index": 12,
+      "name": "3A",
+      "name_raw": "334100000000000000",
+      "file": "012_3A.bin",
+      "size": 630
+    },
+    {
+      "index": 13,
+      "name": "3B",
+      "name_raw": "334200000000000000",
+      "file": "013_3B.bin",
+      "size": 712
+    },
+    {
+      "index": 14,
+      "name": "3C",
+      "name_raw": "334300000000000000",
+      "file": "014_3C.bin",
+      "size": 1081
+    },
+    {
+      "index": 15,
+      "name": "3D",
+      "name_raw": "334400000000000000",
+      "file": "015_3D.bin",
+      "size": 734
+    },
+    {
+      "index": 16,
+      "name": "5A",
+      "name_raw": "354100000000000000",
+      "file": "016_5A.bin",
+      "size": 600
+    },
+    {
+      "index": 17,
+      "name": "7A",
+      "name_raw": "374100000000000000",
+      "file": "017_7A.bin",
+      "size": 1435
+    },
+    {
+      "index": 18,
+      "name": "8A",
+      "name_raw": "384100000000000000",
+      "file": "018_8A.bin",
+      "size": 373
+    },
+    {
+      "index": 19,
+      "name": "8B",
+      "name_raw": "384200000000000000",
+      "file": "019_8B.bin",
+      "size": 906
+    },
+    {
+      "index": 20,
+      "name": "9A",
+      "name_raw": "394100000000000000",
+      "file": "020_9A.bin",
+      "size": 834
+    },
+    {
+      "index": 21,
+      "name": "9C1",
+      "name_raw": "394331000000000000",
+      "file": "021_9C1.bin",
+      "size": 205
+    },
+    {
+      "index": 22,
+      "name": "9C2",
+      "name_raw": "394332000000000000",
+      "file": "022_9C2.bin",
+      "size": 228
+    },
+    {
+      "index": 23,
+      "name": "9D1",
+      "name_raw": "394431000000000000",
+      "file": "023_9D1.bin",
+      "size": 285
+    },
+    {
+      "index": 24,
+      "name": "9D2",
+      "name_raw": "394432000000000000",
+      "file": "024_9D2.bin",
+      "size": 323
+    },
+    {
+      "index": 25,
+      "name": "1B",
+      "name_raw": "314200000000000000",
+      "file": "025_1B.bin",
+      "size": 524
+    },
+    {
+      "index": 26,
+      "name": "4A",
+      "name_raw": "344100000000000000",
+      "file": "026_4A.bin",
+      "size": 703
+    },
+    {
+      "index": 27,
+      "name": "1A1",
+      "name_raw": "314131000000000000",
+      "file": "027_1A1.bin",
+      "size": 205
+    },
+    {
+      "index": 28,
+      "name": "1B1",
+      "name_raw": "314231000000000000",
+      "file": "028_1B1.bin",
+      "size": 385
+    },
+    {
+      "index": 29,
+      "name": "17A",
+      "name_raw": "313741000000000000",
+      "file": "029_17A.bin",
+      "size": 1005
+    },
+    {
+      "index": 30,
+      "name": "16A",
+      "name_raw": "313641000000000000",
+      "file": "030_16A.bin",
+      "size": 179
+    },
+    {
+      "index": 31,
+      "name": "16B",
+      "name_raw": "313642000000000000",
+      "file": "031_16B.bin",
+      "size": 180
+    },
+    {
+      "index": 32,
+      "name": "16C",
+      "name_raw": "313643000000000000",
+      "file": "032_16C.bin",
+      "size": 163
+    },
+    {
+      "index": 33,
+      "name": "18A",
+      "name_raw": "313841000000000000",
+      "file": "033_18A.bin",
+      "size": 181
+    },
+    {
+      "index": 34,
+      "name": "18B",
+      "name_raw": "313842000000000000",
+      "file": "034_18B.bin",
+      "size": 224
+    },
+    {
+      "index": 35,
+      "name": "18C",
+      "name_raw": "313843000000000000",
+      "file": "035_18C.bin",
+      "size": 223
+    },
+    {
+      "index": 36,
+      "name": "18D",
+      "name_raw": "313844000000000000",
+      "file": "036_18D.bin",
+      "size": 138
+    },
+    {
+      "index": 37,
+      "name": "19A",
+      "name_raw": "313941000000000000",
+      "file": "037_19A.bin",
+      "size": 267
+    },
+    {
+      "index": 38,
+      "name": "20A",
+      "name_raw": "323041000000000000",
+      "file": "038_20A.bin",
+      "size": 1220
+    },
+    {
+      "index": 39,
+      "name": "21A",
+      "name_raw": "323141000000000000",
+      "file": "039_21A.bin",
+      "size": 142
+    },
+    {
+      "index": 40,
+      "name": "22A",
+      "name_raw": "323241000000000000",
+      "file": "040_22A.bin",
+      "size": 179
+    },
+    {
+      "index": 41,
+      "name": "15A",
+      "name_raw": "313541000000000000",
+      "file": "041_15A.bin",
+      "size": 480
+    },
+    {
+      "index": 42,
+      "name": "23A",
+      "name_raw": "323341000000000000",
+      "file": "042_23A.bin",
+      "size": 223
+    },
+    {
+      "index": 43,
+      "name": "11B",
+      "name_raw": "313142000000000000",
+      "file": "043_11B.bin",
+      "size": 1113
+    },
+    {
+      "index": 44,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

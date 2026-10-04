@@ -1,0 +1,98 @@
+[HK_N]King %1s
+[HG_N]General %1s
+[HS_N]Soldier %1s
+[FK_N]All High %1s
+[FG_N]Ordo %1s
+[FS_N]Croul %1s
+[HK__]King
+[HG__]General
+[HS__]Soldier
+[FK__]All High
+[FG__]Ordo
+[FS__]Croul
+[(Rebel Leader <name>)RG_N]Rebel Leader %1s
+[RS_N]Rebel %1s
+[RG__]Rebel Leader
+[RS__]Rebel
+[HN_N]%1s's Kingdom
+[FN_N]%1s's Kwyzan
+[HN__]Kingdom
+[FN__]Kwyzan
+[COMB]Combat
+[LEAD]Leadership
+[HITP]Hit Points
+[LOYL]Loyalty
+[SPYS]Spying
+[HERO]Hero
+[(<nationality> Hero)RHER]%1s Hero
+[CIVT]Civilian %1s
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[URES]Reserved
+[CARM]Manual Trade
+[CARA]Auto Trade
+[GOD1]Target your Archangel on enemy structures or units.  He will fly to the target and attack.
+[GOD2]Target Thor on an enemy unit or structure.  He will then call devastating lightning bolts onto the target.
+[GOD3]Target Dagodevas on enemy buildings or units.  He will then fly to the target and strike them down.
+[GOD4]Target Mars on your generals to increase their leadership abilities. You may also target them inside their camps or forts. Do not target Generals if they already have a leadership level of 100.
+[GOD5]Target Athena on all the units inside the circular area. They will receive invulnerability for up to 30 days, depending upon the level of power possessed by the Goddess.
+[GOD6]Target Baal-Hammon on any enemy building or town.  He will bring a devastating earthquake to the area.
+[GOD7]Target your Chi Lin on enemy units or structures.  It will fly to the target and attack it with balls of fire.
+[GOD8]Target the Goddess on any building or town of yours or on independent towns.  She will then kill every enemy spy in the target.
+[GOD9]Target Tengri on any enemy unit, apart from a King or an All High.  When you do, there is a good chance that they will join your forces.
+[GODA]Target Isis on any of your towns.  She will increase the population in that town by 20 people.
+[GODB]Target Mithra on any enemy building or town.  For as long as that structure lasts you will be able to see inside.
+[GODC]Target Hanuman on an enemy unit or building.  He will spin around quickly, damaging units and buildings in the area.
+[REL0]Enemy
+[REL1]Unfriendly
+[(neutral)REL2]
+[REL3]Friendly
+[REL4]Allied
+[<nationality>RDEF]%1s Defender
+[<nationality>RREB]%1s Rebel
+[<nationality>RRBL]%1s Rebel Leader
+[<nationality>RWAG]%1s Wagon %2z
+[<nationality>RSOL]%1s Soldier
+[<fryhtan species>RCRU]%1s Croul
+[<nationality>RCIV]%1s Civilian
+[RESV]Reserved
+[RESV]Reserved
+[RESV]Reserved
+[<enemy/friendly/...><unit description>UNRD]%1s %2s
+[<king name><unit name>KUNM]%1s's %2s
+[BLDI]Please select a location to build the %1s.
+[(cost $? + ? life points)BLDC]cost %1,2d%2?{ + |}%2z%2?{ life points|}
+[SETT]Please select a location to settle.
+[SPYC]Spy Cloak
+[NOCC]Enemies Nearby !! Cannot change cloak.
+[IDRP]Right click to drop
+[IUSE]use
+[I_ON]on
+[IOFF]off
+[RTRI]Automatically Retreat this (Left-click) or all your Generals (Right-click) to Home Fort when hit point is below :
+[DISA]DISABLE
+[HIRH]%1s will take your color for %2,2d. Hire him now?
+[HIF1]But you do not have enough money now.
+[HIF2]But he has been hired by other nation.
+[HIF3]Hire failed.
+[ITUU]Left click on target unit
+[ITUT]Left click on target town
+[ITUP]Left click on target position
+[ITEM]Item
+[LINC]Left click to increase
+[RINC]Right click to decrease
+[e.g. King Jaguar 3 or Catapult III 6 NRNM]%4?{King |}%1s%2?{ |}%2r%3?{ |}%3z
+[<hero name>HERU]Hero %1s
+[RKNG]%1s King
+[RGEN]%1s General
+[FKNG]%1s All High
+[FGEN]%1s Ordo

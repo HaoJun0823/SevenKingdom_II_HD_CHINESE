@@ -1,0 +1,144 @@
+[EN00]Defeat all other Kingdoms
+[EN01]Your Kingdom is defeated
+[EN02]Defeat a certain Kingdom
+[EN03]Ally with a certain Kingdom
+[EN04]Defeat all Fryhtan
+[EN05]Defeat all except one allied Kingdom
+[EN06]Population exceed a number
+[EN07]Fryhtan population exceed a number
+[EN08]Number of a unit exceed a number
+[EN09]Economic score exceeds a level
+[EN10]Military score exceeds a level
+[EN11]Total score exceeds a level
+[EN12]Fryhtan battling score exceeds a level
+[EN13]Train 10 Generals
+[EN14]A certain unit is killed
+[EN15]A certain unit survives
+[EN16]Meet a certain unit
+[EN17]Conquer all indepedent towns
+[EN18]Conquer a certain town
+[EN19]Destroy a certain building
+[EN20]Get ancient scroll
+[EN21]Acquire a certain item
+[EN22]Your kingdom survives
+[EN23]Acquire technology
+[EN24]Conquer all buildings
+[EN25]Conquer a certain building
+[EN26]Reserved
+[EN27]Reserved
+[EN28]Reserved
+[EN29]Reserved
+[EN30]Reserved
+[EN31]Reserved
+[EC00]Defeat all other Kingdoms
+[EC01]Your Kingdom is defeated
+[(Defeat <kingdom>)EC02]Defeat %1s
+[EC03]Ally with %1s
+[EC04]Defeat all Fryhtan Lairs
+[EC05]Defeat all except one allied Kingdom
+[EC06]Population reaches %1d
+[EC07]Fryhtan population reaches %1d
+[(Own <number> <unit name>(s))EC08]Own %2d %1s%2p{|s}
+[EC09]Economic score reaches %1d
+[EC10]Military score reaches %1d
+[EC11]Total score reaches %1d
+[EC12]Fryhtan battling score reaches %1d
+[EC13]Train 10 Generals of Leadership %1d or above
+[aC14]Kill %1s of %2s
+[bC14]Kill %1s of your %2s
+[cC14]Kill %1s
+[dC14]%1s of %2s get killed
+[eC14]%1s of your %2s get killed
+[fC14]%1s get killed
+[aC15]Rescue %1s of %2s
+[bC15]Rescue %1s of your %2s
+[cC15]Rescue %1s
+[dC15]Failed to kill %1s of %2s
+[eC15]Failed to kill %1s of your %2s
+[fC15]Failed to kill %1s
+[aC16]Meet %1s of %2s
+[bC16]Meet %1s of your %2s
+[cC16]Meet %1s
+[EC17]Conquer all indepedent towns
+[EC18]Conquer town %1s
+[(Destroy <building>)EC19]Destroy %1s
+[EC20]Acquire ancient scroll
+[EC21]Acquire item %1s
+[EC22]Your %1s survives for %2d %2p{year|years}
+[EC23]Acquire %1s technology
+[EC24]Conquer all buildings
+[(Conquer <building>)EC25]Conquer %1s
+[aC22]Your %1s cannot win in %2d %2p{year|years}
+[EC27]Reserved
+[EC28]Reserved
+[EC29]Reserved
+[EC30]Reserved
+[EC31]Reserved
+[(<condition> in n year(s))ECTM]%1s in %2d %2p{year|years}
+[ER00]%%1s has Defeated All Other Kingdoms !
+[ER01]%%1s has been Defeated !
+[ER02]%%1s has Defeated %1s !
+[ER03]%%1s has Allied with %1s !
+[ER04]%%1s has Defeated all Fryhtan Lairs !
+[ER05]%%1s has Defeated all except one Allied Kingdom !
+[ER06]%%1s reaches Population of %1d !
+[ER07]%%1s reaches Fryhtan Population of %1d !
+[ER08]%%1s Owns %2d %1s%2p{|s} !
+[ER09]%%1s reaches Economy Score of %1d !
+[ER10]%%1s reaches Military Score of %1d !
+[ER11]%%1s reaches Total Score of %1d !
+[ER12]%%1s reaches Fryhtan Battling Score of %1d !
+[ER13]%%1s has Trained 10 Generals of Leadership %1d or above !
+[aR14]%%1s has Killed %1s of %2s !
+[bR14]%%1s has Killed %1s of your %2s !
+[cR14]%%1s has Killed %1s !
+[dR14]%%1s has Failed to Protect %1s of %2s !
+[eR14]%%1s has Failed to Protect %1s of your %2s !
+[fR14]%%1s has Failed to Protect %1s !
+[aR15]%%1s has Protected %1s of %2s !
+[bR15]%%1s has Protected %1s of your %2s !
+[cR15]%%1s has Protected %1s !
+[dR15]%%1s has Failed to Kill %1s of %2s !
+[eR15]%%1s has Failed to Kill %1s of your %2s !
+[fR15]%%1s has Failed to Kill %1s !
+[aR16]%%1s has Met %1s of %2s !
+[bR16]%%1s has Met %1s of your %2s !
+[cR16]%%1s has Met %1s !
+[ER17]%%1s has Conquered All Indepedent Towns !
+[ER18]%%1s has Conquered Town %1s !
+[ER19]%%1s has Destroyed %1s !
+[ER20]%%1s has Acquired the Ancient Scroll !
+[ER21]%%1s has Acquired Item %1s !
+[ER22]%%1s has Survived for %1d %1p{Year|Years} !
+[ER23]%%1s has Acquired %1s Technology !
+[ER24]%%1s has Conquered All Buildings !
+[ER25]%%1s has Conquered %1s !
+[aR22]%%1s cannot Win in %1d %1p{Year|Years} !
+[ER27]%%1s Reserved !
+[ER28]%%1s Reserved !
+[ER29]%%1s Reserved !
+[ER30]%%1s Reserved !
+[ER31]%%1s Reserved !
+[ER32]%%1s Reserved !
+[WINA]%1s has Completed All Tasks
+[(Your Kingdom or Your Kwyzan)YOUR]Your %1s
+[YSUR]You Surrendered to %1s on %2s.
+[NOTM]Your Kingdom has Failed to Achieve its Goal Within the Time Limit.
+[YDEF]Your Kingdom has Gone Down to Ignominious Defeat !
+[(You Retired on <date>)RETI]You Retired on %1s
+[DURR]Duration of Your Rule
+[TGMT]Total Gaming Time
+[FPOP]Final Population
+[FCAS]Final Treasure
+[KSOL]Enemy Soldiers Dispatched
+[(Kingdom or Kwyzan's Soldiers Martyred)LSOL]%1s's Soldiers Martyred
+[KMON]Enemy Fryhtans Dispatched
+[LMON]%1s's Fryhtans Martyred
+[KWEP]Enemy Weapons Destroyed
+[LWEP]%1s's Weapons Rendered Obsolete
+[K??1]Reserved
+[L??1]Reserved
+[KBLD]Enemy Buildings Destroyed
+[LBLD]%1s's Buildings Cleared
+[KCIV]Enemy Civilians Collaterally Damaged
+[LCIV]%1s's Civilians Cruelly Murdered

@@ -1,0 +1,787 @@
+{
+  "source": "I_ICON.RES",
+  "size": 159801,
+  "sha256": "c8a3efa6db7f9a256aa590652b069f2b28d3388fa46305c16cddedd65d049a25",
+  "type": "residx",
+  "count": 110,
+  "records": [
+    {
+      "index": 0,
+      "name": "LINK_DD",
+      "name_raw": "4c494e4b5f44440000",
+      "file": "000_LINK_DD.bin",
+      "size": 1028
+    },
+    {
+      "index": 1,
+      "name": "LINK_EE2",
+      "name_raw": "4c494e4b5f45453200",
+      "file": "001_LINK_EE2.bin",
+      "size": 1028
+    },
+    {
+      "index": 2,
+      "name": "LINK_EE1",
+      "name_raw": "4c494e4b5f45453100",
+      "file": "002_LINK_EE1.bin",
+      "size": 1028
+    },
+    {
+      "index": 3,
+      "name": "LINK_EE3",
+      "name_raw": "4c494e4b5f45453300",
+      "file": "003_LINK_EE3.bin",
+      "size": 1028
+    },
+    {
+      "index": 4,
+      "name": "LINK_DE",
+      "name_raw": "4c494e4b5f44450000",
+      "file": "004_LINK_DE.bin",
+      "size": 1028
+    },
+    {
+      "index": 5,
+      "name": "M_COLCOD",
+      "name_raw": "4d5f434f4c434f4400",
+      "file": "005_M_COLCOD.bin",
+      "size": 136
+    },
+    {
+      "index": 6,
+      "name": "LINK_ED",
+      "name_raw": "4c494e4b5f45440000",
+      "file": "006_LINK_ED.bin",
+      "size": 1028
+    },
+    {
+      "index": 7,
+      "name": "REPAIR-1",
+      "name_raw": "5245504149522d3100",
+      "file": "007_REPAIR-1.bin",
+      "size": 904
+    },
+    {
+      "index": 8,
+      "name": "AUTOPICK",
+      "name_raw": "4155544f5049434b00",
+      "file": "008_AUTOPICK.bin",
+      "size": 104
+    },
+    {
+      "index": 9,
+      "name": "NOPICK",
+      "name_raw": "4e4f5049434b000000",
+      "file": "009_NOPICK.bin",
+      "size": 104
+    },
+    {
+      "index": 10,
+      "name": "REPAIR-2",
+      "name_raw": "5245504149522d3200",
+      "file": "010_REPAIR-2.bin",
+      "size": 904
+    },
+    {
+      "index": 11,
+      "name": "NEWS_GO",
+      "name_raw": "4e4557535f474f0000",
+      "file": "011_NEWS_GO.bin",
+      "size": 229
+    },
+    {
+      "index": 12,
+      "name": "NEWS_CLR",
+      "name_raw": "4e4557535f434c5200",
+      "file": "012_NEWS_CLR.bin",
+      "size": 229
+    },
+    {
+      "index": 13,
+      "name": "U_CONS",
+      "name_raw": "555f434f4e53000000",
+      "file": "013_U_CONS.bin",
+      "size": 104
+    },
+    {
+      "index": 14,
+      "name": "U_LEAD",
+      "name_raw": "555f4c454144000000",
+      "file": "014_U_LEAD.bin",
+      "size": 104
+    },
+    {
+      "index": 15,
+      "name": "U_MINE",
+      "name_raw": "555f4d494e45000000",
+      "file": "015_U_MINE.bin",
+      "size": 104
+    },
+    {
+      "index": 16,
+      "name": "U_MANU",
+      "name_raw": "555f4d414e55000000",
+      "file": "016_U_MANU.bin",
+      "size": 104
+    },
+    {
+      "index": 17,
+      "name": "U_RESE",
+      "name_raw": "555f52455345000000",
+      "file": "017_U_RESE.bin",
+      "size": 104
+    },
+    {
+      "index": 18,
+      "name": "U_SPY",
+      "name_raw": "555f53505900000000",
+      "file": "018_U_SPY.bin",
+      "size": 384
+    },
+    {
+      "index": 19,
+      "name": "U_GENE",
+      "name_raw": "555f47454e45000000",
+      "file": "019_U_GENE.bin",
+      "size": 344
+    },
+    {
+      "index": 20,
+      "name": "U_KING",
+      "name_raw": "555f4b494e47000000",
+      "file": "020_U_KING.bin",
+      "size": 344
+    },
+    {
+      "index": 21,
+      "name": "MEDAL3",
+      "name_raw": "4d4544414c33000000",
+      "file": "021_MEDAL3.bin",
+      "size": 244
+    },
+    {
+      "index": 22,
+      "name": "MEDAL5",
+      "name_raw": "4d4544414c35000000",
+      "file": "022_MEDAL5.bin",
+      "size": 244
+    },
+    {
+      "index": 23,
+      "name": "U_PRAY",
+      "name_raw": "555f50524159000000",
+      "file": "023_U_PRAY.bin",
+      "size": 104
+    },
+    {
+      "index": 24,
+      "name": "MEDAL1",
+      "name_raw": "4d4544414c31000000",
+      "file": "024_MEDAL1.bin",
+      "size": 244
+    },
+    {
+      "index": 25,
+      "name": "ARROWUP",
+      "name_raw": "4152524f5755500000",
+      "file": "025_ARROWUP.bin",
+      "size": 64
+    },
+    {
+      "index": 26,
+      "name": "ARROWDWN",
+      "name_raw": "4152524f5744574e00",
+      "file": "026_ARROWDWN.bin",
+      "size": 64
+    },
+    {
+      "index": 27,
+      "name": "MEDAL2",
+      "name_raw": "4d4544414c32000000",
+      "file": "027_MEDAL2.bin",
+      "size": 244
+    },
+    {
+      "index": 28,
+      "name": "MEDAL4",
+      "name_raw": "4d4544414c34000000",
+      "file": "028_MEDAL4.bin",
+      "size": 244
+    },
+    {
+      "index": 29,
+      "name": "MEDAL6",
+      "name_raw": "4d4544414c36000000",
+      "file": "029_MEDAL6.bin",
+      "size": 244
+    },
+    {
+      "index": 30,
+      "name": "ENEMYSPY",
+      "name_raw": "454e454d5953505900",
+      "file": "030_ENEMYSPY.bin",
+      "size": 104
+    },
+    {
+      "index": 31,
+      "name": "REPU_UP",
+      "name_raw": "524550555f55500000",
+      "file": "031_REPU_UP.bin",
+      "size": 932
+    },
+    {
+      "index": 32,
+      "name": "REPU_DW",
+      "name_raw": "524550555f44570000",
+      "file": "032_REPU_DW.bin",
+      "size": 932
+    },
+    {
+      "index": 33,
+      "name": "WAYPOINT",
+      "name_raw": "574159504f494e5400",
+      "file": "033_WAYPOINT.bin",
+      "size": 1476
+    },
+    {
+      "index": 34,
+      "name": "REUP1024",
+      "name_raw": "524555503130323400",
+      "file": "034_REUP1024.bin",
+      "size": 1373
+    },
+    {
+      "index": 35,
+      "name": "REDW1024",
+      "name_raw": "524544573130323400",
+      "file": "035_REDW1024.bin",
+      "size": 1373
+    },
+    {
+      "index": 36,
+      "name": "RESIST",
+      "name_raw": "524553495354000000",
+      "file": "036_RESIST.bin",
+      "size": 1474
+    },
+    {
+      "index": 37,
+      "name": "FULLVILL",
+      "name_raw": "46554c4c56494c4c00",
+      "file": "037_FULLVILL.bin",
+      "size": 907
+    },
+    {
+      "index": 38,
+      "name": "BUILDDWN",
+      "name_raw": "4255494c4444574e00",
+      "file": "038_BUILDDWN.bin",
+      "size": 3388
+    },
+    {
+      "index": 39,
+      "name": "SPYBOX",
+      "name_raw": "535059424f58000000",
+      "file": "039_SPYBOX.bin",
+      "size": 8884
+    },
+    {
+      "index": 40,
+      "name": "BUILDUP",
+      "name_raw": "4255494c4455500000",
+      "file": "040_BUILDUP.bin",
+      "size": 3388
+    },
+    {
+      "index": 41,
+      "name": "BUILDSEL",
+      "name_raw": "4255494c4453454c00",
+      "file": "041_BUILDSEL.bin",
+      "size": 3388
+    },
+    {
+      "index": 42,
+      "name": "ARROWVDN",
+      "name_raw": "4152524f5756444e00",
+      "file": "042_ARROWVDN.bin",
+      "size": 169
+    },
+    {
+      "index": 43,
+      "name": "ARROWVUP",
+      "name_raw": "4152524f5756555000",
+      "file": "043_ARROWVUP.bin",
+      "size": 169
+    },
+    {
+      "index": 44,
+      "name": "WRKR-ACT",
+      "name_raw": "57524b522d41435400",
+      "file": "044_WRKR-ACT.bin",
+      "size": 388
+    },
+    {
+      "index": 45,
+      "name": "WRKR-OPN",
+      "name_raw": "57524b522d4f504e00",
+      "file": "045_WRKR-OPN.bin",
+      "size": 388
+    },
+    {
+      "index": 46,
+      "name": "POTFACT",
+      "name_raw": "504f54464143540000",
+      "file": "046_POTFACT.bin",
+      "size": 2644
+    },
+    {
+      "index": 47,
+      "name": "MNFC-E1",
+      "name_raw": "4d4e46432d45310000",
+      "file": "047_MNFC-E1.bin",
+      "size": 2398
+    },
+    {
+      "index": 48,
+      "name": "IRNGDFAC",
+      "name_raw": "49524e474446414300",
+      "file": "048_IRNGDFAC.bin",
+      "size": 2644
+    },
+    {
+      "index": 49,
+      "name": "CLY-RW_L",
+      "name_raw": "434c592d52575f4c00",
+      "file": "049_CLY-RW_L.bin",
+      "size": 2398
+    },
+    {
+      "index": 50,
+      "name": "MNFC-E2",
+      "name_raw": "4d4e46432d45320000",
+      "file": "050_MNFC-E2.bin",
+      "size": 2644
+    },
+    {
+      "index": 51,
+      "name": "COPGDFAC",
+      "name_raw": "434f50474446414300",
+      "file": "051_COPGDFAC.bin",
+      "size": 2644
+    },
+    {
+      "index": 52,
+      "name": "GEARW-1",
+      "name_raw": "47454152572d310000",
+      "file": "052_GEARW-1.bin",
+      "size": 1373
+    },
+    {
+      "index": 53,
+      "name": "GEARW-2",
+      "name_raw": "47454152572d320000",
+      "file": "053_GEARW-2.bin",
+      "size": 1448
+    },
+    {
+      "index": 54,
+      "name": "GEARW-3",
+      "name_raw": "47454152572d330000",
+      "file": "054_GEARW-3.bin",
+      "size": 1448
+    },
+    {
+      "index": 55,
+      "name": "CLY-RW_R",
+      "name_raw": "434c592d52575f5200",
+      "file": "055_CLY-RW_R.bin",
+      "size": 2644
+    },
+    {
+      "index": 56,
+      "name": "COP-RW_L",
+      "name_raw": "434f502d52575f4c00",
+      "file": "056_COP-RW_L.bin",
+      "size": 2398
+    },
+    {
+      "index": 57,
+      "name": "COP-RW_R",
+      "name_raw": "434f502d52575f5200",
+      "file": "057_COP-RW_R.bin",
+      "size": 2644
+    },
+    {
+      "index": 58,
+      "name": "PRAY-OPN",
+      "name_raw": "505241592d4f504e00",
+      "file": "058_PRAY-OPN.bin",
+      "size": 352
+    },
+    {
+      "index": 59,
+      "name": "GEAR-1",
+      "name_raw": "474541522d31000000",
+      "file": "059_GEAR-1.bin",
+      "size": 2972
+    },
+    {
+      "index": 60,
+      "name": "GEAR-2",
+      "name_raw": "474541522d32000000",
+      "file": "060_GEAR-2.bin",
+      "size": 2972
+    },
+    {
+      "index": 61,
+      "name": "GEAR-3",
+      "name_raw": "474541522d33000000",
+      "file": "061_GEAR-3.bin",
+      "size": 2972
+    },
+    {
+      "index": 62,
+      "name": "IRN-RW_L",
+      "name_raw": "49524e2d52575f4c00",
+      "file": "062_IRN-RW_L.bin",
+      "size": 2398
+    },
+    {
+      "index": 63,
+      "name": "IRN-RW_R",
+      "name_raw": "49524e2d52575f5200",
+      "file": "063_IRN-RW_R.bin",
+      "size": 2644
+    },
+    {
+      "index": 64,
+      "name": "PRAY-ACT",
+      "name_raw": "505241592d41435400",
+      "file": "064_PRAY-ACT.bin",
+      "size": 352
+    },
+    {
+      "index": 65,
+      "name": "PICK-1",
+      "name_raw": "5049434b2d31000000",
+      "file": "065_PICK-1.bin",
+      "size": 2972
+    },
+    {
+      "index": 66,
+      "name": "PICK-2",
+      "name_raw": "5049434b2d32000000",
+      "file": "066_PICK-2.bin",
+      "size": 2972
+    },
+    {
+      "index": 67,
+      "name": "MIGRATE",
+      "name_raw": "4d4947524154450000",
+      "file": "067_MIGRATE.bin",
+      "size": 1028
+    },
+    {
+      "index": 68,
+      "name": "PRAY-OUT",
+      "name_raw": "505241592d4f555400",
+      "file": "068_PRAY-OUT.bin",
+      "size": 396
+    },
+    {
+      "index": 69,
+      "name": "WRKR-OUT",
+      "name_raw": "57524b522d4f555400",
+      "file": "069_WRKR-OUT.bin",
+      "size": 438
+    },
+    {
+      "index": 70,
+      "name": "LINK_ACT",
+      "name_raw": "4c494e4b5f41435400",
+      "file": "070_LINK_ACT.bin",
+      "size": 1028
+    },
+    {
+      "index": 71,
+      "name": "LINK_EE4",
+      "name_raw": "4c494e4b5f45453400",
+      "file": "071_LINK_EE4.bin",
+      "size": 1028
+    },
+    {
+      "index": 72,
+      "name": "LINK_EE5",
+      "name_raw": "4c494e4b5f45453500",
+      "file": "072_LINK_EE5.bin",
+      "size": 1028
+    },
+    {
+      "index": 73,
+      "name": "LINK_EE6",
+      "name_raw": "4c494e4b5f45453600",
+      "file": "073_LINK_EE6.bin",
+      "size": 1028
+    },
+    {
+      "index": 74,
+      "name": "LINK_EE7",
+      "name_raw": "4c494e4b5f45453700",
+      "file": "074_LINK_EE7.bin",
+      "size": 1028
+    },
+    {
+      "index": 75,
+      "name": "LINK_EE8",
+      "name_raw": "4c494e4b5f45453800",
+      "file": "075_LINK_EE8.bin",
+      "size": 1028
+    },
+    {
+      "index": 76,
+      "name": "LINK_EE9",
+      "name_raw": "4c494e4b5f45453900",
+      "file": "076_LINK_EE9.bin",
+      "size": 1028
+    },
+    {
+      "index": 77,
+      "name": "LINK_EEA",
+      "name_raw": "4c494e4b5f45454100",
+      "file": "077_LINK_EEA.bin",
+      "size": 1028
+    },
+    {
+      "index": 78,
+      "name": "LINK_EEB",
+      "name_raw": "4c494e4b5f45454200",
+      "file": "078_LINK_EEB.bin",
+      "size": 1028
+    },
+    {
+      "index": 79,
+      "name": "LINK_EEC",
+      "name_raw": "4c494e4b5f45454300",
+      "file": "079_LINK_EEC.bin",
+      "size": 1028
+    },
+    {
+      "index": 80,
+      "name": "LINK_EED",
+      "name_raw": "4c494e4b5f45454400",
+      "file": "080_LINK_EED.bin",
+      "size": 1028
+    },
+    {
+      "index": 81,
+      "name": "LINK_EEE",
+      "name_raw": "4c494e4b5f45454500",
+      "file": "081_LINK_EEE.bin",
+      "size": 1028
+    },
+    {
+      "index": 82,
+      "name": "LINK_EEF",
+      "name_raw": "4c494e4b5f45454600",
+      "file": "082_LINK_EEF.bin",
+      "size": 1028
+    },
+    {
+      "index": 83,
+      "name": "MIGRATE1",
+      "name_raw": "4d4947524154453100",
+      "file": "083_MIGRATE1.bin",
+      "size": 2308
+    },
+    {
+      "index": 84,
+      "name": "MIGRATE4",
+      "name_raw": "4d4947524154453400",
+      "file": "084_MIGRATE4.bin",
+      "size": 2308
+    },
+    {
+      "index": 85,
+      "name": "MIGRATE5",
+      "name_raw": "4d4947524154453500",
+      "file": "085_MIGRATE5.bin",
+      "size": 2308
+    },
+    {
+      "index": 86,
+      "name": "MIGRATE6",
+      "name_raw": "4d4947524154453600",
+      "file": "086_MIGRATE6.bin",
+      "size": 2308
+    },
+    {
+      "index": 87,
+      "name": "MIGRATE7",
+      "name_raw": "4d4947524154453700",
+      "file": "087_MIGRATE7.bin",
+      "size": 2308
+    },
+    {
+      "index": 88,
+      "name": "MIGRATE8",
+      "name_raw": "4d4947524154453800",
+      "file": "088_MIGRATE8.bin",
+      "size": 2308
+    },
+    {
+      "index": 89,
+      "name": "MIGRATE2",
+      "name_raw": "4d4947524154453200",
+      "file": "089_MIGRATE2.bin",
+      "size": 2308
+    },
+    {
+      "index": 90,
+      "name": "MIGRATE3",
+      "name_raw": "4d4947524154453300",
+      "file": "090_MIGRATE3.bin",
+      "size": 2308
+    },
+    {
+      "index": 91,
+      "name": "LINK_DEA",
+      "name_raw": "4c494e4b5f44454100",
+      "file": "091_LINK_DEA.bin",
+      "size": 1028
+    },
+    {
+      "index": 92,
+      "name": "M_KING",
+      "name_raw": "4d5f4b494e47000000",
+      "file": "092_M_KING.bin",
+      "size": 104
+    },
+    {
+      "index": 93,
+      "name": "ITEMBOX",
+      "name_raw": "4954454d424f580000",
+      "file": "093_ITEMBOX.bin",
+      "size": 8884
+    },
+    {
+      "index": 94,
+      "name": "SPYCLOAK",
+      "name_raw": "535059434c4f414b00",
+      "file": "094_SPYCLOAK.bin",
+      "size": 1600
+    },
+    {
+      "index": 95,
+      "name": "U_H_G",
+      "name_raw": "555f485f4700000000",
+      "file": "095_U_H_G.bin",
+      "size": 444
+    },
+    {
+      "index": 96,
+      "name": "U_S_G",
+      "name_raw": "555f535f4700000000",
+      "file": "096_U_S_G.bin",
+      "size": 384
+    },
+    {
+      "index": 97,
+      "name": "U_HERO",
+      "name_raw": "555f4845524f000000",
+      "file": "097_U_HERO.bin",
+      "size": 324
+    },
+    {
+      "index": 98,
+      "name": "U_S_K",
+      "name_raw": "555f535f4b00000000",
+      "file": "098_U_S_K.bin",
+      "size": 384
+    },
+    {
+      "index": 99,
+      "name": "U_H_K",
+      "name_raw": "555f485f4b00000000",
+      "file": "099_U_H_K.bin",
+      "size": 464
+    },
+    {
+      "index": 100,
+      "name": "NEWS_LOG",
+      "name_raw": "4e4557535f4c4f4700",
+      "file": "100_NEWS_LOG.bin",
+      "size": 229
+    },
+    {
+      "index": 101,
+      "name": "U_ROYAL",
+      "name_raw": "555f524f59414c0000",
+      "file": "101_U_ROYAL.bin",
+      "size": 444
+    },
+    {
+      "index": 102,
+      "name": "RALLY-PT",
+      "name_raw": "52414c4c592d505400",
+      "file": "102_RALLY-PT.bin",
+      "size": 2644
+    },
+    {
+      "index": 103,
+      "name": "BUILDSE2",
+      "name_raw": "4255494c4453453200",
+      "file": "103_BUILDSE2.bin",
+      "size": 3952
+    },
+    {
+      "index": 104,
+      "name": "BUILDUP2",
+      "name_raw": "4255494c4455503200",
+      "file": "104_BUILDUP2.bin",
+      "size": 3952
+    },
+    {
+      "index": 105,
+      "name": "BUILDDW2",
+      "name_raw": "4255494c4444573200",
+      "file": "105_BUILDDW2.bin",
+      "size": 4328
+    },
+    {
+      "index": 106,
+      "name": "REPAIRBX",
+      "name_raw": "524550414952425800",
+      "file": "106_REPAIRBX.bin",
+      "size": 961
+    },
+    {
+      "index": 107,
+      "name": "BUILDUP3",
+      "name_raw": "4255494c4455503300",
+      "file": "107_BUILDUP3.bin",
+      "size": 1936
+    },
+    {
+      "index": 108,
+      "name": "BUILDSE3",
+      "name_raw": "4255494c4453453300",
+      "file": "108_BUILDSE3.bin",
+      "size": 1936
+    },
+    {
+      "index": 109,
+      "name": "BUILDDW3",
+      "name_raw": "4255494c4444573300",
+      "file": "109_BUILDDW3.bin",
+      "size": 1936
+    },
+    {
+      "index": 110,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}

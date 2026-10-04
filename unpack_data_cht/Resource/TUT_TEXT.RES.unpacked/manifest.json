@@ -1,0 +1,437 @@
+{
+  "source": "TUT_TEXT.RES",
+  "size": 45255,
+  "sha256": "c2d2fa0cd38147c96724c0f84e91264f64eeb156d19613f6c8790d6c6f826a8b",
+  "type": "residx",
+  "count": 60,
+  "records": [
+    {
+      "index": 0,
+      "name": "BFLC1",
+      "name_raw": "42464c433100000000",
+      "file": "000_BFLC1.bin",
+      "size": 1191
+    },
+    {
+      "index": 1,
+      "name": "BFLC2",
+      "name_raw": "42464c433200000000",
+      "file": "001_BFLC2.bin",
+      "size": 294
+    },
+    {
+      "index": 2,
+      "name": "BFLC3",
+      "name_raw": "42464c433300000000",
+      "file": "002_BFLC3.bin",
+      "size": 0
+    },
+    {
+      "index": 3,
+      "name": "BFLC4",
+      "name_raw": "42464c433400000000",
+      "file": "003_BFLC4.bin",
+      "size": 0
+    },
+    {
+      "index": 4,
+      "name": "BFLC5",
+      "name_raw": "42464c433500000000",
+      "file": "004_BFLC5.bin",
+      "size": 0
+    },
+    {
+      "index": 5,
+      "name": "BFLC6",
+      "name_raw": "42464c433600000000",
+      "file": "005_BFLC6.bin",
+      "size": 0
+    },
+    {
+      "index": 6,
+      "name": "BHLC1",
+      "name_raw": "42484c433100000000",
+      "file": "006_BHLC1.bin",
+      "size": 885
+    },
+    {
+      "index": 7,
+      "name": "BHLC2",
+      "name_raw": "42484c433200000000",
+      "file": "007_BHLC2.bin",
+      "size": 23
+    },
+    {
+      "index": 8,
+      "name": "BHLC3",
+      "name_raw": "42484c433300000000",
+      "file": "008_BHLC3.bin",
+      "size": 485
+    },
+    {
+      "index": 9,
+      "name": "BHLC4",
+      "name_raw": "42484c433400000000",
+      "file": "009_BHLC4.bin",
+      "size": 0
+    },
+    {
+      "index": 10,
+      "name": "BHLC5",
+      "name_raw": "42484c433500000000",
+      "file": "010_BHLC5.bin",
+      "size": 1087
+    },
+    {
+      "index": 11,
+      "name": "BHLC6",
+      "name_raw": "42484c433600000000",
+      "file": "011_BHLC6.bin",
+      "size": 0
+    },
+    {
+      "index": 12,
+      "name": "DFLC1",
+      "name_raw": "44464c433100000000",
+      "file": "012_DFLC1.bin",
+      "size": 45
+    },
+    {
+      "index": 13,
+      "name": "DFLC2",
+      "name_raw": "44464c433200000000",
+      "file": "013_DFLC2.bin",
+      "size": 67
+    },
+    {
+      "index": 14,
+      "name": "DFLC3",
+      "name_raw": "44464c433300000000",
+      "file": "014_DFLC3.bin",
+      "size": 42
+    },
+    {
+      "index": 15,
+      "name": "DFLC4",
+      "name_raw": "44464c433400000000",
+      "file": "015_DFLC4.bin",
+      "size": 54
+    },
+    {
+      "index": 16,
+      "name": "DFLC5",
+      "name_raw": "44464c433500000000",
+      "file": "016_DFLC5.bin",
+      "size": 42
+    },
+    {
+      "index": 17,
+      "name": "DFLC6",
+      "name_raw": "44464c433600000000",
+      "file": "017_DFLC6.bin",
+      "size": 54
+    },
+    {
+      "index": 18,
+      "name": "DHLC1",
+      "name_raw": "44484c433100000000",
+      "file": "018_DHLC1.bin",
+      "size": 45
+    },
+    {
+      "index": 19,
+      "name": "DHLC2",
+      "name_raw": "44484c433200000000",
+      "file": "019_DHLC2.bin",
+      "size": 41
+    },
+    {
+      "index": 20,
+      "name": "DHLC3",
+      "name_raw": "44484c433300000000",
+      "file": "020_DHLC3.bin",
+      "size": 41
+    },
+    {
+      "index": 21,
+      "name": "DHLC4",
+      "name_raw": "44484c433400000000",
+      "file": "021_DHLC4.bin",
+      "size": 45
+    },
+    {
+      "index": 22,
+      "name": "DHLC5",
+      "name_raw": "44484c433500000000",
+      "file": "022_DHLC5.bin",
+      "size": 261
+    },
+    {
+      "index": 23,
+      "name": "DHLC6",
+      "name_raw": "44484c433600000000",
+      "file": "023_DHLC6.bin",
+      "size": 304
+    },
+    {
+      "index": 24,
+      "name": "FLC1",
+      "name_raw": "464c43310000000000",
+      "file": "024_FLC1.bin",
+      "size": 3185
+    },
+    {
+      "index": 25,
+      "name": "FLC2",
+      "name_raw": "464c43320000000000",
+      "file": "025_FLC2.bin",
+      "size": 1616
+    },
+    {
+      "index": 26,
+      "name": "FLC3",
+      "name_raw": "464c43330000000000",
+      "file": "026_FLC3.bin",
+      "size": 3269
+    },
+    {
+      "index": 27,
+      "name": "FLC4",
+      "name_raw": "464c43340000000000",
+      "file": "027_FLC4.bin",
+      "size": 3269
+    },
+    {
+      "index": 28,
+      "name": "FLC5",
+      "name_raw": "464c43350000000000",
+      "file": "028_FLC5.bin",
+      "size": 0
+    },
+    {
+      "index": 29,
+      "name": "FLC6",
+      "name_raw": "464c43360000000000",
+      "file": "029_FLC6.bin",
+      "size": 0
+    },
+    {
+      "index": 30,
+      "name": "HLC1",
+      "name_raw": "484c43310000000000",
+      "file": "030_HLC1.bin",
+      "size": 4954
+    },
+    {
+      "index": 31,
+      "name": "HLC2",
+      "name_raw": "484c43320000000000",
+      "file": "031_HLC2.bin",
+      "size": 688
+    },
+    {
+      "index": 32,
+      "name": "HLC3",
+      "name_raw": "484c43330000000000",
+      "file": "032_HLC3.bin",
+      "size": 6282
+    },
+    {
+      "index": 33,
+      "name": "HLC4",
+      "name_raw": "484c43340000000000",
+      "file": "033_HLC4.bin",
+      "size": 568
+    },
+    {
+      "index": 34,
+      "name": "HLC5",
+      "name_raw": "484c43350000000000",
+      "file": "034_HLC5.bin",
+      "size": 12962
+    },
+    {
+      "index": 35,
+      "name": "HLC6",
+      "name_raw": "484c43360000000000",
+      "file": "035_HLC6.bin",
+      "size": 1555
+    },
+    {
+      "index": 36,
+      "name": "IFLC1",
+      "name_raw": "49464c433100000000",
+      "file": "036_IFLC1.bin",
+      "size": 73
+    },
+    {
+      "index": 37,
+      "name": "IFLC2",
+      "name_raw": "49464c433200000000",
+      "file": "037_IFLC2.bin",
+      "size": 21
+    },
+    {
+      "index": 38,
+      "name": "IFLC3",
+      "name_raw": "49464c433300000000",
+      "file": "038_IFLC3.bin",
+      "size": 57
+    },
+    {
+      "index": 39,
+      "name": "IFLC4",
+      "name_raw": "49464c433400000000",
+      "file": "039_IFLC4.bin",
+      "size": 57
+    },
+    {
+      "index": 40,
+      "name": "IFLC5",
+      "name_raw": "49464c433500000000",
+      "file": "040_IFLC5.bin",
+      "size": 0
+    },
+    {
+      "index": 41,
+      "name": "IFLC6",
+      "name_raw": "49464c433600000000",
+      "file": "041_IFLC6.bin",
+      "size": 0
+    },
+    {
+      "index": 42,
+      "name": "IHLC1",
+      "name_raw": "49484c433100000000",
+      "file": "042_IHLC1.bin",
+      "size": 76
+    },
+    {
+      "index": 43,
+      "name": "IHLC2",
+      "name_raw": "49484c433200000000",
+      "file": "043_IHLC2.bin",
+      "size": 7
+    },
+    {
+      "index": 44,
+      "name": "IHLC3",
+      "name_raw": "49484c433300000000",
+      "file": "044_IHLC3.bin",
+      "size": 85
+    },
+    {
+      "index": 45,
+      "name": "IHLC4",
+      "name_raw": "49484c433400000000",
+      "file": "045_IHLC4.bin",
+      "size": 7
+    },
+    {
+      "index": 46,
+      "name": "IHLC5",
+      "name_raw": "49484c433500000000",
+      "file": "046_IHLC5.bin",
+      "size": 163
+    },
+    {
+      "index": 47,
+      "name": "IHLC6",
+      "name_raw": "49484c433600000000",
+      "file": "047_IHLC6.bin",
+      "size": 22
+    },
+    {
+      "index": 48,
+      "name": "RFLC1",
+      "name_raw": "52464c433100000000",
+      "file": "048_RFLC1.bin",
+      "size": 73
+    },
+    {
+      "index": 49,
+      "name": "RFLC2",
+      "name_raw": "52464c433200000000",
+      "file": "049_RFLC2.bin",
+      "size": 21
+    },
+    {
+      "index": 50,
+      "name": "RFLC3",
+      "name_raw": "52464c433300000000",
+      "file": "050_RFLC3.bin",
+      "size": 57
+    },
+    {
+      "index": 51,
+      "name": "RFLC4",
+      "name_raw": "52464c433400000000",
+      "file": "051_RFLC4.bin",
+      "size": 57
+    },
+    {
+      "index": 52,
+      "name": "RFLC5",
+      "name_raw": "52464c433500000000",
+      "file": "052_RFLC5.bin",
+      "size": 0
+    },
+    {
+      "index": 53,
+      "name": "RFLC6",
+      "name_raw": "52464c433600000000",
+      "file": "053_RFLC6.bin",
+      "size": 0
+    },
+    {
+      "index": 54,
+      "name": "RHLC1",
+      "name_raw": "52484c433100000000",
+      "file": "054_RHLC1.bin",
+      "size": 46
+    },
+    {
+      "index": 55,
+      "name": "RHLC2",
+      "name_raw": "52484c433200000000",
+      "file": "055_RHLC2.bin",
+      "size": 7
+    },
+    {
+      "index": 56,
+      "name": "RHLC3",
+      "name_raw": "52484c433300000000",
+      "file": "056_RHLC3.bin",
+      "size": 85
+    },
+    {
+      "index": 57,
+      "name": "RHLC4",
+      "name_raw": "52484c433400000000",
+      "file": "057_RHLC4.bin",
+      "size": 7
+    },
+    {
+      "index": 58,
+      "name": "RHLC5",
+      "name_raw": "52484c433500000000",
+      "file": "058_RHLC5.bin",
+      "size": 163
+    },
+    {
+      "index": 59,
+      "name": "RHLC6",
+      "name_raw": "52484c433600000000",
+      "file": "059_RHLC6.bin",
+      "size": 22
+    },
+    {
+      "index": 60,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}
