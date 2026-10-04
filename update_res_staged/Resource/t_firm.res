@@ -1,0 +1,184 @@
+[BAG1]ら焊耙马柑┖慸┚港態7翴τぃ琌10翴
+[BAG2]慣蝴ㄊ驹籔慱胊计態ゑㄤウ瓣產驹矗玡笷25翴
+[BAG3]慣宫玅セ烩矗蔼硉態怐е
+[BAG4]慣┮Τ霉皑瓁钉態莉眔10翴肂怶籔慱胊м翴计
+[BAG5]鲤竒筁ど態笆┮Τ马㏄瞅硑癬ㄓ綝慱胊鲤態笆確τ礚惠ヴ禣
+[BAG6]笰チ慣ゑㄤウ瓣產ネ玻30%鲁瓁钉㎝矗ㄑΤ对や
+[BAG7]慣カ初坝怘綪扳い莉眔20%柬
+[BAG8]慣贝跋い┮Τ秈ю寄瓁㎝︽瓁隔絬
+[BAG9]慣┮Τ縒ミ马癸はк20翴
+[BAGA]慣┮Τ甁の马い糤瞯矗蔼30%
+[BAGB]慣狦ㄤウ幅瓣反杠盢怐綝穕ア
+[BAGC]慣扸祇丁態罽祏30%
+[BAW1]м扸祇眔慱┦秈甶慣セ兜м砃Ч拨
+[BAW2]м扸祇眔慱┦秈甶慣莉眔%1s 
+[BAW3]竒喷伦碔%1s驹怐场钉 
+[BAW4]竒喷伦碔%1s丁恳怐场钉 
+[BAW5]抍壁驹怐场钉 
+[BAW6]璣动%1s怐场钉
+[BAW7]祇慣ン竟е话寄玡рウǐ
+[BAW8]笰チ祇慣留姜膓贾種рウ膍倒
+[BAW9]留姜鲁い祇慣у鲁
+[BAWA]祇慣穝膓跋竒赣ミ膓怱秈︽扸蹦
+[BAWB]寄瓁%1s斌穞щ怐钉ヮ
+[BAWC]寄よ%1s泥眏羘墩щ綼场钉
+[BAWD]寄よ马ぃ臭г現┎摧慌溃ガщ綼瓣產
+[BAWE]%1d寄よ%1p{丁恳|丁繎P%1p{竒|竒}砆祇慣矪
+[BAWF]%1d寄よ%1p{丁恳|丁繎P瓣い%1p{竒|竒}砆祇慣矪
+[BAWG]肩ヱ瓣產い┮Τ寄よ丁恳常砆防
+[BAWH]%1sい┮Τ端常確胺眃
+[BAWI]场钉い┮Τ端常確胺眃
+[BAWJ]%1s┮Τ┚港矗蔼%2d翴
+[BAWK]%1s┮Τ┚港常笷程
+[BAWL]%1sい┮Τ┚港矗蔼%2d翴
+[BAWM]%1sい┮Τ┚港常笷程
+[BAWN]瓣產い┮Τ┚港矗蔼%1d翴 
+[BAWO]瓣產い┮Τ┚港常笷程
+[BAWP]%1sい┮Τ驹籔慱胊м翴计矗蔼%2d翴
+[BAWQ]Reserved
+[BAWR]Reserved
+[BAWS]Reserved
+[BAWT]Reserved
+[BAWU]Reserved
+[BAWV]Reserved
+[BAW_]礚
+[CMP1](礚烩)
+[CMP2](礚端)
+[(percentage)CMBC](%1,3d 阀瞯)
+[(offer <amout of cash>)CMBA]矗ㄑ%1,2d
+[(Bribe <unit>)CMB?]胳革%1s?
+[CMBY]胳革Θ
+[CMBN]胳革ア毖
+[CMBK]丁恳ō毖臩砆矪
+[CMAA]琌璶穞炳%1s?
+[CMAC]Τ%1,3dΘ诀態
+[YES_]琌
+[NO__]
+[CMAS]穞炳Θ
+[CMAE]丁恳発扟Θ
+[CMAX]丁恳綝秂砆矪
+[CMAF]穞炳ア毖
+[CMTA]琌璶叛м砃
+[CMTS]Τ%1,3dΘ诀態
+[CMTY]Θ叛%1s %2r
+[CMTN]叛м砃ア毖
+[CMTK]丁恳綝秂砆矪
+[CMTZ]⊿тヴΤノм砃
+[CMW1]匡璶辈祇ㄆン瓣產
+[CMWA]琌璶玻ネ祇ㄆン
+[CMWC](%1,3d 阀瞯)
+[CMWY]祇ㄆン玻ネΘ
+[CMWF]ゼ珼癬祇ㄆン
+[CMWX]丁恳綝秂砆矪
+[CMR1]Reserved
+[CMR2]Reserved
+[CMR3]Reserved
+[CMR4]Reserved
+[CMR5]Reserved
+[CMR6]Reserved
+[CMR7]Reserved
+[CMR8]Reserved
+[FAR1]翲
+[FAR2]簧
+[FAR3]臟
+[FAW1]吵竟
+[FAW2]簧竟
+[FAW3]臟竟
+[FAMP]る玻秖
+[FAAU]笆
+[FAMA]も北
+[(Buy <item>)INBI]潦禦%1s
+[MANT]ぃ硂カ初秈︽禩笆
+[MAP1]吵竟坝怘
+[MAP2]簧竟坝怘
+[MAP3]臟竟坝怘
+[MAYI]恎Μ%1d 
+[MIUR]ゼ扸蹦
+[MIMR]扸蹦
+[OFM1]匡い璶ю阑縱
+[OFM2]匡い璶
+[OFM3]匡い璶ю阑
+[OFM4]匡い环禯瞒肚癳ヘ
+[OFM5]ゼㄏノ
+[OFM6]匡い璶ю阑ヘ夹
+[OFM7]ゼㄏノ
+[OFM8]Reserved
+[OFM9]Reserved
+[OFMS]匡い惠环禯瞒肚癳
+[OFCC]︽笆盢%1,2d
+[OFTC]环禯瞒肚癳盢%1,2d
+[TSSC]匡拒惠扸祇м砃
+[TSFC]赣单┮Τм砃扸祇Ч拨
+[TSNO]讽玡ゼ扸祇ヴм砃
+[TSRP]扸祇秈慹
+[TSCP]ЧΘκだゑ
+[WFNW]慣ゼ籹硑ヴ猌竟
+[MTCL]赣︽笆盢%1dネ㏑翴计
+[MTTL]环禯瞒肚癳盢%1dネ㏑翴计
+[LARE]┮ネ㏑翴计%1d
+[ALR1]翲膓
+[ALR2]簧膓
+[ALR3]臟膓
+[ALRQ]︳璸纗秖%1z
+[ALID]ゼ秈︽锣て
+[ALCS]锣て%1s
+[ANHC]侗基%1,2d + %2d ネ㏑翴计
+[(Athenai Market)FIRN]%2s %1s
+[(Athenai Market 2)FIR#]%2s %1s %3d
+[(Fort Athenai)FORN]%1s %2s
+[(Fort Athenai 3)FOR#]%1s %2s %3d
+[(reseved firm name format)FX3N]%2s %1s
+[(reseved firm name format)FX3#]%2s %1s %3d
+[(reseved firm name format)FX4N]%2s %1s
+[(reseved firm name format)FX4#]%2s %1s %3d
+[UNDC]硑い
+[STIF]惠璶琩よ獺
+[FRE1]reserved
+[FRE1]reserved
+[FRE1]reserved
+[FRE1]reserved
+[<nationality>SCRL]*%1s 辈禸*
+[<nationality><Seat of Power><Greater Being>SCR2]Τ%1s %2s酬%3s
+[SGOL]扝碔
+[SGOW]基
+[SOW1]猌竟辈禸
+[SOW2]м
+[SREV]Reserved
+[SREV]Reserved
+[SREV]Reserved
+[SREV]Reserved
+[SREV]Reserved
+[TWNF]马
+[<race>RTWN]%1s马
+[<race>STWN]%1sィ马
+[NWAL]马礚瞅鲤
+[TPOP]
+[TWRK]
+[TPES]笰チ
+[RSST]はк
+[(wall repair)WRPR]干
+[(wall building)WBLD]硑
+[SLVT]赣马–恎秈癪计秖%1,2d
+[TSKL]м
+[SMIS]ヴ叭
+[AUTT]讽┚港ど扗﹚眖赣马(翴阑菲公オ龄)┪瓣い┮Τ马(翴阑菲公龄)い┖慸
+[AUTG]讽┚港扗﹚赣马(翴阑菲公オ龄)┪瓣い┮Τ马(翴阑菲公龄)洁界窥
+[(not used)WMAN]扗竚⊿Τ恇チ计(0 - 8)ㄓ硑马瞅鲤
+[DISA]
+[NOWK]%1z%1q{⊿Τ||}
+[LOYT]癸%1s┚港
+[RSST]癸%1sはк
+[LINC]翴阑オ龄糤怐
+[RINC]翴阑龄搭ぶ
+[TIIF]%1q{|笰チ|笰チ}%1z %2q{||}%2z
+[YSPY](%1p{丁恳|丁繎P)
+[NOCM]⊿Τ揣﹛
+[MINR]扸蹦%1s
+[MIN0]⊿Τ
+[MINN]⊿Τ礛戈方礚猭硑膓怱
+[<product name>FACR]ネ玻%1s
+[FACN]ゼネ玻坝怘
+[PRAY]毛翴计
+[ENER]秖
+[BUYL]禣%1,2dㄏ硂盻マ┚%2?{璶禦盾|}
+[BLNC]窥ぃ镑

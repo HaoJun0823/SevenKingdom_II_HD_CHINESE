@@ -1,0 +1,590 @@
+{
+ "Campaign/tutorial.stg": [
+  {
+   "rec": "1GOAL",
+   "size": 208,
+   "text": "You and your brave people must hold this land against the coming onslaught of the Fryhtan hordes.\nIf you are able to inflict total defeat upon the invading Fryhtans, your name shall echo through the ages."
+  },
+  {
+   "rec": "1INTRO",
+   "size": 537,
+   "text": "Several Fryhtan raider bands have been spotted just across the border.\nYou should expect lightning raids on your towns, as the Fryhtan's thirst for human lives knows no bounds.\nThere are also rumors that one of your generals has wavered in his loyalty and that he may use this opportunity to set up a kingdom of his own.\n\nYour goal is to defeat all the Fryhtan forces. The Fryhtan battling score that you receive in this game shall be added to your campaign score. See the Rank report (F8) for your current Fryhtan battling score."
+  },
+  {
+   "rec": "1LOSE1",
+   "size": 238,
+   "text": "Your Kingdom has suffered an disgraceful defeat! \nHang your head in shame.  Walk through the streets only in darkness and with the protection of loyal troops.\nAll blame has fallen upon your shoulders.\n\nYou must retry this scenario!"
+  },
+  {
+   "rec": "1POST1",
+   "size": 191,
+   "text": "Although you did hold your province against the Fryhtans, their depredations eventually weakened it to the point of collapse.  The province and its people are now enslaved by the Fryhtans."
+  },
+  {
+   "rec": "1PRELUDE",
+   "size": 86,
+   "text": "Human pests!\n\nPrepare to be enslaved!\nPrepare to die!\nAbandon hope!\n\nWe come!"
+  },
+  {
+   "rec": "1WIN1",
+   "size": 185,
+   "text": "Your forces have crushed the invading Fryhtans!\nYour leadership is an example for all!\n\nYou have achieved a Fryhtan Battling score of %d.  It will be added to your campaign score."
+  },
+  {
+   "rec": "1WIN2",
+   "size": 162,
+   "text": "Congratulations.  You have survived for a full 10 years!\n\nYou have achieved a Fryhtan Battling score of %d.  This score will be added to your campaign score."
+  },
+  {
+   "rec": "2GOAL",
+   "size": 290,
+   "text": "Your goal in the coming battles will be to reach a Fryhtan battling score of 1000.\nAlthough the wise agree that with their endless supply of reinforcements the Fryhtans will inevitably triumph, your holding action and attrition of these beasts will be of great importance to the Empire."
+  },
+  {
+   "rec": "2INTRO",
+   "size": 836,
+   "text": "A band of Fryhtans has crossed your borders and now infests your land. But although your military forces are yet weak and you may still suffer rebellions and betrayals, your populace is both numerous and loyal. This loyalty of the lower orders will tend to frustrate the call to rebellion from your disloyal underlings.\n\nA well known hero has been spotted near your borders.  He has sent message that he will cross into your territory and help you in your inevitable battle with the Fryhtans.  Use him well in the training of your troops. Fryhtan reinforcements have also been spotted and will surely join their brethren in battle, making their total destruction almost beyond hope. While you will have little chance in achieving ultimate victory, you should be able to achieve a Fryhtan battling score of 1000 before you succumb."
+  },
+  {
+   "rec": "2LOSE1",
+   "size": 367,
+   "text": "Well, We can now clearly see that We expected far too much from you.\nYou have been defeated without achieving a Fryhtan battling score of at least 1000.\nYour lands, castles, wenches, hounds and hawks are now forfeit to Me!\n\nIt may yet be possible to regain My favour and your possessions.  But you must first replay this scenario. \nAnd this time, do not fail!"
+  },
+  {
+   "rec": "2POST1",
+   "size": 347,
+   "text": "Congratulations!\nBecause you were able to hold off the Fryhtan onslaught for the required twenty years, other provinces have been better able to prepare themselves for the future.\nWe regret, of course, the loss of all of your men and We feel pity for all of the towns that now cry out in stark, raving terror.\nBut it was all in a good cause."
+  },
+  {
+   "rec": "2PRELUDE",
+   "size": 98,
+   "text": "Human pests!\nPrepare yourselves!\nTake last looks.\nSew shrouds.\nCompose laments.\n\nWe come."
+  },
+  {
+   "rec": "2WIN1",
+   "size": 152,
+   "text": "Congratulations!\nThe invading Fryhtans and the human rebels now rest together in the bellies of crows.\nYou have vanquished all and now stand alone."
+  },
+  {
+   "rec": "2WIN2",
+   "size": 110,
+   "text": "The world looks on in wonder!\nYour Fryhtan Battling score of 1000 is testimony to your supreme leadership."
+  },
+  {
+   "rec": "3GOAL",
+   "size": 349,
+   "text": "You are given fifteen years:\nFifteen years in which to put down all rebels in the province.\nFifteen years in which to build an economy to a level of 300.\nFifteen years in which to build a military to a level of 300.\nComplete every task and place yourself among the favoured.  Fail to complete them and prepare yourself for ignominy and exile."
+  },
+  {
+   "rec": "3INTRO",
+   "size": 377,
+   "text": "Your Kingdom has been rent by rebellion.  Many of your towns are now under the yoke of rebel warlords. It is imperative that you liberate these towns before they can become bases for powerful rival Kingdoms.\nYour objectives are to destroy all rebel forces and reach economic and military scores of 300. \nVictory will be yours if you accomplish these goals within 15 years."
+  },
+  {
+   "rec": "3LOSE1",
+   "size": 282,
+   "text": "As you well know, you have failed miserably.  Your Kingdom has been utterly destroyed.\nYou are fortunate in keeping your life.  One may wonder just how this is?\n\nPerhaps you will throw yourself more forcibly into the battle when you retry this scenario.\nAs retry it you must."
+  },
+  {
+   "rec": "3LOSE2",
+   "size": 230,
+   "text": "Perhaps you should never have been given such a difficult task.\nYou have failed miserably in reaching the goals set for you.\nIt might be that if you are given another chance the result will be more favorable.\nLet us hope so."
+  },
+  {
+   "rec": "3PRELUDE",
+   "size": 352,
+   "text": "Rebellions have erupted in several of your provinces and towns once loyal to you have declared their independence.  These traitorous towns will undoubtedly grow proud and wish to set up as rival Kingdoms.\nIt is therefore imperative that you regain the their allegiance by any means available before they can grow strong enough to defend themselves."
+  },
+  {
+   "rec": "3WIN1",
+   "size": 175,
+   "text": "Congratulations!  The last surviving rebels have been put down!  All towns in the province have sworn fealty to you and all economic and military targets have been reached!"
+  },
+  {
+   "rec": "MAININTR",
+   "size": 963,
+   "text": "OCCIDENTAL HEROES\n\nIn the days of our Grandfather's Grandfathers, our Great Empire was divided between the usurping warlords of the East and We in the West who still reign under Divine Decree.\n\nThe True Empire in the West is now under siege by the Fryhtan hordes. They have emerged from beyond our Western Marches and are now steadily and inexorably crushing all that we can throw before them.\n\nAlthough it would seem that there is no possible way to stop this onslaught, it is said by some that with the help of renegade Fryhtans and some of their demonic weapons we may be able to stem their advance.\n\nIt is unlikely that we can expect any assistance from our former brothers in the East as they perceive that it is to their advantage for us to fall.\n\nIn the event that we are able to defeat the Fryhtans, it will become our sacred duty to launch a Great Crusade with the goal of overthrowing the Eastern usurpers and re-creating the Old Empire."
+  },
+  {
+   "rec": "4GOAL",
+   "size": 240,
+   "text": "You must retake Our renegade province before Eastern troops can reinforce the area!  Every last Eastern soldier must be wiped out so that the province and the world shall know that We do not accept the dissolution of our Glorious Empire."
+  },
+  {
+   "rec": "4INTRO",
+   "size": 268,
+   "text": "You must retake Our recently renegade province.  Due to the necessity for a quick victory, you will have only limited forces available.  But, if used wisely, these forces should suffice to vanquish any Eastern troops that have entered the area to impose their rule."
+  },
+  {
+   "rec": "4LOSE1",
+   "size": 199,
+   "text": "It seems that you have misunderstood your orders.  Our records show that were to have DEFEATED the enemy, not to have been defeated BY them!\nPerhaps when you try again you will keep this in mind?"
+  },
+  {
+   "rec": "4LOSE2",
+   "size": 230,
+   "text": "Perhaps you should never have been given such a difficult task.\nYou have failed miserably in reaching the goals set for you.\nIt might be that if you are given another chance the result will be more favorable.\nLet us hope so."
+  },
+  {
+   "rec": "4PRELUDE",
+   "size": 242,
+   "text": "Free at last!\nThe bonds that until lately have tied us to you are now severed.\nWe trust that you will recognize the inevitable and leave us in peace.\nAny attempt to impose the old order will be met by the forces of our newfound friends."
+  },
+  {
+   "rec": "4WIN1",
+   "size": 143,
+   "text": "Well done!  You have regained our lost province!\nOur thanks to you for your brave victory.  You shall not be wanting for treasure or lands."
+  },
+  {
+   "rec": "5GOAL",
+   "size": 284,
+   "text": "Use your sixteen elite soldiers to destroy every last Frythan lair and all of the beasts therein.  \nMake sure to use those humans who join you in the course of your mission and use them well, as your small force will probably not be sufficient to defeat the Fryhtans on their own."
+  },
+  {
+   "rec": "5INTRO",
+   "size": 378,
+   "text": "The poor people of our former province are being squeeze nearly to death.  They cry out for a liberator to remove the yoke of Fryhtan rule.\nYou will have sixteen elite troops with which to answer their prayers.  As the process of  liberation begins you will find towns rallying to your flag.  Use these people well to aid you in the total overthrow of the Fryhtan overlords."
+  },
+  {
+   "rec": "5LOSE1",
+   "size": 75,
+   "text": "Your Kingdom has been utterly defeated.\n\nYou must retry this scenario."
+  },
+  {
+   "rec": "5LOSE2",
+   "size": 151,
+   "text": "You failed miserably in reaching your goal of an economic and military score of 300 within the allotted 15 years.\n\nYou must retry this scenario."
+  },
+  {
+   "rec": "5PRELUDE",
+   "size": 158,
+   "text": "We thirst but there is no drink,\nWe hunger but there is no food,\nWe cry, but no on hears our screams.\nBring us drink!\nBring us food!\nHear our screams!"
+  },
+  {
+   "rec": "5WIN1",
+   "size": 112,
+   "text": "Congratulations!  All rebel forces lie dead in the field. Your economic and military goals have been reached!"
+  },
+  {
+   "rec": "5LOSE",
+   "size": 275,
+   "text": "The people were expecting liberators.  Instead, they got buffoons.  They now rightly expect that their oppression will become all the more heavy in repayment for those Fryhtans that you did manage to kill.\nYou must try again.  The oppressed people of the world demand it!"
+  },
+  {
+   "rec": "5WIN",
+   "size": 211,
+   "text": "Every last lair has been destroyed and every last Fryhtan lies dead.  The province is now fully free to acknowledge their one True King.\nThanks be to you for your well planned and executed war of liberation!"
+  },
+  {
+   "rec": "6GOAL",
+   "size": 291,
+   "text": "Advance into this province, destroying all Fryhtan lairs and every last Fryhtan\nDo not rely upon help from the local human population, although some help may very well be had.\nThe Fryhtans will be well entrenched and advanced.  They will not give up this land without a desperate fight."
+  },
+  {
+   "rec": "6INTRO",
+   "size": 596,
+   "text": "As you have had to deal with previously, you are confronted with another of our former provinces now under the thumb of Fryhtan oppression.  The Fryhtans in this province, however, have had more time to become entrenched in their rule.  They have had time to develop and construct special structures that will greatly aid them in defense of their prize.\nAnother difficulty is that the humans in this region have been so long without our guidance that they have come to hold dangerous ideas of \"independence\" and \"self determination\".  Some of the people will rally to us, but others will not."
+  },
+  {
+   "rec": "6LOSE",
+   "size": 357,
+   "text": "Well, you have certainly brought smiles many, many faces.  The tragedy is that these smiling faces belong to the Fryhtans!  Every last one of your dead has gone not to feast with his warrior gods, but has himself been feasted upon by the Fryhtan that killed him!\nWhen you again try this mission, see to it that you do not feed the Fryhtans so very well!"
+  },
+  {
+   "rec": "6PRELUDE",
+   "size": 151,
+   "text": "Human scrawnlings!\nWe are well prepared!\nCome break yourselves on our walls!\nWater our fields with your blood!\nWe delight in your dying screams."
+  },
+  {
+   "rec": "6WIN",
+   "size": 252,
+   "text": "Again, you have shown outstanding leadership in the liberation of our province.\nAll Fryhtan lairs have been destroyed and Fryhtan footsteps no longer shake our holy ground. \nYour name shall be carved in a triumphal arch as deep as a spear is long!"
+  },
+  {
+   "rec": "7GOAL",
+   "size": 162,
+   "text": "You must defeat the barbarous Eastern troops that have invaded our Empire.  Destroy every last one of them, showing no more mercy than you would to a scorpion."
+  },
+  {
+   "rec": "7INTRO",
+   "size": 321,
+   "text": "Troops of the Eastern pretender have crossed the border and are now infesting our Holy Land.  We must, of course, drive them from our land as soon as possible lest they grow proud in their strength.\nDo not be too rash in you attacks.  Build your forces to an acceptable level before delivering your final hammer blow."
+  },
+  {
+   "rec": "7LOSE",
+   "size": 434,
+   "text": "Perhaps you thought that our Empire was a bit too large?  Perhaps you felt that losing this province would help to make it a more manageable size?  Perhaps you should follow your orders instead of thinking for yourself!\nYour orders were to defeat the Eastern invaders!\nWell, there is no second chance.  The Easterners certainly aren't going to let you try to defeat them again.  Perhaps you may redeem yourself in future battles."
+  },
+  {
+   "rec": "7PRELUDE",
+   "size": 280,
+   "text": "Relations between our Kingdom and the Eastern pretenders have been strained to the breaking point, although through no fault of our own.  Now, in hope of distracting attention at home from their oppressive misrule, they have launched an ill-advised invasion into our territory."
+  },
+  {
+   "rec": "7WIN",
+   "size": 267,
+   "text": "The ambitions of the pretender lie in smouldering ruin.  The forces under your command have wrecked his plans and made his position at home all the more precarious.\nWe will prepare a triumphal parade for you on your return to the capital.\nOnce again, Our thanks."
+  }
+ ],
+ "Campaign/tutorial.evt": [
+  {
+   "rec": "11A",
+   "size": 882,
+   "text": "A messenger has arrived with a letter from (name), The All High (species).\n~\nBecause of the incompetence of My underlings and the treachery of My allies, it has come to the point that I must temporarily surrender My remaining armies.  This is necessary so that the World will not be denied My continued Presence.  A Presence for which the sun shines.  A Presence for which the waves part.  A Presence around which all the Lands and all the Kingdoms revolve.  \n\nIt should be obvious to you that this must be.  Will you therefore accept My temporary surrender?\n\nObey and Tremble,\n(name)\nAll High (species)\n\n~\nYes!  We will take your surrender, you pitiful weakling.  We may find use for you as a breaker of stone or as a cleaner of cesspools.  \n~\nNever!  The only things that revolve around you are your fleas!  You will die as you deserve.  In pain and unmourned. \n~"
+  },
+  {
+   "rec": "12A",
+   "size": 711,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\nSire, \n\nAs Our military strength may not be quite as overwhelming as it would appear, it may be prudent to request military assistance from the Eastern \"Empire\".  This assistance, if it arrives, will help to preserve Our might for the inevitable battles to come against those very same Eastern pretenders.\n\nThe decision must be made at once if the aid is to arrive in time.  Should we now send our request?\n\n(Name)\nMinister of War\n~\nYes.  It must be so, though it is a shameful act.  Destroy all records of this correspondence.\n~\nNo.  I would not have it be said that We were so without Honour as to ask aid from such as them.\n~"
+  },
+  {
+   "rec": "12B",
+   "size": 1375,
+   "text": "A messenger has arrived with a letter from the Eastern pretenders.\n~\nWestern minions!\nWe will write this slowly so that you may more easily understand.\n\nIn response to your groveling pleas for help in your war, We find that We can not countenance the sending of Our brave soldiers to lead such rabble as you are likely to field.\n\nThat is unless you would be willing  to allow one of \"your\" provinces; one that now groans under your misrule; to rejoin our Universal and Righteous Empire.\nOnce you agree to this demand, a few of Our less experienced troops may be dispatched to the field of battle.  Perhaps they will show by example how true soldiers fight.\n\nWe expect your answer forthwith.\n\n(name)\nAssistant to the Second Undersecretary of Foreign Affairs\n~\nWe accept your conditions.  There is one small province that has been causing Us trouble because its people are afflicted with strange, incurable skin diseases.  We know that you have vast experience with these on account of your usurping \"King\" being afflicted with so many himself.\nWe will, therefore, let you deal with this province from now on.\n~\nBah!  We expurgate Our hinders in your direction.  To think that We would trade Our sacred land for the \"help\" of a few criminals and degenerates!  You will find this message being returned to you in the mouth of your late messenger's head. \n~"
+  },
+  {
+   "rec": "13A",
+   "size": 879,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\nSire,\n\nThe time has come for a momentous decision:\nDo We propose a peaceful merger of our Kingdom with the usurping pretenders in the East or do We launch an all out attack with Our Glorious Army?\n\nAlthough peaceful action might spare many lives and untold misery, it should be noted that it is a rare Monarch who creates His Legend by peaceful means.\n\nThe final decision awaits Sire,\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of War\n~\nWe deem it best to propose a peaceful merger with the Easterners.  My ever-growing legend counts as nothing compared to the lives of my beloved people.\n~\nLet it be war!  There is blood in My eyes!  My sword leaps from its scabbard!  The usurpers shall pay dearly for the years that they have been a thorn in My Royal side!\n~"
+  },
+  {
+   "rec": "13B",
+   "size": 811,
+   "text": "A messenger has arrived with a letter from the Eastern pretenders.\n~\nPretentious scab!\n\nDid you not itch We would not even notice you!\n\nYou propose to merge your barren swamps with Our Universal Kingdom?\nTo infect our rich Blood with your watery drool?\nFaugh!  I have not laughed so hard since your messenger was fed to Our Royal hounds. \nOh, make no mistake;  Mergers there shall be:\nMerger of your soldier's bodies with Our swords!\nMerger of your widowed women and young maidens with Our brave heroes.\nMerger of your male children with our mines and factories!\n\nShould you have any other messages for us in the future, do not bother to send them.\nWe shall arrive soon enough at that hovel that you call a palace.\n\nIn the name of King (name)\n\n(name)\nUndersecretary for Foreign Affairs\n~"
+  },
+  {
+   "rec": "14A",
+   "size": 519,
+   "text": "A messenger has arrived with a dispatch from the Minister of Foreign Affairs.\n~\nSire,\n\nWe have received information from our spy networks that a province under the oppression of the Eastern pretender has revolted against his harsh rule and declared its independence.\nAdditional information is sketchy due to the continuing turmoil.\n\nI shall keep you updated with the latest developments as soon as they arrive.\n\nI remain Sire,\n\nYour most Humble and Obedient Servant.\n\n(name)\nMinister or Foreign Affairs"
+  },
+  {
+   "rec": "14B",
+   "size": 531,
+   "text": "A messenger has arrived with a dispatch from the Minister of Foreign Affairs.\n~\nSire,\n\nA province under the oppressive thumb of the Eastern pretender and his henchmen has bravely stood up and declared its allegiance to You.\nTheir noble representatives are on their way to the Palace to present their credentials and pledge their arms.\n\nI would suggest a day of celebration and feasting for all but servants and peasants.\n\n\nI remain Sire,\n\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of Foreign Affairs"
+  },
+  {
+   "rec": "14C",
+   "size": 654,
+   "text": "A messenger has arrived with a dispatch from the Minister of Foreign Affairs.\n~\nSire,\n\nWe have reports that a rebel general and his men have seized a well appointed castle and declared themselves a new and independent kingdom.\nWhether they will align themselves with us or with the Eastern pretender is as of yet unclear.  Perhaps they shall remain neutral.  It is almost certain that they shall ask for aid or technology and in this I would advise caution.\nOnce the technology is in their hands, we will be unable to control its proliferation.\n\n\nI remain Sire,\n\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of Foreign Affairs"
+  },
+  {
+   "rec": "14D1",
+   "size": 631,
+   "text": "A messenger has arrived with a dispatch from the Minister of Foreign Affairs.\n~\nSire,\n\nWe have received reports from our spies and from refugees that the newly created Kingdom of King (name) has launched an invasion into the lands of the Eastern pretender.\nLatest reports are that he has succeeded in liberating one of the pretender's provinces.  Although it is true that these lands ultimately belong to You, it must be admitted that anything that contributes to the weakening of our main enemy must be seen as good news.\n\n\nI remain Sire,\n\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of Foreign Affairs"
+  },
+  {
+   "rec": "14D2",
+   "size": 584,
+   "text": "A messenger has arrived with a dispatch from the Minister of Foreign Affairs.\n~\nSire,\n\nOne of our brave spies in the ranks of King (name) has barely escaped with his life from a most disastrous battle.  He reports that King (name) launched a preemptive attack against the Eastern pretender's lands and, although he had the advantage of surprise, his army was decisively defeated.\nWhat this news bodes for us Sire, I cannot say.  But the loss of a potential ally is troubling.\n\n\nI remain Sire,\n\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of Foreign Affairs"
+  },
+  {
+   "rec": "14E",
+   "size": 755,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\nSire,\n\nYour Royal Astrologers have reported that the stars practically sing out that the time is come!\nPriests in the temple have examined entrails, livers and esophagi and they all concur!\nA horse with two heads and eight legs has been spotted by a peasant girl!\n\nIt would seem that the entire Universe and all the Gods are with Us!\nNow is the time to re-unite the world under our One True Empire.\n\nWhich Kingdom shall bear the brunt of Our first attack?\n\nI eagerly await your wise order,\n\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of War\n~\nIt shall be (name's) Kingdom.  Prepare Our forces! \n~\nIt shall be (name's) Kingdom.  Prepare Our forces! \n~"
+  },
+  {
+   "rec": "15A",
+   "size": 508,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\n(Date)\n\nSire,\n\nThe World Rejoices!\n\nThe last remnants of misguided opposition to Your just rule have been crushed!\n\nMay flowers bloom in Your presence!\nMay trees bow as You walk by!\nMay townspeople not accidentally dump night soil onto Your head!\n\nCongratulations Sire on Your Ultimate Victory!\n\n\nWe are, as always, Your Most Humble and Obedient Servants,\n\n(name)\nMinister of War\nOn behalf of your Council of Ministers"
+  },
+  {
+   "rec": "1A",
+   "size": 244,
+   "text": "%s Fryhtans of %s have launched an unprovoked attack into Our territory.  Although Our forces have fought with valour, the sheer numbers of the Fryhtan horde have overwhelmed Our defenses.\nOur province and its people are now at their mercy."
+  },
+  {
+   "rec": "3A",
+   "size": 630,
+   "text": "A messenger has arrived with a dispatch from the Minister of War.\n~\nSire,\n\nOne of Our vassal states was long ago infiltrated by agents of the Eastern Empire.  These devious operatives subverted the morals of that state and led its people astray.  The people have now revolted against Our just rule because they came to believe that  their lives would be better as an \"independent\" state, not realizing before it was too late that they would in fact become another slave province of the Eastern usurpers.\n\nThus is the situation as it stands.\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n%s\nMinister of War"
+  },
+  {
+   "rec": "3B",
+   "size": 712,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\nSire,\n\nI must ask your advice on how to deal with the treacherous Eastern usurpers regarding our renegade province.\nIs it Your Will that I send a message demanding the return of our stolen province?\n\nI humbly await Your most Enlightened Instructions in this matter.\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n%s\nMinister of War\n~\nBut of course!  Our sacred lands have been stolen from Us and they must be returned!\nSend such a message immediately!\n~\nPerhaps not.  We deem it advantageous to Us to bide our time and take the land back when We see fit.\nLeave the matter be.  Send no letter to those pretenders.\n~"
+  },
+  {
+   "rec": "3C",
+   "size": 1081,
+   "text": "A messenger has arrived with a letter from the Eastern pretenders.\n~\nWestern weaklings!\n\nIt has come to Our attention that a small land of poor people and few resources has, quite understandably,  decided to join Our Universal Empire.  It should be noted that because of the vast territories that We administer We do not generally notice such trifling events.  It is only the unpardonable tone of your recent letter on the subject that brought the matter to the attention of Our lesser functionaries.\n\nShould you attempt to reclaim this land for your own pitiful \"empire\", be forewarned that We shall meet any force of yours with the appropriate response.  Perhaps several dozen or Our younger Academy students would desire to earn extra credit by bringing home some bagfuls of trophies for our Imperial Ear & Nose museum?\n\nYes, that would seem more than appropriate.  I shall put it to the Third Undersecretary immediately.\n\nWhen a messenger has nothing better to do, I will send this letter with him.\n\n%s\nAssistant to the Third Undersecretary for Foreign Affairs"
+  },
+  {
+   "rec": "3D",
+   "size": 769,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\nSire,\n\nWe must now decide whether or not to send Our glorious forces into war against the Eastern puppets in order to regain our sacred territory.\n\nI humbly await Your instruction in this most pressing matter.\n\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n%s\nMinister of War\n~\nMake it so.  Send Our forces to grind the bones of their army, then sprinkle the fine powder on unmentionable parts of Our fighting men so as to soothe the chafing caused by their armour.\n~\nI think not.  Let the rebels suffer under the tyranny of the Easterners for a few more years.  It is no great loss to Us as their grain was full of sand and their women had more fleas than their camels.\n~"
+  },
+  {
+   "rec": "5A",
+   "size": 600,
+   "text": "After a long and glorious reign, King %s is now an aged, but venerable old man.  He can no longer remove the heads of ten foes with a single stroke, nor can He any longer march for months without food or water.  His once thunderous voice is now not nearly so thundery.\nYet his wits are yet with him and he looks ahead to the future of his people.  He sees that they will be served well by the great Hero %s.\nKing %s as therefore announced that he will spend his remaining years in seclusion and meditation.  He turns His throne over to %s forthwith.\n\nThe King has retired!  Long live the King!"
+  },
+  {
+   "rec": "7A",
+   "size": 1438,
+   "text": "A messenger has arrived with a letter from the Eastern pretenders.\n~\nTo the Western \"King\"\n\nGreetings,\n\nAlthough We care little for the ultimate fate of your so called \"empire\", We see you as a useful buffer zone against the Fryhtans.\nOur many spies have informed Us that you are woefully weak and that it will be but a short season before you are wiped out by the Fryhtan forces.\nBecause of your hopeless situation, We have decided to dispatch a few of Our superior forces into those lands that you temporarily hold at Our sufferance.  There they will show by example how true men of valour fight Fryhtans.\nAlthough it is but a formality, we do adhere to diplomatic niceties.  We must, therefore, ask your permission to send these forces across the border.\n\nDo you gratefully accept Our over-generous offer?\n\n(name)\nSecond Undersecretary for Foreign Affairs\n\n~\nBy all means, send your \"troops\".  Perhaps the Fryhtans shall laugh themselves to death when they see your \"men\" take the field.  Why, We may even find use for them as bearers of horse feed or as stepping stones when Our ever victorious army needs to cross a river.\n~\nNo thank you.  We would sooner recruit women or small children into Our forces than pollute Our ranks with such well-known wetters of armour.  We suggest that you keep all of your troops at home to prepare for Us, for once the Fryhtans have been dispatched We shall come calling on you!"
+  },
+  {
+   "rec": "8A",
+   "size": 395,
+   "text": "The (species) Fryhtan Kingdom of All High (name) and the (species) Frythan Kingdom of All High (name) are presently engaged in a murderous civil war.\nThis Fryhtan fratricide began with a disagreement over the division of human heads taken in battle.  As it is these heads that contain the vital Life Force needed by the Fryhtans, the division of the spoils has become an all-important issue."
+  },
+  {
+   "rec": "8B",
+   "size": 970,
+   "text": "A messenger has arrived with a letter from the Minister of War.\n~\nSire,\n\nBecause of the devastating Fryhtan civil war now taking place, it appears that now could be a propitious time to take one side in the conflict and send Our forces to help wipe out one of the evil Fryhtan Kingdoms.\nYour Councils are deadlocked on the issue.  Some feel that wiping out a Fryhtan Kingdom would be in our best interest, while others feel that we should not needlessly antagonize Fryhtans as their anger is legendary.\nThe final decision is, as ever, Yours.\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n(name)\nMister of War\n\n~\nI deem that We should ally with (name's)(species) Fryhtan Kingdom  against (name's)(species) Fryhtan Kingdom.\n~\nI deem that We should ally with (name's)(species) Fryhtan Kingdom  against (name's)(species) Fryhtan Kingdom.\n~\nI believe that We should choose prudence over adventure and keep well out of the Fryhtan civil war.\n~"
+  },
+  {
+   "rec": "9A",
+   "size": 916,
+   "text": "A messenger has arrived with a letter from the (species) Fryhtans.\n~\nHuman!\n\nRather eat your brains than deal.\nBut need your troops for diverting.\nAccept or reject, I do not care!\nIf accept, I kill you later.\nIf reject, I kill you very much soon!\nSend troops or not?\nI give no time to think!\n\n(name)\nOrdo of the All High (name)\n~\nWe agree to send troops, but make no mistake;  We do so because We find it in our best interest.  We care nothing for you or your Kingdom of horrors.\n~\nWe reply to you although We doubt that you can read this without human assistance.\nWe refuse to send you any help in your petty war.  The next time you see Us shall be when your bodiless head looks upon Us with your dying eyes.\n~\nWe will send a few token troops, but only in return for a good piece of land.\nYou can take this counter offer or leave it.\nWe give YOU no time to consider and NO second offers!\n~"
+  },
+  {
+   "rec": "9C1",
+   "size": 483,
+   "text": "A messenger has arrived with a dispatch from the Minister of War.\n~\nSire,\n\nThe (species) Fryhtans of All High (name) have prosecuted their war without Our help and have come away victorious.  They have assured me that they will long remember Our rejection of their request for assistance. Make of this threat what You will Sire, but I do suggest that we waste no time in building Our might. \n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of War"
+  },
+  {
+   "rec": "9C2",
+   "size": 446,
+   "text": "A messenger has arrived with a dispatch from the Minister of War.\n~\nSire,\n\nThe (species) Fryhtans of All High (name) have suffered a disastrous defeat in their civil war against the (species) Fryhtans.  It is only Your wise decision that kept Our armies from being destroyed alongside those of (name).\n\nWishing You a long life and uncountable children,\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n(name)\nMinister of War"
+  },
+  {
+   "rec": "9D1",
+   "size": 300,
+   "text": "A messenger has arrived with a letter from the (species) Fryhtans.\n~\nHalf-grown midges!\n\nIf your puny troops don't cause defeat.\nWe may give useless and barren land.\nNo good for Us.\nGood enough for you.\nBut depends on victory!\nMake troops ready now!\n\n(name)\nOrdo of the All High (name)"
+  },
+  {
+   "rec": "9D2",
+   "size": 338,
+   "text": "A messenger has arrived with a letter from the (species) Fryhtans.\n~\nCursed galls!\n\nCannot escape your big mistake!\n\nYour brains will feed our young.\nYour bones will pick our teeth.\nYour fat will grease our weapons.\n\nSay goodbye to ugly wives!\nSay goodbye to children not really yours!\n\n(name)\nOrdo of the All High (name)"
+  },
+  {
+   "rec": "1B",
+   "size": 524,
+   "text": "A messenger has arrived with an important dispatch from the Minister of War.\n~\nSire,\n\nNews has been received of a sneak attack upon a distant province in our Great Empire.\n%s Fryhtans of %s are reported to have completely overwhelmed Our brave defenders.  The Fryhtans are now feasting on whatever pitiful remains they can find of our people.\n\nFailure to anticipate this attack is mine and mine alone.\nI await your just retribution.\n\nI remain Sire,\nYour most Humble and Obedient Servant.\n\n%s\nMinister of War"
+  },
+  {
+   "rec": "4A",
+   "size": 704,
+   "text": "A messenger has arrived with a letter from the %s Fryhtans of %s.\n~\nHuman scum!  \n\nOur Lairs grow crowded.\nWe desire wider spaces.\nMore brains to pick.\n\nGive Us one of your lands!\nWe will give 15 years peace.\nNo gift?\nNo peace!\n\nRead and Accept!\n\n%s\nOrdo of the All High %s\n~\nWe accept your offer, Fryhtan horror.  But bear in mind, what little you have of one, that We will use these 15 years of peace to build Our strength.  Do not expect that you can intimidate Us again in the future!\n~\nBah!  We deal not with Fryhtans!  Send the best that you have and watch them churned beneath Our feet!\nLet these bloody remains of your messenger (enclosed) be a taste of things to come!\n~"
+  }
+ ],
+ "Campaign/EAST.TXR": [
+  {
+   "rec": "2POST1",
+   "size": 146,
+   "text": "Although your state did survive for 20 years, the Frythan hordes have finally overrun it.  The only human voices now heard are cries of terror."
+  },
+  {
+   "rec": "1GOAL",
+   "size": 104,
+   "text": "You and your people must survive for a full 20 years or you must defeat all forces of the opposition."
+  },
+  {
+   "rec": "2LOSE1",
+   "size": 125,
+   "text": "Your Kingdom has gone down to defeat without achieving a Fryhtan battling score of 1000.\n\nYou must replay this scenario!"
+  },
+  {
+   "rec": "1WIN1",
+   "size": 169,
+   "text": "Your forces have crushed both the invading Fryhtans and the rebel scum!\n\nYou have achieved a Fryhtan Battling score of %d.  It will be added to your campaign score."
+  },
+  {
+   "rec": "1WIN2",
+   "size": 135,
+   "text": "You have survived for a full 20 years!\n\nYou have achieved a Fryhtan Battling score of %d. It will be added to your campaign score."
+  },
+  {
+   "rec": "1POST1",
+   "size": 160,
+   "text": "Although your State did survive for its allotted 20 years, Fryhtan depredations eventually weakened it to the point of collapse.  It is now enslaved by them."
+  },
+  {
+   "rec": "3WIN1",
+   "size": 112,
+   "text": "Congratulations!  All rebel forces lie dead in the field. Your economic and military goals have been reached!"
+  },
+  {
+   "rec": "1INTRO",
+   "size": 444,
+   "text": "Because of the grave threat from the Fryhtan hordes, the loyalty and fortitude of many of your people will falter.  Expect numerous rebellions and defections among these weaklings. \n\nYour noble goals are to either survive for a full 20 years or to defeat all opposition forces. The Fryhtan battling score that you receive in this game shall be added to your campaign score. See the Rank report (F8) for your current Fryhtan battling score."
+  },
+  {
+   "rec": "3GOAL",
+   "size": 137,
+   "text": "Destroy all rebel forces, reach an economic score of 300 and a military score of 300.  This task must be accomplished within 15 years."
+  },
+  {
+   "rec": "1LOSE1",
+   "size": 84,
+   "text": "Your Kingdom has suffered an disgraceful defeat!\n\nYou must retry this scenario!"
+  },
+  {
+   "rec": "2WIN2",
+   "size": 87,
+   "text": "Congratulations!  Your Fryhtan Battling score of 1000 is a wonder among the Nations!"
+  },
+  {
+   "rec": "2WIN1",
+   "size": 71,
+   "text": "You have vanquished both the invading Fryhtans and the human rebels!"
+  },
+  {
+   "rec": "2GOAL",
+   "size": 105,
+   "text": "You must reach a Fryhtan battling score of 1000 before succumbing to inevitable defeat at their hands."
+  },
+  {
+   "rec": "2INTRO",
+   "size": 836,
+   "text": "A band of Fryhtans has crossed your borders and now infests your land. But although your military forces are yet weak and you may still suffer rebellions and betrayals, your populace is both numerous and loyal. This loyalty of the lower orders will tend to frustrate the call to rebellion from your disloyal underlings.\n\nA well known hero has been spotted near your borders.  He has sent message that he will cross into your territory and help you in your inevitable battle with the Fryhtans.  Use him well in the training of your troops. Fryhtan reinforcements have also been spotted and will surely join their brethren in battle, making their total destruction almost beyond hope. While you will have little chance in achieving ultimate victory, you should be able to achieve a Fryhtan battling score of 1000 before you succumb."
+  },
+  {
+   "rec": "3LOSE1",
+   "size": 75,
+   "text": "Your Kingdom has been utterly defeated.\n\nYou must retry this scenario."
+  },
+  {
+   "rec": "3INTRO",
+   "size": 375,
+   "text": "Your Kingdom has been rent by rebellion.  Many of your towns are now under the yoke of rebel warlords. It is imperative that you liberate these towns before they can become bases for powerful rival Kingdoms. Your objectives are to destroy all rebel forces and reach economic and military scores of 300.  Victory will be yours if you accomplish these goals within 15 years."
+  },
+  {
+   "rec": "3LOSE2",
+   "size": 151,
+   "text": "You failed miserably in reaching your goal of an economic and military score of 300 within the allotted 15 years.\n\nYou must retry this scenario."
+  },
+  {
+   "rec": "STAGE3",
+   "size": 247,
+   "text": "Widespread rebellions have happened in several of your states. There are independent towns under control of the rebels in the beginning of the game. You must re-unite them as quickly as possible before they develop into full-fledged kingdoms."
+  },
+  {
+   "rec": "MAININTR",
+   "size": 942,
+   "text": "In the days of our Grandfather's Grandfathers, our Great Empire was divided between the usurping warlords of the East and We in the West who still reign under Divine Decree.\n\nThe True Empire in the West is now under siege by the Fryhtan hordes. They have emerged from beyond our Western Marches and are now steadily and inexorably crushing all that we can throw before them.\n\nAlthough it would seem that there is no possible way to stop this onslaught, it is said by some that with the help of renegade Fryhtans and some of their demonic weapons we may be able to stem their advance.\n\nIt is unlikely that we can expect any assistance from our former brothers in the East as they perceive that it is to their advantage for us to fall. \n\nIn the event that we are able to defeat the Fryhtans, it will become our sacred duty to launch a Great Crusade with the goal of overthrowing the Eastern usurpers and re-creating the Old Empire."
+  }
+ ],
+ "Campaign/EAST.DLG": [
+  {
+   "rec": "STAGE2",
+   "size": 78,
+   "text": "Human pests!  Prepare to face the consequences of your irritating presence!"
+  },
+  {
+   "rec": "EVENT1",
+   "size": 243,
+   "text": "Human scum!  Cede Us one of your puny provinces and We will grant you 15 years of respite from our just attacks. Failure to accept this over-generous offer will result in war!\n~\nWe humbly accept.\n~\nBah!  We deal not with Fryhtans!\n~"
+  },
+  {
+   "rec": "STAGE1",
+   "size": 78,
+   "text": "Human weaklings!  Prepare to be enslaved or to die! It is your choice."
+  }
+ ],
+ "Resource/INTROTXT.RES": [
+  {
+   "rec": "EAST",
+   "size": 952,
+   "text": "In the days of our Grandfather's Grandfathers, our Great Empire was divided between the usurping warlords of the East and We in the West who still reign under Divine Decree.\nThe True Empire in the West is now under siege by the Fryhtan hordes.  They have emerged from beyond our (Southern) Marches and are now steadily and inexorably crushing all that we can throw before them.\nAlthough it would seem that there is no possible way to stop this onslaught, it is said by some that by acquiring renegade Fryhtans or, perhaps, some of their demonic weapons, we may be able to gain enough of an advantage to stem their advance.\nIt is unlikely that we can expect any assistance from the East as they perceive that it is to their advantage for us to fall.\n\nIn the event that we are able to defeat the Fryhtans, it will become your sacred duty to launch a Great Crusade with the goal of overthrowing the Eastern usurpers and re-creating the Old Empire."
+  }
+ ],
+ "Resource/CPG_INTR.RES": [
+  {
+   "rec": "EAST",
+   "size": 952,
+   "text": "In the days of our Grandfather's Grandfathers, our Great Empire was divided between the usurping warlords of the East and We in the West who still reign under Divine Decree.\nThe True Empire in the West is now under siege by the Fryhtan hordes.  They have emerged from beyond our (Southern) Marches and are now steadily and inexorably crushing all that we can throw before them.\nAlthough it would seem that there is no possible way to stop this onslaught, it is said by some that by acquiring renegade Fryhtans or, perhaps, some of their demonic weapons, we may be able to gain enough of an advantage to stem their advance.\nIt is unlikely that we can expect any assistance from the East as they perceive that it is to their advantage for us to fall.\n\nIn the event that we are able to defeat the Fryhtans, it will become your sacred duty to launch a Great Crusade with the goal of overthrowing the Eastern usurpers and re-creating the Old Empire."
+  }
+ ],
+ "Resource/TUT_INTR.RES": [
+  {
+   "rec": "2BAS_ECO",
+   "size": 306,
+   "text": "In this lesson you will learn how to find Natural Resources and then how to build a Mine to exploit them.\nYou will also learn how to build a Factory and a Market and how to make use of Links between your Buildings and Villages.\nFinally, you will learn how to collect taxes from your people effectively."
+  },
+  {
+   "rec": "6SEATRAD",
+   "size": 296,
+   "text": "In this lesson you learn how to use your Ships for trading with distant Kingdoms, or for linking the distant parts of your empire.\nYou will also learn how to set ports of call, and how to manage cargo for your Ships, as well as how to switch between Automatic Trading mode and Control mode."
+  },
+  {
+   "rec": "8FRYHTAN",
+   "size": 249,
+   "text": "In this lesson you will learn how to locate the Lairs of the Fryhtans and the reasons why it can be highly rewarding to attack and defeat them.\nYou will also learn how to recover their hoarded treasures, including the long-lost Scrolls of Power."
+  },
+  {
+   "rec": "4WEAPONS",
+   "size": 316,
+   "text": "In this lesson you will learn to make use of your Weapons Research by the building of War Factories and the production of Weapons.\nYou will also learn how to control those Weapons in the field, and how to maximize their effectiveness.\nSpecial attention will be given to the most unusual weapon, the Porcupine."
+  },
+  {
+   "rec": "5BAS_NAV",
+   "size": 286,
+   "text": "In this lesson you learn how to build a Harbor and use it to construct Ships.\nYou will learn how to load them with troops, how to move them and then how to disembark the troops.\nYou will also learn the benefits of on-board Leadership and how it can enhance your fighting ability."
+  },
+  {
+   "rec": "7MERCENA",
+   "size": 215,
+   "text": "In this lesson you will learn how to build an Inn, how to use it to attract Mercenaries from the world over.\nYou will also learn how to evaluate their skills and then how to hire them to work for your Kingdom."
+  },
+  {
+   "rec": "9SEATPOW",
+   "size": 275,
+   "text": "In this lesson you will learn How to Best Make Use of Scrolls of Power, and How to Construct and Use Seats of Power.\nAfter learning about Seats of Power, you will learn How to Usher In the Faithful, and how to make use of their powers of prayer to invoke Greater Beings."
+  },
+  {
+   "rec": "3RESEARC",
+   "size": 134,
+   "text": "In this lesson you will learn how to build a Tower of Science and then use it to conduct research into advanced Weaponry and Ships."
+  },
+  {
+   "rec": "2B_TRADE",
+   "size": 159,
+   "text": "With these basic concepts of economics understood, you will next learn how to conduct international and domestic Trade and how to transport Raw Materials."
+  },
+  {
+   "rec": "LOYALTY",
+   "size": 230,
+   "text": "In this lesson you will learn of the many things you can do to insure the loyalty of your people.\nWe will also cover how to avoid gaining the reputation of a tyrant, and how to project the image of being a true and noble King."
+  },
+  {
+   "rec": "SPYING",
+   "size": 161,
+   "text": "In this lesson you will learn how to train or hire Spies, how to infiltrate the ranks of the enemy and how to use Spies to bribe, sabotage, capture and steal."
+  },
+  {
+   "rec": "10CAPTUR",
+   "size": 179,
+   "text": "In this lesson you will learn how to capture both Independent and enemy Villages.\nWhen you finish, you will know how to bring large numbers of people into your Empire quickly."
+  }
+ ],
+ "Resource/CREDIT.RES": [
+  {
+   "rec": "CREDIT1",
+   "size": 431,
+   "text": "Game Design:\n        Trevor Chan\n\nProgramming:\n        Trevor Chan, Gilbert Luis, Ban Tam, Alan Lee, Alan Chea\n\nArtwork:\n        Dennis Fong, Ada Chui, Mon Cheung, Kenny Wong, Ronald Leung and Kenneth Chan\n\nAdditional Design, Interface, Creative Writing, and Audio:\n        Chris Whitehouse\n\nProducer:\n        Trevor Chan and Fiona Hau\n\nBeta-testing Management:\n        Fiona Hau, Eva Wong and Walte"
+  },
+  {
+   "rec": "CREDIT2",
+   "size": 401,
+   "text": "r Chan\nSpecial Contributions:\n        Vladimir \"Adun\" Atehortua\n        Mike Harris\n        Tom Hepner\n        Chris Johnson\n        Paola Conti Lander\n        Michael \"WindyCloud\" Leung\n        Tim \"Wildman\" Pike\n        Stefan \"Amarok\" Renzewitz\n        Nik \"Pabasa\" Azan Shah Reza\n        Francis \"Fran6\" Rivard\n        \"Vibes\"\n        Steven Wartofsky\n        Earl J."
+  },
+  {
+   "rec": "CREDIT3",
+   "size": 505,
+   "text": "Young\n\n\nExternal Beta Testers:\n        Olivier \"[{DeLtA}]ZuG\" Adam\n        Penelope Baker\n        Chad Bean\n        David \"Akira\" Beaudin\n        Joel \"Griffin\" Booker\n        Aleks \"Tiger\" Chkhartishvili\n        Eric \"BlackJack38\"Chung\n        James \"Jim\" Cockram\n        Amitabh \"voracius\" Dave\n        Robert Elzinga\n        Jason \"MilkDud\" Falk\n        Giorgos \"Drakos\" Georgiou\n        Mike \"Copernicusser\" Glazer\n        Dale \"bytor\" Horsley\n        \"Jehosephat\""
+  },
+  {
+   "rec": "CREDIT4",
+   "size": 395,
+   "text": "External Beta Testers:\n        Trav \"tekman\" Johnson\n        Zechariah \"Falcor\" Judy\n        Chris Lettre\n        Dow \"Scribe\" Marx\n        Ng \"BlueDEvil\" Hang Ing\n        Kevin \"Wilcrek\" Pyle\n        Sridhar \"Chinju\" Ramesh\n        Robert \"TheSmith\" Schmitz\n        Nick \"Icekull\" Sheng\n        JoJo  \"JiZo\" Subia\n        Joshua Tacey\n        Damian \"Mad\""
+  }
+ ],
+ "Campaign/INTROTXT.RES": [
+  {
+   "rec": "EAST",
+   "size": 958,
+   "text": "In the days of our Grandfather's Grandfathers, our Great Empire was divided between the usurping warlords of the East and We in the West who still reign under Divine Decree.\n\nThe True Empire in the West is now under siege by the Fryhtan hordes.  They have emerged from beyond our (Southern) Marches and are now steadily and inexorably crushing all that we can throw before them.\n\nAlthough it would seem that there is no possible way to stop this onslaught, it is said by some that by acquiring renegade Fryhtans or, perhaps, some of their demonic weapons, we may be able to gain enough of an advantage to stem their advance.\n\nIt is unlikely that we can expect any assistance from the East as they perceive that it is to their advantage for us to fall.\n\nIn the event that we are able to defeat the Fryhtans, it will become your sacred duty to launch a Great Crusade with the goal of overthrowing the Eastern usurpers and re-creating the Old Empire."
+  }
+ ]
+}

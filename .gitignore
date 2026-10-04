@@ -259,3 +259,27 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+###############################################################################
+# ---- 本项目专用（7K2 HD 中文化工程）----
+###############################################################################
+# 构建产物（用 tools/build.py 重新生成即可）
+build/
+SavenKingdom_II_HD_CHINESE/obj_test/
+SavenKingdom_II_HD_CHINESE/sk2_zh.asi
+scripts/
+*.asi
+
+# 运行期日志与配置（部署到游戏目录的副本）
+update/sk2_zh.log
+
+# 逆向/调试过程的截图与临时目录（体积大，不入库）
+tools/_crop/
+tools/_nav/
+tools/_shots/
+tools/_render/
+tools/_shot.png
+tools/_click_state.txt
+*.bmp
+
+# 历史备份
+update_res_staged.bak_before_fix/

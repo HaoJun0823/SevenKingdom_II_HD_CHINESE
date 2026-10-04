@@ -61,3 +61,28 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
+
+###############################################################################
+# ---- 本项目专用：游戏数据文件必须原样存取 ----
+#
+# 这些 .res/.sct/.set 不是文本，而是游戏自己解析的二进制容器/结构文件，
+# 内部甚至把 CRLF 当数据。若被 core.autocrlf 归一化，新克隆出来会直接损坏。
+# binary = -text -diff -merge
+###############################################################################
+*.res   binary
+*.RES   binary
+*.sct   binary
+*.SCT   binary
+*.plt   binary
+*.PLT   binary
+*.evt   binary
+*.EVT   binary
+*.stg   binary
+*.STG   binary
+*.dlg   binary
+*.DLG   binary
+*.txr   binary
+*.TXR   binary
+*.set   binary
+*.SET   binary
+*.asi   binary

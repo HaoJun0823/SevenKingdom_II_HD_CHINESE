@@ -1,0 +1,957 @@
+[
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM2",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM3",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM4",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM5",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM6",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM7",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM8",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CAM9",
+  "text": "reserved campaign"
+ },
+ {
+  "file": "Resource/t_camp.res",
+  "tag": "CRES",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EN26",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EN27",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EN28",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EN29",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EN30",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EN31",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EC27",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EC28",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EC29",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EC30",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "EC31",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "ER27",
+  "text": "%%1s Reserved !"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "ER28",
+  "text": "%%1s Reserved !"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "ER29",
+  "text": "%%1s Reserved !"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "ER30",
+  "text": "%%1s Reserved !"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "ER31",
+  "text": "%%1s Reserved !"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "ER32",
+  "text": "%%1s Reserved !"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "K??1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_endc.res",
+  "tag": "L??1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "BAWQ",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "BAWR",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "BAWS",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "BAWT",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "BAWU",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "BAWV",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR2",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR5",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "CMR8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "OFM8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "OFM9",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "FRE1",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_firm.res",
+  "tag": "SREV",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "YEAR",
+  "text": "Years"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "RFU6",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "RFU7",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "RFU8",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "RFU9",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "MPO1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "MPO2",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "MPO3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "MPO4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "LOB1",
+  "text": "Lobby error reserved 1"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "LOB2",
+  "text": "Lobby error reserved 2"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "LOB3",
+  "text": "Lobby error reserved 3"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "LOB4",
+  "text": "Lobby error reserved 4"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "????",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR2",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR5",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "CHR7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "MPRV",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "IPXS",
+  "text": "IPX"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "TCPS",
+  "text": "TCP/IP"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "IPXL",
+  "text": "Join a local area network game"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "TCPL",
+  "text": "Join a local area network or Internet game"
+ },
+ {
+  "file": "Resource/t_gmenu.res",
+  "tag": "#res",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N030",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N031",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N032",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N033",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N034",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N035",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N036",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N037",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N038",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N039",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "N040",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D030",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D031",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D032",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D033",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D034",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D035",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D036",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D037",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D038",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D039",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_item.res",
+  "tag": "D040",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "RSV6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "RSV7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "RSV8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "RSV9",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "RSVa",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR2",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR5",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "EVR8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER2",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER5",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NER9",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NERa",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NERb",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NERc",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NERd",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NERe",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_news.res",
+  "tag": "NERf",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS1",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS2",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS5",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RRS9",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "(From: Sender) FROM",
+  "text": "From"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "IND8",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "IND9",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "INDa",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "INDb",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "INDc",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "INDd",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "INDe",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "INDf",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPh",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPi",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPj",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPk",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPl",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPm",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPn",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPo",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPp",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPq",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPr",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPs",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "EXPt",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "UIN?",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "SPYA",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "RNKR",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_reps.res",
+  "tag": "????",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "SEM9",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "SEMa",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "SEMb",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "SEMc",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "SEMd",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MIM3",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MIM4",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MIM5",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MIM6",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MIM7",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI04",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI05",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI06",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI07",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI15",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI16",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MI17",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "MIrr",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "DUYR",
+  "text": "%1d %1p{year|years}"
+ },
+ {
+  "file": "Resource/t_sedit.res",
+  "tag": "SEL?",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "RESV",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKML",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMM",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMN",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMO",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMP",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMQ",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMR",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMS",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_talk.res",
+  "tag": "TKMT",
+  "text": "reserved"
+ },
+ {
+  "file": "Resource/t_tutor.res",
+  "tag": "TRES",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_unit.res",
+  "tag": "URES",
+  "text": "Reserved"
+ },
+ {
+  "file": "Resource/t_unit.res",
+  "tag": "RESV",
+  "text": "Reserved\r\n[<enemy/friendly/...><unit description>UNRD]%1s %2s"
+ },
+ {
+  "file": "Resource/TUT_TEXT.RES",
+  "tag": "' (slower) and '",
+  "text": "' (faster) to change the game speed if you are impatient. \r\n~\r\nButton : F_RETCMP\r\nTitle: * 06\r\nClick on the Return Icon to send your entire Troop back to their lair.\r\n~\r\nButton : F_RETCMP\r\nTitle: * 06\r\nRight-Clicking on the Lair will also send the selected units home.\r\n~\r\nTitle: * 07\r\nNow Click on your new Slave Town.\r\n~\r\nTitle: * 08\r\nIt costs both Money and Life Points to breed new Fryhtans, which are displayed on the top-right of the screen.  \r\n~\r\nTitle: * 08\r\nYou receive both when you exterminate living beings, but you will receive most of your Money in tribute from enslaved Towns.\r\n~\r\nTitle: * 08\r\nTo continue, Click on your Lair.\r\n~\r\nButton : TRAIN\r\nTitle: * 09\r\nBefore attacking your next Independent Town you will need to Breed more Fryhtans. \r\n~\r\nButton : TRAIN\r\nTitle: * 09\r\nDo this by Clicking on the Breed Icon until the spaces in your Lair are full.\r\n~\r\nButton : TRAIN\r\nTitle: * 09\r\nThe Breeding of each Fryhtan will be complete when its image is no longer transparent.\r\n~\r\nButton : F_PATROL\r\nTitle: * 09\r\nOnce the entire Breeding program has been completed, click the Sortie icon to mobilize your troop and enslave the other nearby Independent Town.\r\n~\r\nTitle: * 10\r\nThen Right-Click on the Independent Town below your Lair to begin the attack.\r\n~\r\nTitle: * 11\r\nWait for your troops to enslave the Independent Town. You may use the Right square bracket key to increase the game speed and the Left square bracket key to decrease it. \r\n~\r\nButton : F_RETCMP\r\nTitle: * 12\r\nClick on the Return Icon to send your troop back to their lair.\u000b\u000b\r\nRight-Clicking on the Lair will also send the selected units home.\r\n~\r\nTitle: * 13\r\nNow Click on your Lair.\r\n~\r\nTitle: * 14\r\nYou must now select one of your common 'Crouls' (Fryhtan name for soldiers) to become an 'Ordo' (Fryhtan name for General).\r\n~\r\nTitle: * 14\r\nIt is best to select the one with the highest level of Leadership, after your 'All High' (Fryhtan name for King).\r\n~\r\nTitle: * 14\r\nTo see your Leadership levels, Click on the word 'Leadership'.\r\n~\r\nTitle: * 14\r\nYou will notice that the Croul (soldier) to the right of the All High (king) has the next highest Leadership level.\r\n~\r\nTitle: * 14\r\nRight-Click on him to take him out of the Lair.\r\n~\r\nTitle: * 15\r\nNow select the Croul (soldier) that you have taken out of the Lair.\r\n~\r\nButton : F_PROMOT\r\nTitle: * 16\r\nWhen you do you will see a new Icon. Clicking on this Star will promote this common Croul (soldier) to Ordo (general). Do this now.\r\n~\r\nTitle: * 17\r\nThere is an Independent Fryhtan Lair to the right of your base. You can find it by moving the mouse cursor to the right edge of the screen to scroll the map. \r\n~\r\nTitle: * 17\r\nIndependent Fryhtan Lairs and Independent human towns are represented by white dots on the mini-map.\r\n~\r\nTitle: * 17\r\nUnlike human towns, you cannot bring other Fryhtan Lairs into submission by force. Only gold can tempt them to join you.\r\n~\r\nTitle: * 17\r\nIf you Click on it you will see nothing. You will be unable to interact with them until you build a new Lair within Linking distance of this Independent Lair.\r\n~\r\nTitle: * 18\r\nTo build your new Lair, Select your newly promoted Ordo (general). You can do this with the mouse or you can press G on your keyboard.\r\n~\r\nButton : BUILD\r\nTitle: * 19\r\nClick on the Build Icon.\r\n~\r\nTitle: * 20\r\nSelect 'Minotauros Lair' from the Building menu on the right side of the screen and build it next to the Independent Lair that you looked at earlier (to the right of your base). \r\n~\r\nTitle: * 20\r\nWhen you select a location to build your new lair, make sure that is a visible Linking Line between the building site and the target Independent Lair.\r\n~\r\nTitle: * 20\r\nWhen construction is completed, your Ordo (general) will take his place as commander of the new Lair.\r\n~\r\nTitle: * 21\r\nNow click on the target Independent Fryhtan Lair.\r\n~\r\nButton : F_GRANT\r\nTitle: * 22\r\nWhen you do you will see the Payoff Icon.\r\n~\r\nButton : F_GRANT\r\nTitle: * 22\r\nClicking on this will show you how much money it will take to purchase the loyalty of this Lair.\r\n~\r\nTitle: * 23\r\nClick on the Yes Button and the Lair will become yours.\r\n~\r\nButton : TRAIN\r\nTitle: * 24\r\nYou should now Breed a full Troop of Fryhtans in all three of your Lairs. You will need them when you launch your attack on the Human Kingdom that is defiling this world with its presence.\r\n~\r\nButton : F_PATROL\r\nTitle: * 24\r\nWhen your breeding program is complete, Sortie all three of your Troops and attack the Human town located at the south-east of the map (the bottom of the mini-map).\r\n~\r\nTitle: * 24\r\nIf you find that they are too strong, return to your lairs to heal and build your strength.\r\n~\r\nTitle: * 24\r\nA couple things to keep in mind: when an Ordo (general) is slain, you will be unable to Right-Click on a Troop member to select the entire Troop.\r\n~\r\nTitle: * 24\r\nIf any of your Ordos (general) are slain in battle the Troop that he led will no longer benefit from his leadership skills. You should return the Troop to its Lair and promote another Croul (soldier) to lead it.\r\n~\r\nTitle: * 24\r\nExcellent! You have done a great job learning! Now expand your power and annihilate the Human Settlement to the far right of your base. Humans are represented by Green Dots on the mini-map.\r\n~\r\nTitle: * 24\r\nYou win this tutorial game when you have destroyed ALL the Human Towns and Units. Good luck!\r\n~\r\nFryhtan Learning Campaign Two\r\n\r\nButton : RESEARCH\r\nTitle: * 01\r\nFryhtans, like Humans, may make use of technology.  Unlike Humans, however, Fryhtans need not do research.  \r\n~\r\nButton : RESEARCH\r\nTitle: * 01\r\nThey instead acquired their technology by a Life Point sacrifice to the spirits of their dead.\r\n~\r\nButton : RESEARCH\r\nTitle: * 01\r\nTo begin this process, select one of your Lairs and Click on the Research Icon. \r\n~\r\nTitle: * 02\r\nWhen you do you will see a list of several technologies that you may purchase.  \r\n~\r\nTitle: * 02\r\nSome will cost more Life Points than others, depending upon their power.  \r\n~\r\nTitle: * 02\r\nClick on the technology that you wish to purchase. You may purchase all of them and then click the Finish/Cancel icon. \r\n~\r\nTitle: * 03\r\nNow that you have paid for a technology, you have the ability to build a Special Fryhtan Structure.  \r\n~\r\nTitle: * 03\r\nThese structures will be different, with widely differing uses, for every Fryhtan species.\r\n~\r\nTitle: * 03\r\nThere is no need to link the structures to Towns or other Fryhtan structures.  \r\n~\r\nTitle: * 03\r\nThey may stand on their own, in any location that you wish to place them.\r\n~\r\nTitle: * 03\r\nBut they may be built only by a member of the Fryhtan species that has purchased the technology.\r\n~\r\nTitle: * 03\r\nBuild a Mage Tor now, this being the Special Structure for the Exovum.\r\n~\r\nTitle: * 03\r\nThis tutorial will proceed when the Mage Tor has been built and is being selected.\r\n~\r\nTitle: * 04\r\nSelect your Mage Tor and make notice of the Power Bar.  It will slowly build up to full power.  \r\n~\r\nTitle: * 04\r\nWhen the Power Bar has turned blue, the Mage Tor will be ready for use.  \r\n~\r\nTitle: * 05\r\nClick on one of the options and then place the shaded white box over a human target at the south-west of the map. Click to activate your Mage Tor.\r\n~\r\nTitle: * 05\r\nThis action will cost you Life Points and the further away the target is from the Mage Tor, the more Life Points it will cost.\r\n~\r\nTitle: * 06\r\nYou will find that Mage Tors, like soldiers, are most effective if you have more than one.\r\n~\r\nTitle: * 06\r\nBuild as many as you can afford and build them as close to potential targets as you think you can get away with.\r\n~\r\nTitle: * 06\r\nYour active use of the Mage Tors will be essential in your goal of defeating the Humans of this world.\r\n~\r\nTitle: * 06\r\nThis Tutorial will be complete once you stand alone over the bodies of your slain enemies.\r\n~Fryhtan Learning Campaign Two\r\n\r\nTitle: Fryhtan Learning Campaign One **\r\nYour goal in this first Fryhtan learning campaign will to be attack and enslave the world's three independent human towns, to purchase the loyalty of the one independent Fryhtan lair and to completely destroy the world's other Fryhtan Kwyzan.\r\n~\r\nButton: TRAIN\r\nTitle: Training (Selecting your first lair) **\r\nClicking on the Train Icon will initiate the breeding of young Fryhtans. You should breed a full lair.\r\nBreeding will costs both money and life points.\r\n~\r\nButton: TRAIN\r\nTitle: Training (Selecting your first lair) **\r\nAt the top of your screen you can see your reserves of money, represented by the gold coins and your life points, represented by the green and yellow symbol.\r\n~\r\nTitle: Enslavement **\r\nThe line linking your lair to the nearby independent town shows that your lair is close enough for you to enslave and exact tribute from the town.  This tribute money will be extremely important in the expansion of your Fryhtan Empire.\r\n~\r\nTitle: Enslavement **\r\nEnslavement requires that you attack the town, kill all defenders who come out to meet you, and drive resistance among those cowering at home down to zero.  You will receive life points and money for every person killed.\r\n~\r\nButton: PATROL\r\nTitle: Attacking (Selecting your first lair) **\r\nClicking on the Sortie Icon will take your entire troop out of the lair.  Move them into position with a Right-Click on the ground near the independent town.  When all have arrived, Right-Click on the town to begin the attack.\r\n~\r\nButton: PATROL\r\nTitle: Attacking **\r\nOnce all defenders have been dispatched and resistance in the town has been driven to zero, send your troop home by Right-Clicking on the lair.\r\n~\r\nButton: PATROL\r\nTitle: Attacking **\r\nYou may easily select the entire troop by Right-Clicking on any of its members.\r\n~\r\nTitle: Slave Towns (Selecting your new slave town) **\r\nYou will now see your banner flying over your new slave town.  On the bottom right you will see the amount of tribute collected every year from these slaves.  The amount will depend on the population size and on the leadership of the commander of your lair.  The greater the leader, the greater the tribute.\r\n~\r\nTitle: Slave Towns **\r\nIf there is no commander (All High or Ordo) in the lair, all tribute from the town will cease.\r\n~\r\nButton: BUILD\r\nTitle: New Lairs (Selecting your first lair) **\r\nYou should now expand your empire with a new lair.  The best place to build a new lair is within linking distance of one or more independent towns or independent Fryhtan lairs.\r\n~\r\nButton: BUILD\r\nTitle: New Lairs (Selecting your first lair) **\r\nTo build a lair, take one of your lowest crouls (common soldiers) out of the lair with a Right-Click.  Then select  him and Click on the Build Icon.\r\n~\r\nButton: BUILD\r\nTitle: New Lairs **\r\nPlace the blue square in the desired area, making sure that there are lines linking the square to the nearby towns or lairs.\r\n~\r\nTitle: Ordos (Selecting your first lair) **\r\nYou will now want to send your main troop into your new lair, but you should also leave someone in charge of the old so that you can continue the collection tribute money from the slave town.\r\n~\r\nTitle: Ordos (Selecting your first lair) **\r\nClicking on the word Leadership will show the leadership abilities for all of your troops.\r\n~\r\nTitle: Ordos (Selecting your first lair) **\r\nRight-Click on the croul with the highest leadership skills, other than your All High (top left).  When the croul exits the lair, select him and Click on the Star Icon to promote him to Ordo (General).\r\n~\r\nTitle: Ordos II **\r\nNow sortie your main troop and send it into your new lair with a Right-Click.  Then send your new Ordo into your first lair to assume command.\r\n~\r\nTitle: Ordos II (Selecting your first lair) **\r\nSelect your first lair, with the new Ordo, and breed a new troop of Fryhtans.  As they train, the leadership level of your Ordo will increase.\r\n~\r\nTitle: Taking your Second Town  (Please select your all high's lair) **\r\nSortie the troop under your All High and attack the linked independent town.  This town will put up more of a fight than the previous one, but you should eventually overcome.\r\n~\r\nTitle: Taking your Second Town **\r\nReturn your troop to their lair after resistance has been crushed.  Your troops will heal their wounds twice as fast inside their lairs as they will standing in the field.\r\n~\r\nButton: GRANT (Selecting the independent fryhtan lair)\r\nTitle: Paying Off an Independent Fryhtan Lair **\r\nYou should have built your new lair so that it is linked to an independent Fryhtan lair.  If you did, you will have the opportunity to contact those inside and to offer them money in return for their allegiance\r\n~\r\nButton: GRANT (Selecting the independent fryhtan lair)\r\nTitle: Paying Off an Independent Fryhtan Lair **\r\nTo do this, click on the Payoff Icon.  You will be told how much money the independent Fryhtans are demanding for their loyalty.  If you find the amount acceptable, click on the OK button and they will join your forces.\r\n~\r\nTitle: Endgame **\r\nThere is still one human town and one Fryhtan Kwyzan (Kingdom) that have not yet been relieved of their burden of freedom.  To finish this learning campaign you must enslave the human town and destroy the Fryhtan Kwyzan.  You cannot pay these Fryhtans off as you do can the independents.  These you must destroy.\r\nFryhtan Learning Campaign Three\r\n\r\nTitle: Fryhtan Learning Campaign One **\r\nYour goal in this first Fryhtan learning campaign will to be attack and enslave the world's three independent human towns, to purchase the loyalty of the one independent Fryhtan lair and to completely destroy the world's other Fryhtan Kwyzan.\r\n~\r\nButton: TRAIN\r\nTitle: Training (Selecting your first lair) **\r\nClicking on the Train Icon will initiate the breeding of young Fryhtans. You should breed a full lair.\r\nBreeding will costs both money and life points.\r\n~\r\nButton: TRAIN\r\nTitle: Training (Selecting your first lair) **\r\nAt the top of your screen you can see your reserves of money, represented by the gold coins and your life points, represented by the green and yellow symbol.\r\n~\r\nTitle: Enslavement **\r\nThe line linking your lair to the nearby independent town shows that your lair is close enough for you to enslave and exact tribute from the town.  This tribute money will be extremely important in the expansion of your Fryhtan Empire.\r\n~\r\nTitle: Enslavement **\r\nEnslavement requires that you attack the town, kill all defenders who come out to meet you, and drive resistance among those cowering at home down to zero.  You will receive life points and money for every person killed.\r\n~\r\nButton: PATROL\r\nTitle: Attacking (Selecting your first lair) **\r\nClicking on the Sortie Icon will take your entire troop out of the lair.  Move them into position with a Right-Click on the ground near the independent town.  When all have arrived, Right-Click on the town to begin the attack.\r\n~\r\nButton: PATROL\r\nTitle: Attacking **\r\nOnce all defenders have been dispatched and resistance in the town has been driven to zero, send your troop home by Right-Clicking on the lair.\r\n~\r\nButton: PATROL\r\nTitle: Attacking **\r\nYou may easily select the entire troop by Right-Clicking on any of its members.\r\n~\r\nTitle: Slave Towns (Selecting your new slave town) **\r\nYou will now see your banner flying over your new slave town.  On the bottom right you will see the amount of tribute collected every year from these slaves.  The amount will depend on the population size and on the leadership of the commander of your lair.  The greater the leader, the greater the tribute.\r\n~\r\nTitle: Slave Towns **\r\nIf there is no commander (All High or Ordo) in the lair, all tribute from the town will cease.\r\n~\r\nButton: BUILD\r\nTitle: New Lairs (Selecting your first lair) **\r\nYou should now expand your empire with a new lair.  The best place to build a new lair is within linking distance of one or more independent towns or independent Fryhtan lairs.\r\n~\r\nButton: BUILD\r\nTitle: New Lairs (Selecting your first lair) **\r\nTo build a lair, take one of your lowest crouls (common soldiers) out of the lair with a Right-Click.  Then select  him and Click on the Build Icon.\r\n~\r\nButton: BUILD\r\nTitle: New Lairs **\r\nPlace the blue square in the desired area, making sure that there are lines linking the square to the nearby towns or lairs.\r\n~\r\nTitle: Ordos (Selecting your first lair) **\r\nYou will now want to send your main troop into your new lair, but you should also leave someone in charge of the old so that you can continue the collection tribute money from the slave town.\r\n~\r\nTitle: Ordos (Selecting your first lair) **\r\nClicking on the word Leadership will show the leadership abilities for all of your troops.\r\n~\r\nTitle: Ordos (Selecting your first lair) **\r\nRight-Click on the croul with the highest leadership skills, other than your All High (top left).  When the croul exits the lair, select him and Click on the Star Icon to promote him to Ordo (General).\r\n~\r\nTitle: Ordos II **\r\nNow sortie your main troop and send it into your new lair with a Right-Click.  Then send your new Ordo into your first lair to assume command.\r\n~\r\nTitle: Ordos II (Selecting your first lair) **\r\nSelect your first lair, with the new Ordo, and breed a new troop of Fryhtans.  As they train, the leadership level of your Ordo will increase.\r\n~\r\nTitle: Taking your Second Town  (Please select your all high's lair) **\r\nSortie the troop under your All High and attack the linked independent town.  This town will put up more of a fight than the previous one, but you should eventually overcome.\r\n~\r\nTitle: Taking your Second Town **\r\nReturn your troop to their lair after resistance has been crushed.  Your troops will heal their wounds twice as fast inside their lairs as they will standing in the field.\r\n~\r\nButton: GRANT (Selecting the independent fryhtan lair)\r\nTitle: Paying Off an Independent Fryhtan Lair **\r\nYou should have built your new lair so that it is linked to an independent Fryhtan lair.  If you did, you will have the opportunity to contact those inside and to offer them money in return for their allegiance\r\n~\r\nButton: GRANT (Selecting the independent fryhtan lair)\r\nTitle: Paying Off an Independent Fryhtan Lair **\r\nTo do this, click on the Payoff Icon.  You will be told how much money the independent Fryhtans are demanding for their loyalty.  If you find the amount acceptable, click on the OK button and they will join your forces.\r\n~\r\nTitle: Endgame **\r\nThere is still one human town and one Fryhtan Kwyzan (Kingdom) that have not yet been relieved of their burden of freedom.  To finish this learning campaign you must enslave the human town and destroy the Fryhtan Kwyzan.  You cannot pay these Fryhtans off as you do can the independents.  These you must destroy.\r\nHuman Learning Campaign One\r\n\r\nTitle: * 01\r\nThe Linking Line between your Fort and Your town shows that the Fort is close enough to the town so that the Fort's commander can exert his influence over the Town.\r\n~\r\nTitle: * 01\r\nWhen you build new Forts, make sure that they are Linked to Towns.\r\n~\r\nTitle: * 01\r\nYour King has a Leadership level of 100, so when he is in the Fort the Loyalty level of the Town will remain high.  When he is removed, the Loyalty level will fall.\r\n~\r\nTitle: * 01\r\nNow click on your first Fort and click on the below pointing finger to continue.\r\n~\r\nButton : TRAIN\r\nTitle: * 02\r\nClick repeatedly on the Train Icon until your Fort is completely full of trainee soldiers.\r\n~\r\nTitle: * 03\r\nOnce a trainee has reached the Combat level of 20, the training of the next will begin.\r\n~\r\nTitle: * 03\r\nOnly when this minimum Combat level of 20 has been reached can your soldier leave the Fort and engage in combat.\r\n~\r\nTitle: * 04\r\nWhile you are waiting for your soldiers to be trained, lets learn something about the interface.\r\n~\r\nTitle: * 04\r\nOn the top of the screen you can see your Money, Food and Reputation.\r\n~\r\nTitle: * 04\r\nMoney comes from taxes, trade and loot while food comes from the labor of your peasants.\r\n~\r\nTitle: * 04\r\nReputation is earned by your good (or bad) conduct.\r\n~\r\nTitle: * 04\r\nThe numbers inside parenthesis show your increase or decrease (red) in the past 12 months.\r\n~\r\nTitle: * 05\r\nLeadership is the most important consideration when you are choosing Generals for your army.\r\n~\r\nTitle: * 05\r\nYou will find that some soldiers have better leadership skills than others.  It is these men that you must watch as future commanders of Troops and Forts.\r\n~\r\nTitle: * 06\r\nTo see the level of Leadership in your soldiers, Click on the word Leadership when your Fort is selected.\r\n~\r\nButton : PATROL\r\nTitle: * 06\r\nClick on the Sortie Icon to mobilize your Troop.\r\n~\r\nTitle: * 07\r\nIf at any time you wish to select a Troop in the field, simply Right-Click on any of its members.\r\n~\r\nTitle: * 08\r\nYour King is easily visible to you in the field by the Crown Icon that he has over his head.\r\n~\r\nTitle: * 08\r\nYour enemies will be unable to see this icon just as you will be unable to see theirs.\r\n~\r\nTitle: * 08\r\nYou may find your King at any time by pressing K on your keyboard.  If he is outside he will be selected.  If he is inside, the building will be selected.\r\n~\r\nTitle: * 09\r\nThe horizontal bar that you can see over your selected units' heads is their health and power bar.\r\n~\r\nTitle: * 09\r\nThe length of the bar shows health.  A full bar means 100%.\r\n~\r\nTitle: * 09\r\nThe color of the bar gives you some idea of the unit's combat skill.  Green units have the weakest combat skill, yellow units have medium skill and purple units are the most skillful.  There are many levels within each color, so just use them as a rough guide.\r\n~\r\nTitle: * 10\r\nWhen you want to withdraw your troop back into your fort, you can simply click the Withdraw icon. Give it a try now. \r\n~\r\nTitle: * 11\r\nIf you wish to make another Fort the home Fort for a troop, you must send them into that Fort with a Right-Click.\r\n~\r\nTitle: * 12\r\nIndependent Towns are easily distinguishable by the absence of a flag. On the small world map you can see them as white squares.\r\n~\r\nTitle: * 12\r\nEach nationality has its own architectural style for its Town buildings.  You will soon begin to recognize these, but until you do, Click on the Town to see which nationality lives there.\r\n~\r\nTitle: * 12\r\nClick on this Independent Town to proceed.\r\n~\r\nTitle: * 13\r\nEvery Independent Town will have a level of resistance to your rule.  Some Towns will offer more resistance than others.\r\n~\r\nTitle: * 13\r\nThey will join your Empire when you have a Fort linked to them and their resistance level has fallen below 30 points.\r\n~\r\nTitle: * 13\r\nThis level can fall as a result of your King's or General's leadership.  It can also fall when you give the people jobs or when you use violence against them.  But you should note that when you kill civilians your Reputation will suffer.\r\n~\r\nTitle: * 14\r\nNow go to your Fort and mobilize one of your soldiers. Then select it. \r\n~\r\nButton : BUILD\r\nTitle: * 15\r\nClick on the 'Build' icon. \r\n~\r\nTitle: * 16\r\nSelect 'Fort' from the building menu. Then build a new fort next to the targeted Independent Town. Make sure that there is a Linking Line between the new fort and the town. \r\n~\r\nTitle: * 17\r\nSelect your original Fort and mobilize the soldier who has the highest level of Leadership after your King, by right-clicking him.\r\n~\r\nTitle: * 17\r\nWhen he is outside, select him.\r\n~\r\nButton : PROMOTE\r\nTitle: * 18\r\nClick on the Promote Icon.\r\n~\r\nTitle: * 19\r\nYour soldier is now a General. You can quickly find him by pressing G on your keyboard.\r\n~\r\nTitle: * 20\r\nNow select your Fort again and click the Sortie icon to mobilize your King and his Troop and send them to the new Fort so that your he can use his influence to lower the resistance of the Independent Town.\r\n~\r\nTitle: * 20\r\nWhen you have done this, put your new General in charge of your original Fort.  This will keep the Loyalty level of your own Town from falling too much.\r\n~\r\nTitle: * 20\r\nYou should also Train a new troop of soldiers for him to command.  As you do, his Leadership level will slowly increase.\r\n~\r\nTitle: * 20\r\nThis tutorial will continue when your King and his troop are garrisoned in the new fort and your General commands a full troop in your original fort.\r\n~\r\nTitle: * 21\r\nClick on the Independent Town that you are trying to win over.\r\n~\r\nTitle: * 22\r\nWhen you do, you can see how their resistance is falling.\r\n~\r\nTitle: * 22\r\nWhen it falls below 30 the Town will surrender to you.  It will then have the same status as your original Town.\r\n~\r\nTitle: * 22\r\nIf you are an impatient player, you may more quickly bring a Town under your thumb by attacking it.\r\n~\r\nTitle: * 23\r\nThis tutorial will proceed when the town has surrendered.\r\n~\r\nTitle: * 24\r\nThis is a Fryhtan Lair that is trying to enslave an Independent Town.\r\n~\r\nTitle: * 24\r\nIt probably does not contain the Fryhtan's strongest troops, so it would make a good first target.\r\n~\r\nTitle: * 24\r\nIf both of your Forts are filled with fully trained troops, Sortie them now, march to this Fryhtan Lair and destroy it.\r\n~\r\nTitle: * 24\r\nThe Fryhtan inside may escape, but don't worry.  You will take care of him later.\r\n~\r\nTitle: * 24\r\nThis tutorial will proceed when you have destroyed the Fryhtan Lair.\r\n~\r\nTitle: * 25\r\nThere is now one more Fryhtan Lair to destroy, but this one will be more dangerous.\r\n~\r\nTitle: * 25\r\nIf you do not feel strong enough, you may make another General, build another Fort and train an additional Troop of soldiers.\r\n~\r\nTitle: * 25\r\nWhen you feel yourself strong enough, launch an attack on the remaining Fryhtans.\r\n~\r\nTitle: * 25\r\nThis first lesson will be complete when you have destroyed them.\r\nGood Luck.\r\n~\r\n\r\n\r\nHuman Learning Campaign Two\r\n\r\nTitle: * 01\r\nIn this Tutorial you will make use of what you learned in the previous one.  \r\n~\r\nTitle: * 01\r\nBut this time the training and building speeds will be as they are in a normal game.\r\n~\r\nTitle: * 01\r\nYour soldiers will also be less powerful, so you will probably need to train more of them than you did previously.\r\n~\r\nTitle: * 01\r\nThe Fryhtans in this game will start out with a single Lair, but they will be more aggressive and attempt to expand and enslave Independent Towns.\r\n~\r\nTitle: * 02\r\nYour goal in this game, as before, is to exterminate every last Fryhtan.\r\n~\r\nTitle: * 02\r\nYou will find it impossible to do this without the additional Human resources that the world's Independent Towns can provide. \r\n~\r\nTitle: * 02\r\nYou must therefore absorb as many of them as you can into your Empire before the Fryhtans can enslave them.\r\n~\r\nTitle: * 02\r\nGood hunting!\r\n~\r\n\tHuman Learning Campaign Two\r\n\r\nTitle: * 01\r\nIn this second Human Tutorial you will learn how to build a thriving economy and how to conduct diplomatic relations with other Kingdoms.\r\n~\r\nTitle: * 01\r\nThe other Kingdoms in this area are peaceful.  The building of a strong military is therefore unnecessary.\r\n~\r\nTitle: * 02\r\nOn the small world map, Natural Resource appears as a small black square.\r\n~\r\nTitle: * 02\r\nPress 'J' on your keyboard to quickly find and select a deposit of Natural Resource.\r\n~\r\nTitle: * 02\r\nPress 'J' again to and cycle through deposits.\r\n~\r\nButton : RECRUIT\r\nTitle: * 02\r\nSelect your town and click the Recruit icon to take a civilian out of your town. \r\n~\r\nButton : BUILD\r\nTitle: * 02\r\nNow select your civilian unit and click the Build icon and order him to build a Mine on top of the Natural Resource deposit. \r\n~\r\nTitle: * 02\r\nAlthough the blue square must be placed directly over the resource, it will snap into place so you need not fear that you will misplace it.\r\n~\r\nTitle: * 02\r\nThe Mine is near enough to be linked to your town.  \r\n~\r\nTitle: * 02\r\nThis will enable Peasants in your town to become Workers in the Mine.  \r\n~\r\nTitle: * 02\r\nThey will enter the Mine without any action on your part.\r\n~\r\nTitle: * 02\r\nThis tutorial will continue when the Mine has been built.\r\n~\r\nTitle: * 03\r\nNow that the Mine has been built and raw materials are being extracted, you will need a Factory to churn out finished goods.\r\n~\r\nTitle: * 03\r\nUse the same civilian to build a Factory. Make sure that the new Factory is linked to your Mine. \r\n~\r\nTitle: * 03\r\nYou must place it so that it is linked both to the Mine and to the Town.\r\n~\r\nTitle: * 03\r\nWhen a Factory is built linked to a Mine, it will be automatically set to produce the correct finished goods to match the raw material.\r\n~\r\nTitle: * 03\r\nThis tutorial will continue when the Factory has been built.\r\n~\r\nTitle: * 04\r\nTo sell the goods being produced in your Factory, you will need to build a Market\r\n~\r\nTitle: * 04\r\nWhen building your Market, make sure that it is linked both to your Factory and to your Town.  \r\n~\r\nTitle: * 04\r\nIt may also be linked to the Mine, although this is not essential.\r\n~\r\nTitle: * 04\r\nIf your Market is not linked to your Town, the goods will remain unsold.\r\n~\r\nTitle: * 04\r\nThis tutorial will continue when the Market has been built.\r\n~\r\nTitle: * 05\r\nClick on any of your Market to advance to the next section.\r\n~\r\nTitle: * 06\r\nWith goods in a Market, townspeople will experience a better quality of life.\r\n~\r\nTitle: * 06\r\nThis will make them more loyal and will encourage the population to grow.\r\n~\r\nTitle: * 06\r\nThe jobs that you have given to your townspeople in the Mine and Factory will have the same effect.\r\n~\r\nTitle: * 07\r\nSelling goods will generate money, but probably not enough to sustain a large kingdom.  \r\n~\r\nTitle: * 07\r\nFor the necessary added revenue you will have to Tax your people.\r\n~\r\nTitle: * 07\r\nTo learn how to Tax, Click on your Town.\r\n~\r\nButton : COLLTAX\r\nTitle: * 08\r\nYou can see the tax button and your Town's Loyalty level. If you Click on the Tax Icon, a Tax will be gathered from all of the people in your Town. \r\n~\r\nButton : COLLTAX\r\nTitle: * 09\r\nIf you try this now you will notice that the Loyalty level of the Town decreased by 10 points.\r\n~\r\nButton : COLLTAX\r\nTitle: * 09\r\nIf you Click repeatedly on the Tax Icon, their Loyalty will fall even faster.\r\n~\r\nTitle: * 10\r\nIf you Right-Click on the Tax Icon you will see a group of numbered buttons pop up.\r\n~\r\nTitle: * 10\r\nClicking on one of these buttons will set an Automatic Tax that will be collected every time the Loyalty level of your Town reaches this number.\r\n~\r\nTitle: * 10\r\nTry Clicking on 90 first.\r\n~\r\nTitle: * 10\r\nIf you Right-Click on the numbered button instead of Clicking, this Auto-Tax will be set for all of your present and future Towns.\r\n~\r\nTitle: * 11\r\nTo learn how to Grant, Click on your Town again.\r\n~\r\nButton : GRANT\r\nTitle: * 12\r\nYou can see the grant button and your Town's Loyalty level. \r\n~\r\nButton : GRANT\r\nTitle: * 13\r\nGrants are the opposite of Taxes; giving money instead of taking it.  \r\n~\r\nButton : GRANT\r\nTitle: * 13\r\nYou may need to Grant to raise the Loyalty level of a Town, but you will most often Grant to lower Resistance levels in Independent Towns.\r\n~\r\nButton : GRANT\r\nTitle: * 13\r\nGrants will increase the Loyalty of a Town by 10 points and decrease Resistance in Independent or enemy Town by 10 points.\r\n~\r\nButton : GRANT\r\nTitle: * 13\r\nYou may set Auto-Grants in the same way that you set Auto-Taxes.\r\n~\r\nTitle: * 14\r\nYou can make good money by selling your goods to foreign Kingdoms. To do this you will need a Trade agreement.\r\n~\r\nTitle: * 14\r\nInitiate a Trade agreement by Clicking on the Kingdoms Button at the top-left of the screen, or by pressing F1 on your keyboard.  \r\n~\r\nTitle: * 14\r\nWhen you do you will see a menu with a list of the world's kingdoms.  \r\n~\r\nTitle: * 15\r\nClick on the kingdom with which you wish to trade, then click on the 'Propose a Trade Treaty' option under 'Diplomacy' submenu.\r\n~\r\nTitle: * 16\r\nThe message in white text that will appear at the bottom of your screen is the reply to your request.\r\n~\r\nTitle: * 16\r\nThe colored box in front of the message shows the color of the Kingdom that sent the message.\r\n~\r\nTitle: * 16\r\nIf this text tells you that your Trade proposal has been accepted, your new Trade partner will send Caravans from his Market to purchase goods from your Market.\r\n~\r\nTitle: * 16\r\nClick on any of your Market to advance to the next section.\r\n~\r\nTitle: * 17\r\nWith your Trade agreement you will be able to send Caravans to the Market of your trading partner to purchase any goods that you cannot produce yourself.\r\n~\r\nTitle: * 17\r\nAlthough you will pay money when you pick these goods up, you will eventually profit when these goods are sold back in your Market.\r\n~\r\nButton : HIRECARA\r\nTitle: * 17\r\nTo hire a Caravan, select your Market and Click on the Hire Caravan Icon.\r\n~\r\nTitle: * 18\r\nTo learn how to use Caravan for trading, please select any of your Caravans.\r\n~\r\nTitle: * 19\r\nYou can see the New Button on the second row of the Caravan's interface.\r\n~\r\nTitle: * 19\r\nThese rows represent the stops that your Caravan will make. The first row is already set as your home Market.\r\n~\r\nTitle: * 20\r\nClick on the New Button on the second row.\r\n~\r\nTitle: * 20\r\nAfter Clicking, you will see that your cursor has changed to a Camel & Arrow.  Click this cursor on a Market of your trading partner.  \r\n~\r\nTitle: * 20\r\nIf you see that the cursor has a red X over it, it means that you have no Trade treaty with that Kingdom.\r\n~\r\nTitle: * 21\r\nTo learn more of how to use Caravan for trading, please select any of your Caravans.\r\n~\r\nTitle: * 22\r\nYour Caravan began its journey when you Clicked on the foreign Market.  \r\n~\r\nTitle: * 22\r\nBut you have not yet decided on what it should pick up when it arrives.\r\n~\r\nTitle: * 22\r\nThe default setting is \"Auto\", where your Caravan will pick up any surplus goods in the Market.\r\n~\r\nTitle: * 23\r\nBut you may instead pick up one or more specific goods by Clicking on their image on the shelf.\r\n~\r\nTitle: * 23\r\nHowever, You may NOT drop off any goods at foreign markets.\r\n~\r\nTitle: * 24\r\nIf you have more than one Town you should make sure that each is linked to a Market.\r\n~\r\nTitle: * 24\r\nYou may send Caravans between two of your Markets so as to better distribute your goods.\r\n~\r\nTitle: * 24\r\nSet these Caravans up in the same way that you did for a foreign Market.  \r\n~\r\nTitle: * 24\r\nThe difference is that you may drop off goods in your own Markets.\r\n~\r\nTitle: * 24\r\nDo this by Clicking on the goods on the top row that you wish to carry to the other Market.\r\n~\r\nTitle: * 25\r\nA good way to increase the movement of goods is to have more than one Caravan working the same route.  \r\n~\r\nTitle: * 25\r\nAn easy way to set this up is to Clone and existing Caravan. Do this by first selecting one of your Caravans.\r\n~\r\nTitle: * 26\r\nYou can now see the Clone Caravan Icon. Click on it.\r\n~\r\nTitle: * 27\r\nWhen you do, a new Caravan with exactly the same route and loading instructions will be hired and set out on its journey.\r\n~\r\nTitle: * 28\r\nYou should now have the skills to create a thriving economy and booming population.  \r\n~\r\nTitle: * 28\r\nBe sure to build Mines on all nearby natural resource deposits and try to have a Factory producing finished goods linked to each.\r\n~\r\nTitle: * 28\r\nBe sure that all of your Factories are linked to your Markets so that these goods can be sold.\r\n~\r\nTitle: * 28\r\nIf this is impossible because of distance, you should know that Factories, Mines and Markets may also be linked by Caravan in the same way that you link your Markets.  \r\n~\r\nTitle: * 28\r\nYou win this tutorial game when you have reached an economic score of 200 and a population of 200.\r\n~\r\nTitle: * 28\r\nYou can check the game goals and your scores by pressing the F8 key or by clicking on the 'Rank' button at the top of the screen.\r\n~\r\n\r\n\r\n\r\n\r\n\r\nHuman Learning Campaign Four\r\n\r\nTitle: * 01\r\nIn this Tutorial you will put to use those lessons learned in the previous Human Tutorial.\r\n~\r\nTitle: * 01\r\nYour goal will be to build and Economic Score of 300 and a Population of 200.\r\n~\r\nTitle: * 02\r\nThe basic things that you should remember to achieve these goals are:\r\n~\r\nTitle: * 02\r\nKeep your Markets filled with goods.  Also make sure to evenly distribute your goods among your Markets.\r\n~\r\nTitle: * 02\r\nGive your people jobs.  They will be happier, bear more children and buy more goods.  This will help your economy to grow.\r\n~\r\nTitle: * 02\r\nTrade with the world's other Kingdoms.\r\n~\r\nTitle: * 02\r\nSettle a new Town if the population of a Town approaches its limit of 100.\r\n~\r\nTitle: * 02\r\nYou always can check the game goals and your scores by pressing the F8 key or by clicking on the 'Rank' button at the top of the screen.\t\r\n~\r\nHuman Learning Campaign Three\r\n\r\nTitle: * 01\r\nYou should not expect to survive very long should you choose to ignore the benefits of science.\r\n~\r\nTitle: * 01\r\nResearch brings not only new types of Soldiers and Weapons but also better Combat skills and advanced Production and Farming methods.\r\n~\r\nTitle: * 01\r\nTo begin your scientific studies you must first build a Tower of Science.\r\n~\r\nTitle: * 01\r\nAs with other buildings that hire workers, now build a Tower of Science within the linking distance of your town.\r\n~\r\nTitle: * 02\r\nTo learn how to Research, Click on your Tower of Science.\r\n~\r\nButton : RESEARCH\r\nTitle: * 03\r\nTo choose the path of your Research, Click on the Research Icon\r\n~\r\nTitle: * 04\r\nThen Click on a category.  Inside the categories you will have a further choice of subjects.\r\n~\r\nTitle: * 04\r\nThere are usually several levels of research that you can do for each subject.  \r\n~\r\nTitle: * 04\r\nOnce you have completed one level, your scientists will automatically start on the next.\r\n~\r\nTitle: * 04\r\nYou may change your Research project at any time.  Any Research completed will not be lost and may be resumed later.\r\n~\r\nTitle: * 05\r\nFor every nationality there is a Special Unit who possesses advanced skills.  \r\n~\r\nTitle: * 05\r\nBut you will be unable to train these Special Units until you have researched them.\r\n~\r\nTitle: * 05\r\nYou will only be able to Research Special Units of a certain nationality if you have a Town of that nationality.\r\n~\r\nTitle: * 05\r\nFor every Special Unit you may research Berserker skills.  \r\n~\r\nTitle: * 05\r\nThis enables your Special Units to strike with increased power.  \r\n~\r\nTitle: * 05\r\nBerserker research will proceed automatically upon completion of the Special Unit research.\r\n~\r\nTitle: * 06\r\nWhen research on a Special Unit is complete civilians and soldiers will be able to build the Special Structures in which Special Units train.\r\n~\r\nTitle: * 06\r\nSpecial Structures must be built linked to a Town.\r\n~\r\nTitle: * 06\r\nBuild one of these Special Structures now. \r\n~\r\nTitle: * 06\r\nThey will have different names, depending upon nationality.  When a Civilian is building it you will find the button just above the Seat of Power.  \r\n~\r\nTitle: * 06\r\nFor instance, for Chinese, it is called 'Shao Lin Temple'. Now build one to proceed. \r\n~\r\nTitle: * 07\r\nTo learn how to train Special Units, Click on your Special Structure.\r\n~\r\nButton : TRAIN\r\nTitle: * 08\r\nTrain Special Units in Special Structures the same way that you train Soldiers in Forts.\r\n~ \r\nTitle: * 09\r\nSpecial Structures, unlike Forts, can only hold eight soldiers.\r\n~ \r\nTitle: * 09\r\nOnce trained, the Special Units will remain inside.  \r\n~ \r\nTitle: * 09\r\nYou can take them out in exactly the same way that you do with Soldiers in a Fort.  \r\n~ \r\nTitle: * 09\r\nEither Right-Click on them one at a time or take them all out at once with the Sortie Icon.\r\n~ \r\nTitle: * 09\r\nAfter exiting the Special Structure they should be sent into a Fort to serve under a commander.\r\n~\r\nTitle: * 10\r\nYou may set Rally Points for Special Structures.  \r\n~\r\nTitle: * 10\r\nA Rally Point is the destination at which your men will gather when they have completed their training.\r\n~\r\nTitle: * 10\r\nTo do this, select the Special Structure and then Right-Click on either a Fort, a Camp or on the ground.  \r\n~\r\nTitle: * 10\r\nWhen you do, a downward pointing finger will mark that position. \r\n~\r\nTitle: * 10\r\nYou may change the Rally Point by Right-Clicking on another destination.  \r\n~\r\nTitle: * 10\r\nCancel a Rally-Point by Clicking on the No Rally Point Icon.\r\n~\r\nTitle: * 11\r\nIf you wish to use War Machines against your enemies rather than Soldiers, you will need to research them in your Towers of Science. \r\n~\r\nTitle: * 11\r\nThere are three levels of research that you can do for each type of War Machine.  \r\n~\r\nTitle: * 11\r\nThe higher the level, the more dangerous the Weapon.\r\n~\r\nTitle: * 11\r\nTo produce the War Machines you will need to build a War Factory.  \r\n~\r\nTitle: * 11\r\nBuild one now, making sure that it is linked to a Town. \r\n~\r\nTitle: * 12\r\nTo learn how to use War Factory, Click on your War Factory.\r\n~\r\nButton : MAKEWEAP\r\nTitle: * 13\r\nWith your War Factory selected, Click on the Build Weapons Icon first.\r\n~\r\nTitle: * 14\r\nThen Click on the number button above the weapon that you wish to build.  \r\n~\r\nTitle: * 14\r\nOnly those weapons that you have researched will be visible. For the purpose of the tutorial, all weapons have been made available in this game. \r\n~\r\nTitle: * 14\r\nContinue clicking until the number reaches the number that you wish to build (Max 20).\r\n~\r\nTitle: * 14\r\nYou may set Rally Points for your weapons as you did for your Special Units.\r\n~\r\nTitle: * 15\r\nSeats of Power are very expensive but also very valuable.  \r\n~\r\nTitle: * 15\r\nThey bring special benefits to your civilization and allow you the opportunity of invoking powerful Greater Beings. \r\n~\r\nTitle: * 15\r\nEvery nationality will receive a different benefit from its Seat of Power, so you must take these benefits into account as you plan your strategies.\r\n~\r\nTitle: * 15\r\nBuild your Seat of Power now, making sure that it is linked to a Town of the same nationality.\r\n~\r\nTitle: * 16\r\nTo learn how to invoke Greater Beings, Click on your Seat of Power.\r\n~\r\nButton : GB-A1\r\nTitle: * 17\r\nFrom your Seats of Power you may invoke the aid of your Greater Being.\r\n~\r\nButton : GB-A1\r\nTitle: * 17\r\nEvery Greater Being has unique powers, so plan your strategy with this in mind.\r\n~\r\nButton : GB-A1\r\nTitle: * 17\r\nInvoke your Greater Being by selecting your Seat of Power and Clicking on the Invoke Greater Being Icon.  \r\n~\r\nButton : GB-A1\r\nTitle: * 17\r\nThis Icon will not always be active as you will need a minimum number of Prayer Points for invocation.\r\n~\r\nTitle: * 18\r\nTo learn how to use Greater Beings, Click on your Greater Being.\r\n~\r\nTitle: * 19\r\nPressing Z on your keyboard will select your Greater Being. Then Click on a target location (like a nearby Independent Town) to attack it. \r\n~\r\nTitle: * 19\r\nYour Greater Being will fly to the target and work its magic.\r\n~\r\nTitle: * 19\r\nFor some Greater Beings the target will be a large area while for others it can be a building or a single unit.\r\n~\r\nTitle: * 20\r\nTo learn how to use Special Blessing, Click on your Seat of Power.\r\n~\r\nButton : GB-B1\r\nTitle: * 21\r\nWhen the Power Bar in your seat of power has turned blue, it means that your Prayer Points have reached their maximum.  \r\n~\r\nButton : GB-B1\r\nTitle: * 21\r\nYou may at this time Click on the Special Blessing Icon.  \r\n~\r\nTitle: * 22\r\nWhen you do you will receive a Special Blessing from your Greater Being.\r\n~\r\nTitle: * 22\r\nAlthough this Special Blessing will use up all of your Prayer Points, it may at times be extraordinarily valuable. \r\n~\r\nTitle: * 23\r\nPress I on your keyboard to select your Inn.\r\n~\r\nButton : HIREUNIT\r\nTitle: * 24\r\nMercenary Soldiers gather at the room at the top of the Inn's interface.  \r\n~\r\nButton : HIREUNIT\r\nTitle: * 24\r\nThe white number above each shows his leadership level.  \r\n~\r\nTitle: * 25\r\nClicking on a Mercenary will reveal further details including his asking price.\r\n~\r\nTitle: * 25\r\nIf the price is right, Click on the Hire Mercenary Icon to bring the selected Mercenary into your force.\r\n~\r\nTitle: * 25\r\nMercenaries will come and go from the Inn.  Be patient and wait for one who fits your needs. \r\n~\r\nTitle: * 26\r\nPlease select your Inn again.\r\n~\r\nTitle: * 27\r\nSkilled Spies may also be hired in your Inns. Spies, both Civilian and Military, will gather in the room on the bottom.  \r\n~\r\nTitle: * 28\r\nHire Spies in the same way that you hire Mercenary Soldiers. Spies are shown on the row below the soldiers. \r\n~\r\nTitle: * 28\r\nSpies hired in Inns are more expensive than those that you train yourself, but if you require skilled Spies of a certain nationality it will be much faster to hire them.\r\n~\r\nTitle: * 29\r\nInstead of hiring Spies from Inns, you may train your own in Espionage Colleges. Please select your Espionage College, which is right next to your Inn.\r\n~\r\nButton : TRAIN\r\nTitle: * 30\r\nClick on the 'Train C' icon to train Civilian Spies, the 'Train I' icon to train Infantry Spies and the 'Train S' icon to train Special Unit Spies.\r\n~\r\nTitle: * 31\r\nThis last option will only be available if you have built the appropriate Special Structure.\r\n~\r\nTitle: * 31\r\nAll of these Spies will be of the same nationality as the town from which they are recruited.\r\n~\r\nTitle: * 31\r\nYou may set Rally Points for Espionage Colleges.\r\n~\r\nTitle: * 31\r\nThis tutorial will proceed after you have sent your Civilian Spies into any of your Towns and Select the town.\r\n~\r\nTitle: * 32\r\nBy sending Civilian Spies into your Towns, you will be helping to protect yourselves against enemy agents.\r\n~\r\nTitle: * 32\r\nYour Spies will work tirelessly, exposing and executing any enemy Spies who have been infiltrated into your Towns.\r\n~\r\nTitle: * 32\r\nOne rule to remember is that you can only send in a Civilian Spy of the same nationality as your Town.\r\n~\r\nTitle: * 33\r\nLet's check out other abilities of your spies. Now Train and Mobilize an Infantry Spy from your Espionage College and Select it. \r\n~\r\nTitle: * 34\r\nYou cannot infiltrate a Spy into an enemy Town or Fort unless you change the color of his cloak to match the target Kingdom.\r\n~\r\nTitle: * 34\r\nTo change the color, select the Spy and Click on the one of the colored balls.  If you see text stating, \"Enemies Nearby!  Cannot Change Cloak!\" it means just that.  \r\n~\r\nTitle: * 34\r\nYou must wait until he is in the clear. \r\n~\r\nTitle: * 34\r\nChange to gray if you want your Spy to pass for an Independent.\r\n~\r\nTitle: * 34\r\nChange back to your spy's original nation.\r\n~\r\nTitle: * 35\r\nOne method of getting your Spies into enemy ranks is to make it look as if he has surrendered.\r\n~\r\nButton : SPYNOTI0\r\nTitle: * 35\r\nDo this by selecting your Spy and, while he is still in your colors, Clicking on the Sneak Icon.  \r\n~\r\nButton : SPYNOTI0\r\nTitle: * 35\r\nSneaking is the default mode so you must change it if you wish to draw attention to your Spy.\r\n~\r\nButton : SPYNOTI1\r\nTitle: * 36\r\nClicking on the Icon will toggle it to the Surrender Icon.  Now when you change your Spy's color, the enemy will be notified of the \"surrender\".  \r\n~\r\nButton : SPYNOTI1\r\nTitle: * 36\r\nThey will then take control of your Spy and send him where they wish.\r\n~\r\nButton : NOSPY\r\nTitle: * 37\r\nIf you wish for your Spy to return to normal life, select him and then Click on the No Spy Icon.  \r\n~\r\nButton : NOSPY\r\nTitle: * 37\r\nHe will lay down his cloak and dagger and become a normal soldier or civilian.\r\n~\r\nTitle: * 38\r\nThis tutorial will continue after you have sent your Civilian Spy into a foreign Town and selected the town. The target town's race must be the same as the spy's. \r\n~\r\nTitle: * 39\r\nOnce Spies have been infiltrated you should assign them a mission. \r\n~\r\nTitle: * 39\r\nThe default mission for Spies in foreign Towns or buildings is \"Sleep\".  A sleeping Spy will slowly build his spying skills.  \r\n~\r\nTitle: * 39\r\nIt is unlikely that he will be exposed in this mode.\r\n~\r\nButton : SPY\r\nTitle: * 39\r\nTo change a Spy's mission, first Click on the Spy Menu Icon.  This icon shows that there is a Spy in this building or Town.\r\n~\r\nButton : CHG-TASK\r\nTitle: * 40\r\nSpies infiltrated into enemy or Independent Towns may be used to \"Agitate\", which can lower an enemy Town's loyalty to its King and an Independent Town's resistance to your rule.\r\n~\r\nButton : CHG-TASK\r\nTitle: * 40\r\nBegin Agitation by selecting the Town that your Spy has infiltrated and then Clicking on the Spy Menu Icon. \r\n~\r\nButton : CHG-TASK\r\nTitle: * 40\r\nThen select your Spy and Click on the Change Task Icon to change his job from Sleep to Agitation.\r\n~\r\nTitle: * 41\r\nYou have successfully infiltrate your spy into a foreign town. Next, let's target a foreign Fort. \r\n~\r\nTitle: * 41\r\nUnlike towns require same nationalities, you can send Infantry Spies into foreign Fort or Camp of any nationalities. \r\n~\r\nTitle: * 41\r\nThis tutorial will proceed after you have trained an Infantry Spy and sent it into a foreign Fort or Camp and selected the building. \r\n~\r\nTitle: * 42\r\nThe most useful Espionage task is Bribery which you do in Forts or Camps.  \r\n~\r\nTitle: * 42\r\nIf you have a Spy in such a place, find him now and if you don't, infiltrate one.\r\n~\r\nButton : BRIBE\r\nTitle: * 43\r\nTo offer a bribe, select the infiltrated location, Click on your target (any enemy unit, except the King) and then Click on the Offer Bribe Icon.\r\n~\r\nTitle: * 43\r\nYou will be asked how much money you are offering.  Click on the amount and then Click once again on the Offer Bribe Icon.  \r\n~\r\nTitle: * 43\r\nYou will be told of your success or failure.\r\n~\r\nTitle: * 43\r\nIf you have more than one Spy in the Fort you will be asked to choose the one who will offer the Bribe. \r\n~\r\nTitle: * 43\r\nSelect the foreign Fort or Camp with your spy inside.\r\n~\r\nButton : CAPTURE\r\nTitle: * 44\r\nIf you have a Spy who has become an enemy General or if you have successfully bribed an enemy General, \r\n~\r\nButton : CAPTURE\r\nTitle: * 44\r\nyou will have the ability to capture the Fort or Camp that he commands.\r\n~\r\nTitle: * 45\r\nTo do this, select the Fort or Camp and Click on the Capture Icon.  As soon as you do, the building will become yours.  \r\n~\r\nTitle: * 45\r\nThis action is quite drastic, so you should expect that as soon as you capture the building the victim will declare war on you!\r\n~\r\nTitle: * 45\r\nIf your Spy General is outside his Fort, changing his color back to your own will bring his entire Troop over to your side.\r\n~\r\nTitle: * 46\r\nIt is important to remember that the success of your Spies will greatly depend upon their skill level.\r\n~\r\nTitle: * 46\r\nSpies with higher skill levels will have more missions that they will be able to attempt and they will be more likely to survive them.\r\n~\r\nTitle: * 47\r\nSelect the foreign Fort or Camp with your spy inside.\r\n~\r\nTitle: * 48\r\nClick the Spy Menu Button.\r\n~\r\nButton : ASSASSIN\r\nTitle: * 49\r\nIf you wish to remove a pesky enemy General or King you should consider Assassination.\r\n~\r\nButton : ASSASSIN\r\nTitle: * 49\r\nAssassinations may only take place in Forts or Camps.\r\n~\r\nButton : ASSASSIN\r\nTitle: * 49\r\nTo begin, select the Spy that you wish to use and then Click on the Assassinate Icon.  \r\n~\r\nButton : ASSASSIN\r\nTitle: * 49\r\nYou will only see this Icon if your spy has reached a skill level of 50 or more.\r\n~\r\nButton : ASSASSIN\r\nTitle: * 49\r\nYou will be informed on the likelihood of a successful attack and will be given the opportunity to cancel the mission.  \r\n~\r\nButton : ASSASSIN\r\nTitle: * 49\r\nIf you choose to go ahead, Click one more time on the Assassinate Icon.\r\n~\r\nButton : STEAL_T\r\nTitle: * 50\r\nStealing technology can be cheaper and faster than researching it yourself.\r\n~\r\nButton : STEAL_T\r\nTitle: * 50\r\nTo do this, select the Fort in which one of your Spies resides and Click on the Spy Menu Icon.  \r\n~\r\nButton : STEAL_T\r\nTitle: * 50\r\nYou will then see several Icons which denote tasks that your Spy can attempt.  Click on the Steal Technology Icon.\r\n~\r\nButton : STEAL_T\r\nTitle: * 50\r\nYou will be shown your chances of completing the mission successfully.  If you choose to go ahead, Click on Yes.\r\n~\r\nButton : VSECRET\r\nTitle: * 51\r\nJust as you can view information on your own Kingdom, by clicking on the Kingdoms, Towns, Economy, Trade, Military, Tech and Rank buttons\r\n~\r\nButton : VSECRET\r\nTitle: * 51\r\nSo you can view the same information of other Kingdoms if you have infiltrated a Spy into their midst.\r\n~\r\nButton : VSECRET\r\nTitle: * 51\r\nTo do this, select the location of your Spy, Click on the Spy Eye Icon and then on the View Information Icon.  \r\n~\r\nButton : VSECRET\r\nTitle: * 51\r\nWhen you do you will see a list of the subjects that a Spy of that skill level can view.\r\n~\r\nButton : VSECRET\r\nTitle: * 51\r\nSpies with higher skill levels will be able to view more sensitive information.\r\n~\r\nButton : INCIDENT\r\nTitle: * 52\r\nSpies in enemy Forts will be able to manufacture an incident that will cause diplomatic problems or even war between one Kingdom (where he is infiltrated) and another Kingdom.  \r\n~\r\nButton : INCIDENT\r\nTitle: * 52\r\nThis can be extremely useful if you wish to start a war between two strong opponents.\r\n~\r\nButton : INCIDENT\r\nTitle: * 52\r\nTo create an incident you will need to have a Spy with a skill level of at least 90.\r\n~\r\nButton : INCIDENT\r\nTitle: * 52\r\nSelect your Spy and Click on the Create Incident Icon.  You must then choose a target Kingdom.  You will be informed of the chances of success.  \r\n~\r\nButton : INCIDENT\r\nTitle: * 52\r\nIf you choose to proceed, Click once again on the Create Incident Icon.\r\n~\r\nButton : MOBILSPY\r\nTitle: * 53\r\nYou may sometimes wish to extract a Spy from an enemy Town, Fort or Camp.  \r\n~\r\nButton : MOBILSPY\r\nTitle: * 53\r\nTo do this, select the Spy's hiding place and then select the Spy.\r\n~\r\nButton : MOBILSPY\r\nTitle: * 53\r\nWhen you Click on the Mobilize Spy Icon, your Spy will leave the building or Town and stand outside.  \r\n~\r\nButton : MOBILSPY\r\nTitle: * 53\r\nYou may then send him elsewhere but it would be wise to change his cloak color before you do so.  \r\n~\r\nButton : MOBILSPY\r\nTitle: * 53\r\nIf you don't you risk his exposure and execution.\r\n~\r\nTitle: * 54\r\nTo finish this tutorial. You have to achieve 500 Population and 200 Military Score.\r\n~\r\nTitle: * 54\r\nYou always can check the game goals and your scores by pressing the F8 key or by clicking on the 'Rank' button at the top of the screen.\t\r\n~Human Learning Campaign Six\r\n\r\nTitle: * 01\r\nBe sure to build a Mine over the nearby Natural Resource Deposit as soon as you can.  \r\n~\r\nTitle: * 01\r\nIf you delay, you may find it claimed by another Kingdom!\r\n~\r\nTitle: * 02\r\nRemember that your Soldiers will train faster, and fight with more power and skill if they serve under a General (or King) who has a high level of Leadership.\r\n~\r\nTitle: * 02\r\nThey will be more loyal if this General or King is of the same nationality as themselves.\r\n~\r\nTitle: * 03\r\nMake sure that your Markets are linked to both your Factories and to your Towns.\r\n~\r\nTitle: * 03\r\nWith the link to the Factory your Markets will have a steady supply of goods.\r\n~\r\nTitle: * 03\r\nWith the link to the Town, your people will be able to buy goods from the Market.\r\n~\r\nTitle: * 04\r\nWhen trying to influence the Resistance Level of an Independent Town, it is best to use a General or King who is of the same nationality as the Town.\r\n~\r\nTitle: * 04\r\nTheir Leadership Level will have a great influence on the Town's Resistance Level.  \r\n~\r\nTitle: * 04\r\nThe higher the Leadership Level, the more the Resistance Level will fall.\r\n~\r\nTitle: * 05\r\nIf you build an Inn you will be able to hire skilled Soldiers or Spies who are of other nationalities than your own.\r\n~\r\nTitle: * 05\r\nYou may also train your own Spies in an Espionage College.  \r\n~\r\nTitle: * 05\r\nPutting Civilian Spies in your Towns will help to protect them from Agitation by enemy agents.\r\n~\r\nTitle: * 06\r\nBe sure to Trade with as many other Kingdoms as you can.  It will be difficult to become rich if you do not Trade!\r\n~\r\nTitle: * 06\r\nKingdoms with which you have a large volume of  Trade will be less likely to want to fight you.\r\n~\r\nTitle: * 07\r\nMined Natural Resources will eventually be depleted and new deposits will be found.\r\n~\r\nTitle: * 07\r\nIf you are unlucky with the position of these resources at the beginning of the game, keep a lookout for new deposits at a later date.\r\n~\r\n\r\n\r\n\r\n\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n\r\nOBJECTIVE TEXT 1\r\n~\r\nOBJECTIVE TEXT 2\r\n~\r\nOBJECTIVE TEXT 3\r\n~\r\nOBJECTIVE TEXT 4\r\nOBJECTIVE TEXT 1\r\n~\r\nOBJECTIVE TEXT 2\r\n~\r\nOBJECTIVE TEXT 3\r\n~\r\nOBJECTIVE TEXT 4\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n\r\nRESULT TEXT 1\r\n~\r\nRESULT TEXT 2\r\n~\r\nRESULT TEXT 3\r\n~\r\nRESULT TEXT 4\r\nRESULT TEXT 1\r\n~\r\nRESULT TEXT 2\r\n~\r\nRESULT TEXT 3\r\n~\r\nRESULT TEXT 4\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~\r\n~"
+ }
+]
