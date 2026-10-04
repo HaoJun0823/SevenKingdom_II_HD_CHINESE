@@ -265,8 +265,13 @@ const char* g_fontSample = nullptr;
 // 缺省 -1 = 自动（按字形直方图取众数）。用于过场文字过暗等个例。
 int g_colorOverride = -1;
 
-// render.ini: fontcolor=RVA:NN[;RVA:NN...] —— 只对**指定字体对象**强制正文色。
-// RVA = 该 Font 对象相对模块基址的偏移（日志里 "Font %08X" 那个值减 Base()）。
+// render.ini: seg=1 —— 混合串分段诊断。
+// 现象：`遊戲進行時間: 0分鐘` 里那个 '0' 明明在字符串里（日志 hex 为证），
+// 画出来却不见。本开关记录每个「ASCII 段」的 测量宽/右界/原函数返回位置，
+// 用来判断是我们算窄了右界（原函数提前 break）还是别的原因。
+int g_segDiag = 0;
+
+// render.ini: fontcolor=RVA:NN[;RVA:NN...] —— 只对**指定字体对象**强制正文色。// RVA = 该 Font 对象相对模块基址的偏移（日志里 "Font %08X" 那个值减 Base()）。
 // 也支持关键字 white / bright：white = 取调色板里最亮的一项（通常是纯白）。
 // 用于「某块文字过暗/过亮」但不想影响全局的场合。
 // 已知：过场诗句用的字体在 RVA 0x28774C（其字形含 112/146/149/113 四个色阶，
@@ -695,6 +700,20 @@ static int __fastcall Hook_put(int* f, void* edx, int x, int y,
             int nx2 = (w > 0) ? x + w - 1 : x;
             if (nx2 > limX) nx2 = limX;
             int r = CallOrigPut(f, x, y, seg, clearBack, nx2, cap);
+            // ── 分段诊断（render.ini: seg=1）──────────────────────
+            // 只记含数字的段：本轮丢的正是数字，含数字的段最有价值。
+            // 判读：若 r 明显小于 nx2，说明原函数提前 break（右界算窄了）；
+            //       若 r 已越过 "0" 该在的位置却仍看不见，则是绘制/覆盖问题。
+            if (g_segDiag) {
+                bool hasDigit = false;
+                for (const char* q = seg; *q; ++q)
+                    if (*q >= '0' && *q <= '9') { hasDigit = true; break; }
+                static long segN = 0;
+                if (hasDigit && ++segN <= 80)
+                    Log("[seg] #%ld 段=\"%s\" x=%d 测量w=%d nx2=%d limX=%d "
+                        "原函数返回r=%d -> 下一段x=%d cb=%d\r\n",
+                        segN, seg, x, w, nx2, limX, r, r + 1, (int)clearBack);
+            }
             // 原函数返回值已含「段尾 inter」，故此处不再补 inter
             x = r + 1;
         } else {
@@ -1376,6 +1395,7 @@ static volatile LONG g_wdDepth = 0;        // 当前 hook 嵌套深度
 static volatile DWORD g_wdEnterTick = 0;   // 最外层进入时刻
 static volatile LONG g_wdPeak = 0;         // 观测到的最高每秒调用数
 static char g_wdReason[128] = "";
+volatile LONG g_renderTid = 0;             // 渲染线程（= 主线程）TID，取证用
 
 // 速率阈值：实测正常约 3000~5000 次/秒（put + 逐字节 + 多行 + 单字；
 // 字形与 text_width 不是外层 hook，不计入）。取 4 万 = 正常峰值的 ~8 倍，
@@ -1386,6 +1406,9 @@ static const DWORD WD_STUCK_MS = 500;
 
 void WatchdogEnter() {
     if (g_tripped) return;
+    // 记下渲染线程 TID —— 卡死取证时要挂起它读上下文。
+    // 渲染是单线程，第一次记下即可（只在为空时写，省一次判断）。
+    if (!g_renderTid) g_renderTid = (LONG)GetCurrentThreadId();
     ++g_wdCount;
     if (++g_wdDepth == 1) g_wdEnterTick = GetTickCount();
 }
@@ -1395,6 +1418,99 @@ void WatchdogLeave() {
 int  WatchdogTripped() { return g_tripped != 0; }
 long WatchdogPeakRate() { return g_wdPeak; }
 const char* WatchdogReason() { return g_wdReason; }
+
+// ── 卡死现场取证 ────────────────────────────────────────────
+// 为什么必须由进程自己抓：用户实测「用调试器附加就不卡，直接运行才卡」——
+// 卡死那一刻根本没法开调试器（整个系统都在卡），现场只能由我们提前留下。
+// 做法：看门狗发现「绘制计数连续 N 秒不增长」即判定卡死，挂起渲染线程，
+//       读它的 EIP/ESP/EBP，并扫一段栈挑出指向 7K2.exe / sk2_zh.asi 的返回地址，
+//       输出成可直接对照 IDA 的形式（RVA = 地址 - 模块基址）。
+static const char* NearModule(uintptr_t a, uintptr_t* rel) {
+    *rel = 0;
+    const uintptr_t exe = (uintptr_t)Base();
+    if (exe && a >= exe && a < exe + 0x0C00000) { *rel = a - exe; return "7K2"; }
+    const uintptr_t asi = (uintptr_t)GetModuleHandleA("sk2_zh.asi");
+    if (asi && a >= asi && a < asi + 0x400000)  { *rel = a - asi; return "ASI"; }
+    return nullptr;
+}
+
+// 该地址能否安全读 n 字节。跨页读到未提交内存会在取证时崩掉 —— 必须先问 OS。
+static bool ReadableRange(const void* p, size_t n) {
+    MEMORY_BASIC_INFORMATION mi = {};
+    if (VirtualQuery(p, &mi, sizeof(mi)) != sizeof(mi)) return false;
+    if (mi.State != MEM_COMMIT) return false;
+    if (mi.Protect & (PAGE_NOACCESS | PAGE_GUARD)) return false;
+    return mi.RegionSize >= n;
+}
+
+static void DumpStallContext(int stallSec) {
+    const DWORD tid = (DWORD)g_renderTid;
+    if (!tid) {
+        Log("[!] 渲染停滞 %d 秒，但还没记录渲染线程 TID"
+            "（本次运行尚未走过任何绘制？）\r\n", stallSec);
+        return;
+    }
+    HANDLE h = OpenThread(THREAD_SUSPEND_RESUME | THREAD_GET_CONTEXT |
+                          THREAD_QUERY_INFORMATION, FALSE, tid);
+    if (!h) {
+        Log("[!] 停滞取证：OpenThread(%lu) 失败 err=%lu\r\n", (unsigned long)tid, GetLastError());
+        return;
+    }
+    if (SuspendThread(h) == (DWORD)-1) { CloseHandle(h); return; }
+
+    uintptr_t eip = 0, esp = 0, ebp = 0, eax = 0, ecx = 0;
+    __try {
+        CONTEXT ctx = {};
+        ctx.ContextFlags = CONTEXT_CONTROL | CONTEXT_INTEGER;
+        if (GetThreadContext(h, &ctx)) {
+            eip = ctx.Eip; esp = ctx.Esp; ebp = ctx.Ebp; eax = ctx.Eax; ecx = ctx.Ecx;
+        }
+    } __except (EXCEPTION_EXECUTE_HANDLER) { eip = 0; }
+    ResumeThread(h);
+    CloseHandle(h);
+
+    if (!eip) { Log("[!] 停滞 %d 秒，但取不到线程上下文\r\n", stallSec); return; }
+
+    uintptr_t rel = 0;
+    const char* m = NearModule(eip, &rel);
+
+    char line[1200];
+    int n = _snprintf_s(line, sizeof(line), _TRUNCATE,
+        "\r\n[!] ===== 渲染停滞 %d 秒 · 卡死现场取证 =====\r\n"
+        "    渲染线程 TID=%lu  EIP=%08X (%s%s%X)  ESP=%08X  EBP=%08X  EAX=%08X  ECX=%08X\r\n",
+        stallSec, (unsigned long)tid, (unsigned)eip,
+        m ? m : "非模块区", m ? "+" : "", (unsigned)rel,
+        (unsigned)esp, (unsigned)ebp, (unsigned)eax, (unsigned)ecx);
+    LogRaw(line, n);
+
+    // EIP 处 16 字节：若是循环体，一眼能看出指令特征
+    if (ReadableRange((const void*)eip, 16)) {
+        const uint8_t* pb = (const uint8_t*)eip;
+        n = _snprintf_s(line, sizeof(line), _TRUNCATE, "    EIP 处字节:");
+        for (int i = 0; i < 16; ++i)
+            n += _snprintf_s(line + n, sizeof(line) - n, _TRUNCATE, " %02X", pb[i]);
+        n += _snprintf_s(line + n, sizeof(line) - n, _TRUNCATE, "\r\n");
+        LogRaw(line, n);
+    }
+
+    // 栈回溯：挑出落在 7K2 / ASI 里的返回地址
+    n = _snprintf_s(line, sizeof(line), _TRUNCATE, "    栈回溯:");
+    int shown = 0;
+    const uintptr_t* sp = (const uintptr_t*)esp;
+    for (int i = 0; i < 512 && shown < 20 && n < (int)sizeof(line) - 40; ++i) {
+        if (!ReadableRange(sp + i, 4)) break;
+        const uintptr_t v = sp[i];
+        uintptr_t r = 0;
+        const char* mm = NearModule(v, &r);
+        if (!mm) continue;
+        n += _snprintf_s(line + n, sizeof(line) - n, _TRUNCATE, " %s+%X", mm, (unsigned)r);
+        ++shown;
+    }
+    if (!shown) n += _snprintf_s(line + n, sizeof(line) - n, _TRUNCATE, " (栈上无模块返回地址)");
+    n += _snprintf_s(line + n, sizeof(line) - n, _TRUNCATE, "\r\n");
+    LogRaw(line, n);
+    Log("    └ 把 7K2+偏移 加上 IDA 基址 0x400000 即可直接跳转查看。\r\n");
+}
 
 static void WatchdogTrip(const char* why) {
     if (InterlockedExchange(&g_tripped, 1) != 0) return;    // 只执行一次
@@ -1419,11 +1535,32 @@ static DWORD WINAPI WatchdogProc(LPVOID) {
     // 最低优先级：即便游戏卡死，也要把 CPU 让给系统其它进程，
     // 保证鼠标、任务管理器还能动 —— 这是「不再让 OS 无响应」的关键一步。
     SetThreadPriority(GetCurrentThread(), THREAD_PRIORITY_LOWEST);
+    LONG lastPut = -1;
+    int  stallSec = 0;
     for (;;) {
         Sleep(1000);
         const LONG c = g_wdCount;
         g_wdCount = 0;
         if (c > g_wdPeak) g_wdPeak = c;
+
+        // ── 渲染停滞检测（卡死取证）────────────────────────────
+        // 实测卡死时「所有绘制计数整整 50 秒一动不动」，所以「计数不增长」
+        // 就是卡死的可靠判据。此时立刻把渲染线程的现场记进日志 ——
+        // 用户反馈「用调试器附加就不卡，直接运行才卡」，也就是说卡死那一刻
+        // 根本没法开调试器，现场只能由进程自己留。
+        {
+            const LONG curPut = (LONG)g_putCount;
+            if (curPut == lastPut) {
+                ++stallSec;
+                if (stallSec == 6 || (stallSec > 6 && (stallSec % 15) == 0))
+                    DumpStallContext(stallSec);
+            } else {
+                if (stallSec >= 6)
+                    Log("[i] 渲染已恢复（停滞共 %d 秒）\r\n", stallSec);
+                stallSec = 0;
+            }
+            lastPut = curPut;
+        }
 
         if (c > WD_RATE_MAX) {
             char r[128];
@@ -1604,6 +1741,13 @@ static void LoadRenderCfg() {
             g_perfEnabled = (atoi(p + 5) != 0);
             Log("[i] render.ini: perf=%d  %s\r\n", g_perfEnabled,
                 g_perfEnabled ? "(逐路径耗时统计已开，见监控行)" : "(已关闭)");
+        }
+        // seg=1 打开混合串分段诊断（查「数字画不出来」用）
+        p = strstr(buf, "seg=");
+        if (p) {
+            g_segDiag = (atoi(p + 4) != 0);
+            Log("[i] render.ini: seg=%d  %s\r\n", g_segDiag,
+                g_segDiag ? "(记录 ASCII 段的测量/右界/返回位置)" : "(已关闭)");
         }
         p = strstr(buf, "color=");
         if (p) {
