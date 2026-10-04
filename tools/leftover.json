@@ -1,0 +1,44 @@
+{
+  "Resource/HOTKEY.RES": [
+    [
+      2,
+      "HOTKEY2",
+      251,
+      [
+        "Ctrl",
+        "Ctrl",
+        "Page Up",
+        "Page Down",
+        "Home",
+        "Enter",
+        "Ctrl",
+        "Shift",
+        "CapsLock",
+        "Shift-F",
+        "to F",
+        "Page Up"
+      ]
+    ]
+  ],
+  "Resource/STD.SET": [
+    [
+      50,
+      "SOUNDRES",
+      19946,
+      [
+        "CH-ARROW SCT",
+        "CT-ARROW SCT",
+        "EG-ARROW SEG",
+        "EG-JAVEL SEG",
+        "EG-JAVEL SEG",
+        "IN-ARROW SIN",
+        "IN-JAVEL SIN",
+        "JA-ARROW SMO",
+        "MO-ARROW SMO",
+        "NO-ARROW SNO",
+        "PE-ARROW SPE",
+        "PE-POWAR SPE"
+      ]
+    ]
+  ]
+}

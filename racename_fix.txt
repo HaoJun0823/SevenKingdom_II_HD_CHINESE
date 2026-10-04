@@ -1,0 +1,219 @@
+需要修的 RACENAME 行数: 218
+  32 | Claudien         | §J³Ò’N | 20B
+ 133 | Odinel           | ¶ø’N¯Ç | 20B
+ 247 | Curteys          | ¬ì’N´µ | 20B
+ 259 | Ditton           | ’N¹y | 20B
+ 318 | Maudit           | ²ö’N¯S | 20B
+ 386 | Ketill           | ¬ì’Nº¸ | 20B
+ 387 | Bj顤n             | Björ | 20B
+ 389 | Gr璥r             | Grím | 20B
+ 401 | Hr鏊fr            | Hról | 20B
+ 405 | Eyj鏊fr           | Eyjól | 20B
+ 406 | Halld鏎r          | Halldór | 20B
+ 410 | Atli             | ®J’NùØ | 20B
+ 412 | Ingjaldr         | ­^®æ�D | 20B
+ 416 | Arn鏎r            | Arnór | 20B
+ 417 | Hr鏇ldr           | Hróa | 20B
+ 418 | Steinn           | ´µ’N®¦ | 20B
+ 419 | Stein鏊fr         | Steinól | 20B
+ 422 | Bjarni           | ¤Ú�D¥§ | 20B
+ 423 | B瓘varr           | Böð | 20B
+ 425 | J顤undr           | Jör | 20B
+ 428 | Eir璭r            | Eirík | 20B
+ 429 | Hildir           | «¢’N·ç | 20B
+ 432 | Au繠n             | Auðu | 20B
+ 434 | Gu繜undr          | Guðm | 20B
+ 436 | Herj鏊fr          | Herjól | 20B
+ 439 | He簨nn            | Heði | 20B
+ 441 | V幦undr           | Vém | 20B
+ 448 | S闤vi             | Söl | 20B
+ 454 | Eil璗r            | Eilíf | 20B
+ 460 | Kjallakr         | §J�D°Ç | 20B
+ 466 | G疄li             | Gís | 20B
+ 467 | Gu簰augr          | Guðl | 20B
+ 468 | Gunnsteinn       | ¥d´µ’N | 20B
+ 470 | H鏊msteinn        | Hól | 20B
+ 472 | H飉kuldr          | Hös | 20B
+ 479 | Arngr璥r          | Arngrím | 20B
+ 481 | Bergþórr         | Bergþór | 20B
+ 485 | H嫥undr           | Hám | 20B
+ 486 | H鐷ni             | Hög | 20B
+ 487 | K嫫i              | Kár | 20B
+ 499 | Brynj鏊fr         | Brynjól | 20B
+ 500 | B鐰m鶇r            | Böd óð | 20B
+ 501 | B顤kr             | Bör | 20B
+ 508 | Gr璥鏊fr           | Grímól | 20B
+ 509 | Gu簰eifr          | Guðl | 20B
+ 510 | Gunnj顤n          | Gunnjör | 20B
+ 512 | Gunn鏊fr          | Gunnól | 20B
+ 514 | H嫜on             | Hák | 20B
+ 515 | H嫛ar繢            | Háv  ðr | 20B
+ 517 | Hjalti           | «¢�D’N | 20B
+ 518 | Hj顤leifr         | Hjör | 20B
+ 519 | Hj顤r             | Hjör | 20B
+ 522 | Hrei簜rr          | Hreiða | 20B
+ 523 | Hr鏇rr            | Hróa | 20B
+ 524 | Ing鏊fr           | Ingól | 20B
+ 527 | K嫮fr             | Kál | 20B
+ 528 | K嫫r              | Kár | 20B
+ 530 | Kl熡gr            | Klæn | 20B
+ 532 | Kolgr璥r          | Kolgrím | 20B
+ 534 | Kon嫮l            | Konál | 20B
+ 536 | Oddi             | ¶ø’N | 20B
+ 538 | Rúnólfr          | Rúnól | 20B
+ 539 | Sk艛i             | Skíð | 20B
+ 543 | Steinm鶇r         | ´µ’N¯Çóð | 20B
+ 549 | S熤undr           | Sæm | 20B
+ 569 | Bj顤nsson         | Björ | 20B
+ 571 | Gr璥rsson         | Grím | 20B
+ 583 | Hr鏊frsson        | Hról | 20B
+ 586 | B嫫繢sson          | Bárðr | 20B
+ 587 | Eyj鏊frsson       | Eyjól | 20B
+ 588 | Halld鏎rsson      | Halldór | 20B
+ 591 | Sigur繢sson       | Sigurðr | 20B
+ 598 | Arn鏎rsson        | Arnór | 20B
+ 599 | Hr鏇ldrsson       | Hróa | 20B
+ 601 | Stein鏊frsson     | Steinól | 20B
+ 605 | B瓘varrsson       | Böð | 20B
+ 607 | J顤undrsson       | Jör | 20B
+ 608 | M嫫sson           | Már | 20B
+ 610 | Eir璭rsson        | Eirík | 20B
+ 614 | Au繠nsson         | Auðu | 20B
+ 616 | Gu繜undrsson      | Guðm | 20B
+ 618 | Herj鏊frsson      | Herjól | 20B
+ 621 | He簨nnsson        | Heði | 20B
+ 623 | V幦undrsson       | Vém | 20B
+ 627 | J鏮sson           | Jón | 20B
+ 630 | S闤visson         | Söl | 20B
+ 636 | Eil璗rsson        | Eilíf | 20B
+ 642 | Kjallakrsson     | ¥Ë�D©Ô | 20B
+ 648 | G疄lisson         | Gís | 20B
+ 649 | Gu簰augrsson      | Guðl | 20B
+ 652 | H鏊msteinnsson    | Hól | 20B
+ 654 | H飉kuldrsson      | Hös | 20B
+ 661 | Arngr璥rsson      | Arngrím | 20B
+ 663 | Bergþórrsson     | Bergþór | 20B
+ 667 | H嫥undrsson       | Hám | 20B
+ 668 | H鐷nisson         | Hög | 20B
+ 669 | K嫫isson          | Kár | 20B
+ 681 | Brynj鏊frsson     | Brynjól | 20B
+ 682 | B鐰m鶇rsson        | Böd óð | 20B
+ 683 | B顤krsson         | Bör | 20B
+ 685 | Galtisson        | »\º¸’N | 20B
+ 690 | Gr璥鏊frsson       | Grímól | 20B
+ 691 | Gu簰eifrsson      | Guðl | 20B
+ 692 | Gunnj顤nsson      | Gunnjör | 20B
+ 694 | Gunn鏊frsson      | Gunnól | 20B
+ 696 | H嫜onsson         | Hák | 20B
+ 697 | H嫛ar繢sson        | Háv  ðr | 20B
+ 698 | Hermundrsson     | »®»X’N | 20B
+ 699 | Hjaltisson       | «¢’M’N | 20B
+ 700 | Hj顤leifrsson     | Hjör | 20B
+ 701 | Hj顤rsson         | Hjör | 20B
+ 704 | Hrei簜rrsson      | Hreiða | 20B
+ 705 | Hr鏇rrsson        | Hróa | 20B
+ 706 | Ing鏊frsson       | Ingól | 20B
+ 709 | K嫮frsson         | Kál | 20B
+ 710 | K嫫rsson          | Kár | 20B
+ 711 | Kjartansson      | ¥d’M©Z | 20B
+ 712 | Kl熡grsson        | Klæn | 20B
+ 713 | Ko繢嫕sson         | Koðrán | 20B
+ 714 | Kolgr璥rsson      | Kolgrím | 20B
+ 716 | Kon嫮lsson        | Konál | 20B
+ 717 | M顤鏎sson          | Mörór | 20B
+ 718 | Oddisson         | ¶ø’N´Ë | 20B
+ 720 | Rúnólfrsson      | Rúnól | 20B
+ 721 | Sk艛isson         | Skíð | 20B
+ 726 | Steinr斸rsson     | ´µ’N­Ûøð | 20B
+ 731 | S熤undrsson       | Sæm | 20B
+ 743 | Aed              | ®J’N | 20B
+ 779 | Bochra           | §B’MùØ | 20B
+ 836 | Cyndyddan        | ¶ë’N¤¦ | 20B
+ 842 | Diarmait         | ’Nº¸³Á | 20B
+ 843 | Diviciacus       | ’Nºû¦è | 20B
+ 851 | Dyfed            | ’N¶O¼w | 20B
+ 885 | Gwydion          | ®æ’N®¦ | 20B
+1029 | Candidvs         | ³Í’N¼w | 20B
+1041 | Decvla           | ’N§Jºû | 20B
+1070 | Agathokles       | ªü�D¯Á | 20B
+1104 | Autodikos        | ¶ø°U’N | 20B
+1130 | Demaratos        | ’N°¨©Ô | 20B
+1133 | Dexios           | ’N§J¶ø | 20B
+1134 | Diokles          | ’N¶ø§J | 20B
+1136 | Dithyrambos      | ’N´µ©Ô | 20B
+1139 | Dymas            | ’N°¨´µ | 20B
+1218 | Midylos          | ³Á’N¬¥ | 20B
+1474 | Bao              | �E | 20B
+1549 | Bao Tian         | �E¤Ñ | 20B
+1637 | Xu Gang          | �l­è | 20B
+1765 | Hisashi          | �@ | 20B
+1801 | Ryohei           | ‘v¤G | 20B
+1807 | Seisi            | ¸Û�A | 20B
+1833 | Yoshihisa        | ´I�@ | 20B
+1838 | Yunosuke         | �j³¥ | 20B
+1861 | Bodigei          | §B’N¦N | 20B
+1866 | Chudigei         | ·¡’N»ô | 20B
+1871 | Edigu            | ®J’N¥j | 20B
+1885 | Godigei          | ®æ’N³Ç | 20B
+1898 | Hudigei          | ­J’N³Ç | 20B
+1900 | Idigu            | ¥ì’N¥j | 20B
+1902 | Ildigei          | ¥ì’N³Ç | 20B
+1907 | Jadigei          | ’M’N³Ç | 20B
+1908 | Jagatai          | ’M¥d¶ð | 20B
+1909 | Jaguchei         | ’M¥j¹ý | 20B
+1910 | Jamatai          | ’M°¨®õ | 20B
+1911 | Jamujin          | ’M¤ìª÷ | 20B
+1912 | Jamukha          | ’M¤ì«¢ | 20B
+1913 | Jani             | ’M¥§ | 20B
+1914 | Januchei         | ’MÅ¥»ô | 20B
+1915 | Januhka          | ’MÅ¥¥d | 20B
+1916 | Janutai          | ’MÅ¥®õ | 20B
+1922 | Jodigei          | ¨ô’N®æ | 20B
+1926 | Judigei          | ·¡’N®æ | 20B
+1938 | Khodigei         | ¨U’N³Ç | 20B
+1940 | Khoja            | ÀN’M | 20B
+1946 | Kubodei          | ®w§B’N | 20B
+1949 | Kudigei          | ®w’N³Ç | 20B
+1956 | Modigei          | ²ö’N³Ç | 20B
+1960 | Mudigei          | ¿p’N³Ç | 20B
+1964 | Nodigei          | ¿Õ’N»ô | 20B
+1968 | Odigei           | ¼Ú’N®æ | 20B
+1979 | Qodigei          | ®ã’N»\ | 20B
+1985 | Sodigei          | ¯Á’N»\ | 20B
+1992 | Sudigei          | Ä¬’N»\ | 20B
+2000 | Tardigei         | ®õ’N®æ | 20B
+2004 | Temuga           | ÅK¤ì’M | 20B
+2006 | Tidigei          | ´£’N»\ | 20B
+2009 | Tini             | ’N¥§ | 20B
+2010 | Todigei          | °U’N»\ | 20B
+2025 | Udigei           | ¯Q’N»\ | 20B
+2030 | Uljaytu          | ¯Q’M¹Ï | 20B
+2037 | Yedigei          | ­C’N»\ | 20B
+2068 | Anati            | ªü¯Ç’N | 20B
+2077 | Atoti            | ªü°U’N | 20B
+2083 | Djedankhre       | ¼w’M¤¦ | 20B
+2084 | Djedefre         | ¼w’M¼w | 20B
+2085 | Djedhotepre      | ¼w’MÀN | 20B
+2087 | Djedkare         | ¼w’M§J | 20B
+2089 | Djedneferre      | ¼w’M¥§ | 20B
+2090 | Djefare          | ¼w’Mµá | 20B
+2216 | Padimenet        | ©¬’N¥§ | 20B
+2259 | Sewadjenre       | ¥ð’N¦N | 20B
+2278 | Teti             | ¯S’N | 20B
+2281 | Udimu            | ¯Q’N©i | 20B
+2324 | Artavardiya      | ºû’N¨È | 20B
+2345 | Bardiya          | ¤Ú’N¨È | 20B
+2375 | Fradhaxshtay     | ¹F´µ’N | 20B
+2395 | Haldita          | «¢’N¶ð | 20B
+2410 | Imaima           | ¥ì³Á‘y | 20B
+2450 | Notriga          | ¿Õ¯S�D | 20B
+2474 | Sogdianus        | ¯Á»\’N | 20B
+2493 | Tizyarshti       | ’N¨È¸¦ | 20B
+2520 | Zirakzadeh       | ¤ã�D¼w | 20B
+2562 | Dilip            | ’NùØ©¬ | 20B
+2564 | Divyendu         | ’Nºû³£ | 20B
+2582 | Hemang           | ¦è‘y | 20B
+2594 | Janak            | �D©`§J | 20B
+2671 | Tejas            | ’N¨È´µ | 20B
+2672 | Timin            | ’N©ú | 20B
+2679 | Umang            | ¯Q‘y | 20B
