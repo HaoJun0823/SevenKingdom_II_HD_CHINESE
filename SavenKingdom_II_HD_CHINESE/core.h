@@ -117,6 +117,17 @@ inline int g_glyphPxOverride = 0;      // 0 = 自动；13/16/24 可覆盖（rend
 inline bool g_glyphShadow = false;      // 是否给中文字形补 1px 偏移阴影（默认关）
 inline bool g_dbcsWidthPatch = true;    // 是否把 FontInfo 里 0x81+ 槽位宽度补成全角宽
 
+// ── 逐条绘制路径的开关（render.ini，用于崩溃二分定位）──────────
+// 默认全部开启。关掉某条 → 该条路径完全交回引擎原函数（中文不画/不换行），
+// 其余路径不变。这样「资源是中文、但某条自绘不参与」可单独验证。
+inline bool g_drawEnabled    = true;    // draw=0    : Font::put / 段落 / 逐字节 全不自绘
+inline bool g_putAsciiEnabled= true;    // puta=0    : 不接管 0x4C2110 / 0x4C1F40
+inline bool g_wrapEnabled    = true;    // wrap=0    : 不接管 0x4C1A80 居中换行
+inline bool g_paraEnabled    = true;    // para=0    : 不接管 put_paragraph
+inline bool g_hyperEnabled   = true;    // hyp=0     : 段落里不写引擎的超链接数组
+// 逐画布边界：自绘时把上界取 min(全局屏宽, 该 surface 的 stride/2)
+inline bool g_strideClamp    = true;    // clamp=0   : 退回只用全局屏宽（旧行为）
+
 inline int GlyphPx(const int* f) {
     if (g_glyphPxOverride) return g_glyphPxOverride;
     const short mh = *reinterpret_cast<const short*>(

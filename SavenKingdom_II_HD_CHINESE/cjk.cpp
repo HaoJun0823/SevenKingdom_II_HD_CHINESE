@@ -137,6 +137,35 @@ void* ActiveBuf() {
 bool UseBackBuf() {
     return *reinterpret_cast<char*>(Rva(RVA_USE_BACK)) != 0;
 }
+
+// VgaBuf 字段（sub_4C2A60 反编译实证：
+//   put_bitmap(this,x,y,bmp) -> sub_403080(*(this+66), *(this+67), x, y, bmp, pal)
+// 即 +66*4=264 是像素缓冲指针，+67*4=268 是行距字节数）
+inline uint8_t* VgaPixels(const void* vb) {
+    return vb ? (uint8_t*)(uintptr_t)(*reinterpret_cast<const uint32_t*>(
+        reinterpret_cast<const uint8_t*>(vb) + 264)) : nullptr;
+}
+inline int VgaPitch(const void* vb) {
+    return vb ? *reinterpret_cast<const int*>(
+        reinterpret_cast<const uint8_t*>(vb) + 268) : 0;
+}
+
+// ★ 提交页探测：判断像素矩形是否整块落在「已提交」内存里。
+//   sub_403080 一丝一毫都不裁剪（v8 = base + 2*x + y*stride 直接写），
+//   所以任何一次坐标算错都会写穿画布、踩坏堆 —— 而堆被踩坏的表现正是
+//   后续任意位置拿到野指针（实测：精灵 RLE 解码器读飞 ~1MB 撞到未提交页）。
+//   这里用 VirtualQuery 问 OS 要该页的真实提交范围，宁可不画也绝不写穿。
+static bool RectCommitted(const uint8_t* base, int stride, int x0, int y0, int x1, int y1) {
+    if (!base || stride <= 0 || x0 < 0 || y0 < 0 || x1 < x0 || y1 < y0) return false;
+    const uint8_t* p0 = base + 2 * (size_t)x0 + (size_t)y0 * stride;
+    const uint8_t* p1 = base + 2 * (size_t)x1 + (size_t)y1 * stride;
+    MEMORY_BASIC_INFORMATION mi = {};
+    if (!VirtualQuery((void*)p0, &mi, sizeof(mi))) return false;
+    if (!(mi.State & MEM_COMMIT)) return false;
+    const uint8_t* lo = (const uint8_t*)mi.BaseAddress;
+    const uint8_t* hi = lo + mi.RegionSize;
+    return p0 >= lo && p1 < hi;
+}
 // 逻辑画布尺寸（引擎在窗口模式下会把 UI 居中，所以坐标已是最终空间）
 inline int ScreenW() {
     int v = *reinterpret_cast<const int*>(Rva(RVA_SCREEN_W));
@@ -364,7 +393,15 @@ void FillRect(int x1, int y1, int x2, int y2, uint8_t color) {
     if (h <= 0 || h > 44) return;
     void* buf = ActiveBuf();
     if (!buf) return;
-    const int cw = ScreenW(), chh = ScreenH();
+    int cw = ScreenW();
+    const int chh = ScreenH();
+    if (g_strideClamp) {                       // 同样按 VgaBuf 自己的宽度夹取
+        const int pitch = VgaPitch(buf);
+        if (pitch > 0) {
+            const int sw = pitch / 2;
+            if (sw > 16 && sw < cw) cw = sw;
+        }
+    }
     if (x1 < 0 || y1 < 0) return;
     if (x1 >= cw || y1 >= chh) return;
     // 高度按画布裁剪（只裁尾，避免整块贴底时越界）
@@ -423,11 +460,31 @@ int DrawGlyph(int* f, int x, int y, unsigned char lead, unsigned char trail) {
 
     // ★ 引擎的 put_bitmap 不做裁剪 —— 越界绘制会写坏帧缓冲（实测可导致栈被
     //   破坏、EIP/ESP 变成垃圾而崩）。所以必须自己保证矩形整块落在画布内。
-    if (buf && (x < 0 || py < 0 || x + W > ScreenW() || py + H > ScreenH())) {
+    // ★★ 并且上界要用「这块 VgaBuf 自己的宽度」(pitch/2)，不是全局屏宽：
+    //   活动缓冲未必等于主屏，画到更小的离屏缓冲上时，按屏宽判定会放行 → 写穿。
+    int cw = ScreenW();
+    bool committed = true;                     // 拿不到可靠行距时，退回纯逻辑判定
+    if (g_strideClamp) {
+        const int pitch = VgaPitch(buf);
+        // 行距必须可信才用它：偶数、64B(32px) ~ 64KB。否则宁可不用，
+        // 免得读到垃圾值把 cw 压成个位数、导致整屏中文消失。
+        if (pitch >= 64 && pitch <= 65536 && (pitch & 1) == 0) {
+            const int sw = pitch / 2;
+            if (sw < cw) cw = sw;
+            static LONG pw = 0;
+            if (sw != ScreenW() && InterlockedIncrement(&pw) <= 5)
+                Log("[i] VgaBuf 画布: pitch=%d -> 宽 %d px（全局屏宽 %d），已按画布夹取\r\n",
+                    pitch, sw, ScreenW());
+            committed = RectCommitted(VgaPixels(buf), pitch, x, py, x + W - 1, py + H - 1);
+        }
+    }
+
+    if (x < 0 || py < 0 || x + W > cw || py + H > ScreenH() || !committed) {
         static LONG clampN = 0;
         if (InterlockedIncrement(&clampN) <= 6)
-            Log("[!] 绘字越界已跳过: (%d,%d)+%dx%d 画布=%dx%d\r\n",
-                x, py, W, H, ScreenW(), ScreenH());
+            Log("[!] 绘字越界已跳过: (%d,%d)+%dx%d 画布=%dx%d%s\r\n",
+                x, py, W, H, cw, ScreenH(),
+                committed ? "" : "  ★目标页未提交 —— 已阻止写穿堆");
         return w;                     // 仍按正常宽度推进，排版不受影响
     }
     PutBmp(buf, x, py, &g_glyph);
@@ -504,7 +561,8 @@ static int __fastcall Hook_put(int* f, void* edx, int x, int y,
     if (!f || !str) return CallOrigPut(f, x, y, str, clearBack, x2, cap);
 
     // ★ 快路径：不含双字节 → 完全交给原函数（英文排版零风险）
-    if (!HasDBCS(str))
+    // ★ 崩溃二分：render.ini draw=0 时，中文也整串交回原函数（不自绘）
+    if (!HasDBCS(str) || !g_drawEnabled)
         return CallOrigPut(f, x, y, str, clearBack, x2, cap);
 
     // 规范化右边界（原函数是 x2 = x + maxw*len 再夹到 vgaW-1）。
@@ -636,7 +694,8 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
     }
 
     // 纯 ASCII / 非法入参：完全交给原函数，零回归
-    if (!th || !str || !HasDBCS(str))
+    // 崩溃二分：para=0 / draw=0 → 整段交回引擎原函数
+    if (!th || !str || !HasDBCS(str) || !g_paraEnabled || !g_drawEnabled)
         return ((FN_PARA)g_paraOrig)(th, nullptr, x1, y1, x2, y2, str, spacing, startLine, draw);
 
     const int h = F16(th, font_off::FONT_HEIGHT);
@@ -719,7 +778,7 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
                 } else {
                     hyOpen = false;
                     // 与原函数一致地登记书签（有界，防止越界写）
-                    if (*hyCount < 40) {
+                    if (g_hyperEnabled && *hyCount < 40) {
                         uint8_t* e = (uint8_t*)Rva(RVA_HYPER_ARRAY) + 14 * (*hyCount);
                         *(WORD*)(e + 0)  = (WORD)hyX0;
                         *(WORD*)(e + 2)  = (WORD)hyY0;
@@ -925,6 +984,20 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
     unsigned char body; signed char shadow;
     FontColors(f, &body, &shadow);
 
+    // ★★ 逐画布上界：这块 surface 的真实像素宽 = stride/2（引擎自己就是这么算的，
+    //   见 sub_4C2110）。之前只拿「全局屏幕宽」当上界，一旦这条路径画到比主屏
+    //   小的离屏画布上，检查就会放行 → blit 写穿画布 → 踩坏堆。
+    //   clamp=0 可退回旧行为（仅用于对照实验）。
+    int cw = ScreenW();
+    if (g_strideClamp && stride >= 64 && stride <= 65536 && (stride & 1) == 0) {
+        const int sw = stride / 2;
+        if (sw < cw) cw = sw;
+        static LONG warned = 0;
+        if (sw != ScreenW() && InterlockedIncrement(&warned) <= 5)
+            Log("[i] puta 画布: stride=%d -> 宽 %d px（全局屏宽 %d），已按画布夹取\r\n",
+                stride, sw, ScreenW());
+    }
+
     const char* s = str;
     while (*s) {
         const unsigned char b = (unsigned char)*s;
@@ -947,16 +1020,26 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
                 //   表现为后续任意位置拿到野指针（例如精灵 RLE 解码器读飞
                 //   ~500KB 撞到未提交页 → 0xC0000005）。所以这里额外要求整块
                 //   字格落在画布内 —— 既不会丢末字，也绝不出画布。
-                if (gx >= 0 && gy >= 0 && W > 0 && H > 0
-                    && gx + W <= ScreenW() && gy + H <= ScreenH()
+                // ★★★ 最后一道保险：直接问 OS 这块矩形是否落在「已提交」的内存里。
+                //   sub_403080 完全不裁剪，而上面的 cw/ScreenH 只是逻辑推断 ——
+                //   只要有一次推断错了（离屏画布、stride 异常、坐标被算飞），
+                //   写出去就是踩堆。VirtualQuery 能拿到该页的真实提交范围，
+                //   只要首尾字节都落在同一个已提交区间内就放行，否则宁可不画。
+                // 行距不可信时不做提交页探测（退回纯逻辑判定，避免误杀整屏中文）
+                const bool committed = !g_strideClamp || stride < 64 || stride > 65536
+                    || RectCommitted((const uint8_t*)(uintptr_t)surf, stride,
+                                     gx, gy, gx + W - 1, gy + H - 1);
+                if (committed && gx >= 0 && gy >= 0 && W > 0 && H > 0
+                    && gx + W <= cw && gy + H <= ScreenH()
                     && gx + px <= limit + 2) {
                     g_blit8(surf, stride, gx, gy, &g_glyph, pal);
                     InterlockedIncrement(&g_zhCount);
                 } else {
                     static LONG oc = 0;
                     if (InterlockedIncrement(&oc) <= 6)
-                        Log("[!] puta 越界跳过: x=%d 进位=%d 字格=%d lim=%d y=%d\r\n",
-                            gx, px, W, limit, gy);
+                        Log("[!] puta 越界跳过: x=%d 进位=%d 字格=%d lim=%d y=%d cw=%d %s\r\n",
+                            gx, px, W, limit, gy, cw,
+                            committed ? "(逻辑越界)" : "(★目标页未提交 —— 已阻止写穿堆)");
                 }
             }
             if (w <= 0) w = spaceW;             // 缺字 → 按空格推进
@@ -966,7 +1049,10 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
             int w;
             if (b == 32) w = spaceW;
             else w = (info && b >= first && b <= last) ? info[7 * (b - first) + 1] : 0;
-            if (x + w <= limit && putc) putc(f, nullptr, surf, stride, x, y, (int)b);
+            // 单字节走引擎自己的绘制函数 —— 它只按 limit 判定、不做画布裁剪，
+            // 所以这里同样要用「画布宽」再拦一道。
+            if (x + w <= limit && x + w <= cw && putc)
+                putc(f, nullptr, surf, stride, x, y, (int)b);
             x += w + inter;
             ++s;
         }
@@ -979,7 +1065,8 @@ static int __fastcall Hook_put_ascii(int* f, void* edx, int surf, int stride,
     (void)edx;
     InterlockedIncrement(&g_putAsciiCount);
     if (!f || !s || !g_putAsciiOrig) return (x - 1);
-    if (!HasDBCS(s)) return g_putAsciiOrig(f, nullptr, surf, stride, x, y, s);
+    if (!HasDBCS(s) || !g_putAsciiEnabled || !g_drawEnabled)
+        return g_putAsciiOrig(f, nullptr, surf, stride, x, y, s);
     {
         static LONG tr = 0;
         if (InterlockedIncrement(&tr) <= 20) {
@@ -995,7 +1082,8 @@ static int __fastcall Hook_put_ascii2(int* f, void* edx, int surf, int stride,
                                       int x, int y, const char* s) {
     (void)edx;
     if (!f || !s || !g_putAscii2Orig) return (x - 1);
-    if (!HasDBCS(s)) return g_putAscii2Orig(f, nullptr, surf, stride, x, y, s);
+    if (!HasDBCS(s) || !g_putAsciiEnabled || !g_drawEnabled)
+        return g_putAscii2Orig(f, nullptr, surf, stride, x, y, s);
     return PutAsciiDBCS(f, surf, stride, x, y, s, stride, g_putAscii2ChFn);
 }
 
@@ -1057,7 +1145,8 @@ static int __fastcall Hook_putwrap(int* f, void* edx, int x1, int y1, int x2, in
     (void)edx;
     InterlockedIncrement(&g_wrapCount);
     if (!f || !str || !g_wrapOrig) return 0;
-    if (!HasDBCS(str))
+    // 崩溃二分：wrap=0 / draw=0 → 完全不接管，交给引擎原逻辑
+    if (!HasDBCS(str) || !g_wrapEnabled || !g_drawEnabled)
         return g_wrapOrig(f, nullptr, x1, y1, x2, y2, str, lead, draw, size);
 
     const int maxW = x2 - x1;
@@ -1205,6 +1294,26 @@ static void LoadRenderCfg() {
             int v = atoi(p + 11);
             g_dbcsWidthPatch = (v != 0);
             Log("[i] render.ini: dbcs_width=%d\r\n", g_dbcsWidthPatch ? 1 : 0);
+        }
+        // ── 崩溃二分开关：关掉某条自绘路径，其余不变 ──
+        // 用法：update\render.ini 里写 draw=0 / puta=0 / wrap=0 / para=0 / hyp=0
+        // 目的是把「是不是我们自绘写坏了内存」定位到具体某一条路径。
+        static const struct { const char* key; bool* flag; const char* desc; } SW[] = {
+            { "draw=",  &g_drawEnabled,     "Font::put/段落/逐字节 中文自绘" },
+            { "puta=",  &g_putAsciiEnabled, "逐字节路径 0x4C2110/0x4C1F40" },
+            { "wrap=",  &g_wrapEnabled,     "居中多行换行 0x4C1A80" },
+            { "para=",  &g_paraEnabled,     "put_paragraph 中文排版" },
+            { "hyp=",   &g_hyperEnabled,    "段落超链接数组写入" },
+            { "clamp=", &g_strideClamp,     "逐画布(stride/2)边界兜底" },
+        };
+        for (const auto& s : SW) {
+            p = strstr(buf, s.key);
+            if (p) {
+                int v = atoi(p + strlen(s.key));
+                *s.flag = (v != 0);
+                Log("[i] render.ini: %s%d  (%s)\r\n", s.key, v ? 1 : 0,
+                    v ? "启用" : "★已关闭（中文不由此路径绘制）");
+            }
         }
         p = strstr(buf, "oem=");
         if (p) {
