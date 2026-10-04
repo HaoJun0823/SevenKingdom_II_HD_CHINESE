@@ -660,3 +660,11 @@ unpack_data_chs/Tutorial/Hlc5s.tut/
 unpack_data_chs/Tutorial/Hlc6l.tut/
 unpack_data_chs/Tutorial/Hlc6s.tut/
 unpack_data_chs/Tutorial/Standard.tut/
+
+# ---------------- archives：一次性产物归档（不入库，可整体删除） ----------------
+# 01 构建产物 / IDE 缓存（tools/build.py、VS 可随时重建）
+archives/01_build_artifacts/
+# 02 UI 自动探索截图（bmp/png 双份，探测阶段一次性产物）
+archives/02_ui_probe_assets/
+# 03 旧备份快照
+archives/03_backups/
