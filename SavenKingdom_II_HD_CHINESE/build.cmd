@@ -27,6 +27,9 @@ mkdir obj_test
 set CFLAGS=/nologo /c /EHsc /std:c++17 /W3 /utf-8 /D_CRT_SECURE_NO_WARNINGS
 set LFLAGS=/nologo /DLL /OUT:sk2_zh.asi /SUBSYSTEM:WINDOWS /OPT:REF /OPT:ICF /MACHINE:X86
 
+set SRCS=pch.cpp core.cpp hooks.cpp cjk.cpp diag.cpp dllmain.cpp
+set OBJS=obj_test\pch.obj obj_test\core.obj obj_test\hooks.obj obj_test\cjk.obj obj_test\diag.obj obj_test\dllmain.obj
+
 if /i "%CFG%"=="Debug" (
   set CFLAGS=%CFLAGS% /Od /Zi
   set LFLAGS=%LFLAGS% /DEBUG
@@ -36,11 +39,11 @@ if /i "%CFG%"=="Debug" (
 )
 
 echo [1/2] 编译...
-cl %CFLAGS% /Foobj_test\ core.cpp hooks.cpp fontdata_stub.cpp dllmain.cpp
+cl %CFLAGS% /Foobj_test\ %SRCS%
 if errorlevel 1 ( echo [X] 编译失败 & pause & exit /b 1 )
 
 echo [2/2] 链接...
-link %LFLAGS% obj_test\core.obj obj_test\hooks.obj obj_test\fontdata_stub.obj obj_test\dllmain.obj
+link %LFLAGS% %OBJS%
 if errorlevel 1 ( echo [X] 链接失败 & pause & exit /b 1 )
 
 echo.

@@ -117,7 +117,8 @@ static bool ReadableC(const void* p, size_t n) {
 }
 
 static int ScrW() {
-    const int v = *reinterpret_cast<const int*>(Rva(RVA_SCREEN_W));
+    const int* p = LocInt(LOC_G_SCREEN_W);   // 定位器给出（签名优先、RVA 兜底）
+    const int v = p ? *p : 0;
     return (v > 16 && v <= 4096) ? v : 1280;
 }
 

@@ -1,4 +1,4 @@
-﻿// core.h — 核心定义：地址签名、日志、挂钩原语
+// core.h — 核心定义：地址签名、日志、挂钩原语
 #pragma once
 
 #include <windows.h>
@@ -63,17 +63,112 @@ constexpr uint8_t SIG_CENTER_PUT[] = {
 };
 constexpr int SIG_CENTER_PUT_LEN = sizeof(SIG_CENTER_PUT);
 
-// -- 引擎全局变量 ----------------------------------------------
-// RVA = IDA 记录的 VA - ImageBase(0x400000)。
+// ══════════════════════════════════════════════════════════════
+// 定位器：把所有「引擎函数入口」和「引擎全局变量」都变成签名可定位
+// ══════════════════════════════════════════════════════════════
+//
+// 为什么必须做：GOG 版与 STEAM 版是同一份源码的两次构建，但
+//     .text 里的函数整体位移 +0x30（GOG = STEAM + 0x30）
+//     .data 全局  整体位移 +0x38
+//     .rdata 全局 整体位移 +0x20
+// 于是任何硬编码 RVA 在另一个版本上都是错地址 → 插件在 STEAM 上必然出错。
+//
+// 两级定位策略：
+//   ① 函数：直接通配符签名搜 .text，要求两版都唯一命中（已逐一验证 n=1）；
+//   ② 全局变量：绝对地址立即数会随版本变化，直接搜立即数在 STEAM 上 n=0。
+//      改为「先签名定位宿主函数/指令，再在匹配点固定偏移处读 imm32」——
+//      运行期读到的立即数已被 loader 重定位修正，天然跟随版本与 ASLR。
+//
+// RVA 兜底：签名未命中时退回 RVA（GOG 已知可用），保证 GOG 永不倒退。
+// 每个兜底值都是「签名未命中」时的最后手段，命中日志会写明走了哪条路。
+//
+// 段范围（PE 段表，GOG 版）：.rdata [25A000,47E448)  .data [27E000,8E5C20)
+namespace loc_kind {
+constexpr int FUNC    = 0;   // 匹配点(+delta) = 函数入口
+constexpr int PTR     = 1;   // 匹配点+delta 处的 imm32 = 全局变量运行期地址
+constexpr int FIXEDVA = 2;   // 不用签名，直接用兜底 RVA（两版地址相同且无法定位）
+// 注意：不能叫 CONST —— windef.h 把 CONST 定义成 const，会被宏替换掉。
+}
+
+// 定位目标。命名 = 引擎语义，而不是地址。
+enum LocId {
+    // ── 函数入口 ──
+    LOC_TEXT_WIDTH = 0,   // Font::text_width      测量串宽（最热函数）
+    LOC_PUT,              // Font::put             正文绘制
+    LOC_PUT_PARAGRAPH,    // Font::put_paragraph   段落排版
+    LOC_CENTER_PUT,       // Font::center_put      居中绘制
+    LOC_PUT_CHAR,         // Font::put_char        单字绘制（教程提示）
+    LOC_UPPER_CASE,       // engine toupper        a5==1 时宽度必须同源
+    LOC_PUT_ASCII,        // 逐字节 ASCII 绘制（工具提示）
+    LOC_PUT_ASCII2,       // 同构的另一条逐字节绘制
+    LOC_PUT_ASCII_CH,     // 上面那条的单字原语（不挂钩，直呼）
+    LOC_PUT_ASCII2_CH,    // 同构单字原语（不挂钩，直呼）
+    LOC_BLIT8,            // 16bpp 字形 blit(surf,stride,x,y,bmp,pal)
+    LOC_PUT_BMP,          // put_bitmap(buf,x,y,bmp)
+    LOC_PUT_WRAP,         // 居中多行文本（按字断行）
+    // ── 全局变量 ──
+    LOC_G_SCREEN_W,       // 逻辑画布宽（1280）
+    LOC_G_SCREEN_H,       // 逻辑画布高（960）
+    LOC_G_WIN_FLAG,       // 窗口模式标志
+    LOC_G_LINE_COUNT,     // 引擎的「已写入行数」计数
+    LOC_G_HYPER_COUNT,    // 超链接书签个数
+    LOC_G_HYPER_ARRAY,    // 超链接书签数组（每项 14 字节）
+    LOC_G_FONT_PAL,       // 字形调色板指针
+    LOC_G_USE_BACK,       // 使用后台缓冲标志
+    LOC_G_ACTIVE_BUF,     // 活动绘制缓冲区对象指针
+    LOC_G_OEM_TABLE,      // cp437->Latin-1 转换表基址（有效段 +0x80）
+    LOC_EXE_LABELS,       // exe 内置 UI 标签连续字符串块
+    LOC_N
+};
+
+// 已定位地址表（core.cpp 定义）。未命中或未越界校验的项为 nullptr。
+extern void* g_locAddr[LOC_N];
+
+// 取已定位地址。inline 直读数组：热路径（逐字形 PutBmp / ScreenW）
+// 也要用它，不能有函数调用开销。
+inline void* Loc(LocId id) { return g_locAddr[id]; }
+
+// 按语义取全局变量地址的强类型包装。
+// 为什么不直接散落 reinterpret_cast：这些全局里 screen_w/h 是 int、
+// win_flag/use_back 是 char/byte、hyper_count 是 WORD。类型写散在各处
+// 极易写错宽度（写错 → 相邻变量被改 → 极难查的偶发崩溃）。
+inline int*   LocInt(LocId id)   { return reinterpret_cast<int*>(g_locAddr[id]); }
+inline short* LocShort(LocId id) { return reinterpret_cast<short*>(g_locAddr[id]); }
+inline char*  LocChar(LocId id)  { return reinterpret_cast<char*>(g_locAddr[id]); }
+inline uint8_t*      LocByte(LocId id) { return reinterpret_cast<uint8_t*>(g_locAddr[id]); }
+inline const uint8_t* LocByteC(LocId id) { return reinterpret_cast<const uint8_t*>(g_locAddr[id]); }
+
+const char* LocName(LocId id);   // 目标名（日志用）
+uint32_t    LocVa(LocId id);     // 化成 IDA 视角 VA，便于和反汇编逐字对照
+int         LocateAll();         // 定位全部目标，返回命中数（幂等）
+
+// ── 兜底 RVA（= IDA VA - 0x400000）──────────────────────────
 // 注意：0x8D7F24 这种「看起来像 RVA」的值其实是 VA，必须减掉 0x400000，
 //       写错会越界到映像之外，读写都是未定义行为。
-// 段范围（PE 段表）：.rdata [25A000,47E448)  .data [27E000,8E5C20)
-constexpr uint32_t RVA_SCREEN_W      = 0x2862A4;  // dword_6862A4  .rdata
-constexpr uint32_t RVA_SCREEN_H      = 0x2862A8;  // dword_6862A8  .rdata
-constexpr uint32_t RVA_WINDOW_FLAG  = 0x2864B3;  // byte_6864B3  .rdata
-constexpr uint32_t RVA_LINE_COUNT   = 0x4D7F24;  // dword_8D7F24  .data
-constexpr uint32_t RVA_HYPER_COUNT  = 0x4D7D78;  // word_8D7D78  .data
-constexpr uint32_t RVA_HYPER_ARRAY  = 0x4D7D80;  // unk_8D7D80  .data
+constexpr uint32_t RVA_TEXT_WIDTH      = 0x0C0780;
+constexpr uint32_t RVA_PUT             = 0x0C0AE0;
+constexpr uint32_t RVA_PUT_PARAGRAPH   = 0x0C1480;
+constexpr uint32_t RVA_CENTER_PUT      = 0x0C1140;
+constexpr uint32_t RVA_PUT_CHAR        = 0x0C0FE0;
+constexpr uint32_t RVA_UPPER_CASE      = 0x0C28F0;
+constexpr uint32_t RVA_PUT_ASCII       = 0x0C2110;
+constexpr uint32_t RVA_PUT_ASCII2      = 0x0C1F40;
+constexpr uint32_t RVA_PUT_ASCII_CH    = 0x0C2090;
+constexpr uint32_t RVA_PUT_ASCII2_CH   = 0x0C1EE0;
+constexpr uint32_t RVA_BLIT8           = 0x003080;
+constexpr uint32_t RVA_PUT_BMP         = 0x0C2A60;
+constexpr uint32_t RVA_PUT_WRAP        = 0x0C1A80;
+constexpr uint32_t RVA_SCREEN_W        = 0x2862A4;  // dword_6862A4  .rdata
+constexpr uint32_t RVA_SCREEN_H        = 0x2862A8;  // dword_6862A8  .rdata
+constexpr uint32_t RVA_WINDOW_FLAG     = 0x2864B3;  // byte_6864B3   .rdata
+constexpr uint32_t RVA_LINE_COUNT      = 0x4D7F24;  // dword_8D7F24  .data
+constexpr uint32_t RVA_HYPER_COUNT     = 0x4D7D78;  // word_8D7D78   .data
+constexpr uint32_t RVA_HYPER_ARRAY     = 0x4D7D80;  // unk_8D7D80    .data
+constexpr uint32_t RVA_FONT_PAL        = 0x29CFE8;  // dword_69CFE8  .rdata
+constexpr uint32_t RVA_USE_BACK        = 0x8E3492;  // byte_CE3492   .data
+constexpr uint32_t RVA_ACTIVE_BUF      = 0x28123C;  // off_68123C    .rdata
+constexpr uint32_t RVA_OEM_TABLE       = 0x281028;  // byte_681028   .rdata
+constexpr uint32_t RVA_EXE_LABELS      = 0x263A24;  // VA 0x663A24   .rdata
 
 // -- Font 对象字段偏移 ------------------------------------------
 //
@@ -146,6 +241,19 @@ void* FindSignature(void* start, size_t size, const uint8_t* sig, int sigLen);
 
 // 搜索整个主模块的 .text 段
 void* FindInText(const uint8_t* sig, int sigLen);
+
+// ── 通配符签名（十六进制文本）────────────────────────────────
+// 形态："55 8B EC 83 EC 20 89 4D ? ? ? ?"，'?' 为单字节通配。
+//
+// 为什么用文本而不是 ready 字节数组：签名要在 GOG/Steam 两个构建间复用，
+// 必须逐字节通配掉「相对调用位移 / 栈帧偏移 / 随版本变化的绝对立即数」。
+// 文本形态可以直接从 IDA 反汇编里剪切粘贴，也方便在注释里标注每个字节
+// 的语义；解析开销只发生一次（定位阶段），不在热路径。
+//
+// 单字节通配用 '?'，两个十六进制字符之间的空格可有可无。
+void* FindInTextPat(const char* hexPat);
+void* FindSignaturePat(void* start, size_t size, const char* hexPat);
+void* FindInImagePat(const char* hexPat);   // 全映像（含 .rdata/.data）
 
 // 基址换算
 //

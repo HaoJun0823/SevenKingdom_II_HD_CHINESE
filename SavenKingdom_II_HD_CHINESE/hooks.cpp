@@ -1,4 +1,4 @@
-﻿// hooks.cpp — text_width 双字节挂钩（Stage 2）
+// hooks.cpp — text_width 双字节挂钩（Stage 2）
 //
 // 引擎原逻辑（IDA sub_4C0780，逐字对照）：
 //   for (i=1; *Stra && i<=a3; ++i) {
@@ -36,7 +36,8 @@ namespace {
 // a5==1 时引擎把字母转大写后再测宽，大写更宽）。
 typedef short(__fastcall* FnUpperCase)(void* self, void* edx, short c);
 FnUpperCase g_upperCase = nullptr;
-constexpr uint32_t RVA_UPPER_CASE = 0x0C28F0;
+// 注意：地址不再硬编码，改由 Loc(LOC_UPPER_CASE) 定位（见 core.cpp 的 kLocTab）。
+// STEAM 版此函数在 0x4C28C0，硬编码 RVA 会调到别的函数上。
 
 // text_width 原始地址
 void*  g_textWidth = nullptr;
@@ -153,32 +154,39 @@ inline int AdvanceWidth(int* font, int lead, int trail, bool dbcs) {
     return EngineCharWidth(font, lead);
 }
 
-// 安全写全局变量：地址必须在映像内，否则跳过并告警一次
+// 安全写全局变量：地址必须在映像内，否则跳过并告警一次。
+//
+// 参数从「RVA」改成「已定位的真实地址」：line_count 现在由签名定位，
+// 在 STEAM 上地址与 GOG 不同（.data 位移 +0x38），再把 RVA 传进来
+// 就会写到隔壁变量上，而这种错误在日志里完全看不出来。
 static bool g_warnedRange = false;
 static inline bool InImage(void* p, int n) {
     uint8_t* base = Base();
     return p >= base && static_cast<uint8_t*>(p) + n <= base + 0x0C00000;
 }
-static inline void SafeSetInt(uint32_t rva, int val) {
-    uint8_t* p = static_cast<uint8_t*>(Rva(rva));
-    if (!InImage(p, 4)) {
+static inline void SafeSetInt(void* addr, int val) {
+    uint8_t* p = static_cast<uint8_t*>(addr);
+    if (!p || !InImage(p, 4)) {
         if (!g_warnedRange) {
             g_warnedRange = true;
-            Log("[X] 全局变量 rva=%08X 越界 (实际 %08X)，已跳过写入\r\n",
-                rva, (uint32_t)(uintptr_t)p);
+            Log("[X] 全局变量 %p 越界或未定位，已跳过写入\r\n", addr);
         }
         return;
     }
     memcpy(p, &val, 4);
 }
-static inline void SafeAddInt(uint32_t rva, int delta) {
-    uint8_t* p = static_cast<uint8_t*>(Rva(rva));
-    if (!InImage(p, 4)) return;
+static inline void SafeAddInt(void* addr, int delta) {
+    uint8_t* p = static_cast<uint8_t*>(addr);
+    if (!p || !InImage(p, 4)) return;
     int v = 0;
     memcpy(&v, p, 4);
     v += delta;
     memcpy(p, &v, 4);
 }
+// line_count 的语义化包装：未定位时静默跳过（计数只影响排版估算，
+// 不该因为定位失败把整条宽度路径打断）。
+static inline void LineCountSet(int v) { SafeSetInt(Loc(LOC_G_LINE_COUNT), v); }
+static inline void LineCountAdd(int d) { SafeAddInt(Loc(LOC_G_LINE_COUNT), d); }
 
 // -- 替换实现 -----------------------------------------------
 //
@@ -301,7 +309,7 @@ static int TextWidthImpl(int* font, const char* str, int a3, int a4, int a5) {
     if (a3 < 0) a3 = (int)strlen(p);
 
     int lineMax = 0, cur = 0, prev = 0;   // lineMax=行最大值 cur=当前行 prev=上一字宽
-    SafeSetInt(RVA_LINE_COUNT, 1);
+    LineCountSet(1);
 
     int spaceW  = F16(font, font_off::SPACE_WIDTH);
     int interW  = F16(font, font_off::INTER_SPACE);
@@ -334,7 +342,7 @@ static int TextWidthImpl(int* font, const char* str, int a3, int a4, int a5) {
         if (a4 > 0 && cur > a4) {
             lineMax = a4;
             cur = prev;
-            SafeAddInt(RVA_LINE_COUNT, 1);
+            LineCountAdd(1);
         }
 
         int next;
@@ -342,8 +350,7 @@ static int TextWidthImpl(int* font, const char* str, int a3, int a4, int a5) {
             if (cur > lineMax) lineMax = cur;
             next = 0;
             prev = 0;
-            SafeAddInt(RVA_LINE_COUNT, 1);
-        } else if (IsNationColor(lead) && !dbcs) {
+            LineCountAdd(1);        } else if (IsNationColor(lead) && !dbcs) {
             next = cur + 13;                       // 国家色条固定宽
             prev = 0;
         } else {
@@ -374,9 +381,9 @@ static int TextWidthImpl(int* font, const char* str, int a3, int a4, int a5) {
     }
 
     if (a4 > 0 && cur > a4)
-        SafeAddInt(RVA_LINE_COUNT, 1);
+        LineCountAdd(1);
     if (p[-1] == CHAR_LF && !lastWasDBCS)
-        SafeAddInt(RVA_LINE_COUNT, -1);
+        LineCountAdd(-1);
 
     int result = (lineMax <= cur) ? cur : lineMax;
 
@@ -411,12 +418,14 @@ static int TextWidthImpl(int* font, const char* str, int a3, int a4, int a5) {
 namespace sk2 {
 
 bool InstallTextWidth() {
-    g_textWidth = FindInText(SIG_TEXT_WIDTH, SIG_TEXT_WIDTH_LEN);
+    // 地址来自定位器（签名优先、RVA 兜底），这里不再自己搜签名。
+    // 定位器在 Stage 1 已经跑过并打印过结果，此处只消费结论。
+    g_textWidth = Loc(LOC_TEXT_WIDTH);
     if (!g_textWidth) {
-        Log("[X] text_width 签名未命中，无法挂钩\r\n");
+        Log("[X] text_width 未定位，无法挂钩\r\n");
         return false;
     }
-    uint32_t va = (uint32_t)(uintptr_t)g_textWidth;
+    uint32_t va = LocVa(LOC_TEXT_WIDTH);
     Log("[i] text_width @ %08X\r\n", va);
 
     // ★ 门禁：自测未通过绝不安装挂钩
@@ -427,16 +436,18 @@ bool InstallTextWidth() {
     }
 
     // 定位并接入引擎的 toupper（a5==1 时必须与引擎一致，否则宽度算错）
-    g_upperCase = (FnUpperCase)Rva(RVA_UPPER_CASE);
-    {
+    g_upperCase = (FnUpperCase)Loc(LOC_UPPER_CASE);
+    if (g_upperCase) {
         // 简单校验：toupper('a') 应得 'A'
         short t = g_upperCase(nullptr, nullptr, (short)'a');
         if (t == (short)'A') {
-            Log("[O] 已接入引擎 toupper @ %08X (校验 'a'->'A')\r\n", 0x400000u + RVA_UPPER_CASE);
+            Log("[O] 已接入引擎 toupper @ %08X (校验 'a'->'A')\r\n", LocVa(LOC_UPPER_CASE));
         } else {
             Log("[X] toupper 校验失败 ('a'->%d)，置空以免算错\r\n", (int)t);
             g_upperCase = nullptr;
         }
+    } else {
+        Log("[X] toupper 未定位，置空（宽度将不转大写）\r\n");
     }
 
     // ABI 校验：函数必须以 ret 0x10 收尾（thiscall + 4 栈参数）

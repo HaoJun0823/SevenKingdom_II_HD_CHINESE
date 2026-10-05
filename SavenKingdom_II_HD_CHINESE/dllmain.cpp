@@ -1,4 +1,4 @@
-﻿// dllmain.cpp — ASI 插件入口
+// dllmain.cpp — ASI 插件入口
 //
 // 阶段划分（每阶段可独立验证，出问题立刻停）：
 //   Stage 1  仅定位 + 打印地址与字节，验证签名搜索是否命中
@@ -21,6 +21,12 @@ using namespace sk2;
 void StartCallMonitor();   // 前置声明：Stage2 里调用
 
 // -- 阶段 1：定位并打印，不打补丁 ----------------------------
+//
+// 阶段 1 现在是「定位器自检」：LocateAll() 把全部引擎函数入口与全局变量
+// 都定位一遍，这里逐条打印「命中/兜底/常量」以及 GOG 的期望 VA。
+//
+// 期望 VA 只对 GOG 版有意义（STEAM 版整体位移 +0x30/+0x38）。所以差异行
+// 用 [~] 标注而不是报错：看到 [~] 就说明跑的不是 GOG，这本身是有效信息。
 static void Stage1_Locate() {
     Log("=====================================================\r\n");
     Log(" 7K2 HD CJK 注入 — Stage 1 定位自检\r\n");
@@ -31,61 +37,74 @@ static void Stage1_Locate() {
     if (reinterpret_cast<uint32_t>(base) != 0x400000)
         Log("[!] ImageBase 非 0x400000，delta 已启用\r\n");
 
-    // 四个核心签名
-    struct Target { const char* name; const uint8_t* sig; int len; uint32_t expect; };
-    const Target targets[] = {
-        { "Font::text_width",    SIG_TEXT_WIDTH,      SIG_TEXT_WIDTH_LEN,      0x4C0780 },
-        { "Font::put",           SIG_PUT,             SIG_PUT_LEN,             0x4C0AE0 },
-        { "Font::put_paragraph", SIG_PUT_PARAGRAPH,   SIG_PUT_PARAGRAPH_LEN,   0x4C1480 },
-        { "Font::center_put",    SIG_CENTER_PUT,      SIG_CENTER_PUT_LEN,      0x4C1140 },
+    const int hits = LocateAll();
+
+    // GOG 版期望 VA（仅用于自检日志，运行期不依赖它们）
+    struct Exp { LocId id; uint32_t va; };
+    const Exp exps[] = {
+        { LOC_TEXT_WIDTH,    0x4C0780 }, { LOC_PUT,            0x4C0AE0 },
+        { LOC_PUT_PARAGRAPH, 0x4C1480 }, { LOC_CENTER_PUT,     0x4C1140 },
+        { LOC_PUT_CHAR,      0x4C0FE0 }, { LOC_UPPER_CASE,     0x4C28F0 },
+        { LOC_PUT_ASCII,     0x4C2110 }, { LOC_PUT_ASCII2,     0x4C1F40 },
+        { LOC_PUT_ASCII_CH,  0x4C2090 }, { LOC_PUT_ASCII2_CH,  0x4C1EE0 },
+        { LOC_BLIT8,         0x403080 }, { LOC_PUT_BMP,        0x4C2A60 },
+        { LOC_PUT_WRAP,      0x4C1A80 },
+        { LOC_G_SCREEN_W,    0x6862A4 }, { LOC_G_SCREEN_H,     0x6862A8 },
+        { LOC_G_WIN_FLAG,    0x6864B3 }, { LOC_G_LINE_COUNT,   0x8D7F24 },
+        { LOC_G_HYPER_COUNT, 0x8D7D78 }, { LOC_G_HYPER_ARRAY,  0x8D7D80 },
+        { LOC_G_FONT_PAL,    0x69CFE8 }, { LOC_G_USE_BACK,     0xCE3492 },
+        { LOC_G_ACTIVE_BUF,  0x68123C }, { LOC_G_OEM_TABLE,    0x681028 },
+        { LOC_EXE_LABELS,    0x663A24 },
     };
 
-    Log("\r\n--- 签名搜索结果 ---\r\n");
-    for (const auto& t : targets) {
-        void* got = FindInText(t.sig, t.len);
+    Log("\r\n--- 定位结果（期望 VA 为 GOG 版）---\r\n");
+    int same = 0, diff = 0, gone = 0;
+    for (const auto& e : exps) {
+        void* got = Loc(e.id);
         if (!got) {
-            Log("[X] %-22s 签名未命中\r\n", t.name);
+            Log("[X] %-22s 未定位\r\n", LocName(e.id));
+            ++gone;
             continue;
         }
-        uint32_t va = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(got));
-        int32_t diff = static_cast<int32_t>(va - t.expect);
-        if (diff == 0)
-            Log("[O] %-22s VA=%08X  与 IDA 记录一致\r\n", t.name, va);
-        else
-            Log("[~] %-22s VA=%08X  (IDA记录 %08X, 差 %+d)\r\n", t.name, va, t.expect, diff);
-        LogBytes("      bytes", got, 16);
+        const uint32_t va = LocVa(e.id);
+        if (va == e.va) {
+            ++same;
+            Log("[O] %-22s VA=%08X  与 IDA GOG 记录一致\r\n", LocName(e.id), va);
+        } else {
+            ++diff;
+            Log("[~] %-22s VA=%08X  (GOG %08X, 差 %+d)\r\n",
+                LocName(e.id), va, e.va, (int32_t)(va - e.va));
+        }
+        if (e.id <= LOC_PUT_WRAP) LogBytes("      bytes", got, 16);
     }
+    Log("[i] 一致 %d  差异 %d  未定位 %d  (签名命中 %d/%d)\r\n",
+        same, diff, gone, hits, (int)LOC_N);
 
-    // 全局变量可达性检查
-    // RVA 已含基址相对量，地址 = Base()+rva。校验用映像实际范围（不是首选 VA）。
-    Log("\r\n--- 全局变量 (实际地址) ---\r\n");
-    uint8_t* modBase = Base();
-    uint8_t* imgEnd  = modBase + 0x0C00000;      // .reloc 结束，约 0xC00000
-    struct GV { const char* name; uint32_t rva; int size; };
-    const GV gvs[] = {
-        { "screen_w",  RVA_SCREEN_W,     4 },
-        { "screen_h",  RVA_SCREEN_H,     4 },
-        { "win_flag",  RVA_WINDOW_FLAG,  1 },
-        { "line_cnt",  RVA_LINE_COUNT,   4 },
-    };
-    for (const auto& g : gvs) {
-        void* p = Rva(g.rva);
-        uint8_t* up = static_cast<uint8_t*>(p);
-        bool inRange = (up >= modBase && up + g.size <= imgEnd);
-        int val = 0;
-        if (inRange) memcpy(&val, p, g.size);
-        uint32_t va = static_cast<uint32_t>(reinterpret_cast<uintptr_t>(p));
-        Log("[%s] %-9s rva=%08X (IDA VA %08X) -> 实际 %08X = %d (0x%X)\r\n",
-            inRange ? "i" : "X", g.name, g.rva, Vip(g.rva), va, val, val);
+    // 全局变量的「读出来是几」比地址更有说服力：地址对了但读到别的变量
+    // 是最危险的失败模式。这里把几个语义明确的量打印出来交叉验证。
+    Log("\r\n--- 全局变量读数交叉验证 ---\r\n");
+    if (LocInt(LOC_G_SCREEN_W) && LocInt(LOC_G_SCREEN_H))
+        Log("[i] screen = %d x %d  (期望 1280 x 960)\r\n",
+            *LocInt(LOC_G_SCREEN_W), *LocInt(LOC_G_SCREEN_H));
+    if (LocShort(LOC_G_HYPER_COUNT))
+        Log("[i] hyper_count = %d  (期望 0)\r\n", (int)*LocShort(LOC_G_HYPER_COUNT));
+    if (LocByte(LOC_G_WIN_FLAG))
+        Log("[i] win_flag = %d  (0/1)\r\n", (int)*LocByte(LOC_G_WIN_FLAG));
+    if (Loc(LOC_G_FONT_PAL))
+        Log("[i] font_pal  = %08X -> %08X  (指针非空即为合理)\r\n",
+            LocVa(LOC_G_FONT_PAL),
+            (uint32_t)*reinterpret_cast<const uint32_t*>(Loc(LOC_G_FONT_PAL)));
+    if (LocByte(LOC_G_OEM_TABLE)) {
+        const uint8_t* t = LocByteC(LOC_G_OEM_TABLE) + 0x80;
+        Log("[i] OEM 表 +0x80 指纹 = %02X %02X %02X ... %02X  (期望 C7 FC E9 .. 83)\r\n",
+            t[0], t[1], t[2], t[0x1F]);
     }
-    Log("[i] base = %08X  delta = 0x%X  映像范围 %08X-%08X\r\n",
-        modBase, Delta(), modBase, imgEnd);
 
     // center_put 里对 text_width 的 call ——
     // 这是引擎自己调 text_width 的地方，可用于验证 hook 是否真的生效
-    void* center = FindInText(SIG_CENTER_PUT, SIG_CENTER_PUT_LEN);
-    void* tw     = FindInText(SIG_TEXT_WIDTH, SIG_TEXT_WIDTH_LEN);
-    if (center) {
+    void* center = Loc(LOC_CENTER_PUT);
+    void* tw     = Loc(LOC_TEXT_WIDTH);
+    if (center && tw) {
         uint8_t* p = static_cast<uint8_t*>(center);
         Log("\r\n--- center_put 内的 call 指令 ---\r\n");
         for (int off = 0x10; off < 0x80; ++off) {
@@ -100,7 +119,7 @@ static void Stage1_Locate() {
     }
 
     Log("\r\n--- Stage 1 完成，未打任何补丁 ---\r\n");
-    Log("[!] 签名全部命中后，可设环境变量 SK2_STAGE=2 进入宽度挂钩\r\n");
+    Log("[!] 全部命中后，可设 SK2_STAGE=3（默认）进入完整挂钩\r\n");
 }
 
 // -- 阶段 2：挂钩 text_width --------------------------------

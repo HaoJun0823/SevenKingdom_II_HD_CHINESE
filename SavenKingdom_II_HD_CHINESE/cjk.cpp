@@ -1,4 +1,4 @@
-﻿// cjk.cpp — 中文渲染（Stage 3）
+// cjk.cpp — 中文渲染（Stage 3）
 //
 // 设计要点
 // --------
@@ -86,23 +86,17 @@ const uint8_t* GlyphMask(int gi, int px) {
 using sk2::GlyphIndex;
 using sk2::GlyphMask;
 
-// ── 引擎地址（RVA = IDA VA - 0x400000）──────────────────────
+// ── 引擎地址 ────────────────────────────────────────────────
+//
+// ★ 这里不再有硬编码 RVA。全部地址改由 core.cpp 的定位器提供：
+//     Loc(LOC_xxx)     → 引擎函数入口 / 全局变量运行期地址
+//     LocVa(LOC_xxx)   → 对应的 IDA 视角 VA（仅日志用）
+//
+// 为什么必须这样：GOG 与 STEAM 是两个构建，函数位移 +0x30、.data +0x38、
+// .rdata +0x20。原先这些常量（如 RVA_PUT_BMP=0x0C2A60）在 STEAM 上
+// 全部指错 —— 轻则中文不显示，重则写到别的变量上。
+// 定位器内部仍是「签名优先、RVA 兜底」，所以 GOG 行为不变。
 namespace {
-
-constexpr uint32_t RVA_PUT_BMP    = 0x0C2A60;  // sub_4C2A60  put_bitmap(buf, x, y, bmp)
-constexpr uint32_t RVA_PUT_CHAR   = 0x0C0FE0;  // Font::put_char（单字，教程提示路径）
-constexpr uint32_t RVA_ACTIVE_BUF = 0x28123C;  // off_68123C  活动绘制缓冲区对象指针
-constexpr uint32_t RVA_USE_BACK   = 0x8E3492;  // byte_CE3492 使用后台缓冲标志
-constexpr uint32_t RVA_SCREEN_W   = 0x2862A4;  // dword_6862A4 逻辑画布宽（1280）
-constexpr uint32_t RVA_SCREEN_H   = 0x2862A8;  // dword_6862A8 逻辑画布高（960）
-
-// ── 第 4/5 条文字路径（IDA 交叉引用实证，详见文件末尾注释）────
-constexpr uint32_t RVA_PUT_ASCII    = 0x0C2110;  // sub_4C2110 逐字节 ASCII 绘制（工具提示）
-constexpr uint32_t RVA_PUT_ASCII_CH = 0x0C2090;  // sub_4C2090 上面那条的单字原语
-constexpr uint32_t RVA_PUT_ASCII2   = 0x0C1F40;  // sub_4C1F40 同构的另一个逐字节绘制
-constexpr uint32_t RVA_PUT_ASCII2_CH= 0x0C1EE0;  // sub_4C1EE0 上面那条的单字原语
-constexpr uint32_t RVA_BLIT8        = 0x003080;  // sub_403080 16bpp 字形 blit(surf,stride,x,y,bmp,pal)
-constexpr uint32_t RVA_FONT_PAL     = 0x29CFE8;  // dword_69CFE8 字形调色板
 
 typedef int(__fastcall* FN_PUT_BMP)(void* bufObj, void* edx, int x, int y, void* bmp);
 typedef int(__fastcall* FN_PUT)(int* f, void* edx, int x, int y,
@@ -117,9 +111,8 @@ typedef int(__fastcall* FN_PUT_ASCII_CH)(int* f, void* edx, int surf, int stride
 typedef int(__stdcall* FN_BLIT8)(int surf, int stride, int x, int y,
                                  const void* bmp, int pal);
 
-// 第 5 条路径：居中多行文本（只在空格处断行）@0x4C1A80
+// 第 5 条路径：居中多行文本（只在空格处断行）
 // ECX=Font，栈上 8 个参数 -> ret 0x20（无 EDX 参数）
-constexpr uint32_t RVA_PUT_WRAP = 0x0C1A80;
 typedef int(__fastcall* FN_PUT_WRAP)(int* f, void* edx, int x1, int y1, int x2, int y2,
                                      const char* str, int lead, int draw, int size);
 
@@ -132,10 +125,12 @@ inline uint32_t F32(int* f, int off) {
 }
 
 void* ActiveBuf() {
-    return *reinterpret_cast<void**>(Rva(RVA_ACTIVE_BUF));
+    void** pp = reinterpret_cast<void**>(Loc(LOC_G_ACTIVE_BUF));
+    return pp ? *pp : nullptr;
 }
 bool UseBackBuf() {
-    return *reinterpret_cast<char*>(Rva(RVA_USE_BACK)) != 0;
+    const char* p = LocChar(LOC_G_USE_BACK);
+    return p && *p != 0;
 }
 
 // VgaBuf 字段（sub_4C2A60 反编译实证：
@@ -210,17 +205,25 @@ static bool RectCommitted(const uint8_t* base, int stride, int w, int h,
     return false;
 }
 // 逻辑画布尺寸（引擎在窗口模式下会把 UI 居中，所以坐标已是最终空间）
+//
+// 读的是已定位的真实地址（签名 + 尺寸合理性双重复核过），不是硬编码 RVA。
+// 这里保留范围检查作为第二道防线：万一定位到了别的变量，宁可退回 1280x960，
+// 也不要拿一个荒唐的宽度去裁剪/绘制。
 inline int ScreenW() {
-    int v = *reinterpret_cast<const int*>(Rva(RVA_SCREEN_W));
+    const int* p = LocInt(LOC_G_SCREEN_W);
+    const int v = p ? *p : 0;
     return (v > 16 && v <= 4096) ? v : 1280;      // 未初始化时退回 1280x960
 }
 inline int ScreenH() {
-    int v = *reinterpret_cast<const int*>(Rva(RVA_SCREEN_H));
+    const int* p = LocInt(LOC_G_SCREEN_H);
+    const int v = p ? *p : 0;
     return (v > 16 && v <= 4096) ? v : 960;
 }
 void PutBmp(void* buf, int x, int y, void* bmp) {
     if (!buf) return;
-    ((FN_PUT_BMP)Rva(RVA_PUT_BMP))(buf, nullptr, x, y, bmp);
+    FN_PUT_BMP fn = (FN_PUT_BMP)Loc(LOC_PUT_BMP);
+    if (!fn) return;
+    fn(buf, nullptr, x, y, bmp);
 }
 
 // ── 双字节判定（与 fontwidth.h 同义，此处独立实现避免宏冲突）──
@@ -274,14 +277,50 @@ int g_segDiag = 0;
 // 默认关闭，开销仅一次 InterlockedIncrement（在 ASCII 分支内）。
 int g_asciiDiag = 0;
 
-// render.ini: fontcolor=RVA:NN[;RVA:NN...] —— 只对**指定字体对象**强制正文色。// RVA = 该 Font 对象相对模块基址的偏移（日志里 "Font %08X" 那个值减 Base()）。
-// 也支持关键字 white / bright：white = 取调色板里最亮的一项（通常是纯白）。
-// 用于「某块文字过暗/过亮」但不想影响全局的场合。
-// 已知：过场诗句用的字体在 RVA 0x28774C（其字形含 112/146/149/113 四个色阶，
-//       属于带渐变的描边字体，直方图众数取到最暗的 112 → 中文显得发黑）。
+// render.ini: fontcolor=RVA:NN[;RVA:NN...] —— 只对**指定字体对象**强制正文色。
+//   RVA = 该 Font 对象相对模块基址的偏移（日志里 "Font %08X" 那个值减 Base()）。
+//   ★ 构建相关：GOG/STEAM 同一逻辑的字体地址不同，RVA 写法只能对单一构建生效。
+// render.ini: fontcolor=auto:white —— 构建无关白化（推荐）。
+//   灰度描边字体（过场诗句等）的核心像素众数 bc≈112，普通墨字 bc=0；
+//   用 bc>=32 判定，对 GOG/STEAM 都生效。
+// 也支持关键字 white：white = 取调色板里最亮的一项（通常是纯白）。
 struct FontColorOv { uint32_t rva; int idx; };   // idx: -2 = white
 FontColorOv g_fcOv[16];
 int g_fcOvN = 0;
+
+// render.ini: fontcolor=auto:white —— 构建无关白化（精准版）。
+// 只白化「多灰阶渐变描边字体」（过场诗句），不动普通墨字 / 彩色 UI 字。
+// 指纹：主导核心色 bc 是灰阶（R≈G≈B，排除棕/蓝等彩色 UI 字）、
+//       且核心直方图里 ≥3 个显著灰阶、灰阶跨度 ≥20（渐变，而非单色+描边）。
+// 普通黑字 bc=0 被 bc>=32 排除；彩色 UI 字 bc 非灰被 IsGray16 排除。
+// 硬编码 RVA 在 GOG/STEAM 上地址不同会失效，故改按此指纹判定，构建无关。
+int g_fcAutoWhite = 0;
+
+// 16bpp 调色板灰阶判定：取 R/G/B 各自最大最小通道差，≤ tol 即近似灰。
+// 兼容 565(常见) 与 555 两种格式（统一扩展 5/6 位到 8 位再比）。
+static inline int iabs(int x) { return x < 0 ? -x : x; }
+static bool IsGray16(uint16_t v, int tol) {
+    int r, g, b;
+    if ((v & 0x8000) || ((v & 0x7C00) == (v & 0x03E0))) {  // 555（高位为 0 或显式 555）
+        r = (v >> 10) & 0x1F; g = (v >> 5) & 0x1F; b = v & 0x1F;
+        r = (r << 3) | (r >> 2); g = (g << 3) | (g >> 2); b = (b << 3) | (b >> 2);
+    } else {                                                // 565
+        r = (v >> 11) & 0x1F; g = (v >> 5) & 0x3F; b = v & 0x1F;
+        r = (r << 3) | (r >> 2); g = (g << 2) | (g >> 4); b = (b << 3) | (b >> 2);
+    }
+    int mx = r, mn = r; if (g > mx) mx = g; if (b > mx) mx = b;
+    if (g < mn) mn = g; if (b < mn) mn = b;
+    int lo = mx - mn;
+    int md = (mx + mn) / 2; if (md < 1) md = 1;
+    return (lo * 255) / md <= tol;           // 相对色度差 ≤ tol
+}
+// 灰阶亮度（8 位）。灰阶时 R≈G≈B，取 G 即可。
+static int Lum16(uint16_t v) {
+    if ((v & 0x8000) || ((v & 0x7C00) == (v & 0x03E0))) {  // 555
+        int g = (v >> 5) & 0x1F; return (g << 3) | (g >> 2);
+    }
+    int g = (v >> 5) & 0x3F; return (g << 2) | (g >> 4);   // 565
+}
 
 // 取 16bpp 调色板里数值最大的一项（= 最亮 = 白）。失败返回 -1。
 // ★ 必须跳过索引 255：我们的字形缓冲把 0xFF 当作透明色，
@@ -289,7 +328,8 @@ int g_fcOvN = 0;
 int BrightestPalEntry() {
     int best = -1;
     __try {
-        const uint16_t* pal = *(const uint16_t**)Rva(RVA_FONT_PAL);
+        const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
+        const uint16_t* pal = pp ? *pp : nullptr;
         if (pal) {
             unsigned bestv = 0;
             for (int i = 0; i < 255; ++i) {          // 0..254，排除 255
@@ -372,6 +412,40 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
     if (g_colorOverride >= 0) b = g_colorOverride;   // render.ini: color=N 强制正文色
     int fov = FontColorFor(f);
     if (fov >= 0) b = (unsigned char)fov;            // render.ini: fontcolor=RVA:N 定向覆盖
+    else if (g_fcAutoWhite) {
+        // 构建无关白化（精准版）：仅白化「多灰阶渐变描边字体」。
+        // 取主导核心色 bc 对应的 16bpp 调色板值，判定：
+        //   1) bc >= 32        —— 排除纯黑中文字（bc=0）
+        //   2) bc 是灰阶       —— 排除棕/蓝等彩色 UI 字
+        //   3) 核心直方图 ≥3 个显著灰阶且灰阶跨度 ≥20 —— 排除单色+描边普通字
+        uint16_t pbc = 0;
+        __try {
+            const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
+            const uint16_t* pal = pp ? *pp : nullptr;
+            if (pal && bc >= 0 && bc < 256) pbc = pal[bc];
+        } __except (EXCEPTION_EXECUTE_HANDLER) { pbc = 0; }
+        if (bc >= 32 && IsGray16(pbc, 22)) {
+            int grayN = 0, lo = 256, hi = -1;
+            for (int c = 0; c < 256; ++c) {
+                if (core[c] < 30) continue;          // 显著灰阶阈值
+                uint16_t pc = 0;
+                __try {
+                    const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
+                    const uint16_t* pal = pp ? *pp : nullptr;
+                    if (pal) pc = pal[c];
+                } __except (EXCEPTION_EXECUTE_HANDLER) { pc = 0; }
+                if (!IsGray16(pc, 22)) continue;
+                int L = Lum16(pc);                   // 亮度（8 位）
+                if (++grayN > 0) { if (L < lo) lo = L; if (L > hi) hi = L; }
+            }
+            if (grayN >= 3 && (hi - lo) >= 20) {
+                b = (unsigned char)BrightestPalEntry();   // 强制白化
+                if (sk2::DiagLevel() >= 1)
+                    Log("[i] auto-white: Font RVA=%06X 核心色=%d 灰阶数=%d 亮度跨度=%d\r\n",
+                        (uint32_t)((const uint8_t*)f - Base()), bc, grayN, hi - lo);
+            }
+        }
+    }
 
     // 记下「首次取色时正在画什么」，日志里就能直接认出这是哪块 UI，
     // 不必再靠 RVA 反推。
@@ -763,9 +837,13 @@ static int __fastcall Hook_put(int* f, void* edx, int x, int y,
 // 策略：纯 ASCII 串直接交原函数（中文以外的排版零回归）；
 //       含中文的串自行排版，ASCII 仍用引擎自己的字形（put_bitmap，与原函数
 //       逐字节一致），中文用我们的点阵。
-constexpr uint32_t RVA_PARA        = 0x0C1480;  // sub_4C1480
-constexpr uint32_t RVA_HYPER_COUNT = 0x4D7D78;  // word_8D7D78
-constexpr uint32_t RVA_HYPER_ARRAY = 0x4D7D80;  // unk_8D7D80（每项 14 字节）
+// 超链接书签的计数与数组都由定位器提供（地址随版本变化，不能硬编码）
+static inline WORD* HyperCount() {
+    return reinterpret_cast<WORD*>(Loc(LOC_G_HYPER_COUNT));
+}
+static inline uint8_t* HyperArray() {
+    return reinterpret_cast<uint8_t*>(Loc(LOC_G_HYPER_ARRAY));
+}
 
 // 文本控制字节（独立定义，避免与 fontwidth.h 的常量重名）
 constexpr unsigned char P_TAB   = 9;
@@ -839,8 +917,9 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
 
     WORD* lineCount = (WORD*)((uint8_t*)th + font_off::LINE_COUNT);
     *lineCount = 0;
-    WORD* hyCount = (WORD*)Rva(RVA_HYPER_COUNT);
-    *hyCount = 0;
+    WORD* hyCount = HyperCount();
+    if (hyCount) *hyCount = 0;
+    else g_hyperEnabled = false;    // 定位失败：不再往书签数组里写（数组地址同样不可信）
 
     // 超链接书签状态
     bool hyOpen = false;
@@ -905,8 +984,9 @@ static int __fastcall Hook_paragraph(int* th, void* edx, int x1, int y1, int x2,
                 } else {
                     hyOpen = false;
                     // 与原函数一致地登记书签（有界，防止越界写）
-                    if (g_hyperEnabled && *hyCount < 40) {
-                        uint8_t* e = (uint8_t*)Rva(RVA_HYPER_ARRAY) + 14 * (*hyCount);
+                    uint8_t* hyArr = HyperArray();
+                    if (g_hyperEnabled && hyArr && hyCount && *hyCount < 40) {
+                        uint8_t* e = hyArr + 14 * (*hyCount);
                         *(WORD*)(e + 0)  = (WORD)hyX0;
                         *(WORD*)(e + 2)  = (WORD)hyY0;
                         *(WORD*)(e + 4)  = (WORD)dx;
@@ -1132,8 +1212,12 @@ static int PutAsciiDBCS(int* f, int surf, int stride, int x, int y, const char* 
     const uint8_t* info = (const uint8_t*)(uintptr_t)F32(f, font_off::FONT_INFO);
 
     int pal = 0;
-    if (g_blit8 && InImageRange(Rva(RVA_FONT_PAL), 4))
-        pal = *reinterpret_cast<int*>(Rva(RVA_FONT_PAL));
+    // font_pal 是「指向调色板的指针」，定位器已确认该变量地址可读；
+    // 指针本身的内容仍需 __try 之外的守卫（可能是 0 或未初始化）。
+    {
+        const int* palVar = reinterpret_cast<const int*>(Loc(LOC_G_FONT_PAL));
+        if (g_blit8 && palVar) pal = *palVar;
+    }
 
     unsigned char body; signed char shadow;
     FontColors(f, &body, &shadow);
@@ -1666,8 +1750,14 @@ static void ApplyOemIdentity() {
         Log("[i] OEM 表恒等化：已跳过 (render.ini oem=0)\r\n");
         return;
     }
-    // 表基址：索引 b 的地址 = Base() + 0x281028 + b；有效段从 b=0x80 起
-    uint8_t* t = (uint8_t*)Rva(0x281028 + 0x80);
+    // 表基址由定位器给出（宿主转换函数里的 imm32 操作数，随版本自动正确）；
+    // 索引 b 的地址 = 表基址 + b；有效段从 b=0x80 起。
+    const uint8_t* tBase = LocByteC(LOC_G_OEM_TABLE);
+    if (!tBase) {
+        Log("[X] OEM 表未定位，未修补\r\n");
+        return;
+    }
+    uint8_t* t = const_cast<uint8_t*>(tBase) + 0x80;
     if (!InImageRange(t, 128)) {
         Log("[X] OEM 表地址越界，未修补\r\n");
         return;
@@ -1690,8 +1780,8 @@ static void ApplyOemIdentity() {
         if (t[i] != want) { t[i] = want; ++changed; }
     }
     VirtualProtect(t, 128, oldProt, &oldProt);
-    Log("[O] OEM 表已恒等化 (RVA %08X, %d/128 字节改写)\r\n",
-        0x281028 + 0x80, changed);
+    Log("[O] OEM 表已恒等化 (基址 %08X +80, %d/128 字节改写)\r\n",
+        LocVa(LOC_G_OEM_TABLE), changed);
 }
 
 // 解析 update\render.ini：
@@ -1792,12 +1882,32 @@ static void LoadRenderCfg() {
             Log("[i] render.ini: exestr=%d  %s\r\n", g_exeStrPatch,
                 g_exeStrPatch ? "(本地化 exe 内置 UI 标签)" : "(保留英文标签)");
         }
-        // fontcolor=RVA十六进制:值[;RVA:值...]  值 = 0-255 索引，或 white
-        // 例：fontcolor=28774C:white
+        // fontcolor=...
+        //   RVA十六进制:值[;RVA:值...]  值 = 0-255 索引，或 white
+        //     例：fontcolor=28774C:white   （GOG 手动精确定向，构建相关）
+        //   auto:white                 构建无关白化：任何直方图像素众数 b >= 32
+        //     的字体（灰度描边字体，正文墨色是 112 这类灰阶）强制白化；
+        //     普通墨字（b=0）不受影响。GOG / STEAM 均可生效。
         p = strstr(buf, "fontcolor=");
         if (p) {
             const char* q = p + 10;
             while (*q && g_fcOvN < 16) {
+                // auto 关键字？
+                if ((q[0] == 'a' || q[0] == 'A') && (q[1] == 'u' || q[1] == 'U') &&
+                    (q[2] == 't' || q[2] == 'T') && (q[3] == 'o' || q[3] == 'O') &&
+                    q[4] == ':') {
+                    const char* v = q + 5;
+                    int idx = (v[0] == 'w' || v[0] == 'W') ? -2 : atoi(v);
+                    if (idx == -2) {
+                        g_fcAutoWhite = 1;
+                        Log("[i] render.ini: fontcolor=auto:white —— 构建无关灰度字白化已启用\r\n", idx);
+                    }
+                    q = v + (idx == -2 ? 5 : 0);
+                    while (*q && *q != ';' && *q != '\r' && *q != '\n') ++q;
+                    if (*q != ';') break;
+                    ++q;
+                    continue;
+                }
                 char* end = nullptr;
                 unsigned long rva = strtoul(q, &end, 16);
                 if (end && *end == ':') {
@@ -1823,7 +1933,7 @@ static void LoadRenderCfg() {
                 if (*q != ';') break;
                 ++q;
             }
-            Log("[i] render.ini: fontcolor 定向配色 %d 条\r\n", g_fcOvN);
+            Log("[i] render.ini: fontcolor 定向配色 %d 条 (auto=%d)\r\n", g_fcOvN, g_fcAutoWhite);
         }
         // ── 应急开关 safe=1 ──────────────────────────────────
         // 一键退化为「原版渲染」：所有自绘开关置 0、诊断关闭。
@@ -1857,16 +1967,17 @@ bool InstallPut() {
     LoadRenderCfg();
     ApplyOemIdentity();
 
-    g_putAddr = (int*)FindInText(SIG_PUT, SIG_PUT_LEN);
+    // 地址来自定位器（签名优先、RVA 兜底）。定位器已校验入口是 push ebp;mov ebp,esp。
+    g_putAddr = (int*)Loc(LOC_PUT);
     if (!g_putAddr) {
-        Log("[X] Font::put 签名未命中\r\n");
+        Log("[X] Font::put 未定位\r\n");
         return false;
     }
     if (!InImageRange((void*)g_putAddr, 0x200)) {
         Log("[X] put 地址越界\r\n");
         return false;
     }
-    Log("[i] Font::put @ %08X\r\n", (uint32_t)(uintptr_t)g_putAddr);
+    Log("[i] Font::put @ %08X\r\n", LocVa(LOC_PUT));
     Log("[i] put 的 ABI 栈参数应为 6 个 (ret 0x18)，实测前 16 字节:\r\n");
     LogBytes("      bytes", g_putAddr, 16);
 
@@ -1891,12 +2002,11 @@ long ParagraphCallCount() { return (long)g_paraCount; }
 long PutCharCallCount()  { return (long)g_putCharCount; }
 
 bool InstallPutChar() {
-    void* addr = (void*)Rva(RVA_PUT_CHAR);
-    // 签名（反汇编实证）：55 8B EC 83 EC 08 89 4D FC 0F B7 45 10
-    static const uint8_t SIG[] = { 0x55,0x8B,0xEC,0x83,0xEC,0x08,0x89,0x4D,0xFC,0x0F,0xB7,0x45,0x10 };
-    if (memcmp(addr, SIG, sizeof(SIG)) != 0) {
-        Log("[!] put_char @ %08X 字节特征不符，未挂钩（教程提示可能仍有叠字）\r\n",
-            0x400000u + RVA_PUT_CHAR);
+    void* addr = Loc(LOC_PUT_CHAR);
+    // 定位器已保证命中处是 push ebp; mov ebp,esp（且整条签名 n=1），
+    // 这里只做「地址确实可读」的兜底检查。
+    if (!addr || !InImageRange(addr, 0x100)) {
+        Log("[!] put_char 未定位或地址越界，未挂钩（教程提示可能仍有叠字）\r\n");
         return false;
     }
     g_putCharOrig = BuildTrampoline(addr, 6);      // 偷 push ebp; mov ebp,esp; sub esp,8
@@ -1908,7 +2018,7 @@ bool InstallPutChar() {
         Log("[X] put_char 安装 JMP 失败\r\n");
         return false;
     }
-    Log("[O] Font::put_char @ %08X 已挂钩\r\n", 0x400000u + RVA_PUT_CHAR);
+    Log("[O] Font::put_char @ %08X 已挂钩\r\n", LocVa(LOC_PUT_CHAR));
     return true;
 }
 
@@ -1916,28 +2026,27 @@ bool InstallPutChar() {
 bool InstallPutAscii() {
     // 先绑定底层绘制原语（不挂钩，直接调用）
     {
-        const uint8_t* b = (const uint8_t*)Rva(RVA_BLIT8);
-        if (!InImageRange(b, 0x40) || b[0] != 0x55 || b[1] != 0x8B || b[2] != 0xEC) {
-            Log("[!] 底层 blit @ %08X 特征不符，第 4 条路径未挂钩\r\n",
-                0x400000u + RVA_BLIT8);
+        const uint8_t* b = (const uint8_t*)Loc(LOC_BLIT8);
+        if (!b || !InImageRange(b, 0x40) || b[0] != 0x55 || b[1] != 0x8B || b[2] != 0xEC) {
+            Log("[!] 底层 blit 未定位或特征不符，第 4 条路径未挂钩\r\n");
             return false;
         }
-        g_blit8         = (FN_BLIT8)Rva(RVA_BLIT8);
-        g_putAsciiChFn  = (FN_PUT_ASCII_CH)Rva(RVA_PUT_ASCII_CH);
-        g_putAscii2ChFn = (FN_PUT_ASCII_CH)Rva(RVA_PUT_ASCII2_CH);
+        g_blit8         = (FN_BLIT8)Loc(LOC_BLIT8);
+        g_putAsciiChFn  = (FN_PUT_ASCII_CH)Loc(LOC_PUT_ASCII_CH);
+        g_putAscii2ChFn = (FN_PUT_ASCII_CH)Loc(LOC_PUT_ASCII2_CH);
     }
 
-    // 两条包装函数序言均为 55 8B EC 83 EC 18（push ebp; mov ebp,esp; sub esp,18h）
-    static const uint8_t SIG[] = { 0x55,0x8B,0xEC,0x83,0xEC,0x18 };
+    // 两条包装函数的入口签名各自唯一（put_ascii2_ch 只匹配头部会 n=2，
+    // 定位器用的是带尾部的完整式），故这里不必再按序言逐字节自证。
     int ok = 0;
-    struct { uint32_t rva; void** orig; void* hook; const char* name; } jobs[] = {
-        { RVA_PUT_ASCII,  (void**)&g_putAsciiOrig,  (void*)&Hook_put_ascii,  "0x4C2110" },
-        { RVA_PUT_ASCII2, (void**)&g_putAscii2Orig, (void*)&Hook_put_ascii2, "0x4C1F40" },
+    struct { LocId id; void** orig; void* hook; const char* name; } jobs[] = {
+        { LOC_PUT_ASCII,  (void**)&g_putAsciiOrig,  (void*)&Hook_put_ascii,  "put_ascii"  },
+        { LOC_PUT_ASCII2, (void**)&g_putAscii2Orig, (void*)&Hook_put_ascii2, "put_ascii2" },
     };
     for (auto& j : jobs) {
-        void* addr = Rva(j.rva);
-        if (!InImageRange(addr, 0x100) || memcmp(addr, SIG, sizeof(SIG)) != 0) {
-            Log("[!] %s 序言不符，未挂钩\r\n", j.name);
+        void* addr = Loc(j.id);
+        if (!addr || !InImageRange(addr, 0x100)) {
+            Log("[!] %s 未定位或地址越界，未挂钩\r\n", j.name);
             continue;
         }
         void* tramp = BuildTrampoline(addr, 6);
@@ -1948,18 +2057,16 @@ bool InstallPutAscii() {
         *j.orig = tramp;
         ++ok;
         Log("[O] Font 逐字节绘制 @ %08X (%s) 已挂钩（中文自绘）\r\n",
-            0x400000u + j.rva, j.name);
+            LocVa(j.id), j.name);
     }
     return ok > 0;
 }
 
-// 第 5 条路径：居中多行文本自动换行（sub_4C1A80）
+// 第 5 条路径：居中多行文本自动换行
 bool InstallTextWrap() {
-    void* addr = Rva(RVA_PUT_WRAP);
-    static const uint8_t SIG[] = { 0x55, 0x8B, 0xEC, 0x6A, 0xFF, 0x68 };
-    if (!InImageRange(addr, 0x400) || memcmp(addr, SIG, sizeof(SIG)) != 0) {
-        Log("[!] 居中多行文本 @ %08X 序言不符，未挂钩（超宽中文不会自动换行）\r\n",
-            0x400000u + RVA_PUT_WRAP);
+    void* addr = Loc(LOC_PUT_WRAP);
+    if (!addr || !InImageRange(addr, 0x400)) {
+        Log("[!] 居中多行文本未定位或地址越界，未挂钩（超宽中文不会自动换行）\r\n");
         return false;
     }
     // 只偷 5 字节，SEH 的 push imm32 留在原处执行（避免 ASLR 重定位问题）
@@ -1969,19 +2076,20 @@ bool InstallTextWrap() {
         Log("[X] 文本换行安装 JMP 失败\r\n"); return false;
     }
     Log("[O] 居中多行文本 @ %08X 已挂钩（中文按字断行，修 UI 截断）\r\n",
-        0x400000u + RVA_PUT_WRAP);
+        LocVa(LOC_PUT_WRAP));
     return true;
 }
 
 // ── exe 内置 UI 标签的运行时本地化 ──────────────────────────
-// 这些标签位于 exe 的字符串区（VA 0x663A24 起），每个串以 NUL 结尾，
-// 前后各有 4 字节事件码（PRDY/PRDN/PREI/…）。中文 Big5 比英文短，
-// 可原地覆盖 + 补零，**不改动磁盘上的原版文件**。
-// 位置来源：PE 段表换算 —— .rdata RVA 0x25A000 / raw 0x258A00，
-//           文件偏移 = VA - 0x400000 - 0x25A000 + 0x258A00。
+// 这些标签在 exe 的 .rdata 里连成一块（PRDY/PRDN/PREI/… 事件码与英文串交替），
+// 中文 Big5 比英文短，可原地覆盖 + 补零，**不改动磁盘上的原版文件**。
+//
+// ★ 不再使用硬编码 VA。GOG 的块起始 VA 是 0x663A24，STEAM 是 0x663A4C，
+//   差 0x28。因此整块由定位器按内容指纹（"Small\0\0\0PRDY\0\0\0\0Large…"）
+//   搜出来，表里只记「相对块起始的偏移」，两版通用。
 struct ExeLabel {
-    uint32_t va;               // 目标字符串 VA（IDA 视角）
-    const char* en;            // 原英文（用作指纹校验）
+    int off;                   // 相对标签块起始的偏移（块首 = "Small"）
+    const char* en;            // 原英文（用作逐条指纹校验）
     const unsigned char* zh;   // Big5 字节（不含 NUL）
     int zhLen;
     int cap;                   // = 原串长 + 1（含 NUL），可用空间
@@ -1999,16 +2107,16 @@ static const unsigned char EL_AUTOP[]  = {0xA6,0xDB,0xB0,0xCA,0xB4,0xA3,0xA5,0xD
 static const unsigned char EL_CEASE[]  = {0xB0,0xB1,0xA4,0xF5};                                          // 停火
 
 static const ExeLabel kExeLabels[] = {
-    { 0x663A24, "Small",  EL_SMALL,  sizeof(EL_SMALL),  6 },
-    { 0x663A34, "Large",  EL_LARGE,  sizeof(EL_LARGE),  6 },
-    { 0x663A44, "Select", EL_SELECT, sizeof(EL_SELECT), 7 },
-    { 0x663A54, "Change Display Mode", EL_CHGDSP, sizeof(EL_CHGDSP), 20 },
-    { 0x663A68, "Full Screen Mode",    EL_FULLSC, sizeof(EL_FULLSC), 17 },
-    { 0x663A84, "Windowed Mode",       EL_WINDOW, sizeof(EL_WINDOW), 14 },
-    { 0x663A9C, "Diplomatic Requests", EL_DIPLO,  sizeof(EL_DIPLO),  20 },
-    { 0x663AC8, "Normal",  EL_NORMAL, sizeof(EL_NORMAL), 7 },
-    { 0x663AD0, "Auto Prompt for Allies", EL_AUTOP, sizeof(EL_AUTOP), 23 },
-    { 0x663AF0, "Above and Cease Fire",   EL_CEASE, sizeof(EL_CEASE), 21 },
+    { 0x00, "Small",  EL_SMALL,  sizeof(EL_SMALL),  6 },
+    { 0x10, "Large",  EL_LARGE,  sizeof(EL_LARGE),  6 },
+    { 0x20, "Select", EL_SELECT, sizeof(EL_SELECT), 7 },
+    { 0x30, "Change Display Mode", EL_CHGDSP, sizeof(EL_CHGDSP), 20 },
+    { 0x44, "Full Screen Mode",    EL_FULLSC, sizeof(EL_FULLSC), 17 },
+    { 0x60, "Windowed Mode",       EL_WINDOW, sizeof(EL_WINDOW), 14 },
+    { 0x78, "Diplomatic Requests", EL_DIPLO,  sizeof(EL_DIPLO),  20 },
+    { 0xA4, "Normal",  EL_NORMAL, sizeof(EL_NORMAL), 7 },
+    { 0xAC, "Auto Prompt for Allies", EL_AUTOP, sizeof(EL_AUTOP), 23 },
+    { 0xCC, "Above and Cease Fire",   EL_CEASE, sizeof(EL_CEASE), 21 },
 };
 
 void PatchExeStrings() {
@@ -2016,13 +2124,19 @@ void PatchExeStrings() {
         Log("[i] exe 标签本地化：已跳过 (render.ini exestr=0)\r\n");
         return;
     }
+    const uint8_t* base = LocByteC(LOC_EXE_LABELS);
+    if (!base) {
+        Log("[X] exe 标签块未定位，跳过本地化（界面标签仍为英文）\r\n");
+        return;
+    }
+    const uint32_t baseVa = LocVa(LOC_EXE_LABELS);
     int ok = 0, skip = 0;
     for (const ExeLabel& e : kExeLabels) {
-        uint8_t* p = (uint8_t*)Rva(e.va - 0x400000u);
+        uint8_t* p = const_cast<uint8_t*>(base) + e.off;
         const int enLen = (int)strlen(e.en);
         if (!InImageRange(p, (size_t)e.cap) || enLen + 1 > e.cap) { ++skip; continue; }
         if (memcmp(p, e.en, (size_t)enLen + 1) != 0) {      // 连同 NUL 一起校验
-            Log("[!] exe 标签指纹不符 @ %08X（%s），跳过\r\n", e.va, e.en);
+            Log("[!] exe 标签指纹不符 @ %08X（%s），跳过\r\n", baseVa + e.off, e.en);
             ++skip;
             continue;
         }
@@ -2034,20 +2148,21 @@ void PatchExeStrings() {
         VirtualProtect(p, (SIZE_T)e.cap, old, &old);
         ++ok;
     }
-    Log("[O] exe 内置 UI 标签已本地化：%d 条（跳过 %d，指纹/空间不符）\r\n", ok, skip);
+    Log("[O] exe 内置 UI 标签已本地化：%d 条（跳过 %d，指纹/空间不符）基址 %08X\r\n",
+        ok, skip, baseVa);
 }
 
 bool InstallParagraph() {
-    void* addr = FindInText(SIG_PUT_PARAGRAPH, SIG_PUT_PARAGRAPH_LEN);
+    void* addr = Loc(LOC_PUT_PARAGRAPH);
     if (!addr) {
-        Log("[X] put_paragraph 签名未命中\r\n");
+        Log("[X] put_paragraph 未定位\r\n");
         return false;
     }
     if (!InImageRange(addr, 0x640)) {
         Log("[X] put_paragraph 地址越界\r\n");
         return false;
     }
-    Log("[i] Font::put_paragraph @ %08X\r\n", (uint32_t)(uintptr_t)addr);
+    Log("[i] Font::put_paragraph @ %08X\r\n", LocVa(LOC_PUT_PARAGRAPH));
 
     // ABI 校验：函数体末尾必须是 C2 20 00（ret 0x20，8 个栈参数）。
     // 找不到就不挂钩 —— 约定不匹配的 JMP 会直接崩栈。
