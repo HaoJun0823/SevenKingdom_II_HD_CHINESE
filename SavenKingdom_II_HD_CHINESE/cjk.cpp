@@ -28,6 +28,7 @@
 #include <intrin.h>
 #include <cstring>
 #include <cstdlib>
+#include <cctype>
 
 using namespace sk2;
 
@@ -67,18 +68,40 @@ int GlyphIndex(int lead, int trail) {
     return -1;
 }
 
+// ── 简繁字形池选择 ───────────────────────────────────────────
+//
+// 三档字号（13/16/24px）各有一整套简、繁字形池，运行期由 render.ini 决定用哪套：
+//     lang=simp   简体（等价于旧写法 chslang=1）
+//     lang=trad   繁体（等价于旧写法 chslang=0；也是缺省）
+// 索引表（big5idx / custidx / goff*）两模式共用，只有字形位图不同，
+// 因此切换不需要改任何资源、不需要重启游戏以外的任何东西。
+//
+// 为什么是三档都要双池：实测 13px / 24px 的自定义对槽位同样是繁体字形，
+// 只换 16px 会让小字提示与过场大字继续露繁体（即用户看到的「简繁混合」）。
+static const unsigned char* const g_pool13[2] = { gpool13_trad, gpool13_simp };
+static const unsigned char* const g_pool16[2] = { gpool16_trad, gpool16_simp };
+static const unsigned char* const g_pool24[2] = { gpool24_trad, gpool24_simp };
+
+// 补充表（新增译文用字，索引空间 = N_CHARS + i）同样双份。
+static const unsigned char* const g_extra13[2] = { g_extraPool13_trad, g_extraPool13_simp };
+static const unsigned char* const g_extra16[2] = { g_extraPool16_trad, g_extraPool16_simp };
+static const unsigned char* const g_extra24[2] = { g_extraPool24_trad, g_extraPool24_simp };
+
+int g_chsLang = 0;   // 0=繁体(缺省), 1=简体
+
 const uint8_t* GlyphMask(int gi, int px) {
     if (gi < 0) return nullptr;
+    const int L = (g_chsLang == 1) ? 1 : 0;
     if (gi >= N_CHARS) {                     // 补充表
         const int e = gi - N_CHARS;
         if (e >= EXTRA_N) return nullptr;
-        if (px == 13) return g_extraPool13 + g_extraOff13[e];
-        if (px == 16) return g_extraPool16 + g_extraOff16[e];
-        return g_extraPool24 + g_extraOff24[e];
+        if (px == 13) return g_extra13[L] + g_extraOff13[e];
+        if (px == 16) return g_extra16[L] + g_extraOff16[e];
+        return g_extra24[L] + g_extraOff24[e];
     }
-    if (px == 13) return gpool13 + goff13[gi];
-    if (px == 16) return gpool16 + goff16[gi];
-    return gpool24 + goff24[gi];
+    if (px == 13) return g_pool13[L] + goff13[gi];
+    if (px == 16) return g_pool16[L] + goff16[gi];
+    return g_pool24[L] + goff24[gi];
 }
 
 }  // namespace sk2
@@ -285,41 +308,85 @@ int g_asciiDiag = 0;
 //   用 bc>=32 判定，对 GOG/STEAM 都生效。
 // 也支持关键字 white：white = 取调色板里最亮的一项（通常是纯白）。
 struct FontColorOv { uint32_t rva; int idx; };   // idx: -2 = white
-FontColorOv g_fcOv[16];
+FontColorOv g_fcOv[64];   // 放大到 64：允许多 build（GOG/STEAM/将来其他 exe）各自一行 fontcolor= 累加
 int g_fcOvN = 0;
 
-// render.ini: fontcolor=auto:white —— 构建无关白化（精准版）。
-// 只白化「多灰阶渐变描边字体」（过场诗句），不动普通墨字 / 彩色 UI 字。
-// 指纹：主导核心色 bc 是灰阶（R≈G≈B，排除棕/蓝等彩色 UI 字）、
-//       且核心直方图里 ≥3 个显著灰阶、灰阶跨度 ≥20（渐变，而非单色+描边）。
-// 普通黑字 bc=0 被 bc>=32 排除；彩色 UI 字 bc 非灰被 IsGray16 排除。
-// 硬编码 RVA 在 GOG/STEAM 上地址不同会失效，故改按此指纹判定，构建无关。
+// render.ini: fontcolor=auto:white —— 构建无关白化（精准版 v2）。
+// 只白化「灰阶描边字体」（过场诗句），不动纯黑中文字 / 彩色 UI 字。
+// 判据：主导核心色 bc 是灰阶(R≈G≈B，排除棕/蓝等彩色 UI 字) 且 bc>=32(排除纯黑字)。
+// ★ 不要求"多灰阶/跨度"：渐变描边字主体最暗 112、更亮色阶在边缘(非核心像素)，
+//   若要求多灰阶会把它们误杀 → 暗灰字在黑底看不见（"不显示"）。
+// 硬编码 RVA 在 GOG/STEAM 上地址不同会失效，故改按此判定，构建无关。
 int g_fcAutoWhite = 0;
 
-// 16bpp 调色板灰阶判定：取 R/G/B 各自最大最小通道差，≤ tol 即近似灰。
-// 兼容 565(常见) 与 555 两种格式（统一扩展 5/6 位到 8 位再比）。
-static inline int iabs(int x) { return x < 0 ? -x : x; }
-static bool IsGray16(uint16_t v, int tol) {
-    int r, g, b;
-    if ((v & 0x8000) || ((v & 0x7C00) == (v & 0x03E0))) {  // 555（高位为 0 或显式 555）
-        r = (v >> 10) & 0x1F; g = (v >> 5) & 0x1F; b = v & 0x1F;
-        r = (r << 3) | (r >> 2); g = (g << 3) | (g >> 2); b = (b << 3) | (b >> 2);
-    } else {                                                // 565
-        r = (v >> 11) & 0x1F; g = (v >> 5) & 0x3F; b = v & 0x1F;
-        r = (r << 3) | (r >> 2); g = (g << 2) | (g >> 4); b = (b << 3) | (b >> 2);
-    }
+// render.ini: paldbg=1 —— 诊断：打印字体调色板极端项（暗/亮），并对每个字体
+//   打印「正文索引 → 真实亮度」，用于验证 STEAM 工人/忠诚度字是否因 build 调色板
+//   不同而显得发白（body 是调色板索引，不是颜色，见 FontColors 的 g_blit8 调用）。
+int g_palDbg = 0;
+
+// render.ini: uidark=1 —— 把「特别浅的灰阶 UI 面板字」压暗（只动 <=16px 且自然色在淡灰区的灰字）。
+// 默认关闭：需手动开启，避免改动整体观感。压暗目标取「原色亮度的 45%」那一档灰项，
+// 读不到有效灰阶目标就放弃压暗、保持原色（不会把字变黑或消失）。
+int g_uidark = 0;
+
+// 16bpp 调色板灰阶判定：相对色度差 ≤ tol 即近似灰。
+// 不确定是 565 还是 555，故两种解码方式都试——灰阶字在任一正确解码下
+// 都满足 R≈G≈B，彩色字（棕/蓝）两种解码都是非灰，不会误判。
+static bool IsGrayChannel(int r, int g, int b, int tol) {
     int mx = r, mn = r; if (g > mx) mx = g; if (b > mx) mx = b;
     if (g < mn) mn = g; if (b < mn) mn = b;
-    int lo = mx - mn;
     int md = (mx + mn) / 2; if (md < 1) md = 1;
-    return (lo * 255) / md <= tol;           // 相对色度差 ≤ tol
+    return ((mx - mn) * 255) / md <= tol;
 }
-// 灰阶亮度（8 位）。灰阶时 R≈G≈B，取 G 即可。
-static int Lum16(uint16_t v) {
-    if ((v & 0x8000) || ((v & 0x7C00) == (v & 0x03E0))) {  // 555
-        int g = (v >> 5) & 0x1F; return (g << 3) | (g >> 2);
-    }
-    int g = (v >> 5) & 0x3F; return (g << 2) | (g >> 4);   // 565
+static bool IsGray16(uint16_t v, int tol) {
+    int r, g, b;
+    // 565
+    r = (v >> 11) & 0x1F; g = (v >> 5) & 0x3F; b = v & 0x1F;
+    r = (r << 3) | (r >> 2); g = (g << 2) | (g >> 4); b = (b << 3) | (b >> 2);
+    if (IsGrayChannel(r, g, b, tol)) return true;
+    // 555
+    r = (v >> 10) & 0x1F; g = (v >> 5) & 0x1F; b = v & 0x1F;
+    r = (r << 3) | (r >> 2); g = (g << 3) | (g >> 2); b = (b << 3) | (b >> 2);
+    return IsGrayChannel(r, g, b, tol);
+}
+
+// 16bpp 像素亮度（max 通道，0..255）。565/555 都算，取较亮者，避免解码误差漏字。
+static int Luma16(uint16_t v) {
+    int r = (v >> 11) & 0x1F, g = (v >> 5) & 0x3F, b = v & 0x1F;
+    r = (r << 3) | (r >> 2); g = (g << 2) | (g >> 4); b = (b << 3) | (b >> 2);
+    int mx = r; if (g > mx) mx = g; if (b > mx) mx = b;
+    int r2 = (v >> 10) & 0x1F, g2 = (v >> 5) & 0x1F, b2 = v & 0x1F;
+    r2 = (r2 << 3) | (r2 >> 2); g2 = (g2 << 3) | (g2 >> 2); b2 = (b2 << 3) | (b2 >> 2);
+    int mx2 = r2; if (g2 > mx2) mx2 = g2; if (b2 > mx2) mx2 = b2;
+    return mx > mx2 ? mx : mx2;
+}
+// 读调色板某项亮度；idx 越界 / 调色板未就绪返回 -1。
+static int PalLumaOf(int idx) {
+    if (idx < 0 || idx >= 255) return -1;
+    int L = -1;
+    __try {
+        const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
+        const uint16_t* pal = pp ? *pp : nullptr;
+        if (pal) L = Luma16(pal[idx]);
+    } __except (EXCEPTION_EXECUTE_HANDLER) { L = -1; }
+    return L;
+}
+// 在调色板里找亮度最接近 target（0..255）且是灰阶的项（排除 0/255）；找不到返回 -1。
+static int PalEntryNearLuma(int target) {
+    int best = -1, bestd = 1 << 30;
+    __try {
+        const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
+        const uint16_t* pal = pp ? *pp : nullptr;
+        if (!pal) return -1;
+        for (int i = 1; i < 255; ++i) {          // 跳过 0(黑) 与 255(透明)
+            uint16_t v = pal[i];
+            if (!IsGray16(v, 40)) continue;       // 只取灰阶项，避免把彩色项当目标
+            int L = Luma16(v);
+            int d = L - target; if (d < 0) d = -d;
+            if (d < bestd) { bestd = d; best = i; }
+        }
+    } __except (EXCEPTION_EXECUTE_HANDLER) { best = -1; }
+    return best;
 }
 
 // 取 16bpp 调色板里数值最大的一项（= 最亮 = 白）。失败返回 -1。
@@ -352,6 +419,63 @@ int FontColorFor(int* f) {
     return -1;
 }
 
+// ── 调色板诊断（paldbg=1）────────────────────────────────────
+// body 是「调色板索引」不是颜色；真实亮度 = g_font_pal[body]（16bpp）。
+// 两个 build 的调色板内容不同，故同名索引映射到不同亮度 —— 这正是
+// "GOG 用索引 68 好看、STEAM 用 68 没变"的根因。本诊断把映射关系打出来。
+static const uint16_t* g_palLast = nullptr;
+static int g_palLogN = 0;
+static void PalDbgFont(int* f, int bRaw, int fov, int bFinal) {
+    if (!g_palDbg) return;
+    // 去重：UI 多按帧重绘，同一条 RVA 会被刷很多次。
+    // 只在该字体「首次出现」或「正在画的样本串变了」时打印，
+    // 既避免开场动画刷爆日志（让工人面板那几条一定能出现），
+    // 又能把每个字体 RVA 对应到它实际画过的所有文字样本。
+    char dbgSmp[17] = {};
+    if (g_fontSample) {
+        int n = 0;
+        while (n < 16 && g_fontSample[n]) { dbgSmp[n] = g_fontSample[n]; ++n; }
+    }
+    uintptr_t rva = (uintptr_t)((const uint8_t*)f - Base());
+    const int SLOTS = 1024;
+    static struct { uintptr_t rva; char smp[17]; } g_palSeen[SLOTS] = {};
+    int slot = (int)(rva % SLOTS);
+    bool hit = (g_palSeen[slot].rva == rva);
+    bool smpChanged = hit && memcmp(g_palSeen[slot].smp, dbgSmp, 17) != 0;
+    if (hit && !smpChanged) return;             // 同一字体同一文本：跳过往复打印
+    g_palSeen[slot].rva = rva;
+    memcpy(g_palSeen[slot].smp, dbgSmp, 17);
+    const uint16_t* P = nullptr;
+    __try {
+        const int* palVar = reinterpret_cast<const int*>(Loc(LOC_G_FONT_PAL));
+        P = palVar ? reinterpret_cast<const uint16_t*>(*palVar) : nullptr;
+    } __except (EXCEPTION_EXECUTE_HANDLER) { P = nullptr; }
+    if (!P) return;
+    if (P != g_palLast) {                       // 调色板首次出现 / 已切换：整张打极端项
+        g_palLast = P;
+        int nd = 0, nb = 0;
+        Log("[i] paldbg: 调色板@%08X 极端项(暗<=48 / 亮>=208)：", (uint32_t)(uintptr_t)P);
+        for (int i = 0; i < 256; ++i) {
+            int L = Luma16(P[i]);
+            if (L <= 48 && nd < 24) {
+                int r = (P[i] >> 11) & 0x1F, g = (P[i] >> 5) & 0x3F, b = P[i] & 0x1F;
+                Log(" D%d:%d(%d,%d,%d)", i, L, r, g, b); ++nd;
+            } else if (L >= 208 && nb < 24) {
+                int r = (P[i] >> 11) & 0x1F, g = (P[i] >> 5) & 0x3F, b = P[i] & 0x1F;
+                Log(" L%d:%d(%d,%d,%d)", i, L, r, g, b); ++nb;
+            }
+        }
+        Log("\r\n");
+    }
+    int lumRaw = Luma16(P[(uint8_t)bRaw]);
+    int lumFin = Luma16(P[(uint8_t)bFinal]);
+    Log("[i] paldbg: RVA=%06X body=%d->lum=%d%s bFinal=%d->lum=%d px=%d pal=%08X smp=\"%s\"\r\n",
+        (uint32_t)((const uint8_t*)f - Base()), bRaw, lumRaw,
+        fov >= 0 ? " [fov]" : "", bFinal, lumFin, FontPx(f),
+        (uint32_t)(uintptr_t)P, dbgSmp);
+    ++g_palLogN;
+}
+
 void FontColors(int* f, unsigned char* body, signed char* shadow) {
     for (int i = 0; i < g_ccN; ++i)
         if (g_cc[i].f == f) { *body = g_cc[i].body; *shadow = g_cc[i].shadow; return; }
@@ -364,6 +488,8 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
     int core[256];
     memset(core, 0, sizeof(core));
     int b = 0, s = -1, s2 = -1;
+    bool overridden = false;     // 本字体走了覆盖路径(RVA/auto-white)：不进 g_cc 缓存，
+                                  // 否则早期取色(调色板未就绪)算出的黑/透明值会被永久缓存
     int first = F16(f, font_off::FIRST_CHAR), last = F16(f, font_off::LAST_CHAR);
     unsigned char* info = (unsigned char*)F32(f, font_off::FONT_INFO);
     unsigned char* bmp  = (unsigned char*)F32(f, font_off::FONT_BITMAP);
@@ -403,6 +529,7 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
         }
     }
     for (int c = 0; c < 256; ++c) if (hist[c] > hist[b]) b = c;
+    int bRaw = b;   // 诊断：保存 hist 众数，排查 b 后续被谁改成 0（与日志"正文=0 但众数非0"矛盾）
     for (int c = 0; c < 256; ++c)
         if (c != b && hist[c] && (s2 < 0 || hist[c] > hist[s2])) s2 = c;
     if (s2 >= 0 && hist[b] > 0 && hist[s2] >= hist[b] / 20 && hist[s2] >= 20) s = s2;
@@ -411,40 +538,66 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
     for (int c = 0; c < 256; ++c) if (core[c] > core[bc]) bc = c;
     if (g_colorOverride >= 0) b = g_colorOverride;   // render.ini: color=N 强制正文色
     int fov = FontColorFor(f);
-    if (fov >= 0) b = (unsigned char)fov;            // render.ini: fontcolor=RVA:N 定向覆盖
+    if (fov >= 0) { b = (unsigned char)fov; overridden = true; }   // fontcolor=RVA:N 定向覆盖
+    if (g_palDbg) PalDbgFont(f, bRaw, fov, b);
     else if (g_fcAutoWhite) {
-        // 构建无关白化（精准版）：仅白化「多灰阶渐变描边字体」。
-        // 取主导核心色 bc 对应的 16bpp 调色板值，判定：
-        //   1) bc >= 32        —— 排除纯黑中文字（bc=0）
-        //   2) bc 是灰阶       —— 排除棕/蓝等彩色 UI 字
-        //   3) 核心直方图 ≥3 个显著灰阶且灰阶跨度 ≥20 —— 排除单色+描边普通字
-        uint16_t pbc = 0;
-        __try {
-            const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
-            const uint16_t* pal = pp ? *pp : nullptr;
-            if (pal && bc >= 0 && bc < 256) pbc = pal[bc];
-        } __except (EXCEPTION_EXECUTE_HANDLER) { pbc = 0; }
-        if (bc >= 32 && IsGray16(pbc, 22)) {
-            int grayN = 0, lo = 256, hi = -1;
-            for (int c = 0; c < 256; ++c) {
-                if (core[c] < 30) continue;          // 显著灰阶阈值
-                uint16_t pc = 0;
-                __try {
-                    const uint16_t* const* pp = reinterpret_cast<const uint16_t* const*>(Loc(LOC_G_FONT_PAL));
-                    const uint16_t* pal = pp ? *pp : nullptr;
-                    if (pal) pc = pal[c];
-                } __except (EXCEPTION_EXECUTE_HANDLER) { pc = 0; }
-                if (!IsGray16(pc, 22)) continue;
-                int L = Lum16(pc);                   // 亮度（8 位）
-                if (++grayN > 0) { if (L < lo) lo = L; if (L > hi) hi = L; }
-            }
-            if (grayN >= 3 && (hi - lo) >= 20) {
-                b = (unsigned char)BrightestPalEntry();   // 强制白化
-                if (sk2::DiagLevel() >= 1)
-                    Log("[i] auto-white: Font RVA=%06X 核心色=%d 灰阶数=%d 亮度跨度=%d\r\n",
-                        (uint32_t)((const uint8_t*)f - Base()), bc, grayN, hi - lo);
+        // 构建无关白化（v4）：白化「渐变灰描边字体」（过场诗句），不动普通字 / 彩色 UI 字。
+        // ★ 判据完全不读调色板（实测过场字用的调色板 ≠ g_font_pal，读 pal[bc] 会判错）。
+        //   改用字形缓冲区自身的直方图 hist[]（索引即 8-bit 字形值）做指纹：
+        //   - 取计数最大的前 4 个桶 top[0..3]；
+        //   - 它们全部落在 [100,160]（灰阶密集区）→ 排除彩色 UI 字（棕/蓝索引不在此区）；
+        //   - 且 max-min >= 25 → 排除纯黑中文字（只有一个灰阶）。
+        //   过场字 hist 前四 = 112/146/149/113，全在灰区、跨度 37，唯一命中。
+        int top[4] = { -1, -1, -1, -1 };
+        for (int c = 0; c < 256; ++c) {
+            if (!hist[c]) continue;
+            for (int k = 0; k < 4; ++k) {
+                if (top[k] < 0 || hist[c] > hist[top[k]]) {
+                    for (int m = 3; m > k; --m) top[m] = top[m - 1];
+                    top[k] = c; break;
+                }
             }
         }
+        int inGray = 0, lo = 256, hi = -1;
+        for (int k = 0; k < 4 && top[k] >= 0; ++k) {
+            int v = top[k];
+            if (v >= 100 && v <= 160) { ++inGray; if (v < lo) lo = v; if (v > hi) hi = v; }
+        }
+        if (inGray == 4 && (hi - lo) >= 25) {
+            int w = BrightestPalEntry();          // 调色板最亮项（白）；未就绪返回 -1/0
+            if (w <= 0 || w >= 255) w = 235;       // 回退亮色（日志实证 235 为字体调色板最亮项）
+            b = (unsigned char)w;
+            overridden = true;
+            if (sk2::DiagLevel() >= 1)
+                Log("[i] auto-white: Font RVA=%06X hist前四 %d/%d/%d/%d -> %d\r\n",
+                    (uint32_t)((const uint8_t*)f - Base()),
+                    top[0], top[1], top[2], top[3], w);
+        }
+    }
+
+    // 构建无关「压暗特别浅的灰阶 UI 字」（render.ini: uidark=1）。
+    // 只动 <=16px 且自然色是淡灰、且调色板里确实为灰阶的字；彩色字/黑字/过场字不动。
+    // 目标：取调色板里「亮度≈原色 45%」那一档灰项，自适应、不硬编码索引。
+    if (g_uidark && !overridden && FontPx(f) <= 16 && b >= 100 && b <= 200 && bRaw != 0) {
+        int ol = PalLumaOf(b);                 // 原色实际亮度
+        if (ol >= 0) {
+            int dark = PalEntryNearLuma(ol * 45 / 100);
+            if (dark > 0 && dark < 255) {
+                b = (unsigned char)dark;
+                overridden = true;
+                if (sk2::DiagLevel() >= 1)
+                    Log("[i] uidark: Font RVA=%06X 浅灰 %d(亮%d) -> %d\r\n",
+                        (uint32_t)((const uint8_t*)f - Base()), bRaw, ol, dark);
+            }
+        }
+    }
+
+    // 诊断（debug>=1 且仅在异常时）：bRaw=hist众数，b=最终本体色。
+    // 若 bRaw!=b 说明 b 被后续覆盖改掉；若 bRaw==0 说明直方图众数本就是 0。
+    if (sk2::DiagLevel() >= 1 && (b == 0 || b != bRaw)) {
+        Log("[i] color-dbg: RVA=%06X bRaw=%d b=%d cov=%d fov=%d fpx=%d first=%d last=%d\r\n",
+            (uint32_t)((const uint8_t*)f - Base()), bRaw, b,
+            g_colorOverride, fov, FontPx(f), (int)first, (int)last);
     }
 
     // 记下「首次取色时正在画什么」，日志里就能直接认出这是哪块 UI，
@@ -454,13 +607,15 @@ void FontColors(int* f, unsigned char* body, signed char* shadow) {
         int n = 0;
         while (n < (int)sizeof(smp) - 1 && g_fontSample[n]) { smp[n] = g_fontSample[n]; ++n; }
     }
-    if (g_ccN < COLOR_CACHE_MAX) {
+    // 被覆盖的字体不进缓存：其取色依赖运行期状态(调色板是否就绪)，
+    // 早期取色调色板空表会算出黑/透明，缓存后永久错误。每次实时重算即可。
+    if (!overridden && g_ccN < COLOR_CACHE_MAX) {
         ColorCache& e = g_cc[g_ccN++];
         e.f = f; e.body = (unsigned char)b; e.shadow = (signed char)s;
         memcpy(e.sample, smp, sizeof(e.sample));
     }
-    // 前 24 个字体都记；被 fontcolor 定向覆盖的字体无条件记 —— 便于核对配色是否生效
-    if (g_ccN <= 24 || FontColorFor(f) >= 0) {
+    // UI 面板字（<=16px）全部记录，便于定位「工人/忠诚度等太浅」的字体的 RVA 与正文值
+    if (g_ccN <= 24 || FontColorFor(f) >= 0 || FontPx(f) <= 16) {
         char smpU8[96] = {};
         int su = 0;
         if (smp[0])
@@ -1789,8 +1944,17 @@ static void ApplyOemIdentity() {
 //     shadow=0|1         中文是否加 1px 偏移阴影（缺省 1）
 // 兼容旧的 update\fontsize.txt（单行数字）
 static void LoadRenderCfg() {
-    char buf[257] = {};
+    char buf[4096] = {};
     if (ReadCfg("render.ini", buf, sizeof(buf))) {
+        // ── 注释：# 起至行尾整段清成空格（保留换行）──────────────────
+        //   放在所有 strstr 之前，之后每个键（size=/shadow=/debug=/paldbg=/
+        //   fontcolor=/color=…）都天然免疫注释，无需各键各自处理。
+        //   故 `# ...` 整行注释、以及 `fontcolor=…:white   # 面板字` 行尾注释都安全。
+        //   注意用 `for(...; *c; )` 而非 `for(...; *c; ++c)`：行尾遇 \0 时后者会越过结尾。
+        for (char* c = buf; *c; ) {
+            if (*c == '#') { while (*c && *c != '\n' && *c != '\r') *c++ = ' '; }
+            else ++c;
+        }
         const char* p = strstr(buf, "size=");
         if (p) {
             int v = atoi(p + 5);
@@ -1839,6 +2003,74 @@ static void LoadRenderCfg() {
                 g_oemIdentity ? "(恒等化，资源统一为原始 Big5)"
                               : "(保留引擎 OEM→Latin1 变换)");
         }
+        // ── 简繁切换 ────────────────────────────────────────────
+        // 两种写法都认，优先级：lang= 高于 chslang=。
+        //   lang=simp / simplified / chs / hans / 1   简体
+        //   lang=trad / traditional / cht / hant / 0  繁体（缺省）
+        //   chslang=1 简体；chslang=0 繁体（旧写法，保持兼容）
+        // 只切换字形池，不动资源；游戏启动时读一次，加载期为单线程无竞态。
+        {
+            int langSet = 0;
+            // 先找 chslang=（它内含 "lang=" 子串，必须先处理掉，否则会误匹配）
+            const char* pch = strstr(buf, "chslang=");
+            char chsVal[16] = {0};
+            if (pch) {
+                const char* v = pch + 8;
+                while (*v == ' ' || *v == '\t') ++v;
+                int k = 0;
+                while (k < 15 && v[k] && v[k] != '\r' && v[k] != '\n') {
+                    chsVal[k] = v[k];
+                    ++k;
+                }
+                chsVal[k] = 0;
+            }
+            // 再找真正的 lang=（跳过 chslang= 里那一段）
+            const char* p = buf;
+            while ((p = strstr(p, "lang=")) != nullptr) {
+                if (p > buf && (p[-1] == 's' || p[-1] == 'S')) {   // ...slang=  → 是 chslang
+                    p += 5;
+                    continue;
+                }
+                break;
+            }
+            if (p) {
+                const char* v = p + 5;
+                while (*v == ' ' || *v == '\t') ++v;
+                char t0 = v[0], t1 = v[1], t2 = v[2], t3 = v[3];
+                if (t0 == '1') {
+                    g_chsLang = 1;                                  // lang=1
+                } else if (t0 == '0') {
+                    g_chsLang = 0;                                  // lang=0
+                } else if ((t0 == 'h' && t1 == 'a' && t2 == 'n' && t3 == 't')) {
+                    g_chsLang = 0;                                  // hant
+                } else if (t0 == 'h' && t1 == 'a') {
+                    g_chsLang = 1;                                  // hans
+                } else if (t0 == 's' && t1 == 'i') {
+                    g_chsLang = 1;                                  // simp / simplified
+                } else if (t0 == 't' && t1 == 'r') {
+                    g_chsLang = 0;                                  // trad / traditional
+                } else if (t0 == 'c' && t1 == 'h' && t2 == 's') {
+                    g_chsLang = 1;                                  // chs
+                } else if (t0 == 'c' && t1 == 'h' && t2 == 't') {
+                    g_chsLang = 0;                                  // cht
+                }
+                langSet = 1;
+                Log("[i] render.ini: lang=%.8s -> %s\r\n",
+                    v, g_chsLang ? "简体" : "繁体");
+            } else if (chsVal[0]) {
+                g_chsLang = (atoi(chsVal) != 0) ? 1 : 0;
+                Log("[i] render.ini: chslang=%s (%s)\r\n", chsVal,
+                    g_chsLang ? "简体" : "繁体");
+            }
+            Log("[i] 字形语言: %s（13/16/24px 三档 + 补充表双池已就绪）\r\n",
+                g_chsLang ? "简体" : "繁体");
+        }
+        p = strstr(buf, "uidark=");
+        if (p) {
+            g_uidark = (atoi(p + 7) != 0);
+            Log("[i] render.ini: uidark=%d  %s\r\n", g_uidark,
+                g_uidark ? "(压暗特别浅的灰阶 UI 字)" : "(未启用)");
+        }
         p = strstr(buf, "debug=");
         if (p) {
             int v = atoi(p + 6);
@@ -1868,7 +2100,17 @@ static void LoadRenderCfg() {
                 g_segDiag >= 2 ? "(逐字符：字体范围/字形宽/画布，第2档)"
                  : g_segDiag   ? "(记录 ASCII 段的测量/右界/返回位置)" : "(已关闭)");
         }
-        p = strstr(buf, "color=");
+        // color=N：只匹配「独立 color=」，前一个字符不能是字母，
+        // 否则会误匹配 fontcolor= 里的 "color="（如 fontcolor=auto:white
+        // 会让 atoi("auto:white")=0 把全局 g_colorOverride 设成 0，导致所有字变黑）。
+        {
+            const char* cp = buf;
+            p = nullptr;
+            while ((cp = strstr(cp, "color=")) != nullptr) {
+                if (cp == buf || !isalpha((unsigned char)cp[-1])) { p = cp; break; }
+                ++cp;
+            }
+        }
         if (p) {
             int v = atoi(p + 6);
             if (v >= 0 && v <= 255) {
@@ -1882,56 +2124,75 @@ static void LoadRenderCfg() {
             Log("[i] render.ini: exestr=%d  %s\r\n", g_exeStrPatch,
                 g_exeStrPatch ? "(本地化 exe 内置 UI 标签)" : "(保留英文标签)");
         }
+        p = strstr(buf, "paldbg=");
+        if (p) {
+            g_palDbg = (atoi(p + 7) != 0);
+            Log("[i] render.ini: paldbg=%d %s\r\n", g_palDbg,
+                g_palDbg ? "(打印调色板极端项 + 每字体索引→亮度)" : "");
+        }
         // fontcolor=...
         //   RVA十六进制:值[;RVA:值...]  值 = 0-255 索引，或 white
         //     例：fontcolor=28774C:white   （GOG 手动精确定向，构建相关）
         //   auto:white                 构建无关白化：任何直方图像素众数 b >= 32
         //     的字体（灰度描边字体，正文墨色是 112 这类灰阶）强制白化；
         //     普通墨字（b=0）不受影响。GOG / STEAM 均可生效。
-        p = strstr(buf, "fontcolor=");
-        if (p) {
-            const char* q = p + 10;
-            while (*q && g_fcOvN < 16) {
-                // auto 关键字？
-                if ((q[0] == 'a' || q[0] == 'A') && (q[1] == 'u' || q[1] == 'U') &&
-                    (q[2] == 't' || q[2] == 'T') && (q[3] == 'o' || q[3] == 'O') &&
-                    q[4] == ':') {
-                    const char* v = q + 5;
-                    int idx = (v[0] == 'w' || v[0] == 'W') ? -2 : atoi(v);
-                    if (idx == -2) {
-                        g_fcAutoWhite = 1;
-                        Log("[i] render.ini: fontcolor=auto:white —— 构建无关灰度字白化已启用\r\n", idx);
+        // fontcolor= 可写多行，每行累加进同一张覆盖表。不同 build 字体 RVA 不重叠，
+        // 运行时各自只命中自己的行 —— 天然支持任意数量 exe，不用枚举 exe 名。
+        // 只认「行首」的 fontcolor=（前一个是换行或缓冲区起点），避免误匹配注释里的字样。
+        {
+            const char* search = buf;
+            const char* p;
+            while ((p = strstr(search, "fontcolor=")) != nullptr) {
+                if (p != buf && p[-1] != '\n' && p[-1] != '\r') {
+                    search = p + 1;   // 不是行首（如注释里的 "fontcolor=" 字样），跳过
+                    continue;
+                }
+                const char* q = p + 10;
+                while (*q && g_fcOvN < 64) {
+                    // auto 关键字？
+                    if ((q[0] == 'a' || q[0] == 'A') && (q[1] == 'u' || q[1] == 'U') &&
+                        (q[2] == 't' || q[2] == 'T') && (q[3] == 'o' || q[3] == 'O') &&
+                        q[4] == ':') {
+                        const char* v = q + 5;
+                        int idx = (v[0] == 'w' || v[0] == 'W') ? -2 : atoi(v);
+                        if (idx == -2) {
+                            g_fcAutoWhite = 1;
+                            Log("[i] render.ini: fontcolor=auto:white —— 构建无关灰度字白化已启用\r\n", idx);
+                        }
+                        q = v + (idx == -2 ? 5 : 0);
+                        while (*q && *q != ';' && *q != '\r' && *q != '\n') ++q;
+                        if (*q != ';') break;
+                        ++q;
+                        continue;
                     }
-                    q = v + (idx == -2 ? 5 : 0);
+                    char* end = nullptr;
+                    unsigned long rva = strtoul(q, &end, 16);
+                    if (end && *end == ':') {
+                        const char* v = end + 1;
+                        int idx;
+                        if ((v[0] == 'w' || v[0] == 'W') && (v[1] == 'h' || v[1] == 'H') &&
+                            (v[2] == 'i' || v[2] == 'I') && (v[3] == 't' || v[3] == 'T') &&
+                            (v[4] == 'e' || v[4] == 'E')) {
+                            idx = -2;                       // 特殊值：调色板最亮项（白）
+                        } else {
+                            idx = atoi(v);
+                        }
+                        if (idx == -2 || (idx >= 0 && idx <= 255)) {
+                            g_fcOv[g_fcOvN].rva = (uint32_t)rva;
+                            g_fcOv[g_fcOvN].idx = idx;
+                            ++g_fcOvN;
+                            Log("[i] render.ini: fontcolor RVA %06X -> %s\r\n", (unsigned)rva,
+                                idx == -2 ? "white(最亮调色板项)" : "");
+                        }
+                        q = end + 1;
+                    }
                     while (*q && *q != ';' && *q != '\r' && *q != '\n') ++q;
                     if (*q != ';') break;
                     ++q;
-                    continue;
                 }
-                char* end = nullptr;
-                unsigned long rva = strtoul(q, &end, 16);
-                if (end && *end == ':') {
-                    const char* v = end + 1;
-                    int idx;
-                    if ((v[0] == 'w' || v[0] == 'W') && (v[1] == 'h' || v[1] == 'H') &&
-                        (v[2] == 'i' || v[2] == 'I') && (v[3] == 't' || v[3] == 'T') &&
-                        (v[4] == 'e' || v[4] == 'E')) {
-                        idx = -2;                       // 特殊值：调色板最亮项（白）
-                    } else {
-                        idx = atoi(v);
-                    }
-                    if (idx == -2 || (idx >= 0 && idx <= 255)) {
-                        g_fcOv[g_fcOvN].rva = (uint32_t)rva;
-                        g_fcOv[g_fcOvN].idx = idx;
-                        ++g_fcOvN;
-                        Log("[i] render.ini: fontcolor RVA %06X -> %s\r\n", (unsigned)rva,
-                            idx == -2 ? "white(最亮调色板项)" : "");
-                    }
-                    q = end + 1;
-                }
-                while (*q && *q != ';' && *q != '\r' && *q != '\n') ++q;
-                if (*q != ';') break;
-                ++q;
+                const char* nl = strchr(q, '\n');
+                if (nl) search = nl + 1;   // 跳到本行之后，继续找下一行 fontcolor=
+                else break;
             }
             Log("[i] render.ini: fontcolor 定向配色 %d 条 (auto=%d)\r\n", g_fcOvN, g_fcAutoWhite);
         }
@@ -2229,9 +2490,9 @@ void CjkSelfTest() {
         }
     }
     Log("[i] 自测结果: %d 通过, %d 失败\r\n", pass, fail);
-    Log("[i] 字形池: 13px=%d B, 16px=%d B, 24px=%d B, 主表 %d + 补充 %d = %d 个字形\r\n",
-        (int)sizeof(gpool13), (int)sizeof(gpool16), (int)sizeof(gpool24), N_CHARS, EXTRA_N,
-        N_CHARS + EXTRA_N);
+    Log("[i] 字形池: 13px=%d B, 16px=%d B, 24px=%d B（简繁各一套）, 主表 %d + 补充 %d = %d 个字形\r\n",
+        (int)sizeof(gpool13_trad), (int)sizeof(gpool16_trad), (int)sizeof(gpool24_trad),
+        N_CHARS, EXTRA_N, N_CHARS + EXTRA_N);
 }
 
 }  // namespace sk2

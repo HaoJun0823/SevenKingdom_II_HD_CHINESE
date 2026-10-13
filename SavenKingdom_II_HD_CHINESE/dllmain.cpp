@@ -37,6 +37,12 @@ static void Stage1_Locate() {
     if (reinterpret_cast<uint32_t>(base) != 0x400000)
         Log("[!] ImageBase 非 0x400000，delta 已启用\r\n");
 
+    // 打印当前 exe 全路径：GOG=7K2.exe / STEAM=7K2_steam.exe 共用同一份 asi，
+    // 靠这行直接区分「本次到底是哪个 exe 在跑」，避免误判哪份配置生效。
+    char exepath[MAX_PATH] = {};
+    GetModuleFileNameA(nullptr, exepath, MAX_PATH);
+    Log("[i] exe = %s\r\n", exepath);
+
     const int hits = LocateAll();
 
     // GOG 版期望 VA（仅用于自检日志，运行期不依赖它们）

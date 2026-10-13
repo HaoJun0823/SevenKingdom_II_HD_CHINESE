@@ -89,8 +89,10 @@ void InitLog() {
         DWORD attr = GetFileAttributesA(probe);
         if (sub[0] == 0 || (attr != INVALID_FILE_ATTRIBUTES && (attr & FILE_ATTRIBUTE_DIRECTORY))) {
             lstrcatA(probe, "sk2_zh.log");
-            g_log = CreateFileA(probe, FILE_APPEND_DATA, FILE_SHARE_READ | FILE_SHARE_WRITE,
-                                nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+            // CREATE_ALWAYS：每次进程启动截断旧日志，避免多次运行数据混在一起看不清。
+            // 写盘仍用 WriteFile 直落盘（见 LogRaw/Log），进程被杀不丢已写内容。
+            g_log = CreateFileA(probe, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+                                nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
             if (g_log != INVALID_HANDLE_VALUE) {
                 lstrcpynA(g_logPath, probe, MAX_PATH);
                 return;
@@ -102,8 +104,8 @@ void InitLog() {
     GetTempPathA(MAX_PATH, tmp);
     lstrcatA(tmp, "sk2_zh.log");
     lstrcpynA(g_logPath, tmp, MAX_PATH);
-    g_log = CreateFileA(tmp, FILE_APPEND_DATA, FILE_SHARE_READ | FILE_SHARE_WRITE,
-                        nullptr, OPEN_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
+    g_log = CreateFileA(tmp, GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE,
+                        nullptr, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, nullptr);
 }
 
 const char* LogPath() { return g_logPath; }
