@@ -1,5 +1,16 @@
 # Seven Kingdoms II HD 简体中文汉化
 
+> ⚠️ **使用前必读**
+>
+> 本补丁为个人非官方作品，**未获游戏官方授权**；安装会修改或注入游戏文件，
+> 可能与该游戏的用户协议（EULA）冲突。请自行判断是否可用，风险自担，
+> **安装前请备份存档与原始文件**。
+>
+> **禁止商业使用**；二次修改后分发，须公开源代码与改动记录，并保留原作者署名。
+> 作者不对使用后果承担责任，也不拥有本游戏及其原始素材的版权。
+> 完整条款见 [LICENSE](LICENSE)。
+
+
 给 **GOG 版《七王国 2 HD》**（`7K2.exe`，32 位）做的简体中文补丁。
 
 不改游戏逻辑，不替换 exe：把一个小插件（`sk2_zh.asi`）放进游戏的 `scripts\`，
@@ -184,16 +195,21 @@ python tools\check_struct.py        :: 结构校验
 
 ## 七、License
 
-本仓库（插件源码、工具链、译文数据）采用 **GPL-3.0 或更高版本
-（SPDX: GPL-3.0-or-later）**。
+本仓库（插件源码、工具链、译文数据）采用 **HJNCSA-1.0 非商业源码可得许可**
+（HaoJun0823 Non-Commercial Source-Available License 1.0，基座为 Apache 2.0）。
+**它不是开源许可**——开源许可不得限制使用领域，而本许可禁止商业用途。
 
-根目录 [LICENSE](LICENSE) 是**项目级声明文件**（主许可证、游戏著作权声明、
+- 禁止商业使用（含任何以营利为目的的分发、售卖、打包或引流变现）
+- 二次修改后再分发，须公开源代码与改动记录，并保留原作者署名
+- 作者不对使用后果承担责任，亦不拥有本游戏及其原始素材的版权
+
+根目录 [LICENSE](LICENSE) 是**项目级声明文件**（主许可、游戏著作权声明、
 子模块归属、附加条款、免责声明都在里面）；
 完整许可证全文按类型归档在 `LICENSES/`：
 
 | 文件 | 内容 |
 |---|---|
-| `LICENSES/GPLv3.txt` | GNU GPL v3 官方全文（2026-10-05 之前它就是根目录 `LICENSE`） |
+| `LICENSES/Apache-2.0.txt` | 基础许可 Apache License 2.0 官方全文 |
 | `LICENSES/7k2.txt` | 子模块 `7k2_src` 游戏源码的 GPL v2 全文（Enlight / 7kfans） |
 | `LICENSES/ASILoader.txt` | Ultimate ASI Loader（ThirteenAG）的 MIT 许可副本 |
 
