@@ -682,6 +682,12 @@ unpack_data_chs/Resource/*
 unpack_data_chs/Resource/STD.SET.unpacked/*
 !unpack_data_chs/Resource/STD.SET.unpacked/manifest.json
 !unpack_data_chs/Resource/STD.SET.unpacked/records/
+# Campaign 文本也是译文真源（CI 靠它重装配 update_res_staged）。
+# 只放行 .unpacked 文本容器；Campaign/sound/（48MB wav）仍然不入库。
+!unpack_data_chs/Campaign/
+unpack_data_chs/Campaign/sound/
+!unpack_data_chs/Campaign/*.unpacked/
+!unpack_data_chs/Campaign/*.unpacked/**
 # 插件编译中间产物（build.cmd / tools/build.py 可重建）
 SavenKingdom_II_HD_CHINESE/objs/
 SavenKingdom_II_HD_CHINESE/obj_test/

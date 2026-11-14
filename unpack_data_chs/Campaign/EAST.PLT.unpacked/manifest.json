@@ -1,0 +1,129 @@
+{
+  "source": "east.plt",
+  "size": 3688,
+  "sha256": "7e61bd1baf5a43690fdc9a820e2801fd7a2f8ceed4de45def799ec5305761814",
+  "type": "residx",
+  "count": 16,
+  "records": [
+    {
+      "index": 0,
+      "name": "PLOTA1",
+      "name_raw": "504c4f544131000000",
+      "file": "000_PLOTA1.bin",
+      "size": 245
+    },
+    {
+      "index": 1,
+      "name": "PLOTA2",
+      "name_raw": "504c4f544132000000",
+      "file": "001_PLOTA2.bin",
+      "size": 193
+    },
+    {
+      "index": 2,
+      "name": "PLOTA3",
+      "name_raw": "504c4f544133000000",
+      "file": "002_PLOTA3.bin",
+      "size": 265
+    },
+    {
+      "index": 3,
+      "name": "PLOTA4",
+      "name_raw": "504c4f544134000000",
+      "file": "003_PLOTA4.bin",
+      "size": 197
+    },
+    {
+      "index": 4,
+      "name": "PLOTA5",
+      "name_raw": "504c4f544135000000",
+      "file": "004_PLOTA5.bin",
+      "size": 178
+    },
+    {
+      "index": 5,
+      "name": "PLOTA6",
+      "name_raw": "504c4f544136000000",
+      "file": "005_PLOTA6.bin",
+      "size": 271
+    },
+    {
+      "index": 6,
+      "name": "PLOTA7",
+      "name_raw": "504c4f544137000000",
+      "file": "006_PLOTA7.bin",
+      "size": 251
+    },
+    {
+      "index": 7,
+      "name": "PLOTC1",
+      "name_raw": "504c4f544331000000",
+      "file": "007_PLOTC1.bin",
+      "size": 223
+    },
+    {
+      "index": 8,
+      "name": "PLOTC2",
+      "name_raw": "504c4f544332000000",
+      "file": "008_PLOTC2.bin",
+      "size": 311
+    },
+    {
+      "index": 9,
+      "name": "PLOTC3",
+      "name_raw": "504c4f544333000000",
+      "file": "009_PLOTC3.bin",
+      "size": 187
+    },
+    {
+      "index": 10,
+      "name": "PLOTC4",
+      "name_raw": "504c4f544334000000",
+      "file": "010_PLOTC4.bin",
+      "size": 217
+    },
+    {
+      "index": 11,
+      "name": "PLOTD1",
+      "name_raw": "504c4f544431000000",
+      "file": "011_PLOTD1.bin",
+      "size": 307
+    },
+    {
+      "index": 12,
+      "name": "PLOTD2",
+      "name_raw": "504c4f544432000000",
+      "file": "012_PLOTD2.bin",
+      "size": 195
+    },
+    {
+      "index": 13,
+      "name": "PLOTD3",
+      "name_raw": "504c4f544433000000",
+      "file": "013_PLOTD3.bin",
+      "size": 151
+    },
+    {
+      "index": 14,
+      "name": "PLOTD4",
+      "name_raw": "504c4f544434000000",
+      "file": "014_PLOTD4.bin",
+      "size": 135
+    },
+    {
+      "index": 15,
+      "name": "PLOTD5",
+      "name_raw": "504c4f544435000000",
+      "file": "015_PLOTD5.bin",
+      "size": 139
+    },
+    {
+      "index": 16,
+      "name": "",
+      "name_raw": "000000000000000000",
+      "file": null,
+      "size": 0,
+      "sentinel": true
+    }
+  ]
+}
