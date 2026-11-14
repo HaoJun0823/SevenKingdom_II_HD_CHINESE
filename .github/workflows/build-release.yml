@@ -329,12 +329,23 @@ jobs:
             echo "### 📖 必读说明（安装 / 简繁切换 / 卸载 / 常见问题）"
           } >> release_notes.md
 
+          # 必读说明在 zip 内（artifact 只上传 zip），故从 zip 取 —— 这样
+          # Release 正文与玩家实际拿到的那份逐字一致。
+          # ★ 不能用 `unzip -p '中文名.txt'`：Info-ZIP 按本地代码页匹配条目名，
+          #   带 UTF-8 标志位的中文条目一律 "filename not matched"（本地实测），
+          #   改用 python zipfile 按后缀找条目。
+          python3 -c "
+          import sys, zipfile
+          with zipfile.ZipFile('$zip_path') as z:
+              for n in z.namelist():
+                  if n.endswith('.txt') and '必读' in n:
+                      sys.stdout.write(z.read(n).decode('utf-8','replace').replace('\r\n','\n'))
+                      break
+          " > readme_embed.txt
+
           {
             echo
-            # 必读说明在 zip 内（artifact 只上传 zip），故从 zip 取 —— 这样
-            # Release 正文与玩家实际拿到的那份逐字一致。
-            if unzip -p "$zip_path" '游戏有BUG！必读！崩溃死机别怪我！.txt' 2>/dev/null \
-                 | tr -d '\r' > readme_embed.txt && [ -s readme_embed.txt ]; then
+            if [ -s readme_embed.txt ]; then
               echo "<details><summary>展开完整必读说明（与包内 txt 一致）</summary>"
               echo
               echo "<pre>"
@@ -343,7 +354,7 @@ jobs:
               echo
               echo "</details>"
             else
-              echo "> ⚠️ 未能从 zip 内取出必读说明，本次未附带。"
+              echo "> ⚠️ zip 内没找到必读说明 txt，本次未附带。"
             fi
             echo
             echo "---"

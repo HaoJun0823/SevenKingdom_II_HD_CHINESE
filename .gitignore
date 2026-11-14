@@ -688,6 +688,33 @@ unpack_data_chs/Resource/STD.SET.unpacked/*
 unpack_data_chs/Campaign/sound/
 !unpack_data_chs/Campaign/*.unpacked/
 !unpack_data_chs/Campaign/*.unpacked/**
+# Resource 下这些容器的解包目录同样是译文真源（.res 文本表），CI 靠它重装配。
+# 只放行发布清单真正用到的；字体/贴图/音效那些大件仍然不入库。
+!unpack_data_chs/Resource/CPG_INTR.RES.unpacked/
+!unpack_data_chs/Resource/help.res.unpacked/
+!unpack_data_chs/Resource/HOTKEY.RES.unpacked/
+!unpack_data_chs/Resource/INTROTXT.RES.unpacked/
+!unpack_data_chs/Resource/tips.res.unpacked/
+!unpack_data_chs/Resource/TUT_INTR.RES.unpacked/
+!unpack_data_chs/Resource/tut_list.res.unpacked/
+!unpack_data_chs/Resource/TUT_TEXT.RES.unpacked/
+!unpack_data_chs/Resource/t_basic.res.unpacked/
+!unpack_data_chs/Resource/t_camp.res.unpacked/
+!unpack_data_chs/Resource/t_endc.res.unpacked/
+!unpack_data_chs/Resource/t_firm.res.unpacked/
+!unpack_data_chs/Resource/t_gmenu.res.unpacked/
+!unpack_data_chs/Resource/t_item.res.unpacked/
+!unpack_data_chs/Resource/t_news.res.unpacked/
+!unpack_data_chs/Resource/t_reps.res.unpacked/
+!unpack_data_chs/Resource/t_sedit.res.unpacked/
+!unpack_data_chs/Resource/t_talk.res.unpacked/
+!unpack_data_chs/Resource/t_tutor.res.unpacked/
+!unpack_data_chs/Resource/t_unit.res.unpacked/
+# Scenario 里只有 .sct（场景起始参数的文本表）是译文真源；
+# .scn/.scp/scenario.sys（地图与脚本大件）不入库。
+!unpack_data_chs/Scenario/
+unpack_data_chs/Scenario/Premade/*
+!unpack_data_chs/Scenario/Premade/*.sct.unpacked/
 # 插件编译中间产物（build.cmd / tools/build.py 可重建）
 SavenKingdom_II_HD_CHINESE/objs/
 SavenKingdom_II_HD_CHINESE/obj_test/
