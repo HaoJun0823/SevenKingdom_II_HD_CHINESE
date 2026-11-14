@@ -1,0 +1,388 @@
+name: build-release
+
+# ══════════════════════════════════════════════════════════════════════════
+# 《七王国 2 HD》简体中文汉化 —— 构建 + 自动发 Release
+#   ubuntu-latest + msvc-wine（wine 里跑真 cl.exe，产出 32 位 .asi）
+# ══════════════════════════════════════════════════════════════════════════
+#
+# 产物（一个 zip，Steam 2.10F 与 GOG 2.10E 通用）：
+#   release/7K2-CHS-Common-<YYYY-MM-DD>.zip
+#     脚本/加载器：dsound.dll、scripts\sk2_zh.asi
+#     资源覆盖：  update\（由 unpack_data_chs/ 现场打包，见 tools/stage_resources.py）
+#     说明/许可：  必读 txt、LICENSE、LICENSES\
+#   内容清单唯一真源 = tools/release_manifest.txt；pack_release.py 会断言
+#   zip 内路径集合与清单**完全相同**（多一个少一个都算失败）。
+#
+# 为什么用 ubuntu + msvc-wine 而不是 windows runner：
+#   参考仓库（MajestyIIExtend / SR_GAME_CHINESE）实测 windows-2022/2025 镜像
+#   不带 v141，且 VS Installer 在 CI 里加装老工具集连续翻车。msvc-wine 用
+#   与 VS 安装器同一份官方 manifest 从微软 CDN 拉包，版本可钉死、可缓存。
+#
+# 触发：
+#   push(master/main) —— 构建 + 校验 + 上传 Artifact；随后 publish job 在
+#                        **同一个 run** 内按日期-时间打 tag 并发 Release。
+#   pull_request      —— 只构建 + 校验（门禁，不发布）。
+#   workflow_dispatch —— 手动，可只跑构建不发版（推 PR 也一样）。
+#
+# ★ 不用「tag push 重触发 workflow」发版：GITHUB_TOKEN 推的 tag 不会触发
+#   on:push（GitHub 防循环），那条路会静默失败。发布一律同 run 内 gh 直发。
+# ══════════════════════════════════════════════════════════════════════════
+
+on:
+  push:
+    branches: [master, main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'archives/**'
+      - 'unpack_data_original*/**'
+      - '.workbuddy/**'
+  pull_request:
+    branches: [master, main]
+    paths-ignore:
+      - '**.md'
+      - 'docs/**'
+      - 'archives/**'
+      - 'unpack_data_original*/**'
+      - '.workbuddy/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+# 同一分支/PR 的新推送取消旧的进行中构建，省 runner
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: 构建发布包（ubuntu-latest + msvc-wine MSVC x86）
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+
+    env:
+      # 仓库里的 .py 大量处理中文；CI 上强制 UTF-8，避免 UnicodeEncodeError
+      PYTHONUTF8: '1'
+      PYTHONIOENCODING: 'utf-8'
+      # msvc-wine 安装目录。tools/build.py 读它定位 bin/x86/cl 包装脚本。
+      MSVC_WINE_PREFIX: ${{ github.workspace }}/.msvc
+      # msvc-wine 上游 ref；升级时改这里（cache key 含它，会自动换缓存）
+      MSVCWINE_REF: master
+
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v7.0.1
+        with:
+          # 7k2_src / BugFix 两个子模块**不需要**：插件源码、字形池、解包数据
+          # 全在主仓库里。拉子模块只会浪费几分钟和几百 MB。
+          submodules: false
+
+      # ★ 必须完整 checkout msvc-wine（不能只下 vsdownload.py）：
+      #   install.sh 要用仓库里的 lowercase / fixinclude（Linux 大小写敏感文件
+      #   系统下的头文件名修复）、wrappers/（cl/link 包装脚本）、msvctricks.cpp
+      #   （自举编译一次 cl 实测可用性）。
+      - name: 检出 msvc-wine
+        uses: actions/checkout@v7.0.1
+        with:
+          repository: mstorsjo/msvc-wine
+          ref: ${{ env.MSVCWINE_REF }}
+          path: .msvc-wine
+
+      - name: 配置 Python
+        uses: actions/setup-python@v7.0.0
+        with:
+          python-version: '3.12'
+
+      # ── wine 侧依赖（msvc-wine README 的 Prerequisites）───────────────
+      #   wine64     : 运行真 cl.exe/link.exe（本构建不用 /Zi，winbind 纯保险）
+      #   msitools   : msiextract，解 VS 组件与 WinSDK 的 .msi（需 >= 0.98）
+      #   ca-certificates: https 拉微软 CDN
+      - name: 安装 wine / msitools 等依赖
+        run: |
+          set -euo pipefail
+          sudo apt-get update
+          sudo apt-get install -y wine64 msitools ca-certificates winbind
+          wine --version
+
+      # ── 工具链缓存（VC + WinSDK 解包后约 3~4GB，压缩后可缓存）────────
+      - name: 还原 MSVC 工具链缓存
+        uses: actions/cache@v6.1.0
+        with:
+          path: .msvc
+          key: sk2-msvcwine-x86-sdk-default-${{ env.MSVCWINE_REF }}-v1
+
+      # ── 下载工具链（缓存未命中时）──────────────────────────────────
+      #   ★ --architecture **x86 x64**：目标是 32 位，但必须把 x64 一起拉下来
+      #     —— bin/x86 的 cl.exe 是 Hostx64/x86（64 位宿主编 32 位目标），启动
+      #     时按 PATH 找 mspdbcore.dll，而该文件只在 Hostx64/x64 目录里。
+      #     只拉 x86 会让 wine 下的 cl 报 C1356（MajestyIIExtend 实测踩过）。
+      #   ★ 关掉 msbuild/devcmd/dia/atl/asan/mfc/llvm：直接 cl/link 用不上，
+      #     能省一两 GB 下载与解包时间。
+      #   ★ 不钉 --msvc-version / --sdk-version：本项目不靠产物体积指纹判版本
+      #     （门禁查的是 PE32 x86 / 子系统 / 体积区间，见 pack_release.py），
+      #     跟随上游最新工具集即可。
+      - name: 下载并解包 MSVC + Win10 SDK（缓存未命中时）
+        run: |
+          set -euo pipefail
+          if [ -x "${MSVC_WINE_PREFIX}/bin/x86/cl" ]; then
+            echo "工具链缓存命中，跳过下载（install.sh 仍会重跑以修复 symlink）。"
+          else
+            python3 .msvc-wine/vsdownload.py \
+              --accept-license \
+              --architecture x86 x64 --host-arch x64 \
+              --with-msbuild=no --with-devcmd=no --with-dia=no \
+              --with-atl=no --with-asan=no --with-mfc=no --with-llvm=no \
+              --dest "${MSVC_WINE_PREFIX}"
+          fi
+
+      # ── install.sh：大小写修复 + 包装脚本生成（幂等，永远跑）─────────
+      #   a) VC/WindowsKits 目录小写 symlink 化（Linux 大小写敏感下的必需修复）；
+      #   b) 生成 bin/x86/{cl,link,...} 包装脚本 + msvcenv.sh（自动探测版本目录）；
+      #   c) wineboot 初始化 prefix；d) 自举编译 msvctricks.cpp 实测 cl 可用。
+      - name: install.sh（生成包装脚本 / 大小写修复）
+        run: |
+          set -euo pipefail
+          sh .msvc-wine/install.sh "${MSVC_WINE_PREFIX}"
+
+      # ── 编译器门禁：必须能真的编出一个 32 位 DLL ────────────────────
+      #   banner 只用来记录版本；真正的门禁是下面这次真实编译 —— 它能挡住
+      #   「包装脚本缺 mspdbcore.dll」「SDK 没装全」「cl 跑到 64 位去」三类问题。
+      - name: 验证编译器（banner + 32 位试编）
+        run: |
+          set -euo pipefail
+          export PATH="${MSVC_WINE_PREFIX}/bin/x86:$PATH"
+          echo "── cl banner ──"
+          cl 2>&1 | head -3 || true
+          echo "── Win SDK 版本 ──"
+          ls "${MSVC_WINE_PREFIX}/kits/10/include/" || ls "${MSVC_WINE_PREFIX}/Windows Kits/10/include/" || true
+          echo "── 32 位试编 ──"
+          cat > probe.c <<'EOF'
+          __declspec(dllexport) int probe(void) { return 42; }
+          int __stdcall DllMain(void* h, unsigned long r, void* p) { return 1; }
+          EOF
+          cl /nologo /LD /Fo:probe.obj /Fe:probe.dll probe.c
+          python3 - <<'PY'
+          import struct
+          d = open('probe.dll','rb').read()
+          pe = struct.unpack_from('<I', d, 0x3c)[0]
+          machine = struct.unpack_from('<H', d, pe+4)[0]
+          assert machine == 0x14c, 'probe.dll 不是 x86（machine=0x%04x）' % machine
+          print('✓ 试编成功：x86 DLL %d B' % len(d))
+          PY
+          rm -f probe.c probe.obj probe.dll
+          echo "── 磁盘余量 ──"
+          df -h . | tail -1
+
+      # ── 核心 1/3：编译插件 ────────────────────────────────────────
+      #   tools/build.py 检测到 MSVC_WINE_PREFIX 就用 bin/x86/cl 包装脚本，
+      #   INCLUDE/LIB 交给包装脚本设置（自己再设会盖掉它的探测结果）。
+      - name: 编译 sk2_zh.asi
+        run: |
+          set -euo pipefail
+          python3 tools/build.py
+
+      # ── 核心 2/3：资源树必须与解包源一致 ──────────────────────────
+      #   update_res_staged/ 是解包源 + packaging 覆盖层的装配结果。这一步
+      #   只比对不写盘：如果有人改了 unpack_data_chs 却忘了重跑装配，CI 直接
+      #   拦下，避免又出现「发布包比仓库新」的老问题。
+      - name: 校验资源树与解包源一致
+        run: |
+          set -euo pipefail
+          python3 tools/stage_resources.py --check
+
+      # ── 核心 3/3：打包（顺带做产物体检）───────────────────────────
+      #   pack_release.py 会断言：清单文件齐全、zip 路径集合与清单完全一致、
+      #   asi 是 PE32 x86 DLL / 子系统 WINDOWS / 入口点非 0 / 含插件标记串 /
+      #   体积在 1.8~4.2MB 区间。任一不过就直接失败，绝不产出半成品。
+      - name: 打包发布 zip
+        run: |
+          set -euo pipefail
+          stamp="$(TZ=Asia/Shanghai date +%Y-%m-%d)"
+          echo "STAMP=$stamp" >> "$GITHUB_ENV"
+          python3 tools/pack_release.py --stamp "$stamp"
+
+      - name: 回读校验 zip
+        run: |
+          set -euo pipefail
+          python3 tools/pack_release.py --verify "release/7K2-CHS-Common-${STAMP}.zip"
+
+      - name: 上传发布包
+        uses: actions/upload-artifact@v7.0.2
+        with:
+          name: 7k2-chs
+          path: release/7K2-CHS-Common-*.zip
+          if-no-files-found: error
+          retention-days: 30
+
+  # ── 发布：push master/main 时同 run 内打 tag + 发 Release ──────────────
+  publish:
+    name: 发布 Release
+    if: ${{ github.event_name == 'push' && (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') }}
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      # ★ fetch-depth: 0 —— release notes 要算「自上次 Release 起的提交」，
+      #   默认 depth=1 取不到历史，git log 范围会是空的。
+      - name: 检出仓库（提交记录需要）
+        uses: actions/checkout@v7.0.1
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: 下载发布包
+        uses: actions/download-artifact@v8.0.2
+        with:
+          path: dist
+
+      - name: 定位 zip 并算 tag（上海时区）
+        id: meta
+        run: |
+          set -euo pipefail
+          # 附件名即 zip 名（ASCII），tag 用中文前缀，与另外两个仓库的统一标准一致。
+          zip_path="$(find dist -name '7K2-CHS-Common-*.zip' -print -quit)"
+          if [ -z "$zip_path" ]; then
+            echo "!! dist 里找不到 zip；实际内容：" >&2
+            ls -R dist >&2 || true
+            exit 1
+          fi
+          zip_name="$(basename "$zip_path")"
+          tag="汉化补丁-$(TZ=Asia/Shanghai date +%Y-%m-%d-%H-%M-%S)"
+          # 极小概率同秒重复推送：tag 已存在就追加运行号
+          if gh api "repos/${{ github.repository }}/git/ref/tags/$tag" >/dev/null 2>&1; then
+            tag="${tag}-${GITHUB_RUN_NUMBER}"
+          fi
+          echo "zip_path=$zip_path" >> "$GITHUB_OUTPUT"
+          echo "zip_name=$zip_name" >> "$GITHUB_OUTPUT"
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          echo "zip=$zip_name　tag=$tag"
+
+      - name: 生成 Release 说明（下载表 + 必读说明 + 提交记录）
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${{ steps.meta.outputs.tag }}"
+          zip_path="${{ steps.meta.outputs.zip_path }}"
+          zip_name="${{ steps.meta.outputs.zip_name }}"
+          slug="${{ github.repository }}"
+          repo_url="https://github.com/$slug"
+
+          # ── 提交范围：自上次 Release 的 commit 起 ────────────────────
+          # ★ 不用 git log <上次tag>..HEAD：checkout 默认不拉 tag 对象，
+          #   会报 unknown revision。改用 release 的 commit.sha。
+          latest="$(gh api "repos/$slug/releases/latest" 2>/dev/null || true)"
+          prev_tag="$(printf '%s' "$latest" | jq -r '.tag_name // empty' 2>/dev/null || true)"
+          prev_sha="$(printf '%s' "$latest" | jq -r '.commit.sha // empty' 2>/dev/null || true)"
+          if [ -z "$prev_sha" ] && [ -n "$prev_tag" ]; then
+            prev_sha="$(gh api "repos/$slug/git/refs/tags/$prev_tag" --jq '.object.sha // empty' 2>/dev/null || true)"
+            if [ "$(git cat-file -t "$prev_sha" 2>/dev/null || true)" = "tag" ]; then
+              prev_sha="$(gh api "repos/$slug/git/refs/tags/$prev_tag" --jq '.object.object.sha // empty' 2>/dev/null || true)"
+            fi
+          fi
+          if [ -n "$prev_sha" ] && git cat-file -e "${prev_sha}^{commit}" 2>/dev/null; then
+            base="$prev_sha"; base_label="$prev_tag"
+          else
+            base="$(git rev-list --max-parents=0 HEAD)"; base_label="首个提交"
+          fi
+
+          # ★ 必须用 tformat：format 末尾无换行，read 在 EOF 会丢掉最后一行
+          : > commits.md
+          git log --no-merges --max-count=60 --pretty=tformat:'%H%x09%s' "$base..HEAD" \
+            | while IFS=$'\t' read -r h s; do
+                if [ -z "$h" ]; then continue; fi
+                printf -- '- [`%s`](%s/commit/%s) %s\n' "${h:0:7}" "$repo_url" "$h" "$s" >> commits.md
+              done
+          n=$(grep -c '^- ' commits.md || true)
+          echo "本次提交记录：$n 条（基准 $base_label）"
+
+          cat > release_notes.md <<'EOF'
+          ## 《七王国 2 HD》简体中文汉化补丁 · `@@TAG@@`
+
+          **STEAM 2.10F 与 GOG 2.10E 通用**，同一个包，解压到游戏根目录即可。
+          简繁切换只改 `update\render.ini` 里的一行 `lang=simp` / `lang=trad`，
+          不用重装、不用换资源。完整安装/卸载/常见问题见下方「必读说明」。
+          EOF
+
+          {
+            echo
+            echo "### 🧾 本次更新（自 \`$base_label\` 起，共 ${n} 条提交）"
+            echo
+            if [ -s commits.md ]; then cat commits.md; else echo "(本次构建无新增提交)"; fi
+          } >> release_notes.md
+
+          {
+            echo
+            echo "### 📦 下载"
+            echo
+            echo "| 附件名 | 适用版本 | 内容 |"
+            echo "|---|---|---|"
+            echo "| \`$zip_name\` | STEAM 2.10F / GOG 2.10E 通用 | 汉化插件 + 中文资源 + 安装说明 |"
+            echo
+            echo "解压到游戏根目录（与 \`7K2.exe\` 同层），覆盖同名文件。"
+            echo "包内 \`dsound.dll\` 是 ASI 加载器，删了中文就不显示。"
+            echo
+            echo "### 📖 必读说明（安装 / 简繁切换 / 卸载 / 常见问题）"
+          } >> release_notes.md
+
+          {
+            echo
+            # 必读说明在 zip 内（artifact 只上传 zip），故从 zip 取 —— 这样
+            # Release 正文与玩家实际拿到的那份逐字一致。
+            if unzip -p "$zip_path" '游戏有BUG！必读！崩溃死机别怪我！.txt' 2>/dev/null \
+                 | tr -d '\r' > readme_embed.txt && [ -s readme_embed.txt ]; then
+              echo "<details><summary>展开完整必读说明（与包内 txt 一致）</summary>"
+              echo
+              echo "<pre>"
+              cat readme_embed.txt
+              echo "</pre>"
+              echo
+              echo "</details>"
+            else
+              echo "> ⚠️ 未能从 zip 内取出必读说明，本次未附带。"
+            fi
+            echo
+            echo "---"
+            echo
+            echo "源码仓库：<$repo_url>　·　作者主页：<https://www.haojun0823.xyz/>"
+          } >> release_notes.md
+
+          sed -i "s/@@TAG@@/$tag/g" release_notes.md
+          if grep -q '@@TAG@@' release_notes.md; then
+            echo "!! 仍有未替换的 @@TAG@@" >&2; exit 1
+          fi
+          echo "── release_notes.md 生成完毕（$(wc -l < release_notes.md) 行）──"
+
+      - name: 创建 Release 并校验 body
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${{ steps.meta.outputs.tag }}"
+          zip_path="${{ steps.meta.outputs.zip_path }}"
+          slug="${{ github.repository }}"
+
+          for sec in "### 📦 下载" "### 📖 必读说明" "### 🧾 本次更新"; do
+            if ! grep -qF "$sec" release_notes.md; then
+              echo "!! release_notes.md 缺少段落「$sec」" >&2; exit 1
+            fi
+          done
+          echo "✓ 三段预检通过"
+
+          # --target 指向当前 commit，由 gh 代建远端 tag（比本地 tag+push 稳）
+          gh release create "$tag" \
+            "$zip_path" \
+            --target "$GITHUB_SHA" \
+            --title "七王国 2 HD 汉化补丁 $tag" \
+            --notes-file release_notes.md
+
+          body="$(gh release view "$tag" --repo "$slug" --json body --jq .body)"
+          body_head="${body%%$'\n'*}"
+          if [ -z "$body_head" ] || [[ "$body_head" != "## 《七王国 2 HD》简体中文汉化补丁"* ]]; then
+            echo "!! Release body 异常（首行=[$body_head]）" >&2; exit 1
+          fi
+          echo "✓ Release body 已写入（首行：${body_head}…）"
+          echo "✅ 已发布: $tag"
