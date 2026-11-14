@@ -44,10 +44,11 @@ FIXED_DATE = (2020, 1, 1, 0, 0, 0)
 # 面向玩家的文本统一转 CRLF：老版记事本（Win7/8）不认 LF，会把整份说明显示成一行。
 # 转换放在这里而不是依赖 git 的 eol 设置 —— 保证本地与 CI 产出的 zip 逐字节一致。
 TEXT_SUFFIXES = (".txt", ".ini")
+TEXT_EXACT = ("LICENSE",)          # 无扩展名但确实是文本的文件
 
 
 def normalize_text(data, path):
-    if not path.lower().endswith(TEXT_SUFFIXES):
+    if not (path.lower().endswith(TEXT_SUFFIXES) or path in TEXT_EXACT):
         return data
     txt = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
     return txt.replace(b"\n", b"\r\n")
