@@ -155,7 +155,9 @@ python tools\build.py
 1. **资源树闸** —— `tools/stage_resources.py --check`：`update_res_staged\` 必须与
    `unpack_data_chs\` 现场重打包的结果逐字节一致。改了解包源忘了重装配，CI 直接拦下。
 2. **打包闸** —— `tools/pack_release.py`：`tools/release_manifest.txt` 里的文件必须齐全，
-   zip 内路径集合必须与清单**完全相同**（多一个少一个都失败）。
+   zip 内**文件**路径集合必须与清单完全相同（多一个少一个都失败）；目录条目另算，
+   必须恰好是清单里那些路径的父目录。V5 的 7 个空目录条目（`update\`、`scripts\`、
+   `LICENSES\` 等）就是这样补齐的，`unzip -l` 看到的 49 文件 + 7 目录与 V5 同构。
 3. **产物体检** —— `.asi` 必须是 PE32 x86 DLL、子系统 WINDOWS、入口点非 0、
    含插件标记串、体积在 1.8~4.2MB 区间。防止链成 x64、链成控制台程序、
    或字形池没生成就发版。

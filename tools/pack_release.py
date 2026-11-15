@@ -14,8 +14,10 @@
 
 校验（任一不过就非零退出，绝不产出半成品）：
     1. 清单 tools/release_manifest.txt 里的每个文件都找得到；
-    2. zip 内的路径集合与清单**完全相同**（多一个、少一个都算错）；
-    3. scripts/sk2_zh.asi 是 PE32 x86 DLL 且导出 DllMain（防止链接成 x64/控制台程序）；
+    2. zip 内的**文件**路径集合与清单完全相同（多一个、少一个都算错）；
+       目录条目另算：必须恰好是清单里那些路径的父目录，一个不多一个不少；
+    3. scripts/sk2_zh.asi 是 PE32 x86 DLL、子系统 WINDOWS、入口点非 0
+       （防止链接成 x64/控制台程序），且内含预期标记串；
     4. 打印逐文件 CRC32 与体积，方便和上一版对比。
 
 用法：
@@ -79,6 +81,44 @@ def resolve(path):
     return os.path.join(ROOT, *path.split("/"))
 
 
+def dir_entries(paths):
+    """由清单路径推出应有的目录条目（带结尾斜杠，父目录递归展开）。
+
+    参考包 V5 显式写了 7 个目录条目（0 字节、STORED），这里照样补齐：
+    解压结果不变，但 `unzip -l` 的结构与 V5 一致，也避免 Win7/8 自带解压
+    那种「先建目录」的实现出岔子。
+    """
+    out = []
+    for p in paths:
+        parts = p.split("/")[:-1]
+        for i in range(1, len(parts) + 1):
+            d = "/".join(parts[:i]) + "/"
+            if d not in out:
+                out.append(d)
+    return out
+
+
+def path_set_problems(got, paths):
+    """比对 zip 实际条目与清单，返回问题清单（空 = 通过）。
+
+    文件集合必须与清单逐项相同；目录条目必须恰好是清单里那些路径的父目录，
+    多一个少一个都算错 —— 这样既保证内容不多不少，也保证结构没走样。
+    """
+    got_files = [n for n in got if not n.endswith("/")]
+    got_dirs = [n for n in got if n.endswith("/")]
+    want_dirs = dir_entries(paths)
+    probs = []
+    extra = sorted(set(got_files) - set(paths))
+    lack = sorted(set(paths) - set(got_files))
+    if extra or lack:
+        probs.append("文件集合与清单不符：多=%s 少=%s" % (extra, lack))
+    d_extra = sorted(set(got_dirs) - set(want_dirs))
+    d_lack = sorted(set(want_dirs) - set(got_dirs))
+    if d_extra or d_lack:
+        probs.append("目录条目不符：多=%s 少=%s" % (d_extra, d_lack))
+    return probs
+
+
 def pe_check(path):
     """解析 PE 头，返回 (机器码, 是否 DLL, 子系统, 入口点 RVA)。非 PE 直接抛错。
 
@@ -137,8 +177,26 @@ def build(stamp, outdir):
 
     # ── 写 zip（UTF-8 文件名标志位，Linux/Windows 双向可解）──────
     total = 0
+    written_dirs = set()
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED, compresslevel=9) as z:
         for path in paths:
+            # 落笔前先补上还没写过的父目录条目 —— 与 V5 的「目录紧跟在其首个
+            # 子条目之前」顺序一致。
+            parts = path.split("/")[:-1]
+            for i in range(1, len(parts) + 1):
+                d = "/".join(parts[:i]) + "/"
+                if d in written_dirs:
+                    continue
+                di = zipfile.ZipInfo(d, date_time=FIXED_DATE)
+                di.compress_type = zipfile.ZIP_STORED   # 目录天然 0 字节，不必压
+                # 只打 MS-DOS 目录位（0x10），高 16 位的 unix 权限留 0：
+                # V5 里这两个字段就是 0，靠结尾斜杠标识目录；而 writestr 遇到
+                # external_attr==0 会当成「未设置」补成 0o600<<16（那是文件的
+                # 权限位），反而把目录标成文件，所以这里必须给个非 0 的值。
+                di.external_attr = 0x10
+                di.flag_bits |= 0x800
+                z.writestr(di, b"")
+                written_dirs.add(d)
             src = resolve(path)
             info = zipfile.ZipInfo(path, date_time=FIXED_DATE)
             info.compress_type = zipfile.ZIP_DEFLATED
@@ -150,19 +208,20 @@ def build(stamp, outdir):
             total += len(data)
             print("  %-58s %8d B  crc=%08x" % (path, len(data), zlib.crc32(data) & 0xFFFFFFFF))
 
-    # ── 回读自检：路径集合必须与清单完全一致 ────────────────
+    # ── 回读自检：文件集合与清单一致、目录条目齐备 ──────────
     with zipfile.ZipFile(out) as z:
         got = z.namelist()
-        if sorted(got) != sorted(paths):
-            extra = sorted(set(got) - set(paths))
-            lack = sorted(set(paths) - set(got))
-            raise SystemExit("zip 内容与清单不符：多=%s 少=%s" % (extra, lack))
+        probs = path_set_problems(got, paths)
+        if probs:
+            raise SystemExit("zip 自检失败：" + "；".join(probs))
         if z.testzip() is not None:
-            raise SystemExit("zip 自检失败")
+            raise SystemExit("zip 自检失败（CRC）")
+        n_dirs = sum(1 for n in got if n.endswith("/"))
 
     print("\n[O] %s" % out)
-    print("    条目 %d 个，解压后 %.2f MB，zip %.2f MB"
-          % (len(paths), total / 1048576.0, os.path.getsize(out) / 1048576.0))
+    print("    条目 %d 个（%d 文件 + %d 目录），解压后 %.2f MB，zip %.2f MB"
+          % (len(paths) + n_dirs, len(paths), n_dirs,
+             total / 1048576.0, os.path.getsize(out) / 1048576.0))
     print("    sk2_zh.asi %d B（PE32 x86 DLL，子系统 WINDOWS，入口点已就位）" % asi_size)
     return out
 
@@ -171,9 +230,9 @@ def verify(zip_path):
     paths = read_manifest()
     with zipfile.ZipFile(zip_path) as z:
         got = z.namelist()
-        if sorted(got) != sorted(paths):
-            print("!! 路径集合与清单不符：多=%s 少=%s"
-                  % (sorted(set(got) - set(paths)), sorted(set(paths) - set(got))))
+        probs = path_set_problems(got, paths)
+        if probs:
+            print("!! " + "；".join(probs))
             return 1
         bad = z.testzip()
         if bad:
@@ -194,7 +253,8 @@ def verify(zip_path):
             if m not in asi:
                 print("!! 包内 asi 缺标记串 %r" % m)
                 return 1
-    print("✓ %s：%d 个条目，路径集合与清单一致，包内 asi 合格" % (zip_path, len(paths)))
+    print("✓ %s：%d 文件 + %d 目录，结构与清单一致，包内 asi 合格"
+          % (zip_path, len(paths), sum(1 for n in got if n.endswith("/"))))
     return 0
 
 

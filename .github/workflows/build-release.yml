@@ -11,7 +11,8 @@ name: build-release
 #     资源覆盖：  update\（由 unpack_data_chs/ 现场打包，见 tools/stage_resources.py）
 #     说明/许可：  必读 txt、LICENSE、LICENSES\
 #   内容清单唯一真源 = tools/release_manifest.txt；pack_release.py 会断言
-#   zip 内路径集合与清单**完全相同**（多一个少一个都算失败）。
+#   zip 内**文件**路径集合与清单**完全相同**（多一个少一个都算失败），
+#   并按 V5 的惯例补齐空目录条目（49 文件 + 7 目录 = 56 条）。
 #
 # 为什么用 ubuntu + msvc-wine 而不是 windows runner：
 #   参考仓库（MajestyIIExtend / SR_GAME_CHINESE）实测 windows-2022/2025 镜像
@@ -384,10 +385,12 @@ jobs:
           echo "✓ 三段预检通过"
 
           # --target 指向当前 commit，由 gh 代建远端 tag（比本地 tag+push 稳）
+          # ★ 标题别直接拼 $tag：tag 本身以「汉化补丁-」开头，会变成
+          #   「…汉化补丁 汉化补丁-2026-…」。剥掉前缀只要时间戳部分。
           gh release create "$tag" \
             "$zip_path" \
             --target "$GITHUB_SHA" \
-            --title "七王国 2 HD 汉化补丁 $tag" \
+            --title "七王国 2 HD 汉化补丁 ${tag#汉化补丁-}" \
             --notes-file release_notes.md
 
           body="$(gh release view "$tag" --repo "$slug" --json body --jq .body)"
